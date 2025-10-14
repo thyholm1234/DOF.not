@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-13T20:11:13.474198+02:00",
+"items": [
+{
+"obsid": "37829046",
+"art": "Musvåge",
+"antal": "24",
+"adf": "Trækkende mod sydvest",
+"lok": "Bavelse Gods, Marker ved",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,64520542728112",
+"lat": "55,34355527526489",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+},
+{
+"obsid": "37829047",
+"art": "Spurvehøg",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Bavelse Gods, Marker ved",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,64520542728112",
+"lat": "55,34355527526489",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+},
+{
+"obsid": "37829049",
+"art": "Stær",
+"antal": "35",
+"adf": "Overflyvende",
+"lok": "Bavelse Gods, Marker ved",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,64520542728112",
+"lat": "55,34355527526489",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+}
+]
+}

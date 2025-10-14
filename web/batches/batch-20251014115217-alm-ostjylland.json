@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T11:52:17.058200+02:00",
+"items": [
+{
+"obsid": "37832709",
+"art": "Lomvie",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Egå-Tålfor Strand/Åkrogen/Egå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,28720283527946",
+"lat": "56,2084989208603",
+"tid_fra": "11:51",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

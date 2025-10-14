@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-14T09:41:27.717648+02:00",
+"items": [
+{
+"obsid": "37831273",
+"art": "Stor Korsnæb",
+"antal": "0",
+"adf": "Trækkende",
+"lok": "Kregme",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Philip",
+"efternavn": "Elbek",
+"lon": "12,044866451015235",
+"lat": "55,94678731370084",
+"tid_fra": "09:30",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

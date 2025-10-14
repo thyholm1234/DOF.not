@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-13T23:19:24.340701+02:00",
+"items": [
+{
+"obsid": "37823746",
+"art": "Sølvhejre",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Alrø Strevelshoved",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bent",
+"efternavn": "Carstensen",
+"lon": "10,059842555915345",
+"lat": "55,869632884773296",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37821314",
+"art": "Vindrossel",
+"antal": "99",
+"adf": "Trækkende",
+"lok": "Gellerupparken Toveshøj",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Christian",
+"efternavn": "Vemmelund Helligsø",
+"lon": "10,136546771449865",
+"lat": "56,158903617777895",
+"tid_fra": "00:08",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

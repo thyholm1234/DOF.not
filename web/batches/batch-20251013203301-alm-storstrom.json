@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-13T20:33:01.339779+02:00",
+"items": [
+{
+"obsid": "37829176",
+"art": "Gråand",
+"antal": "45",
+"adf": "Rastende",
+"lok": "Stege Bugt sydøst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "12,243231052692597",
+"lat": "54,98873784708542",
+"tid_fra": "08:00",
+"tid_til": "09:05",
+"kategori": "alm"
+},
+{
+"obsid": "37829181",
+"art": "Skeand",
+"antal": "43",
+"adf": "Fouragerende",
+"lok": "Stege Bugt sydøst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "12,243231052692597",
+"lat": "54,98873784708542",
+"tid_fra": "08:00",
+"tid_til": "09:05",
+"kategori": "alm"
+},
+{
+"obsid": "37829182",
+"art": "Grågås",
+"antal": "30",
+"adf": "Rastende",
+"lok": "Stege Bugt sydøst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "12,243231052692597",
+"lat": "54,98873784708542",
+"tid_fra": "08:00",
+"tid_til": "09:05",
+"kategori": "alm"
+}
+]
+}

@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T13:14:08.828670+02:00",
+"items": [
+{
+"obsid": "37833205",
+"art": "Almindelig Ryle",
+"antal": "82",
+"adf": "Rastende",
+"lok": "Dejret Øhoved",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,414713476545636",
+"lat": "56,217073244523164",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37833389",
+"art": "Alk",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Skæring Hede/Skæring Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,329756485921079",
+"lat": "56,23717864766954",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37833144",
+"art": "Musvåge",
+"antal": "52",
+"adf": "Trækkende",
+"lok": "Skæring Hede/Skæring Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,329756485921079",
+"lat": "56,23717864766954",
+"tid_fra": "12:48",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

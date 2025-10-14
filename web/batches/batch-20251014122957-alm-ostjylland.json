@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T12:29:57.950104+02:00",
+"items": [
+{
+"obsid": "37832834",
+"art": "Musvåge",
+"antal": "103",
+"adf": "Trækkende",
+"lok": "Egå-Tålfor Strand/Åkrogen/Egå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,294146537780763",
+"lat": "56,22380978220825",
+"tid_fra": "12:08",
+"tid_til": "12:24",
+"kategori": "alm"
+}
+]
+}

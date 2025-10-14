@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T10:11:53.358118+02:00",
+"items": [
+{
+"obsid": "37831587",
+"art": "Blishøne",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Egåen Ny Mølle-Gråmølle",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kurt",
+"efternavn": "Prentow",
+"lon": "10,175566725871558",
+"lat": "56,211328618230596",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831591",
+"art": "Troldand",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Egåen Ny Mølle-Gråmølle",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kurt",
+"efternavn": "Prentow",
+"lon": "10,175566725871558",
+"lat": "56,211328618230596",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831563",
+"art": "Skarv",
+"antal": "53",
+"adf": "Rastende",
+"lok": "Fjellerup Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "P. Johansson",
+"lon": "10,578219648980436",
+"lat": "56,519064055111286",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

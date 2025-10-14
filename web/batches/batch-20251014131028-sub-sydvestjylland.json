@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-14T13:10:28.089142+02:00",
+"items": [
+{
+"obsid": "37833302",
+"art": "Stor Korsnæb",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Ho Plantage",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Anders",
+"efternavn": "Søgaard",
+"lon": "8,235492740517282",
+"lat": "55,530231483266455",
+"tid_fra": "13:09",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

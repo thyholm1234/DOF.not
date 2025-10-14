@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T13:31:19.329024+02:00",
+"items": [
+{
+"obsid": "37833587",
+"art": "Strandskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Skæring Hede/Skæring Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,329756485921079",
+"lat": "56,23717864766954",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

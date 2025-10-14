@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T12:17:13.406887+02:00",
+"items": [
+{
+"obsid": "37832929",
+"art": "Alk",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Egå-Tålfor Strand/Åkrogen/Egå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,328521728515627",
+"lat": "56,221671974667885",
+"tid_fra": "12:16",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-13T22:34:43.214529+02:00",
+"items": [
+{
+"obsid": "37825856",
+"art": "Rødtoppet Fuglekonge",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Issehoved",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Joan",
+"efternavn": "Laursen",
+"lon": "10,558065722584297",
+"lat": "55,99766832730836",
+"tid_fra": "08:45",
+"tid_til": "11:45",
+"kategori": "alm"
+}
+]
+}

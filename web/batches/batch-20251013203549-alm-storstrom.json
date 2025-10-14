@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-13T20:35:49.095204+02:00",
+"items": [
+{
+"obsid": "37829185",
+"art": "Pibeand",
+"antal": "170",
+"adf": "Rastende",
+"lok": "Stege Bugt sydøst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "12,243231052692597",
+"lat": "54,98873784708542",
+"tid_fra": "08:00",
+"tid_til": "09:05",
+"kategori": "alm"
+},
+{
+"obsid": "37829194",
+"art": "Bramgås",
+"antal": "350",
+"adf": "Trækkende",
+"lok": "Saksfjed Inddæmning/Vildmark syd",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Uffe B.",
+"efternavn": "Nielsen",
+"lon": "11,444335497059061",
+"lat": "54,62421894298555",
+"tid_fra": "09:45",
+"tid_til": "16:00",
+"kategori": "alm"
+},
+{
+"obsid": "37829195",
+"art": "Ringdue",
+"antal": "1800",
+"adf": "Trækkende",
+"lok": "Saksfjed Inddæmning/Vildmark syd",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Uffe B.",
+"efternavn": "Nielsen",
+"lon": "11,444335497059061",
+"lat": "54,62421894298555",
+"tid_fra": "09:45",
+"tid_til": "16:00",
+"kategori": "alm"
+}
+]
+}

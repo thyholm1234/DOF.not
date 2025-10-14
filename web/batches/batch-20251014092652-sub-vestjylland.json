@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-14T09:26:52.788931+02:00",
+"items": [
+{
+"obsid": "37830886",
+"art": "Hvidnæbbet Lom",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Thorsminde, nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "8,122724902498717",
+"lat": "56,380416630976214",
+"tid_fra": "08:46",
+"tid_til": "08:45",
+"kategori": "sub"
+}
+]
+}

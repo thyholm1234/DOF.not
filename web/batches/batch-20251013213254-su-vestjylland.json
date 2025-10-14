@@ -1,0 +1,22 @@
+{
+"client": "su-vestjylland",
+"count": 1,
+"generated": "2025-10-13T21:32:54.813059+02:00",
+"items": [
+{
+"obsid": "37827399",
+"art": "Tajgapiber",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Thorsminde",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "8,1293238400758",
+"lat": "56,376641713481",
+"tid_fra": "08:00",
+"tid_til": "09:45",
+"kategori": "su"
+}
+]
+}

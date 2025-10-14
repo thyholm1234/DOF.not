@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T10:22:35.576037+02:00",
+"items": [
+{
+"obsid": "37831695",
+"art": "Skærpiber",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Kysing Næs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Jimmy",
+"efternavn": "Kristensen",
+"lon": "10,282112402872775",
+"lat": "56,022299797218096",
+"tid_fra": "07:00",
+"tid_til": "10:00",
+"kategori": "alm"
+}
+]
+}

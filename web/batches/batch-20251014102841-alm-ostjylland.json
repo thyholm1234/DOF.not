@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T10:28:41.500087+02:00",
+"items": [
+{
+"obsid": "37831751",
+"art": "Sanglærke",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Glatved Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "10,868271363949722",
+"lat": "56,30659673705006",
+"tid_fra": "08:53",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-13T21:48:48.101597+02:00",
+"items": [
+{
+"obsid": "37829592",
+"art": "Stormmåge",
+"antal": "104",
+"adf": "Fouragerende",
+"lok": "Halling Odder by/agerland",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Per",
+"efternavn": "Madsen",
+"lon": "10,222934961057035",
+"lat": "55,93393328294152",
+"tid_fra": "16:00",
+"tid_til": "16:05",
+"kategori": "alm"
+}
+]
+}

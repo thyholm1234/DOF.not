@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T10:30:06.533188+02:00",
+"items": [
+{
+"obsid": "37831779",
+"art": "Fiskehejre",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Begtrup Røn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,509950348241622",
+"lat": "56,165644487689185",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

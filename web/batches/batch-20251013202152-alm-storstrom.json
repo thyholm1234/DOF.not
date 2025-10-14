@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-13T20:21:52.762892+02:00",
+"items": [
+{
+"obsid": "37829123",
+"art": "Isfugl",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,620362102985384",
+"lat": "55,3383225869591",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+},
+{
+"obsid": "37829126",
+"art": "Svartbag",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,6032729957569",
+"lat": "55,33793007742486",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+}
+]
+}

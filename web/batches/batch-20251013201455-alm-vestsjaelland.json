@@ -1,0 +1,37 @@
+{
+"client": "alm-vestsjaelland",
+"count": 2,
+"generated": "2025-10-13T20:14:55.078801+02:00",
+"items": [
+{
+"obsid": "37829069",
+"art": "Musvåge",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Nordrup v. Ringsted",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Bodil",
+"efternavn": "Dahl",
+"lon": "11,886860744162163",
+"lat": "55,40825712319014",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829090",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rast, derefter trækkende i ikke-angivet retning",
+"lok": "Rørskov langs Tissø østbred",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Stefan",
+"efternavn": "Miang Mortensen",
+"lon": "11,31263356343967",
+"lat": "55,56271071747375",
+"tid_fra": "17:25",
+"tid_til": "17:29",
+"kategori": "alm"
+}
+]
+}

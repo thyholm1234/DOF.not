@@ -1,0 +1,82 @@
+{
+"client": "alm-storstrom",
+"count": 5,
+"generated": "2025-10-13T20:23:21.491760+02:00",
+"items": [
+{
+"obsid": "37829137",
+"art": "Fasan",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829139",
+"art": "Grågås",
+"antal": "16",
+"adf": "Overflyvende",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829140",
+"art": "Hjejle",
+"antal": "30",
+"adf": "Overflyvende",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829141",
+"art": "Stormmåge",
+"antal": "80",
+"adf": "Overflyvende",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829142",
+"art": "Ringdue",
+"antal": "18",
+"adf": "Overflyvende",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

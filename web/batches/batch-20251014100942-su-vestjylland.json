@@ -1,0 +1,22 @@
+{
+"client": "su-vestjylland",
+"count": 1,
+"generated": "2025-10-14T10:09:42.471548+02:00",
+"items": [
+{
+"obsid": "37831559",
+"art": "Blå Glente",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Jersild",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Frederik",
+"efternavn": "Svane Westenholz",
+"lon": "8,769580711034811",
+"lat": "56,25197454526835",
+"tid_fra": "09:04",
+"tid_til": "",
+"kategori": "su"
+}
+]
+}

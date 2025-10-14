@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-14T10:57:08.265425+02:00",
+"items": [
+{
+"obsid": "37832108",
+"art": "Lapværling",
+"antal": "0",
+"adf": "Overflyvende",
+"lok": "Thorsminde",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "8,122839886855084",
+"lat": "56,37627823958334",
+"tid_fra": "09:15",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

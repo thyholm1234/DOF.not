@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-14T13:09:00.051750+02:00",
+"items": [
+{
+"obsid": "37833286",
+"art": "Allike",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Hasselager",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kim",
+"efternavn": "Nørgaard Poulsen",
+"lon": "10,101306237002168",
+"lat": "56,10887048892289",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37833287",
+"art": "Råge",
+"antal": "11",
+"adf": "Rastende",
+"lok": "Hasselager",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kim",
+"efternavn": "Nørgaard Poulsen",
+"lon": "10,101306237002168",
+"lat": "56,10887048892289",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-13T20:13:16.182198+02:00",
+"items": [
+{
+"obsid": "37829050",
+"art": "Musvåge",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Grønningen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Niels",
+"efternavn": "Kristian Bech Jensen",
+"lon": "8,191267717549584",
+"lat": "55,533595316612576",
+"tid_fra": "12:50",
+"tid_til": "15:40",
+"kategori": "alm"
+}
+]
+}

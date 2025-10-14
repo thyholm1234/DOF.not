@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T09:55:35.101013+02:00",
+"items": [
+{
+"obsid": "37831416",
+"art": "Sule",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Kysing Næs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Jimmy",
+"efternavn": "Kristensen",
+"lon": "10,282112402872775",
+"lat": "56,022299797218096",
+"tid_fra": "07:00",
+"tid_til": "10:00",
+"kategori": "alm"
+},
+{
+"obsid": "37831419",
+"art": "Sortspætte",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Glatved Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "10,841568",
+"lat": "56,295578",
+"tid_fra": "08:53",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831420",
+"art": "Bogfinke",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Fjellerup Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "P. Johansson",
+"lon": "10,578219648980436",
+"lat": "56,519064055111286",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

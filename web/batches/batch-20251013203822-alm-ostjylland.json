@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-13T20:38:22.783696+02:00",
+"items": [
+{
+"obsid": "37821314",
+"art": "Vindrossel",
+"antal": "95",
+"adf": "Trækkende",
+"lok": "Gellerupparken Toveshøj",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Christian",
+"efternavn": "Vemmelund Helligsø",
+"lon": "10,136546771449865",
+"lat": "56,158903617777895",
+"tid_fra": "00:08",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

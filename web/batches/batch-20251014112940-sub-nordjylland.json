@@ -1,0 +1,22 @@
+{
+"client": "sub-nordjylland",
+"count": 1,
+"generated": "2025-10-14T11:29:40.751375+02:00",
+"items": [
+{
+"obsid": "37832491",
+"art": "Kongeørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Manna Mose, Fuglesøerne",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Karsten",
+"efternavn": "Haug",
+"lon": "9,841786544684687",
+"lat": "57,24349509896848",
+"tid_fra": "11:16",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

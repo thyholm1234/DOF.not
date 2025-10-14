@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-13T20:11:01.599167+02:00",
+"items": [
+{
+"obsid": "37829044",
+"art": "Havørn",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Esrum Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Henrik",
+"efternavn": "Boeg",
+"lon": "12,389794367289175",
+"lat": "56,01387162495055",
+"tid_fra": "15:15",
+"tid_til": "18:20",
+"kategori": "alm"
+}
+]
+}

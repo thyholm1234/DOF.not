@@ -1,0 +1,67 @@
+{
+"client": "alm-vestjylland",
+"count": 4,
+"generated": "2025-10-13T20:15:17.240339+02:00",
+"items": [
+{
+"obsid": "37829074",
+"art": "Gransanger",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Harboøre Tange Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "8,199332100000516",
+"lat": "56,67569650000178",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829076",
+"art": "Fuglekonge",
+"antal": "30",
+"adf": "Rastende",
+"lok": "Harboøre Tange Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "8,199332100000516",
+"lat": "56,67569650000178",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829081",
+"art": "Sortstrubet Bynkefugl",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Harboøre Tange Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "8,199332100000516",
+"lat": "56,67569650000178",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829085",
+"art": "Munk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Harboøre Tange Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "8,199332100000516",
+"lat": "56,67569650000178",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

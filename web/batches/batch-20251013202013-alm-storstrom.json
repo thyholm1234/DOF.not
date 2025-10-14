@@ -1,0 +1,67 @@
+{
+"client": "alm-storstrom",
+"count": 4,
+"generated": "2025-10-13T20:20:13.976618+02:00",
+"items": [
+{
+"obsid": "37829114",
+"art": "Gråand",
+"antal": "11",
+"adf": "Rastende",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,6032729957569",
+"lat": "55,33793007742486",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+},
+{
+"obsid": "37829115",
+"art": "Knopsvane",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,6032729957569",
+"lat": "55,33793007742486",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+},
+{
+"obsid": "37829117",
+"art": "Skeand",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,6032729957569",
+"lat": "55,33793007742486",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+},
+{
+"obsid": "37829119",
+"art": "Fiskehejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,6032729957569",
+"lat": "55,33793007742486",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+}
+]
+}

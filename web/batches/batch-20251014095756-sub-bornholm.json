@@ -1,0 +1,22 @@
+{
+"client": "sub-bornholm",
+"count": 1,
+"generated": "2025-10-14T09:57:56.031199+02:00",
+"items": [
+{
+"obsid": "37831451",
+"art": "Nøddekrige, Tyknæbbet (ssp. caryocatactes)",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Skovsholm",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Steen E.",
+"efternavn": "Jensen",
+"lon": "15,132067784939371",
+"lat": "55,11529730317358",
+"tid_fra": "08:40",
+"tid_til": "09:25",
+"kategori": "sub"
+}
+]
+}

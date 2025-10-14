@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-13T20:29:52.609631+02:00",
+"items": [
+{
+"obsid": "37829169",
+"art": "Skestork",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Græsholm",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Kjeld",
+"efternavn": "Tommy Pedersen",
+"lon": "10,608146033902429",
+"lat": "57,492115515179705",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829172",
+"art": "Vandrikse",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Græsholm",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Kjeld",
+"efternavn": "Tommy Pedersen",
+"lon": "10,608146033902429",
+"lat": "57,492115515179705",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

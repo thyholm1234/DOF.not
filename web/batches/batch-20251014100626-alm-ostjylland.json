@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T10:06:26.822439+02:00",
+"items": [
+{
+"obsid": "37831397",
+"art": "Troldand",
+"antal": "16",
+"adf": "Rastende",
+"lok": "Vængesø, Helgenæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,542698509161326",
+"lat": "56,1473310660172",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831526",
+"art": "Spidsand",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Vængesø, Helgenæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,542698509161326",
+"lat": "56,1473310660172",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831527",
+"art": "Svartbag",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Fjellerup Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "P. Johansson",
+"lon": "10,578219648980436",
+"lat": "56,519064055111286",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

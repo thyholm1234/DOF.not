@@ -1,0 +1,112 @@
+/* Dagens notifikationer */
+.today { margin: 16px 0 24px; }
+.today h3 { margin: 0 0 8px; font-weight: 700; font-size: 1.2rem; }
+.today-list { display: grid; gap: 10px; }
+
+.today-item {
+  border: 1px solid #e6e6e6; border-radius: 8px;
+  padding: 10px 12px; background: #fff;
+}
+.today-item a.wrap {
+  color: inherit; text-decoration: none; display: block;
+}
+.today-item .title {
+  font-weight: 700; margin: 0 0 4px; line-height: 1.25;
+}
+.today-item .meta {
+  color: #666; font-size: .9rem; line-height: 1.35;
+}
+.today-item .meta .sep { opacity: .4; padding: 0 6px; }
+.today-item .meta a { color: #0a6; text-decoration: underline; }
+
+.prefs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 8px;
+  background: #a0a0a0;
+  border: 1px solid #22304b;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.prefs-table thead th {
+  padding: 10px 12px;
+  border-bottom: 1px solid #22304b;
+  color: #000000;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.prefs-table thead th:not(:first-child) {
+  text-align: center;
+}
+
+.prefs-table tbody td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #22304b;
+}
+
+.prefs-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.prefs-table td.afd {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.prefs-table td.sel {
+  text-align: center;
+  width: 72px;
+}
+
+.prefs-table input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.prefs-table label {
+  display: inline-block;
+  cursor: pointer;
+  border: 5px solid var(--border);
+  border-radius: 15px;
+}
+
+/* Boksen */
+.prefs-table .box {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #2a3b5c;
+  border-radius: 6px;
+  background: #808080;
+    position: relative;
+  transition: all 0.15s ease-in-out;
+}
+
+/* Hover-effekt */
+.prefs-table td.sel:hover .box {
+  border-color: #1f6feb;
+  background: #16284a;
+}
+
+/* Aktiv/valgt */
+.prefs-table input[type="radio"]:checked + label .box {
+  border-color: #2ea043;
+  background: #2ea043;
+  box-shadow: 0 0 3px 1px rgba(46, 160, 67, 0.5);
+}
+
+/* Flueben / kryds i midten */
+.prefs-table input[type="radio"]:checked + label .box::after {
+  content: "✕"; /* Brug "✓" hvis du vil have flueben */
+  position: absolute;
+  color: #000000;
+  font-weight: 900;
+  font-size: 18px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-13T21:47:45.468692+02:00",
+"items": [
+{
+"obsid": "37829583",
+"art": "Skovspurv",
+"antal": "12",
+"adf": "Fouragerende",
+"lok": "Halling Odder by/agerland",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Per",
+"efternavn": "Madsen",
+"lon": "10,220256664741157",
+"lat": "55,93157819709964",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

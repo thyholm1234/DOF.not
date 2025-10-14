@@ -1,0 +1,22 @@
+{
+"client": "sub-storstrom",
+"count": 1,
+"generated": "2025-10-14T13:32:01.377421+02:00",
+"items": [
+{
+"obsid": "37833604",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "08:30",
+"tid_til": "11:00",
+"kategori": "sub"
+}
+]
+}

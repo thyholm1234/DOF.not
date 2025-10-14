@@ -1,0 +1,67 @@
+{
+"client": "alm-storstrom",
+"count": 4,
+"generated": "2025-10-13T20:29:39.782747+02:00",
+"items": [
+{
+"obsid": "37829171",
+"art": "Pibeand",
+"antal": "40",
+"adf": "Fouragerende",
+"lok": "Stege Bugt sydøst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "12,243231052692597",
+"lat": "54,98873784708542",
+"tid_fra": "08:00",
+"tid_til": "09:05",
+"kategori": "alm"
+},
+{
+"obsid": "37829173",
+"art": "Knarand",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Stege Bugt sydøst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "12,243231052692597",
+"lat": "54,98873784708542",
+"tid_fra": "08:00",
+"tid_til": "09:05",
+"kategori": "alm"
+},
+{
+"obsid": "37829170",
+"art": "Gærdesmutte",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bavelse Sø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,635051793519903",
+"lat": "55,334362989050305",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+},
+{
+"obsid": "37829168",
+"art": "Allike",
+"antal": "20",
+"adf": "Trækkende mod sydvest",
+"lok": "Tystrup Sø, sydlige del",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,6032729957569",
+"lat": "55,33793007742486",
+"tid_fra": "09:30",
+"tid_til": "11:00",
+"kategori": "alm"
+}
+]
+}

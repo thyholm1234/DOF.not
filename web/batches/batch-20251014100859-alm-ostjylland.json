@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-14T10:08:59.850514+02:00",
+"items": [
+{
+"obsid": "37831523",
+"art": "Sølvmåge",
+"antal": "13",
+"adf": "Rastende",
+"lok": "Fjellerup Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "P. Johansson",
+"lon": "10,578219648980436",
+"lat": "56,519064055111286",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831531",
+"art": "Strandskade",
+"antal": "9",
+"adf": "Rastende",
+"lok": "Fjellerup Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "P. Johansson",
+"lon": "10,578219648980436",
+"lat": "56,519064055111286",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

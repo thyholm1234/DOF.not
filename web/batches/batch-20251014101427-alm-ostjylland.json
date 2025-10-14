@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T10:14:27.916694+02:00",
+"items": [
+{
+"obsid": "37831617",
+"art": "Sule",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Hevring Strand og sandø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lisbeth",
+"efternavn": "Mikkelsen",
+"lon": "10,4040082982168",
+"lat": "56,53722047449042",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831622",
+"art": "Storspove",
+"antal": "40",
+"adf": "Rastende",
+"lok": "Hevring Strand og sandø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lisbeth",
+"efternavn": "Mikkelsen",
+"lon": "10,4040082982168",
+"lat": "56,53722047449042",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831619",
+"art": "Grønirisk",
+"antal": "155",
+"adf": "Rastende",
+"lok": "Glatved Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "10,868271363949722",
+"lat": "56,30659673705006",
+"tid_fra": "08:53",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

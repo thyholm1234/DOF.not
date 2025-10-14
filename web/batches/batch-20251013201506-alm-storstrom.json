@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-13T20:15:06.499650+02:00",
+"items": [
+{
+"obsid": "37829070",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Bavelse Gods, Marker ved",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,64520542728112",
+"lat": "55,34355527526489",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+},
+{
+"obsid": "37829073",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Bavelse Gods, Marker ved",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,64520542728112",
+"lat": "55,34355527526489",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+},
+{
+"obsid": "37829078",
+"art": "Bramgås",
+"antal": "230",
+"adf": "Trækkende mod sydvest",
+"lok": "Bavelse Gods, Marker ved",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,64520542728112",
+"lat": "55,34355527526489",
+"tid_fra": "09:00",
+"tid_til": "11:25",
+"kategori": "alm"
+}
+]
+}

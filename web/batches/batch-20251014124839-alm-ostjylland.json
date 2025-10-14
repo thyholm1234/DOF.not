@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T12:48:39.349568+02:00",
+"items": [
+{
+"obsid": "37833144",
+"art": "Musvåge",
+"antal": "46",
+"adf": "Trækkende",
+"lok": "Skæring Hede/Skæring Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,329756485921079",
+"lat": "56,23717864766954",
+"tid_fra": "12:48",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

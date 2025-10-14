@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-13T20:24:37.838882+02:00",
+"items": [
+{
+"obsid": "37829143",
+"art": "Stor Flagspætte",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829144",
+"art": "Spurvehøg",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37829146",
+"art": "Musvåge",
+"antal": "27",
+"adf": "Trækkende mod sydvest",
+"lok": "Tornelund",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,832411766130624",
+"lat": "55,3495154338662",
+"tid_fra": "16:00",
+"tid_til": "16:25",
+"kategori": "alm"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T12:47:11.210998+02:00",
+"items": [
+{
+"obsid": "37833137",
+"art": "Havørn",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Hårup Silkeborg",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Flemming H.",
+"efternavn": "Nielsen",
+"lon": "9,64604080384352",
+"lat": "56,15444479266603",
+"tid_fra": "12:04",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

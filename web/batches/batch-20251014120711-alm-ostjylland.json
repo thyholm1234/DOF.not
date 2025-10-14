@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-14T12:07:11.730053+02:00",
+"items": [
+{
+"obsid": "37832821",
+"art": "Fiskehejre",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Skødshoved",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,349399100146622",
+"lat": "56,198160523454014",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37804281",
+"art": "Stillits",
+"antal": "26",
+"adf": "Rastende",
+"lok": "Gellerupparken Toveshøj",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Christian",
+"efternavn": "Vemmelund Helligsø",
+"lon": "10,136546771449865",
+"lat": "56,158903617777895",
+"tid_fra": "10:40",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-14T13:25:21.461678+02:00",
+"items": [
+{
+"obsid": "37833518",
+"art": "Gransanger, Sibirisk (ssp. tristis)",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Værnengene",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Ole",
+"efternavn": "Amstrup",
+"lon": "8,238629133716955",
+"lat": "55,85446228956158",
+"tid_fra": "10:45",
+"tid_til": "13:30",
+"kategori": "sub"
+}
+]
+}

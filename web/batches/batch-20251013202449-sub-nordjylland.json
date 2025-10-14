@@ -1,0 +1,22 @@
+{
+"client": "sub-nordjylland",
+"count": 1,
+"generated": "2025-10-13T20:24:49.564711+02:00",
+"items": [
+{
+"obsid": "37829145",
+"art": "Kongeørn",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Tofte Mose, Lille Vildmose",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Bjarne",
+"efternavn": "Golles",
+"lon": "10,180883584175369",
+"lat": "56,847652739299804",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

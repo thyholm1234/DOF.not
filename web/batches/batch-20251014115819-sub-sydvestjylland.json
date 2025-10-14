@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-14T11:58:19.948542+02:00",
+"items": [
+{
+"obsid": "37832758",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Henrik Hald",
+"efternavn": "Nørgaard",
+"lon": "8,084092140197756",
+"lat": "55,560995558919124",
+"tid_fra": "10:00",
+"tid_til": "11:00",
+"kategori": "sub"
+}
+]
+}

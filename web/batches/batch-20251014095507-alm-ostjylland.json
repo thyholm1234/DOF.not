@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T09:55:07.384534+02:00",
+"items": [
+{
+"obsid": "37831406",
+"art": "Knopsvane",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Vængesø, Helgenæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,542698509161326",
+"lat": "56,1473310660172",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831410",
+"art": "Skarv",
+"antal": "13",
+"adf": "Rastende",
+"lok": "Vængesø, Helgenæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mogens Stoustrup",
+"efternavn": "Jensen",
+"lon": "10,542698509161326",
+"lat": "56,1473310660172",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37831411",
+"art": "Jernspurv",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Fjellerup Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "P. Johansson",
+"lon": "10,578219648980436",
+"lat": "56,519064055111286",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}
