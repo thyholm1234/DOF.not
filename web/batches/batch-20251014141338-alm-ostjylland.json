@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T14:13:38.637437+02:00",
+"items": [
+{
+"obsid": "37834029",
+"art": "Lomvie",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ebeltoft by",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kasper",
+"efternavn": "Nickelsen",
+"lon": "10,669445917010309",
+"lat": "56,19522090538814",
+"tid_fra": "14:12",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

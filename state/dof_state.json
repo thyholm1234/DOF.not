@@ -11085,7 +11085,7 @@
   },
   "Musvåge\n323001": {
     "date": "2025-10-14",
-    "antal": 91.0
+    "antal": 150.0
   },
   "Musvåge\n325005": {
     "date": "2025-10-13",
@@ -16596,8 +16596,8 @@
     "antal": 1.0
   },
   "Spurvehøg\n327017": {
-    "date": "2025-10-13",
-    "antal": 2.0
+    "date": "2025-10-14",
+    "antal": 1.0
   },
   "Spurvehøg\n329037": {
     "date": "2025-10-13",
@@ -29253,7 +29253,7 @@
   },
   "Musvåge\n741320": {
     "date": "2025-10-14",
-    "antal": 320.0
+    "antal": 330.0
   },
   "Dværgfalk\n555141": {
     "date": "2025-10-14",
@@ -29729,7 +29729,7 @@
   },
   "Gærdesmutte\n571069": {
     "date": "2025-10-14",
-    "antal": 1.0
+    "antal": 2.0
   },
   "Rød Glente\n431607": {
     "date": "2025-10-14",
@@ -29776,6 +29776,46 @@
     "antal": 1.0
   },
   "Stor Flagspætte\n765400": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Krage, Sortkrage (ssp. corone)\n561440": {
+    "date": "2025-10-14",
+    "antal": 3.0
+  },
+  "Tårnfalk\n671250": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Grønspætte\n615498": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Rød Glente\n323001": {
+    "date": "2025-10-14",
+    "antal": 3.0
+  },
+  "Rød Glente\n527500": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Lomvie\n701050": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Rød Glente\n327017": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Allike\n901029": {
+    "date": "2025-10-14",
+    "antal": 24.0
+  },
+  "Hvid Vipstjert (ssp. alba)\n561440": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Rørspurv\n901029": {
     "date": "2025-10-14",
     "antal": 1.0
   }
