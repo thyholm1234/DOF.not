@@ -1,15 +1,9 @@
 {
-  "kind": "single",
+  "client": "alm-ostjylland",
+  "title": "[alm-ostjylland] 1 nye obs",
+  "body": "330 Musvåge",
+  "url": "/batches/batch-20251014141237-alm-ostjylland.json",
   "count": 1,
-  "received_at": "2025-10-14T13:32:19.598068+02:00",
-  "items": [
-    {
-      "type": "digest",
-      "title": "1 Stor Korsnæb, Feddet",
-      "body": "John, Faldborg",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37833604&summering=tur&obs=obs",
-      "tag": "bird-digest-sub-storstrom",
-      "renotify": true
-    }
-  ]
+  "tag": "bird-digest-alm-ostjylland",
+  "generated": "2025-10-14T14:12:37.920206+02:00"
 }
