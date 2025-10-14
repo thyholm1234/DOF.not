@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="da">
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOF.not</title>
+  <meta name="theme-color" content="#0b3d91" />
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="description" content="Web push-notifikationer med filtrering pr. DOF-lokalafdeling." />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- (valgfrit) iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152.png">
+
+  <!-- Inkluder CSS -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Registrering af Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+
+</head>
+<body>
+  <header class="topbar">
+    <nav><a href="./index.html">← Tilbage</a></nav>
+    <h1>Avanceret filtrering</h1>
+    <p>Vælg arts‑overrides: <strong>Default</strong> (følg region/kategori), <strong>Inkludér</strong> (vis altid), <strong>Udeluk</strong> (vis aldrig).</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <input id="adv-search" type="search" placeholder="Søg art ..." aria-label="Søg art" />
+      <button id="adv-clear">Nulstil til Default</button>
+      <button id="adv-save">Gem</button>
+      <span id="adv-status" role="status" aria-live="polite"></span>
+    </section>
+
+    <section>
+      <ul id="adv-list" class="species-list" aria-label="Arter med overrides"></ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>

@@ -1,15 +1,22 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-14T22:30:00.753179+02:00",
+  "received_at": "2025-10-14T23:07:44.282095+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Bjergvipstjert, Ringsted",
-      "body": "Eyvind, Malchow-Møller",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37838303&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-vestsjaelland",
-      "renotify": true
+      "title": "8 Halemejse, Ho Plantage",
+      "body": "Ole Zoltan, Gøller",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37838343&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-sydvestjylland",
+      "renotify": true,
+      "regions": [
+        "DOF Sydvestjylland"
+      ],
+      "categories": [
+        "bemaerk"
+      ],
+      "urgency": "high"
     }
   ]
 }

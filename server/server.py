@@ -103,12 +103,11 @@ def ensure_db() -> None:
     con = sqlite3.connect(DB_PATH); cur = con.cursor()
     # Subscriptions
     cur.execute("""
-    CREATE TABLE IF NOT EXISTS subs (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      endpoint TEXT UNIQUE NOT NULL,
-      p256dh TEXT NOT NULL,
-      auth TEXT NOT NULL,
-      user_id TEXT
+    CREATE TABLE IF NOT EXISTS user_species_overrides (
+      user_id TEXT PRIMARY KEY,
+      data    TEXT NOT NULL,
+      ts      INTEGER,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     )""")
     # Users
     cur.execute("""
@@ -487,6 +486,23 @@ async def save_user_prefs(req: Request):
     con.commit(); con.close()
     return {"ok": True, "prefs": prefs, "effective": _prefs_expand_all(prefs), "ts": ts}
 
+@app.post("/api/prefs/user/species")
+async def save_user_species(req: Request):
+    data = await req.json()
+    user_id = str(data.get("user_id") or "").strip()
+    if not user_id:
+        raise HTTPException(status_code=400, detail="user_id mangler")
+    ov = data.get("overrides") or {}
+    ts = int(data.get("ts") or 0) or int(time.time() * 1000)
+    con = sqlite3.connect(DB_PATH); _ensure_user(con, user_id)
+    con.execute(
+        "INSERT INTO user_species_overrides(user_id, data, ts) VALUES (?,?,?) "
+        "ON CONFLICT(user_id) DO UPDATE SET data=excluded.data, ts=excluded.ts",
+        (user_id, json.dumps(ov, ensure_ascii=False), ts)
+    )
+    con.commit(); con.close()
+    return {"ok": True, "ts": ts}
+
 @app.post("/api/subscribe")
 async def subscribe(req: Request):
     data = await req.json()
@@ -723,3 +739,4 @@ def index():
     return FileResponse(index_path)
 
 app.mount("/", StaticFiles(directory=WEB_DIR, html=True), name="web")
+

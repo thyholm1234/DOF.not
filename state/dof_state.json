@@ -1016,7 +1016,7 @@
     "antal": 1.0
   },
   "Blå Kærhøg\n563308": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Blå Kærhøg\n571071": {
@@ -17076,7 +17076,7 @@
     "antal": 1.0
   },
   "Steppehøg\n563308": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Stillits\n101012": {
@@ -25269,7 +25269,7 @@
   },
   "Skovhornugle\n657010": {
     "date": "2025-10-14",
-    "antal": 0.0
+    "antal": 1.0
   },
   "Sortstrubet Bynkefugl\n811150": {
     "date": "2025-10-14",
@@ -31545,7 +31545,7 @@
   },
   "Sangdrossel\n905448": {
     "date": "2025-10-14",
-    "antal": 101.0
+    "antal": 105.0
   },
   "Musvåge\n900641": {
     "date": "2025-10-14",
@@ -38736,6 +38736,58 @@
     "antal": 1.0
   },
   "Bjergvipstjert\n329110": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Vindrossel\n819255": {
+    "date": "2025-10-14",
+    "antal": 9.0
+  },
+  "Sølvhejre\n329061": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Blå Kærhøg\n665051": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Knarand\n237004": {
+    "date": "2025-10-14",
+    "antal": 86.0
+  },
+  "Sølvhejre\n237004": {
+    "date": "2025-10-14",
+    "antal": 3.0
+  },
+  "Pibeand\n237004": {
+    "date": "2025-10-14",
+    "antal": 61.0
+  },
+  "Skeand\n237004": {
+    "date": "2025-10-14",
+    "antal": 48.0
+  },
+  "Troldand\n237004": {
+    "date": "2025-10-14",
+    "antal": 6.0
+  },
+  "Taffeland\n237004": {
+    "date": "2025-10-14",
+    "antal": 8.0
+  },
+  "Isfugl\n905448": {
+    "date": "2025-10-14",
+    "antal": 6.0
+  },
+  "Dværgfalk\n563308": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Halemejse\n555160": {
+    "date": "2025-10-14",
+    "antal": 8.0
+  },
+  "Blå Kærhøg\n555445": {
     "date": "2025-10-14",
     "antal": 1.0
   }

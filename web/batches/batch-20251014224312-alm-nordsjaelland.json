@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-14T22:43:12.560565+02:00",
+"items": [
+{
+"obsid": "37838310",
+"art": "Skeand",
+"antal": "48",
+"adf": "Rastende",
+"lok": "Skenkelsø Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Torben",
+"efternavn": "Juul Hansen",
+"lon": "12,131279705329018",
+"lat": "55,794723520999185",
+"tid_fra": "11:00",
+"tid_til": "11:45",
+"kategori": "bemaerk"
+}
+]
+}

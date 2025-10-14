@@ -67,8 +67,9 @@ self.addEventListener('fetch', (event) => {
 
 /* ───────────── IndexedDB til præferencer ───────────── */
 const DB_NAME = 'dofnot-db';
-const DB_VER = 2;
+const DB_VER  = 3;
 const STORE_PREFS = 'prefs';
+const STORE_SPECIES = 'species';
 
 function idbOpen() {
   return new Promise((resolve, reject) => {
@@ -78,9 +79,12 @@ function idbOpen() {
       if (!db.objectStoreNames.contains(STORE_PREFS)) {
         db.createObjectStore(STORE_PREFS, { keyPath: 'id' });
       }
+      if (!db.objectStoreNames.contains(STORE_SPECIES)) {
+        db.createObjectStore(STORE_SPECIES, { keyPath: 'id' });
+      }
     };
     req.onsuccess = () => resolve(req.result);
-    req.onerror = () => reject(req.error);
+    req.onerror   = () => reject(req.error);
   });
 }
 
@@ -93,16 +97,36 @@ async function idbPutPrefs(prefs) {
     tx.onerror = () => reject(tx.error);
   });
 }
-
 async function idbGetPrefs() {
   const db = await idbOpen();
   return new Promise((resolve, reject) => {
     const tx = db.transaction(STORE_PREFS, 'readonly');
     const req = tx.objectStore(STORE_PREFS).get('prefs');
     req.onsuccess = () => resolve((req.result && req.result.data) ?? null);
-    req.onerror = () => reject(req.error);
+    req.onerror   = () => reject(req.error);
   });
 }
+
+// NYT: species overrides
+async function idbPutSpecies(overrides) {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_SPECIES, 'readwrite');
+    tx.objectStore(STORE_SPECIES).put({ id: 'overrides', data: overrides, ts: Date.now() });
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function idbGetSpecies() {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_SPECIES, 'readonly');
+    const req = tx.objectStore(STORE_SPECIES).get('overrides');
+    req.onsuccess = () => resolve((req.result && req.result.data) ?? { include: [], exclude: [] });
+    req.onerror   = () => reject(req.error);
+  });
+}
+
 
 /* ───────────── User-tilstand + sync fra server ───────────── */
 let USER_ID = null;
@@ -128,8 +152,52 @@ self.addEventListener('message', (event) => {
   } else if (msg.type === 'SET_USER' && msg.user_id) {
     USER_ID = msg.user_id;
     event.waitUntil(syncPrefsFromServer(USER_ID));
+  } else if (msg.type === 'SAVE_SPECIES_OVERRIDES' && msg.overrides) {
+    event.waitUntil(idbPutSpecies(msg.overrides));
+  } else if (msg.type === 'GET_SPECIES_OVERRIDES' && event.ports?.[0]) {
+    event.waitUntil((async () => {
+      const ov = await idbGetSpecies();
+      event.ports[0].postMessage({ overrides: ov });
+    })());
   }
 });
+
+// ---------- PUSH: filtrér først prefs (region/kategori), derefter arts-overrides ----------
+
+function expandPrefValueToCats(sel) {
+  const v = String(sel ?? '').toLowerCase();
+  if (v === 'su')   return new Set(['su']);
+  if (v === 'sub')  return new Set(['su','sub']);
+  if (v === 'alle') return new Set(['su','sub','alm','bemaerk']); // ensartet
+  return new Set(); // 'none'
+}
+
+function normalizeSpeciesName(s) {
+  return String(s || '').trim().toLowerCase();
+}
+
+function applyRegionCategoryFilter(items, prefs) {
+  if (!items || !items.length) return [];
+  return items.filter((it) => {
+    const afd = (it.dof_afdeling ?? '').toString();
+    const cat = (it.kategori ?? '').toString().toLowerCase();
+    const sel = (prefs[afd] ?? 'none').toLowerCase();
+    const allowed = expandPrefValueToCats(sel);
+    return allowed.has(cat);
+  });
+}
+
+function applySpeciesOverrides(items, overrides) {
+  if (!items || !items.length) return [];
+  const inc = new Set((overrides?.include || []).map(normalizeSpeciesName));
+  const exc = new Set((overrides?.exclude || []).map(normalizeSpeciesName));
+  return items.filter((it) => {
+    const key = normalizeSpeciesName(it.art);
+    if (exc.has(key)) return false;     // udeluk altid
+    if (inc.has(key)) return true;      // vis altid
+    return true;                        // ellers behold (styret af forrige filter)
+  });
+}
 
 /* ───────────── PUSH ───────────── */
 self.addEventListener('push', (event) => {
@@ -139,8 +207,8 @@ self.addEventListener('push', (event) => {
 async function handlePush(event) {
   let data = {};
   try { if (event.data) data = event.data.json(); } catch {}
-  const url = data && data.url;
 
+  const url = data && data.url;
   let items = [];
   if (url) {
     try {
@@ -152,54 +220,46 @@ async function handlePush(event) {
     } catch {}
   }
 
-  // Hent lokale prefs (hydreres evt. fra server via SET_USER)
+  // Hent lokale prefs + species overrides
   let prefs = {};
+  let speciesOv = { include: [], exclude: [] };
   try { prefs = (await idbGetPrefs()) ?? {}; } catch { prefs = {}; }
+  try { speciesOv = (await idbGetSpecies()) ?? { include: [], exclude: [] }; } catch {}
 
-  const useFilter = Object.keys(prefs).length > 0;
-  const filtered = useFilter ? filterItemsByPrefs(items, prefs) : items;
+  const usePrefs = Object.keys(prefs).length > 0;
 
-// Undertryk notifikation hvis der kom en batch-url men intet matcher
+  // 1) region/kategori (som før)
+  const afterPrefs = usePrefs ? applyRegionCategoryFilter(items, prefs) : items;
+  // 2) species overrides
+  const filtered = applySpeciesOverrides(afterPrefs, speciesOv);
+
+  // Drop notifikation hvis en batch-URL kom men intet matcher
   if (url && filtered.length === 0) return;
 
-  // Brug de filtrerede items hvis der er nogen, ellers alle hentede items
-  const list = (filtered.length ? filtered : items) ?? [];
-
-  // Intet at vise
-  if (!Array.isArray(list) || list.length === 0) return;
-
-  // Én notifikation pr. observation
-  const notifPromises = list.map((r) => {
+  // Vis én notifikation pr. observation (din oprindelige model) – uændret
+  const notifPromises = filtered.map((r) => {
     const obsid = (r.obsid ?? '').toString().trim();
     const antal = (r.antal ?? '').toString().trim();
     const art   = (r.art   ?? '').toString().trim();
     const lok   = (r.lok   ?? '').toString().trim();
     const adf   = (r.adf   ?? '').toString().trim();
-    const fornavn   = (r.fornavn   ?? '').toString().trim();
-    const efternavn = (r.efternavn ?? '').toString().trim();
+    const fn    = (r.fornavn ?? '').toString().trim();
+    const en    = (r.efternavn ?? '').toString().trim();
 
-    // title: "antal art, lok"
-    const titleParts = [ [antal, art].filter(Boolean).join(' ') ]
-      .concat(lok ? [`, ${lok}`] : []);
+    const titleParts = [ [antal, art].filter(Boolean).join(' ') ].concat(lok ? [`, ${lok}`] : []);
     const title = titleParts.join('').trim();
-
-    // body: "adf, fornavn efternavn"
-    const navn = [fornavn, efternavn].filter(Boolean).join(' ').trim();
-    const body = [adf, navn].filter(Boolean).join(', ').trim();
-
-    // Destination: obsid indsat i DOFbasen-URL
+    const navn  = [fn, en].filter(Boolean).join(' ').trim();
+    const body  = [adf, navn].filter(Boolean).join(', ').trim();
     const urlToOpen = obsid
       ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(obsid)}&summering=tur&obs=obs`
       : (data.url ?? '/');
-
-    // Unik tag pr. observation ⇒ ingen erstatning/kollision
     const tag = obsid ? `obs-${obsid}` : `obs-${crypto.randomUUID?.() || Math.random().toString(36).slice(2)}`;
 
     return self.registration.showNotification(title || 'Ny observation', {
       body,
-      tag,              // ← unik pr. obs
-      renotify: true,   // ← opfylder dit ønske; har kun effekt ved samme tag
-      timestamp: Date.now(),        // Hjælp Android med korrekt sortering (nyeste øverst)
+      tag,
+      renotify: true,
+      timestamp: Date.now(),
       data: { url: urlToOpen },
     });
   });

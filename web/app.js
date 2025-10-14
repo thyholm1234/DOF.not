@@ -693,3 +693,295 @@ document.addEventListener('DOMContentLoaded', () => {
     loadAndRender().catch(console.error);
   }
 });
+
+// ============================================================================
+// 5) Avanceret filtrering
+// ============================================================================
+
+// ============================================================================
+// 5) AVANCERET FILTRERING (arter) – lokalt UI + sync til SW + (valgfrit) server
+// ============================================================================
+
+/** Læs artsliste (semicolon-CSV) – returnerer [{id, navn}, ...] */
+async function loadSpeciesList() {
+  const tryUrls = [
+    './data/arter_filter.csv',                         // primær hvis du allerede har den
+    './data/arter_sammenflettet_sorteret.csv'         // fallback (kolonner: artsid;artsnavn)
+  ];
+  let text = '';
+  for (const url of tryUrls) {
+    try {
+      const r = await fetch(url, { cache: 'no-cache' });
+      if (r.ok) { text = await r.text(); break; }
+    } catch { /* next */ }
+  }
+  if (!text) return [];
+  const lines = text.split(/\r?\n/).filter(Boolean);
+  const out = [];
+  // detekter header (forventer artsnavn)
+  const header = (lines[0] || '').toLowerCase();
+  const hasHeader = header.includes('artsnavn');
+  const start = hasHeader ? 1 : 0;
+  for (let i = start; i < lines.length; i++) {
+    const [id, name] = lines[i].split(';');
+    const navn = (name || '').trim();
+    if (!navn) continue;
+    out.push({ id: (id || '').trim(), navn });
+  }
+  return out;
+}
+
+/** Normaliser artnavn til nøgle */
+function normArtKey(s) {
+  return String(s || '').trim().toLowerCase();
+}
+
+/**
+ * Model for overrides (global): { include: Set<key>, exclude: Set<key> }
+ * UI: tri-state pr. art:
+ *   0=default (ingen override) · 1=include · 2=exclude
+ */
+function overridesToState(ov) {
+  return {
+    include: new Set([...(ov?.include || [])].map(normArtKey)),
+    exclude: new Set([...(ov?.exclude || [])].map(normArtKey))
+  };
+}
+function stateToOverrides(state) {
+  return {
+    include: Array.from(state.include),
+    exclude: Array.from(state.exclude),
+  };
+}
+
+/** Hent/gem til server (valgfrit) – forsøger POST, men tolererer 404/410 */
+async function saveSpeciesOverridesToServer(overrides) {
+  try {
+    const userId = getOrCreateUserId();
+    // Minimal endpoint – hvis ikke implementeret på serveren, ignorer 404
+    const resp = await fetch(abs('api/prefs/user/species'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: userId, overrides, ts: Date.now() })
+    });
+    if (!resp.ok && resp.status !== 404 && resp.status !== 410) {
+      console.warn('POST /api/prefs/user/species svar:', resp.status);
+    }
+  } catch (e) {
+    console.warn('Kunne ikke gemme arts-overrides på serveren:', e);
+  }
+}
+
+
+/** Lidt hjælpere til reset-beskyttelse */
+function makeChallenge() {
+  // Små tal for hurtig læsning – ingen negative resultater.
+  const a = Math.floor(Math.random() * 9) + 1;   // 1..9
+  const b = Math.floor(Math.random() * 9) + 1;   // 1..9
+  const useMinus = Math.random() < 0.4 && a > b; // ca. 40% minus, undgå negativt
+  const op = useMinus ? '-' : '+';
+  const res = useMinus ? (a - b) : (a + b);
+  return { text: `Sikkerhedstjek: Hvad er ${a} ${op} ${b}?`, answer: res };
+}
+
+async function guardedResetOverrides() {
+  const { text, answer } = makeChallenge();
+
+  // Trin 1: prompt med regnestykke (brugeren skal trykke OK for at indsende)
+  const input = self.prompt(text, '');
+  if (input === null) {
+    // Brugeren trykkede Cancel
+    if ($status) { $status.textContent = 'Nulstilling annulleret.'; setTimeout(() => $status.textContent='', 1500); }
+    return false;
+  }
+
+  const parsed = Number(String(input).trim().replace(',', '.'));
+  if (!Number.isFinite(parsed) || parsed !== answer) {
+    self.alert('Forkert svar – nulstilling blev afbrudt.');
+    return false;
+  }
+
+  // Trin 2: ekstra sikkerheds-spørgsmål
+  const ok = self.confirm('Er du sikker på, at du vil nulstille alle arts-overrides til Default?');
+  if (!ok) {
+    if ($status) { $status.textContent = 'Nulstilling annulleret.'; setTimeout(() => $status.textContent='', 1500); }
+    return false;
+  }
+
+  // Trin 3: udfør nulstilling i UI (samme effekt som før)
+  overrides.include.clear();
+  overrides.exclude.clear();
+  $list.querySelectorAll('.sp-toggle').forEach(btn => {
+    btn.dataset.state = '0';
+    btn.textContent = 'Default';
+    btn.classList.remove('is-include','is-exclude');
+  });
+
+  if ($status) { $status.textContent = 'Nulstillet – husk at trykke Gem.'; setTimeout(() => $status.textContent='', 2500); }
+  return true;
+}
+
+// ============================================================================
+// Avanceret filtrering (arter) – erstatter hele din initAdvancedFilteringPage()
+// ============================================================================
+
+async function initAdvancedFilteringPage() {
+  // Brug unikke variabler så vi ikke konflikter med $list fra observations-modulet
+  const $advList   = document.getElementById('adv-list');
+  if (!$advList) return; // siden er ikke i brug
+  const $advSearch = document.getElementById('adv-search');
+  const $advSave   = document.getElementById('adv-save');
+  const $advClear  = document.getElementById('adv-clear');
+  const $advStatus = document.getElementById('adv-status');
+
+  // 1) Hent artsliste (CSV)
+  const arts = await loadSpeciesList(); // [{ id, navn }, ...]
+  if (!Array.isArray(arts) || arts.length === 0) {
+    if ($advStatus) $advStatus.textContent = 'Kunne ikke indlæse artsliste.';
+    return;
+  }
+
+  // 2) Hent eksisterende overrides – forsøg SW først, fald tilbage til localStorage, ellers tom
+  let overrides = await (async () => {
+    // forsøg via SW (MessageChannel)
+    try {
+      await navigator.serviceWorker?.ready;
+      const ch = new MessageChannel();
+      const req = new Promise((resolve) => {
+        ch.port1.onmessage = (e) => resolve(e.data?.overrides || null);
+      });
+      navigator.serviceWorker?.controller?.postMessage({ type: 'GET_SPECIES_OVERRIDES' }, [ch.port2]);
+      const fromSw = await Promise.race([req, new Promise(r => setTimeout(() => r(null), 800))]);
+      if (fromSw) return overridesToState(fromSw);
+    } catch { /* ignore */ }
+
+    // fallback: localStorage
+    try {
+      const raw = localStorage.getItem('dofnot-species-overrides');
+      if (raw) return overridesToState(JSON.parse(raw));
+    } catch { /* ignore */ }
+
+    // tomt
+    return overridesToState({ include: [], exclude: [] });
+  })();
+
+  // 3) Render liste (tri-state knapper: Default / Inkl. / Udeluk)
+  const makeLi = (name) => {
+    const key = normArtKey(name);
+    const li = document.createElement('li');
+    li.className = 'species-row';
+
+    const label = document.createElement('span');
+    label.className = 'sp-name';
+    label.textContent = name;
+
+    const btn = document.createElement('button');
+    btn.className = 'sp-toggle';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', `Override for ${name}`);
+
+    // 0=default, 1=include, 2=exclude
+    const getState = () => (overrides.include.has(key) ? 1 : (overrides.exclude.has(key) ? 2 : 0));
+    const setBtnView = () => {
+      const s = getState();
+      btn.dataset.state = String(s);
+      btn.textContent   = (s === 1 ? 'Inkl.' : (s === 2 ? 'Udeluk' : 'Default'));
+      btn.classList.toggle('is-include', s === 1);
+      btn.classList.toggle('is-exclude', s === 2);
+    };
+    setBtnView();
+
+    btn.addEventListener('click', () => {
+      const s = getState();
+      if (s === 0) {           // -> include
+        overrides.exclude.delete(key);
+        overrides.include.add(key);
+      } else if (s === 1) {    // -> exclude
+        overrides.include.delete(key);
+        overrides.exclude.add(key);
+      } else {                 // -> default
+        overrides.include.delete(key);
+        overrides.exclude.delete(key);
+      }
+      setBtnView();
+    });
+
+    li.append(label, btn);
+    li.dataset.key = key;
+    return li;
+  };
+
+  const frag = document.createDocumentFragment();
+  for (const a of arts) frag.appendChild(makeLi(a.navn));
+  $advList.appendChild(frag);
+
+  // 4) Søg/filter i listen
+  if ($advSearch) {
+    $advSearch.addEventListener('input', () => {
+      const q = normArtKey($advSearch.value);
+      $advList.querySelectorAll('.species-row').forEach(li => {
+        const hit = li.dataset.key.includes(q);
+        li.style.display = hit ? '' : 'none';
+      });
+    });
+  }
+
+  // 5) Beskyttet nulstilling (prompt regnestykke + confirm)
+  async function guardedResetOverridesLocal() {
+    const { text, answer } = makeChallenge(); // findes allerede hos dig
+    const input = self.prompt(text, '');
+    if (input === null) {
+      if ($advStatus) { $advStatus.textContent = 'Nulstilling annulleret.'; setTimeout(() => $advStatus.textContent='', 1500); }
+      return false;
+    }
+    const parsed = Number(String(input).trim().replace(',', '.'));
+    if (!Number.isFinite(parsed) || parsed !== answer) {
+      self.alert('Forkert svar – nulstilling blev afbrudt.');
+      return false;
+    }
+    const ok = self.confirm('Er du sikker på, at du vil nulstille alle arts-overrides til Default?');
+    if (!ok) {
+      if ($advStatus) { $advStatus.textContent = 'Nulstilling annulleret.'; setTimeout(() => $advStatus.textContent='', 1500); }
+      return false;
+    }
+
+    // Udfør nulstilling i UI + state
+    overrides.include.clear();
+    overrides.exclude.clear();
+    $advList.querySelectorAll('.sp-toggle').forEach(btn => {
+      btn.dataset.state = '0';
+      btn.textContent = 'Default';
+      btn.classList.remove('is-include','is-exclude');
+    });
+
+    if ($advStatus) { $advStatus.textContent = 'Nulstillet – husk at trykke Gem.'; setTimeout(() => $advStatus.textContent='', 2500); }
+    return true;
+  }
+
+  if ($advClear) {
+    $advClear.addEventListener('click', (e) => {
+      e.preventDefault();
+      guardedResetOverridesLocal().catch(console.error);
+    });
+  }
+
+  // 6) Gem (SW + localStorage + server-best-effort)
+  if ($advSave) {
+    $advSave.addEventListener('click', async () => {
+      const ov = stateToOverrides(overrides); // { include:[], exclude:[] }
+      // SW/IndexedDB
+      await postToSW({ type: 'SAVE_SPECIES_OVERRIDES', overrides: ov });
+      // localStorage (cache)
+      try { localStorage.setItem('dofnot-species-overrides', JSON.stringify(ov)); } catch {}
+      // server (best effort – ignorerer 404/410)
+      await saveSpeciesOverridesToServer(ov);
+      if ($advStatus) { $advStatus.textContent = 'Gemt ✔'; setTimeout(() => $advStatus.textContent='', 1500); }
+    });
+  }
+}
+// Hook in ved DOMContentLoaded (efter eksisterende init)
+document.addEventListener('DOMContentLoaded', () => {
+  if (document.getElementById('adv-list')) {
+    initAdvancedFilteringPage().catch(console.error);
+  }
+});
