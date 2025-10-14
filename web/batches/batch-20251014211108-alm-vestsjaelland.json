@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T21:11:08.544064+02:00",
+"items": [
+{
+"obsid": "37838020",
+"art": "Musvåge",
+"antal": "410",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø agerland, syd",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,152884647571248",
+"lat": "55,15461714997204",
+"tid_fra": "15:15",
+"tid_til": "15:40",
+"kategori": "bemaerk"
+}
+]
+}

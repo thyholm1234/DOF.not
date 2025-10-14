@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T14:14:38.218764+02:00",
+"items": [
+{
+"obsid": "37834035",
+"art": "Skarv",
+"antal": "4",
+"adf": "Fouragerende",
+"lok": "Ebeltoft by",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kasper",
+"efternavn": "Nickelsen",
+"lon": "10,677065894383507",
+"lat": "56,19353047118889",
+"tid_fra": "14:12",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

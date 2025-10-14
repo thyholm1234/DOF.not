@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T19:28:57.932256+02:00",
+"items": [
+{
+"obsid": "37837060",
+"art": "Stor Kobbersneppe",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Mogens",
+"efternavn": "Kristensen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "12:40",
+"tid_til": "16:45",
+"kategori": "bemaerk"
+}
+]
+}

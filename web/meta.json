@@ -1,18 +1,18 @@
 {
   "afdelinger": [
-    "DOF København",
-    "DOF Nordsjælland",
-    "DOF Vestsjælland",
-    "DOF Storstrøm",
     "DOF Bornholm",
     "DOF Fyn",
-    "DOF Sønderjylland",
+    "DOF København",
+    "DOF Nordjylland",
+    "DOF Nordsjælland",
+    "DOF Nordvestjylland",
+    "DOF Storstrøm",
     "DOF Sydvestjylland",
     "DOF Sydøstjylland",
+    "DOF Sønderjylland",
     "DOF Vestjylland",
-    "DOF Østjylland",
-    "DOF Nordvestjylland",
-    "DOF Nordjylland"
+    "DOF Vestsjælland",
+    "DOF Østjylland"
   ],
-  "lastUpdated": ""
+  "lastUpdated": "2025-10-14T21:16:43.615170+02:00"
 }

@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-14T15:41:06.289297+02:00",
+"items": [
+{
+"obsid": "37834910",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Haurvig vest",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Ole",
+"efternavn": "Amstrup",
+"lon": "8,153425725648786",
+"lat": "55,93196240171457",
+"tid_fra": "15:20",
+"tid_til": "15:55",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-14T18:14:36.026949+02:00",
+"items": [
+{
+"obsid": "37836566",
+"art": "Halemejse",
+"antal": "7",
+"adf": "Fouragerende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "15:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

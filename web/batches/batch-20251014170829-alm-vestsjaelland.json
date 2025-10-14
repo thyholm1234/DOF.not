@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T17:08:29.928729+02:00",
+"items": [
+{
+"obsid": "37835762",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Store Åmose NV",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,389927294399769",
+"lat": "55,597060004155104",
+"tid_fra": "17:05",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

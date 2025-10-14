@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-14T17:09:00.100373+02:00",
+"items": [
+{
+"obsid": "37835779",
+"art": "Havørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Nivå Bugt og strandenge",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Martin",
+"efternavn": "Poulsen",
+"lon": "12,597718834877016",
+"lat": "55,973221859413854",
+"tid_fra": "13:20",
+"tid_til": "16:00",
+"kategori": "bemaerk"
+}
+]
+}

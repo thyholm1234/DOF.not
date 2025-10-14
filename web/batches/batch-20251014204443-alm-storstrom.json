@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-14T20:44:43.516830+02:00",
+"items": [
+{
+"obsid": "37837746",
+"art": "Husrødstjert",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:20",
+"tid_til": "16:40",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37837750",
+"art": "Stillits",
+"antal": "35",
+"adf": "Overflyvende",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:20",
+"tid_til": "16:40",
+"kategori": "bemaerk"
+}
+]
+}

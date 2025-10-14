@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-14T15:05:30.669900+02:00",
+"items": [
+{
+"obsid": "37834574",
+"art": "Canadagås",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Egå Engsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Henning",
+"efternavn": "Lykke Larsen",
+"lon": "10,22448653998671",
+"lat": "56,21593075244746",
+"tid_fra": "07:45",
+"tid_til": "13:50",
+"kategori": "alm"
+},
+{
+"obsid": "37834572",
+"art": "Blåmejse",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Sølund Skov (Favrskov)",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kim",
+"efternavn": "Rosing-Asvid",
+"lon": "10,011139952100276",
+"lat": "56,32934552439113",
+"tid_fra": "14:55",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

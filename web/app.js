@@ -1,44 +1,39 @@
-// app.js – DOF.not (v3.2) · robust abonnements-knap + unsubscribe · uden IIFE
+// app.js – DOF.not (v3.2+) · samlet & ordnet
+// ============================================================================
+// 1) COMMON UTILS (fælles for hele appen)
+// ============================================================================
 
-// ─────────────────────────── Konstanter & elementer ──────────────────────────
+// Basal URL-hjælper (bevarer understøttelse af base href)
 const BASE = document.baseURI || document.location.href;
 const abs  = (p) => new URL(p, BASE).toString();
 
-const DOF_AFDELINGER = [
-  "DOF København","DOF Nordsjælland","DOF Vestsjælland","DOF Storstrøm","DOF Bornholm",
-  "DOF Fyn","DOF Sønderjylland","DOF Sydvestjylland","DOF Sydøstjylland","DOF Vestjylland",
-  "DOF Østjylland","DOF Nordvestjylland","DOF Nordjylland"
-];
-const CHOICE_ORDER = ['none', 'su', 'sub', 'alle'];
+// Element helpers (tåler at element mangler)
+const $id = (id) => document.getElementById(id);
 
-const $ = (id) => document.getElementById(id);
-const elGrid = $('grid');
-const elSave = $('save');          // hovedknap (Gem/Abonnér/Opdater …)
-const elUnsub = $('unsubscribe');  // knap til at afmelde subscription
-const elStatus = $('status');
-
-// ─────────────────────────── Diagnostik (uden IIFE) ──────────────────────────
-function setupDiagnostics() {
-  const stamp = new Date().toISOString();
-  if (elStatus) {
-    elStatus.textContent = `app.js loaded @ ${stamp}`;
-    elStatus.style.color = '#f2a900';
-  }
-  window.addEventListener('error', (e) => {
-    if (elStatus) elStatus.textContent = `JS-fejl: ${e.message}`;
-  });
-  window.addEventListener('unhandledrejection', (e) => {
-    if (elStatus) elStatus.textContent = `Promise-fejl: ${e?.reason?.message ?? String(e.reason)}`;
-  });
+// Diagnostik/status (valgfrit)
+const elStatus = $id('status');
+function setDiag(msg, color = '#f2a900', ttlMs = 0) {
+  if (!elStatus) return;
+  elStatus.textContent = msg;
+  elStatus.style.color = color;
+  if (ttlMs > 0) setTimeout(() => (elStatus.textContent = ''), ttlMs);
 }
+(function setupDiagnostics() {
+  const stamp = new Date().toISOString();
+  setDiag(`app.js loaded @ ${stamp}`);
+  window.addEventListener('error', (e) => setDiag(`JS-fejl: ${e.message}`, '#d32f2f'));
+  window.addEventListener('unhandledrejection', (e) =>
+    setDiag(`Promise-fejl: ${e?.reason?.message ?? String(e.reason)}`, '#d32f2f')
+  );
+})();
 
-// ─────────────────────────── User ID ─────────────────────────────────────────
+// Robust bruger-ID (én definition – fjernede dublet)
 function getOrCreateUserId() {
   try {
     let id = localStorage.getItem('dofnot-user-id');
     if (!id) {
       id = (crypto?.randomUUID ? crypto.randomUUID()
-           : (Date.now() + '-' + Math.random().toString(16).slice(2)));
+        : (Date.now() + '-' + Math.random().toString(16).slice(2)));
       localStorage.setItem('dofnot-user-id', id);
     }
     return id;
@@ -47,131 +42,41 @@ function getOrCreateUserId() {
   }
 }
 
-// ─────────────────────────── SW & Push ───────────────────────────────────────
+// Platform capabilities
+const isIOS        = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = () =>
+  window.matchMedia('(display-mode: standalone)').matches ||
+  window.navigator.standalone === true;
+const supportsPush = () =>
+  'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
+
+// SW utils
 async function ensureSW() {
-  if ('serviceWorker' in navigator) {
-    try {
-      // Justér scope hvis din app ligger et andet sted
-      await navigator.serviceWorker.register('sw.js', { scope: './' });
-      await navigator.serviceWorker.ready;
-    } catch (e) {
-      console.warn('SW-registrering fejlede:', e);
-    }
+  if (!('serviceWorker' in navigator)) return;
+  try {
+    await navigator.serviceWorker.register('sw.js', { scope: './' });
+    await navigator.serviceWorker.ready;
+  } catch (e) {
+    console.warn('SW-registrering fejlede:', e);
   }
 }
-function supportsPush() {
-  return 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
-}
 function postToSW(msg) {
-  return navigator.serviceWorker.getRegistration().then(reg => {
+  return navigator.serviceWorker.getRegistration().then((reg) => {
     try { reg?.active?.postMessage(msg); } catch {}
   });
 }
 
-async function ensurePushSubscription({ forcePrompt = false } = {}) {
-  await ensureSW();
-  await navigator.serviceWorker.ready;
-
-  if (!supportsPush()) throw new Error('Push understøttes ikke i denne browser/enhed.');
-  const reg = await navigator.serviceWorker.getRegistration();
-  if (!reg) throw new Error('Service worker ikke registreret');
-
-  // Hent VAPID public key (samme endpoint som før)
-  const r = await fetch(abs('vapid-public-key'), { cache: 'no-cache' });
-  if (!r.ok) throw new Error('Kan ikke hente /vapid-public-key');
-  const { publicKey, valid } = await r.json();
-  if (!valid || !publicKey) throw new Error('Ugyldig/manglende VAPID public key');
-
-  // Permission
-  let perm = Notification.permission;
-  if (perm === 'default' || forcePrompt) perm = await Notification.requestPermission();
-  if (perm !== 'granted') throw new Error(`Notifikationer ikke tilladt (permission='${perm}')`);
-
-  // Subscribe om nødvendigt
-  let sub = await reg.pushManager.getSubscription();
-  if (!sub) {
-    const toKey = (k) => {
-      const p = '='.repeat((4 - k.length % 4) % 4);
-      const b = (k + p).replace(/-/g, '+').replace(/_/g, '/');
-      const raw = atob(b);
-      const out = new Uint8Array(raw.length);
-      for (let i=0;i<raw.length;i++) out[i] = raw.charCodeAt(i);
-      return out;
-    };
-    sub = await reg.pushManager.subscribe({
-      userVisibleOnly: true,
-      applicationServerKey: toKey(publicKey)
-    });
-  }
-
-  // Knyt subscription til user_id (som i din tidligere v3)
-  const user_id = getOrCreateUserId();
-  const resp = await fetch(abs('api/subscribe'), {
-    method: 'POST',
-    headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ ...sub.toJSON(), user_id })
-  });
-  if (!resp.ok) throw new Error(`Server afviste api/subscribe (HTTP ${resp.status})`);
-
-  return true;
+// Sikker HTML-escaping (rettet – tidligere var det no-op)
+function escapeHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
 }
 
-async function unsubscribePush() {
-  await ensureSW();
-  await navigator.serviceWorker.ready;
-  const reg = await navigator.serviceWorker.getRegistration();
-  const sub = await reg?.pushManager.getSubscription();
-  if (sub) {
-    try {
-      await sub.unsubscribe();
-      // (Valgfrit) Hvis du har et server-endpoint til at rydde sub i DB, kan du kalde det her.
-      // await fetch(abs('api/unsubscribe'), { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ endpoint: sub.endpoint, user_id: getOrCreateUserId() }) });
-      return true;
-    } catch (e) {
-      console.warn('Unsubscribe fejlede:', e);
-    }
-  }
-  return false;
-}
-
-// ─────────────────────────── Prefs & filtrering ─────────────────────────────
-const _norm = (s) => String(s ?? '').trim().toLowerCase();
-
-async function loadPrefsForFiltering() {
-  // 1) Per-bruger (DB)
-  try {
-    const userId = getOrCreateUserId();
-    const r = await fetch(abs('api/prefs/user') + '?user_id=' + encodeURIComponent(userId), { cache: 'no-cache' });
-    if (r.ok) {
-      const data = await r.json();
-      if (data && data.prefs && Object.keys(data.prefs).length) return data.prefs;
-    }
-  } catch {}
-  // 2) Local fallback
-  try {
-    const local = JSON.parse(localStorage.getItem('dofnot-prefs') ?? '{}');
-    if (local && typeof local === 'object') return local;
-  } catch {}
-  // 3) Tomt
-  return {};
-}
-
-function filterItemsByPrefs(items, prefs) {
-  if (!items || !items.length) return [];
-  if (!prefs || !Object.keys(prefs).length) return items.slice();
-  const prefsMap = new Map(Object.entries(prefs).map(([k,v]) => [_norm(k), _norm(v)]));
-  return items.filter(it => {
-    const afd = _norm(it.dof_afdeling);
-    const cat = _norm(it.kategori);
-    const sel = prefsMap.get(afd) ?? 'none';
-    if (sel === 'none') return false;
-    if (sel === 'alle') return true;
-    if (sel === 'sub')  return cat === 'sub';
-    if (sel === 'su')   return cat === 'su';
-    return false;
-  });
-}
-
+// Stabil slugify (rettet regex)
 function slugify(s) {
   return String(s ?? '')
     .toLowerCase()
@@ -179,27 +84,43 @@ function slugify(s) {
     .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
     .replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
 }
-function escapeHtml(s) {
-  return String(s ?? '')
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;').replace(/"/g,'&quot;')
-    .replace(/'/g,'&#39;');
-}
 
-// ─────────────────────────── UI: præference-matrix ───────────────────────────
-function renderTable(prefs) {
+// Afdelinger (bruges i præferencetabellen)
+const DOF_AFDELINGER = [
+  "DOF København","DOF Nordsjælland","DOF Vestsjælland","DOF Storstrøm","DOF Bornholm",
+  "DOF Fyn","DOF Sønderjylland","DOF Sydvestjylland","DOF Sydøstjylland","DOF Vestjylland",
+  "DOF Østjylland","DOF Nordvestjylland","DOF Nordjylland"
+];
+
+const CHOICE_ORDER  = ['none', 'su', 'sub', 'alle'];
+const CHOICE_LABELS = { none: 'Ingen', su: 'SU', sub: 'SUB', alle: 'alle' };
+
+const _norm = (s) => String(s ?? '').trim().toLowerCase();
+
+
+// ============================================================================
+// 2) PREFERENCES & PUSH (abonnementsmatrix + push-subscription)
+// ============================================================================
+
+const elGrid   = $id('grid');
+const elSave   = $id('save');         // hovedknap (Gem/Abonnér/Opdater)
+const elUnsub  = $id('unsubscribe');  // afmeld push
+
+function renderPrefsTable(prefs) {
   if (!elGrid) return;
   let html = `
-<table class="prefs-table" aria-label="Abonnementsfiltre pr. lokalafdeling">
-  <thead><tr><th>Lokalafdeling</th><th>Ingen</th><th>SU</th><th>SUB</th><th>Alle</th></tr></thead>
-  <tbody>`;
+  <table class="prefs-table" aria-label="Abonnementsfiltre pr. lokalafdeling">
+    <thead>
+      <tr><th>Lokalafdeling</th><th>Ingen</th><th>SU</th><th>SUB</th><th>BV</th></tr>
+    </thead>
+    <tbody>`;
   for (const afd of DOF_AFDELINGER) {
     const slug = slugify(afd);
     const current = (prefs && prefs[afd]) ? String(prefs[afd]).toLowerCase() : 'none';
     html += `<tr><td class="afd">${escapeHtml(afd)}</td>`;
     for (const v of CHOICE_ORDER) {
       const id = `pref-${slug}-${v}`;
-      const label = (v === 'none') ? 'Ingen' : v.toUpperCase();
+      const label = CHOICE_LABELS[v] || v.toUpperCase();
       html += `
         <td class="sel">
           <input type="radio" id="${id}" name="pref-${slug}" value="${v}" ${current===v?'checked':''} />
@@ -212,39 +133,33 @@ function renderTable(prefs) {
   elGrid.innerHTML = html;
 
   // Klik på hele cellen for at vælge radio
-  elGrid.querySelectorAll('.prefs-table td.sel').forEach(td => {
+  elGrid.querySelectorAll('.prefs-table td.sel').forEach((td) => {
     td.addEventListener('click', () => {
       const input = td.querySelector('input[type=radio]');
-      if (input) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles:true })); }
+      if (input) { input.checked = true; input.dispatchEvent(new Event('change', { bubbles: true })); }
     });
   });
 }
 
-// ─────────────────────────── Knap-tilstand (tekst + state/klasser) ───────────
 function setSaveBtnState(state, label) {
   const btn = elSave;
   if (!btn) return;
-
   // state: subscribed | unsubscribed | blocked | unsupported
   btn.dataset.state = state;
   btn.classList.remove('is-subscribed','is-unsubscribed','is-blocked','is-unsupported');
   btn.classList.add(`is-${state}`);
 
-  // Hvis knappen har et indre label-element, brug det – ellers knappen selv
   const labelEl = btn.querySelector('[data-role="label"]');
   if (labelEl) labelEl.textContent = label; else btn.textContent = label;
-
   btn.setAttribute('aria-label', label);
   btn.disabled = (state === 'blocked' || state === 'unsupported');
 
-  // Unsubscribe-knappen må kun være aktiv når vi har en subscription
   if (elUnsub) elUnsub.disabled = (state !== 'subscribed');
 }
 
 let _labelRunId = 0;
 function updateSaveButtonLabel() {
   if (!elSave) return;
-
   const myRun = ++_labelRunId;
   const safe = (state, label) => { if (myRun === _labelRunId) setSaveBtnState(state, label); };
 
@@ -255,10 +170,8 @@ function updateSaveButtonLabel() {
       await navigator.serviceWorker.ready;
       const reg = await navigator.serviceWorker.getRegistration();
       if (!reg || !('pushManager' in reg)) { safe('unsupported', 'Gem præferencer'); return; }
-
       const perm = Notification.permission;
       if (perm === 'denied') { safe('blocked', 'Notifikationer blokeret'); return; }
-
       const sub = await reg.pushManager.getSubscription();
       safe(sub ? 'subscribed' : 'unsubscribed', sub ? 'Opdater abonnement' : 'Abonnér');
     } catch {
@@ -267,7 +180,76 @@ function updateSaveButtonLabel() {
   })();
 }
 
-// ─────────────────────────── Handlinger (gem/subscribe + unsubscribe) ────────
+async function ensurePushSubscription({ forcePrompt = false } = {}) {
+  await ensureSW();
+  await navigator.serviceWorker.ready;
+
+  if (isIOS && !isStandalone()) {
+    throw new Error('På iOS virker push først, når appen er føjet til hjemmeskærm.');
+  }
+  if (!supportsPush()) throw new Error('Push understøttes ikke i denne browser/enhed.');
+
+  const reg = await navigator.serviceWorker.getRegistration();
+  if (!reg) throw new Error('Service worker ikke registreret');
+
+  // Hent VAPID public key
+  const r = await fetch(abs('vapid-public-key'), { cache: 'no-cache' });
+  if (!r.ok) throw new Error('Kan ikke hente /vapid-public-key');
+  const { publicKey, valid } = await r.json();
+  if (!valid || !publicKey) throw new Error('Ugyldig/manglende VAPID public key');
+
+  // Permission
+  let perm = Notification.permission;
+  if (perm === 'default' || forcePrompt) perm = await Notification.requestPermission();
+  if (perm !== 'granted') throw new Error(`Notifikationer ikke tilladt (permission='${perm}')`);
+
+  // Subscribe hvis nødvendigt
+  let sub = await reg.pushManager.getSubscription();
+  if (!sub) {
+    const toKey = (k) => {
+      const p = '='.repeat((4 - k.length % 4) % 4);
+      const b = (k + p).replace(/-/g, '+').replace(/_/g, '/');
+      const raw = atob(b);
+      const out = new Uint8Array(raw.length);
+      for (let i = 0; i < raw.length; i++) out[i] = raw.charCodeAt(i);
+      return out;
+    };
+    sub = await reg.pushManager.subscribe({
+      userVisibleOnly: true,
+      applicationServerKey: toKey(publicKey)
+    });
+  }
+
+  // Knyt subscription til user_id
+  const user_id = getOrCreateUserId();
+  const resp = await fetch(abs('api/subscribe'), {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+    body: JSON.stringify({ ...sub.toJSON(), user_id })
+  });
+  if (!resp.ok) throw new Error(`Server afviste api/subscribe (HTTP ${resp.status})`);
+  return true;
+}
+
+async function unsubscribePush() {
+  await ensureSW();
+  await navigator.serviceWorker.ready;
+  const reg = await navigator.serviceWorker.getRegistration();
+  const sub = await reg?.pushManager.getSubscription();
+  if (sub) {
+    try {
+      await sub.unsubscribe();
+      // (Valgfrit) informér serveren:
+      // await fetch(abs('api/unsubscribe'), { method:'POST', headers:{'Content-Type':'application/json'},
+      //   body: JSON.stringify({ endpoint: sub.endpoint, user_id: getOrCreateUserId() }) });
+      return true;
+    } catch (e) {
+      console.warn('Unsubscribe fejlede:', e);
+    }
+  }
+  return false;
+}
+
 async function onSave() {
   const prefs = {};
   for (const afd of DOF_AFDELINGER) {
@@ -276,9 +258,9 @@ async function onSave() {
     prefs[afd] = sel ? sel.value : 'none';
   }
 
-  // Gem lokalt (SW IndexedDB + localStorage)
+  // Gem lokalt (SW + localStorage)
   await postToSW({ type: 'SAVE_PREFS', prefs });
-  localStorage.setItem('dofnot-prefs', JSON.stringify(prefs));
+  try { localStorage.setItem('dofnot-prefs', JSON.stringify(prefs)); } catch {}
 
   // Gem centralt pr. bruger
   try {
@@ -295,9 +277,9 @@ async function onSave() {
   // Forsøg at sikre subscription (prompt hvis nødvendigt)
   try {
     await ensurePushSubscription({ forcePrompt: true });
-    if (elStatus) { elStatus.textContent = 'Abonnement + præferencer gemt.'; setTimeout(()=>elStatus.textContent='', 2000); }
-  } catch (e) {
-    if (elStatus) { elStatus.textContent = 'Gemte præferencer (push ikke tilladt/understøttet).'; setTimeout(()=>elStatus.textContent='', 2500); }
+    setDiag('Abonnement + præferencer gemt.', '#2e7d32', 2000);
+  } catch {
+    setDiag('Gemte præferencer (push ikke tilladt/understøttet).', '#607d8b', 2500);
   } finally {
     updateSaveButtonLabel();
   }
@@ -306,10 +288,7 @@ async function onSave() {
 async function onUnsubscribe() {
   try {
     const ok = await unsubscribePush();
-    if (ok && elStatus) {
-      elStatus.textContent = 'Abonnement afmeldt på denne enhed.';
-      setTimeout(()=> elStatus.textContent='', 2000);
-    }
+    if (ok) setDiag('Abonnement afmeldt på denne enhed.', '#2e7d32', 2000);
   } catch (e) {
     console.warn('Unsubscribe fejlede:', e);
   } finally {
@@ -317,12 +296,9 @@ async function onUnsubscribe() {
   }
 }
 
-// ─────────────────────────── Init ────────────────────────────────────────────
-async function init() {
-  setupDiagnostics();
+async function initPrefsAndPush() {
+  // Init/bruger-tilknytning server-side
   await ensureSW();
-
-  // Init/bruger-tilknytning på server
   const userId = getOrCreateUserId();
   try {
     await fetch(abs('api/user/init'), {
@@ -331,7 +307,8 @@ async function init() {
       body: JSON.stringify({ user_id: userId })
     });
   } catch {}
-  postToSW({ type: 'SET_USER', user_id: userId }); // hydrere prefs i SW (IndexedDB) [2](https://aarhusuniversitet-my.sharepoint.com/personal/au669614_uni_au_dk/Documents/Microsoft%20Copilot%20Chat-filer/index.html)
+
+  postToSW({ type: 'SET_USER', user_id: userId });
 
   // Hent bruger-prefs (fallback til local)
   let prefs = {};
@@ -343,14 +320,13 @@ async function init() {
     try { const local = JSON.parse(localStorage.getItem('dofnot-prefs') ?? 'null'); if (local) prefs = local; } catch {}
   }
 
-  // Render UI + knapper
-  renderTable(prefs);
+  // Render og bind knapper
+  renderPrefsTable(prefs);
   updateSaveButtonLabel();
-
   if (elSave)  elSave.addEventListener('click', onSave);
   if (elUnsub) elUnsub.addEventListener('click', onUnsubscribe);
 
-  // Hold label "frisk"
+  // Hold label frisk
   document.addEventListener('visibilitychange', () => { if (!document.hidden) updateSaveButtonLabel(); });
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.addEventListener('controllerchange', updateSaveButtonLabel);
@@ -359,7 +335,7 @@ async function init() {
     });
   }
 
-  // (Valgfrit) auto-subscribe: hvis permission=granted men ingen subscription
+  // Valgfrit auto-subscribe: hvis permission=granted men ingen subscription
   if (supportsPush()) {
     try {
       await navigator.serviceWorker.ready;
@@ -370,15 +346,350 @@ async function init() {
         updateSaveButtonLabel();
       }
     } catch (e) {
-      console.warn('[init] auto-subscribe failed:', e);
+      console.warn('[initPrefsAndPush] auto-subscribe failed:', e);
     }
   }
 }
 
-// ─────────────────────────── DOM ready ───────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => { init().catch(console.error); });
 
-// (Valgfrit) eksponér til DevTools debugging:
-// window.updateSaveButtonLabel = updateSaveButtonLabel;
-// window.unsubscribePush = unsubscribePush;
-// window.ensurePushSubscription = ensurePushSubscription;
+// ============================================================================
+// 3) OBSERVATIONER (log-filer → liste)
+// ============================================================================
+
+/* === Indstillinger === */
+const LOG_BASE              = './logs';
+const CONCURRENCY           = 8;
+const MAX_ITEMS_PER_REGION  = 250;
+const TZ                    = 'Europe/Copenhagen'; // DK‑tid til "i dag"
+
+const $status   = $id('obs-status');
+const $list     = $id('obs-list');
+const $hideZero = $id('toggle-hide-zero');
+const $limitSel = $id('limit-select');
+
+function setObsStatus(m) { if ($status) $status.textContent = m; }
+
+/* Gem/indlæs valgt limit (valgfrit – for bedre UX) */
+(function initLimitFromStorage(){
+  if (!$limitSel) return;
+  try {
+    const saved = localStorage.getItem('obs-limit');
+    if (saved && ['5','10','all'].includes(saved)) {
+      $limitSel.value = saved;
+    }
+  } catch {}
+})();
+
+if ($limitSel) {
+  $limitSel.addEventListener('change', () => {
+    try { localStorage.setItem('obs-limit', $limitSel.value); } catch {}
+    renderFromCache(); // undgå gen‑fetch; vi har dataToday i cache
+  });
+}
+
+/* Afdeling -> regionslug (til filnavne) */
+const AFD_TO_REGION = {
+  "DOF København": "kobenhavn",
+  "DOF Nordsjælland": "nordsjaelland",
+  "DOF Vestsjælland": "vestsjaelland",
+  "DOF Storstrøm": "storstrom",
+  "DOF Bornholm": "bornholm",
+  "DOF Fyn": "fyn",
+  "DOF Sønderjylland": "sonderjylland",
+  "DOF Sydvestjylland": "sydvestjylland",
+  "DOF Sydøstjylland": "ostjylland", // (bevidst) samme slug som Østjylland?
+  "DOF Vestjylland": "vestjylland",
+  "DOF Østjylland": "ostjylland",
+  "DOF Nordvestjylland": "nordvestjylland",
+  "DOF Nordjylland": "nordjylland",
+};
+
+/* Hent prefs fra serverens DB (til observationer) */
+async function loadUserPrefsFromServer() {
+  const userId = getOrCreateUserId();
+  const url = abs('api/prefs/user') + '?user_id=' + encodeURIComponent(userId);
+  const r = await fetch(url, { cache: 'no-cache' });
+  if (!r.ok) throw new Error('Kunne ikke hente brugerpræferencer');
+  const data = await r.json();
+  return data?.prefs ?? {};
+}
+
+/* Fortolkning af valg: SU → {su}, SUB → {su,sub}, "alle" (Bemærkelsesværdige) → {su,sub} */
+function expandPrefValueToAllowedSources(val) {
+  const v = String(val ?? '').toLowerCase();
+  if (v === 'su')   return new Set(['su']);
+  if (v === 'sub')  return new Set(['su','sub']);
+  if (v === 'alle') return new Set(['su','sub']); // bemærkelsesværdige = SUB
+  return new Set();
+}
+
+/* Plan for hvilke filer der skal hentes pr. region */
+function buildRegionPlan(prefs) {
+  const plan = new Map(); // region -> { allow:Set<'su'|'sub'>, files:string[] }
+  for (const [afd, sel] of Object.entries(prefs ?? {})) {
+    const slug = AFD_TO_REGION[afd];
+    if (!slug) continue;
+    const allow = expandPrefValueToAllowedSources(sel);
+    if (allow.size === 0) continue;
+
+    const entry = plan.get(slug) ?? { allow: new Set(), files: [] };
+    if (allow.has('su'))  { entry.allow.add('su');  entry.files.push(`${LOG_BASE}/su-${slug}.log`); }
+    if (allow.has('sub')) { entry.allow.add('sub'); entry.files.push(`${LOG_BASE}/sub-${slug}.log`); }
+    plan.set(slug, entry);
+  }
+  return plan;
+}
+
+function setSelectionOnList(regions) {
+  if (!$list) return;
+  const label = regions.length
+    ? `Valgte regioner: ${regions.join(', ')}`
+    : 'Ingen regioner valgt (i dine præferencer).';
+  $list.setAttribute('aria-label', label);
+  $list.dataset.selection = regions.join(','); // til scripts der vil læse værdien
+}
+
+/* ==== Parsing helpers ==== */
+function extractCoordsFromString(s) {
+  if (!s) return { lon: null, lat: null };
+  const m = s.match(/\(-?\d+(?:\.\d+)?\)\s*,\s*\(-?\d+(?:\.\d+)?\)/); // (lon, lat) – hvis dette var den præcise struktur
+  if (!m) {
+    // fallback: uden parenteser
+    const m2 = s.match(/(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/);
+    if (!m2) return { lon: null, lat: null };
+    const lon2 = Number(m2[1]), lat2 = Number(m2[2]);
+    return { lon: Number.isFinite(lon2) ? lon2 : null, lat: Number.isFinite(lat2) ? lat2 : null };
+  }
+  // Hvis match ovenfor med parenteser bruges, juster indices her (eksempel beholder fallback).
+  return { lon: null, lat: null };
+}
+
+function extractCoordsFromParts(parts) {
+  let out = { lon: null, lat: null };
+  for (const p of parts) {
+    const c = extractCoordsFromString(p);
+    if (c.lon != null && c.lat != null) out = c;
+  }
+  return out;
+}
+
+function parseLocalDateFromHeader(header) {
+  // Matcher: ...] YYYY-MM-DD HH:MM:SS
+  const m = header.match(/\]\s+(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})/);
+  return m ? new Date(`${m[1]}T${m[2]}`) : null; // lokal tid
+}
+
+function parseLogLine(line) {
+  if (!line || !line.trim()) return null;
+  const parts = line.split(' · ').map((s) => s.trim());
+  if (parts.length < 7) return null;
+
+  const header       = parts[0];
+  const sourceBr     = parts[1]; // "[su]" eller "[sub]"
+  const countSpecies = parts[2];
+  const behavior     = parts[3] ?? '';
+  const locality     = parts[4] ?? '';
+  const org          = parts[5] ?? '';
+  const observer     = parts[6] ?? '';
+
+  const { lon, lat } = extractCoordsFromParts(parts);
+
+  const mTag = header.match(/^\[(?<key>[^\]]+)\]/); // rettet regex (named group)
+  const key = mTag?.groups?.key ?? '';
+  const [srcFromKey, regionFromKey] = key.split('-', 2);
+
+  const mSrc  = sourceBr.match(/\[(?<src>su|sub)\]/i);
+  const source = (mSrc?.groups?.src ?? srcFromKey ?? '').toLowerCase();
+
+  const mCount  = countSpecies.match(/^\s*(\d+)\s+(.+)$/);
+  const count   = mCount ? Number(mCount[1]) : null;
+  const species = mCount ? mCount[2].trim() : countSpecies;
+
+  const date = parseLocalDateFromHeader(header);
+
+  return {
+    key, source, region: regionFromKey ?? '',
+    date, count, species, behavior, locality, org, observer,
+    lon, lat, rawLine: line
+  };
+}
+
+/* ==== Fetch ==== */
+async function fetchText(url) {
+  const res = await fetch(url, { cache: 'no-cache' });
+  if (!res.ok) throw new Error(res.status + ' ' + url);
+  return res.text();
+}
+
+async function fetchRegionFiles(entry, hideZero) {
+  const items = [];
+  for (const url of entry.files) {
+    try {
+      const text = await fetchText(url);
+      const lines = text.split(/\r?\n/);
+      for (const line of lines) {
+        const obj = parseLogLine(line);
+        if (!obj) continue;
+        if (!entry.allow.has(obj.source)) continue;
+        if (hideZero && typeof obj.count === 'number' && obj.count === 0) continue;
+        items.push(obj);
+        if (items.length >= MAX_ITEMS_PER_REGION) break;
+      }
+    } catch {
+      // fil kan mangle – det er ok
+      continue;
+    }
+  }
+  return items;
+}
+
+async function fetchAll(plan, hideZero, limit = CONCURRENCY) {
+  const regions = [...plan.keys()];
+  const results = [];
+  let i = 0;
+  const inflight = new Set();
+
+  async function pump() {
+    if (i >= regions.length) return;
+    const slug = regions[i++];
+    const p = fetchRegionFiles(plan.get(slug), hideZero)
+      .then((list) => results.push(...list))
+      .catch(() => {})
+      .finally(() => inflight.delete(p));
+    inflight.add(p);
+    if (inflight.size >= limit) await Promise.race(inflight);
+    return pump();
+  }
+  await pump();
+  await Promise.allSettled(inflight);
+  return results;
+}
+
+/* ==== Render ==== */
+function el(tag, className, text) {
+  const e = document.createElement(tag);
+  if (className) e.className = className;
+  if (text != null) e.textContent = String(text);
+  return e;
+}
+
+function renderItem(item) {
+  const li = el('li', 'obs-item');
+  const article = el('article');
+
+  const header = el('header');
+  header.append(
+    el('span', 'badge badge-src', item.source.toUpperCase()),
+    el('span', 'badge badge-region', item.region),
+    el('span', 'species', `${item.count ?? ''} ${item.species}`)
+  );
+
+  const meta = el('div', 'meta');
+  if (item.behavior) meta.append(el('span', null, item.behavior));
+  if (item.locality) meta.append(el('span', null, item.locality));
+  if (Number.isFinite(item.lat) && Number.isFinite(item.lon)) {
+    const sep = el('span', null, '·');
+    const a = document.createElement('a');
+    a.href = `https://www.openstreetmap.org/?mlat=${item.lat}&mlon=${item.lon}#map=13/${item.lat}/${item.lon}`;
+    a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'kort';
+    meta.append(sep, a);
+  }
+
+  const byline = el('footer', 'byline');
+  if (item.observer) byline.append(el('span', 'observer', item.observer));
+  if (item.org) byline.append(el('span', 'org', item.org));
+
+  const t = document.createElement('time');
+  if (item.date instanceof Date && !isNaN(item.date)) {
+    t.dateTime = item.date.toISOString();
+    t.textContent = item.date.toLocaleString('da-DK', { timeZone: TZ });
+  }
+  byline.append(t);
+
+  article.append(header, meta, byline);
+  li.append(article);
+  return li;
+}
+
+/* ==== Controller + cache ==== */
+function ymdInTZ(d, tz) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: tz, year:'numeric', month:'2-digit', day:'2-digit'
+  }).format(d); // "YYYY-MM-DD"
+}
+
+let cache = { today: [], totalToday: 0, selectionRegions: [] };
+
+function renderFromCache() {
+  if (!$list) return;
+  $list.innerHTML = '';
+
+  const allToday = cache.today ?? [];
+  const val = $limitSel ? $limitSel.value : 'all';
+  const limit = (val === 'all') ? allToday.length : Number(val);
+  const items = allToday.slice(0, limit);
+
+  const frag = document.createDocumentFragment();
+  for (const item of items) frag.appendChild(renderItem(item));
+  $list.appendChild(frag);
+
+  const shown = items.length;
+  const total = allToday.length;
+  const regCount = cache.selectionRegions.length;
+  setObsStatus(`Viser ${shown} af ${total} observationer fra i dag i ${regCount} region${regCount>1?'er':''}.`);
+}
+
+async function loadAndRender() {
+  if (!$list) return; // observationssektionen findes ikke på siden
+  $list.innerHTML = '';
+  setObsStatus('Henter præferencer …');
+
+  let prefs = {};
+  try { prefs = await loadUserPrefsFromServer(); }
+  catch (e) { setObsStatus('Kunne ikke hente præferencer fra serveren.'); return; }
+
+  const plan = buildRegionPlan(prefs);
+  const selected = [...plan.keys()];
+  setSelectionOnList(selected);
+  cache.selectionRegions = selected;
+
+  if (selected.length === 0) {
+    setObsStatus('Ingen regioner har aktive valg (SU/SUB).');
+    return;
+  }
+
+  setObsStatus('Henter observationer …');
+  const data = await fetchAll(plan, !!$hideZero?.checked, CONCURRENCY);
+  if (!data.length) { setObsStatus('Ingen relevante observationer fundet.'); return; }
+
+  // Kun i dag (DK-tid)
+  const todayYMD = ymdInTZ(new Date(), TZ);
+  const dataToday = data.filter((it) =>
+    it.date instanceof Date && !isNaN(it.date) && ymdInTZ(it.date, TZ) === todayYMD
+  );
+  if (!dataToday.length) { setObsStatus('Ingen observationer fra i dag matcher dine præferencer.'); return; }
+
+  // Nyeste først
+  dataToday.sort((a,b) => (b.date?.getTime?.() ?? -Infinity) - (a.date?.getTime?.() ?? -Infinity));
+
+  cache.today = dataToday;
+  cache.totalToday = dataToday.length;
+  renderFromCache();
+}
+
+if ($hideZero) $hideZero.addEventListener('change', () => { loadAndRender().catch(console.error); });
+
+
+// ============================================================================
+// 4) INIT (kald begge moduler, men kun hvis deres DOM findes)
+// ============================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Preferences/Push modulet initialiseres altid (tåler at grid/save ikke findes)
+  initPrefsAndPush().catch(console.error);
+
+  // Observationer initialiseres kun hvis deres DOM-IDs findes
+  if ($id('obs-list')) {
+    loadAndRender().catch(console.error);
+  }
+});

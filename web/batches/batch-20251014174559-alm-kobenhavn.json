@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T17:45:59.715602+02:00",
+"items": [
+{
+"obsid": "37836246",
+"art": "Vandrefalk",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Ejby Mose",
+"dof_afdeling": "DOF København",
+"fornavn": "Stig",
+"efternavn": "Prehn",
+"lon": "12,418332981862692",
+"lat": "55,70436967699675",
+"tid_fra": "12:15",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

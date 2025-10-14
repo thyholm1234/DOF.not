@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-14T17:57:20.950444+02:00",
+"items": [
+{
+"obsid": "37836372",
+"art": "Blisgås",
+"antal": "7",
+"adf": "Overflyvende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Anni",
+"efternavn": "Oppelstrup",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "17:56",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

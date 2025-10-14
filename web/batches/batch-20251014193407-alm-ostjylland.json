@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T19:34:07.155674+02:00",
+"items": [
+{
+"obsid": "37837091",
+"art": "Knortegås",
+"antal": "46",
+"adf": "Trækkende",
+"lok": "Hevring Strand og sandø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Vibbe",
+"efternavn": "Damm",
+"lon": "10,4040082982168",
+"lat": "56,53722047449042",
+"tid_fra": "09:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T17:02:30.916133+02:00",
+"items": [
+{
+"obsid": "37832864",
+"art": "Bramgås",
+"antal": "129",
+"adf": "Trækkende mod vest",
+"lok": "Egå-Tålfor Strand/Åkrogen/Egå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,29154603473739",
+"lat": "56,210273591433776",
+"tid_fra": "11:55",
+"tid_til": "12:23",
+"kategori": "bemaerk"
+}
+]
+}

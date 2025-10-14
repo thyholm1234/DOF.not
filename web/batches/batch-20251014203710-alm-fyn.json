@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-14T20:37:10.392399+02:00",
+"items": [
+{
+"obsid": "37837624",
+"art": "Blishøne",
+"antal": "1300",
+"adf": "Fouragerende",
+"lok": "Brændegård Sø",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,381017661552466",
+"lat": "55,126836981128946",
+"tid_fra": "10:40",
+"tid_til": "13:10",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-14T20:24:15.763032+02:00",
+"items": [
+{
+"obsid": "37837395",
+"art": "Kernebider",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:00",
+"tid_til": "16:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37837399",
+"art": "Tornirisk",
+"antal": "85",
+"adf": "Rastende",
+"lok": "Højerup, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,44159781410613",
+"lat": "55,28110051456065",
+"tid_fra": "08:10",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

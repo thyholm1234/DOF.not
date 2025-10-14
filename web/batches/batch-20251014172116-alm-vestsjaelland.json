@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T17:21:16.473801+02:00",
+"items": [
+{
+"obsid": "37835920",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Torsø, Kattrup",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,375186779748677",
+"lat": "55,5983089265211",
+"tid_fra": "17:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

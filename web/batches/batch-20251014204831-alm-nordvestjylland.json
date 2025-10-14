@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-14T20:48:31.433185+02:00",
+"items": [
+{
+"obsid": "37837778",
+"art": "Vandrefalk",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Agger Tange",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Georg",
+"efternavn": "Guldvang",
+"lon": "8,234834649956834",
+"lat": "56,73659471056408",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T18:26:28.682771+02:00",
+"items": [
+{
+"obsid": "37836684",
+"art": "Spurvehøg",
+"antal": "138",
+"adf": "Trækkende mod sydvest",
+"lok": "Højerup, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,44159781410613",
+"lat": "55,28110051456065",
+"tid_fra": "09:00",
+"tid_til": "14:00",
+"kategori": "bemaerk"
+}
+]
+}

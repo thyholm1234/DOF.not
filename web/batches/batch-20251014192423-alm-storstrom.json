@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T19:24:23.325622+02:00",
+"items": [
+{
+"obsid": "37837034",
+"art": "Sølvhejre",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Femø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Palle",
+"efternavn": "Sørensen",
+"lon": "11,54451780232206",
+"lat": "54,9565326523401",
+"tid_fra": "17:12",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

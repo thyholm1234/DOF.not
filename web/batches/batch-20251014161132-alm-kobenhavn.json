@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T16:11:32.454796+02:00",
+"items": [
+{
+"obsid": "37835192",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Smør- og Fedtmosen",
+"dof_afdeling": "DOF København",
+"fornavn": "Frank",
+"efternavn": "Desting",
+"lon": "12,440814971923828",
+"lat": "55,74924090772966",
+"tid_fra": "12:05",
+"tid_til": "14:53",
+"kategori": "bemaerk"
+}
+]
+}

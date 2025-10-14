@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T20:05:33.641406+02:00",
+"items": [
+{
+"obsid": "37837214",
+"art": "Musvåge",
+"antal": "565",
+"adf": "Trækkende",
+"lok": "Klarskov, Korsør",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Bech",
+"lon": "11,19638548430471",
+"lat": "55,30465003356758",
+"tid_fra": "15:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T17:46:16.260491+02:00",
+"items": [
+{
+"obsid": "37836248",
+"art": "Fjeldvåge",
+"antal": "21",
+"adf": "Trækkende mod sydvest",
+"lok": "Mandehoved",
+"dof_afdeling": "DOF København",
+"fornavn": "Eigil",
+"efternavn": "Larsen",
+"lon": "12,447648373457419",
+"lat": "55,330491901685775",
+"tid_fra": "08:55",
+"tid_til": "15:45",
+"kategori": "bemaerk"
+}
+]
+}

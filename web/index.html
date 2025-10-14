@@ -1,21 +1,25 @@
 <!doctype html>
 <html lang="da">
+
+
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>DOF.not – Abonnér på observationer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOF.not</title>
+  <meta name="theme-color" content="#0b3d91" />
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="description" content="Web push-notifikationer med filtrering pr. DOF-lokalafdeling." />
 
-  <!-- PWA -->
-  <meta name="theme-color" content="#065fd4" />
-  <link rel="manifest" href="manifest.webmanifest" />
-  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <meta name="mobile-web-app-capable" content="yes">
 
   <!-- (valgfrit) iOS -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152.png">
 
   <!-- Inkluder CSS -->
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 
   <!-- Registrering af Service Worker -->
   <script>
@@ -31,26 +35,51 @@
       });
     }
   </script>
+
 </head>
 <body>
   <header class="wrap">
     <h1>DOF.not</h1>
-    <p class="sub">Vælg præcis ét valg pr. lokalafdeling: Ingen, SU, SUB eller Alle – og klik <strong>Abonnér</strong>.</p>
+    
   </header>
 
   <main class="wrap">
+     <h2>Mine præferencer</h2>
+    <p class="sub">Her vælger du, hvilke observationer du ønsker notifikationer for. SUB indeholder SU osv.</p>
+    <p class="sub">Vælg præcis ét valg pr. lokalafdeling: Ingen, SU, SUB eller Bemærkelsesværdig– og klik <strong>Abonnér</strong>.</p>
     <section class="controls">
       <button id="save" aria-live="polite"><span data-role="label">Abonnér</span></button>
       <button id="unsubscribe" title="Afmeld push-abonnement på denne enhed" disabled>Afmeld</button>
+      <div id="status" role="status" aria-live="polite"></div>
     </section>
-
-    <div id="status" role="status" aria-live="polite"></div>
 
     <section class="panel" style="margin-top:12px">
       <div id="grid">Indlæser …</div>
     </section>
   </main>
 
+    <h1>Dagens observationer</h1>
+    <p class="sub">Her vises de nyeste observationer, som svarer til dine præferencer. Bemærkelsesværdige vises ikke</p>
+  <div class="toolbar">
+    <label class="row" title="Skjul linjer med 0 fund">
+      <input type="checkbox" id="toggle-hide-zero" checked>
+      Skjul 0‑fund
+    </label>
+
+    <label class="row" for="limit-select" title="Hvor mange observationer skal vises (fra i dag)">
+      Vis:
+      <select id="limit-select">
+        <option value="5">5</option>
+        <option value="10" selected>10</option>
+        <option value="all">Alle</option>
+      </select>
+    </label>
+  </div>
+
+  <div id="obs-status" role="status" aria-live="polite"></div>
+  <ul id="obs-list" class="obs-list"></ul>
+
   <script src="./app.js"></script>
+
 </body>
 </html>

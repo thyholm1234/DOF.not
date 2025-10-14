@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-14T19:58:34.140133+02:00",
+"items": [
+{
+"obsid": "37837176",
+"art": "Havørn",
+"antal": "4",
+"adf": "Fouragerende",
+"lok": "Birkesø, Lille Vildmose",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Kjeld",
+"efternavn": "Nielsen",
+"lon": "10,201182128194008",
+"lat": "56,88066378532588",
+"tid_fra": "14:23",
+"tid_til": "14:30",
+"kategori": "bemaerk"
+}
+]
+}

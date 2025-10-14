@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T17:25:13.625829+02:00",
+"items": [
+{
+"obsid": "37835964",
+"art": "Bjergvipstjert",
+"antal": "2",
+"adf": "Trækkende",
+"lok": "Hundevængsgård",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Thomas",
+"efternavn": "Hellesen",
+"lon": "12,538286360795478",
+"lat": "54,95272695656857",
+"tid_fra": "08:30",
+"tid_til": "11:45",
+"kategori": "bemaerk"
+}
+]
+}

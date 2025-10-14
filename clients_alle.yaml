@@ -4,7 +4,7 @@ clients:
   # ======================
   - id: "alm-kobenhavn"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF København"]
     sinks:
       - type: "stdout"
@@ -43,7 +43,7 @@ clients:
   # ======================
   - id: "alm-nordsjaelland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Nordsjælland"]
     sinks:
       - type: "stdout"
@@ -82,7 +82,7 @@ clients:
   # ======================
   - id: "alm-vestsjaelland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Vestsjælland"]
     sinks:
       - type: "stdout"
@@ -121,7 +121,7 @@ clients:
   # ======================
   - id: "alm-storstrom"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Storstrøm"]
     sinks:
       - type: "stdout"
@@ -160,7 +160,7 @@ clients:
   # ======================
   - id: "alm-bornholm"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Bornholm"]
     sinks:
       - type: "stdout"
@@ -199,7 +199,7 @@ clients:
   # ======================
   - id: "alm-fyn"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Fyn"]
     sinks:
       - type: "stdout"
@@ -238,7 +238,7 @@ clients:
   # ======================
   - id: "alm-sonderjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Sønderjylland"]
     sinks:
       - type: "stdout"
@@ -277,7 +277,7 @@ clients:
   # ======================
   - id: "alm-sydvestjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Sydvestjylland"]
     sinks:
       - type: "stdout"
@@ -316,7 +316,7 @@ clients:
   # ======================
   - id: "alm-sydostjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Sydøstjylland"]
     sinks:
       - type: "stdout"
@@ -355,7 +355,7 @@ clients:
   # ======================
   - id: "alm-vestjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Vestjylland"]
     sinks:
       - type: "stdout"
@@ -394,7 +394,7 @@ clients:
   # ======================
   - id: "alm-ostjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Østjylland"]
     sinks:
       - type: "stdout"
@@ -433,7 +433,7 @@ clients:
   # ======================
   - id: "alm-nordvestjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Nordvestjylland"]
     sinks:
       - type: "stdout"
@@ -472,7 +472,7 @@ clients:
   # ======================
   - id: "alm-nordjylland"
     rules:
-      kategori: ["alm"]
+      kategori: ["bemaerk"]
       dof_afdelinger: ["DOF Nordjylland"]
     sinks:
       - type: "stdout"

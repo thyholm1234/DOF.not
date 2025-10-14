@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T15:50:41.981419+02:00",
+"items": [
+{
+"obsid": "37835002",
+"art": "Havørn",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Hinnerup",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Rasmus",
+"efternavn": "Petersen",
+"lon": "10,065184380700586",
+"lat": "56,273163241052885",
+"tid_fra": "13:46",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T19:48:24.330579+02:00",
+"items": [
+{
+"obsid": "37837158",
+"art": "Sølvhejre",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Bøtø Nor ved Nørresø (reservatet ved tårnene)",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Poul",
+"efternavn": "Larsen",
+"lon": "11,940474562414336",
+"lat": "54,644877231710126",
+"tid_fra": "18:00",
+"tid_til": "18:40",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,9 +1,15 @@
 {
-  "client": "alm-ostjylland",
-  "title": "[alm-ostjylland] 2 nye obs",
-  "body": "1 Rørspurv, 24 Allike",
-  "url": "/batches/batch-20251014141408-alm-ostjylland.json",
-  "count": 2,
-  "tag": "bird-digest-alm-ostjylland",
-  "generated": "2025-10-14T14:14:08.408313+02:00"
+  "kind": "single",
+  "count": 1,
+  "received_at": "2025-10-14T21:16:45.698873+02:00",
+  "items": [
+    {
+      "type": "digest",
+      "title": "1 Rødtoppet Fuglekonge, Nors Sø",
+      "body": "Georg, Guldvang",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37838076&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-nordvestjylland",
+      "renotify": true
+    }
+  ]
 }

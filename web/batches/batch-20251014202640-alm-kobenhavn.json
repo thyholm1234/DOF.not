@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T20:26:40.817604+02:00",
+"items": [
+{
+"obsid": "37837436",
+"art": "Sule",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Højerup, farvandet ud for",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,452698499998547",
+"lat": "55,27425559999753",
+"tid_fra": "08:10",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

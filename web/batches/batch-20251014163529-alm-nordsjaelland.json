@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-14T16:35:29.236281+02:00",
+"items": [
+{
+"obsid": "37835414",
+"art": "Havørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Grønholt",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Henrik",
+"efternavn": "Boeg",
+"lon": "12,389046968972785",
+"lat": "55,94461721176208",
+"tid_fra": "15:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

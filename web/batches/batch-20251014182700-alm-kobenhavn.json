@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T18:27:00.161325+02:00",
+"items": [
+{
+"obsid": "37836690",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Højerup, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,44159781410613",
+"lat": "55,28110051456065",
+"tid_fra": "12:03",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

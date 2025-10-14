@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T14:39:56.038580+02:00",
+"items": [
+{
+"obsid": "37834273",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Høgebjerg Skov",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kim",
+"efternavn": "Rosing-Asvid",
+"lon": "9,96719701273592",
+"lat": "56,35578148604665",
+"tid_fra": "14:39",
+"tid_til": "14:39",
+"kategori": "alm"
+}
+]
+}

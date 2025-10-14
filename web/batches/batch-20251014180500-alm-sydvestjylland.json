@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-14T18:05:00.767529+02:00",
+"items": [
+{
+"obsid": "37836470",
+"art": "Lille Korsnæb",
+"antal": "10",
+"adf": "Overflyvende",
+"lok": "Ho Plantage",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Lars",
+"efternavn": "Jensen Kruse",
+"lon": "8,215459785908944",
+"lat": "55,539072875789515",
+"tid_fra": "15:40",
+"tid_til": "16:45",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T14:43:30.451905+02:00",
+"items": [
+{
+"obsid": "37834319",
+"art": "Solsort",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Mårup Skov",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,577251891725837",
+"lat": "55,937427402345406",
+"tid_fra": "13:15",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

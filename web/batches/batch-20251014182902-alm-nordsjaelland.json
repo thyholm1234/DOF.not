@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-14T18:29:02.426173+02:00",
+"items": [
+{
+"obsid": "37836724",
+"art": "Sule",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Nivå Bugt og strandenge",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Karsten",
+"efternavn": "Winding",
+"lon": "12,526959924651951",
+"lat": "55,928375566955395",
+"tid_fra": "08:40",
+"tid_til": "10:40",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T14:37:03.343295+02:00",
+"items": [
+{
+"obsid": "37834236",
+"art": "Bramgås",
+"antal": "250",
+"adf": "Rastende",
+"lok": "Mårup, Mårup Mark",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,593919185696334",
+"lat": "56,334127240863666",
+"tid_fra": "14:35",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

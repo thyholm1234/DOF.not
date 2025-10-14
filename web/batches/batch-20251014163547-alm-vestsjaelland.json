@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T16:35:47.184428+02:00",
+"items": [
+{
+"obsid": "37835415",
+"art": "Havørn",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Marielund Skov",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,325832436525863",
+"lat": "55,56168542245206",
+"tid_fra": "16:34",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T20:33:17.391010+02:00",
+"items": [
+{
+"obsid": "37837547",
+"art": "Musvåge",
+"antal": "65",
+"adf": "Trækforsøgende",
+"lok": "Svenstrup Overdrev",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Peter",
+"efternavn": "Engelschmidt",
+"lon": "11,105970103231046",
+"lat": "55,73889887905011",
+"tid_fra": "15:15",
+"tid_til": "16:15",
+"kategori": "bemaerk"
+}
+]
+}

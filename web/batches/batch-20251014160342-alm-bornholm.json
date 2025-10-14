@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-14T16:03:42.932849+02:00",
+"items": [
+{
+"obsid": "37835144",
+"art": "Grønsisken",
+"antal": "125",
+"adf": "Rastende",
+"lok": "Ertholmene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Per",
+"efternavn": "Kjær",
+"lon": "15,183579965334616",
+"lat": "55,323732642528455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

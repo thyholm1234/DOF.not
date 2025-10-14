@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T18:04:58.681320+02:00",
+"items": [
+{
+"obsid": "37836472",
+"art": "Papegøje sp.",
+"antal": "1",
+"adf": "Trækkende mod øst",
+"lok": "Sortedamssøen. N-del",
+"dof_afdeling": "DOF København",
+"fornavn": "Michael",
+"efternavn": "Borch Grell",
+"lon": "12,572878887694452",
+"lat": "55,69468636366264",
+"tid_fra": "17:58",
+"tid_til": "18:01",
+"kategori": "bemaerk"
+}
+]
+}

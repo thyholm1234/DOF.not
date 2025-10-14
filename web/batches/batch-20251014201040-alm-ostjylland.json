@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-14T20:10:40.212246+02:00",
+"items": [
+{
+"obsid": "37834236",
+"art": "Bramgås",
+"antal": "250",
+"adf": "Rastende",
+"lok": "Mårup Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,55127321367005",
+"lat": "55,937577549790916",
+"tid_fra": "14:35",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37834364",
+"art": "Hjejle",
+"antal": "1600",
+"adf": "Rastende",
+"lok": "Mårup Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,55127321367005",
+"lat": "55,937577549790916",
+"tid_fra": "14:35",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37834391",
+"art": "Grågås",
+"antal": "500",
+"adf": "Rastende",
+"lok": "Mårup Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,55127321367005",
+"lat": "55,937577549790916",
+"tid_fra": "14:35",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

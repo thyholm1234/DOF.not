@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-14T14:21:54.450422+02:00",
+"items": [
+{
+"obsid": "37834079",
+"art": "Silkehejre",
+"antal": "3",
+"adf": "Fouragerende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Simon",
+"efternavn": "Mølholm Olesen",
+"lon": "8,581997305154802",
+"lat": "55,28219507697789",
+"tid_fra": "11:23",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

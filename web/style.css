@@ -1,65 +1,136 @@
-/* Dagens notifikationer */
-.today { margin: 16px 0 24px; }
-.today h3 { margin: 0 0 8px; font-weight: 700; font-size: 1.2rem; }
-.today-list { display: grid; gap: 10px; }
+:root {
+  color-scheme: light dark;
+}
 
-.today-item {
-  border: 1px solid #e6e6e6; border-radius: 8px;
-  padding: 10px 12px; background: #fff;
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  margin: 20px;
 }
-.today-item a.wrap {
-  color: inherit; text-decoration: none; display: block;
-}
-.today-item .title {
-  font-weight: 700; margin: 0 0 4px; line-height: 1.25;
-}
-.today-item .meta {
-  color: #666; font-size: .9rem; line-height: 1.35;
-}
-.today-item .meta .sep { opacity: .4; padding: 0 6px; }
-.today-item .meta a { color: #0a6; text-decoration: underline; }
 
+h1 {
+  margin: 0 0 8px;
+}
+
+#obs-status {
+  margin: 6px 0 14px;
+  font-weight: 600;
+}
+
+.toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.obs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.obs-item article {
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  margin-right: 6px;
+  background: #eee;
+}
+
+.badge-src {
+  background: #002d62;
+  color: #fff;
+}
+
+.badge-region {
+  background: #e6f2ff;
+  color: #003366;
+  text-transform: lowercase;
+}
+
+.species {
+  font-weight: 700;
+}
+
+.meta,
+.byline {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: #555;
+  margin-top: 6px;
+}
+
+.meta a {
+  color: #0b62d6;
+  text-decoration: none;
+}
+
+.meta a:hover {
+  text-decoration: underline;
+}
+
+label.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #555;
+}
+
+.muted {
+  color: #666;
+}
+
+select {
+  padding: 4px 6px;
+}
+
+/* Prefs-table med samme look som obs-list */
 .prefs-table {
   width: 100%;
-  border-collapse: collapse;
-  margin: 12px 0 8px;
-  background: #a0a0a0;
-  border: 1px solid #22304b;
-  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0 12px; /* afstand mellem rækker */
+}
+
+.prefs-table tbody tr {
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
   overflow: hidden;
 }
 
-.prefs-table thead th {
-  padding: 10px 12px;
-  border-bottom: 1px solid #22304b;
-  color: #000000;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-.prefs-table thead th:not(:first-child) {
+.prefs-table td {
+  padding: 12px;
   text-align: center;
-}
-
-.prefs-table tbody td {
-  padding: 8px 12px;
-  border-bottom: 1px solid #22304b;
-}
-
-.prefs-table tbody tr:last-child td {
-  border-bottom: 0;
 }
 
 .prefs-table td.afd {
   font-weight: 600;
+  text-align: left;
   white-space: nowrap;
 }
 
-.prefs-table td.sel {
+/* Header */
+.prefs-table thead th {
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 14px;
   text-align: center;
-  width: 72px;
+  background: #f9fafb;
 }
 
+/* Radio-knapper */
 .prefs-table input[type="radio"] {
   position: absolute;
   opacity: 0;
@@ -69,44 +140,63 @@
 .prefs-table label {
   display: inline-block;
   cursor: pointer;
-  border: 5px solid var(--border);
-  border-radius: 15px;
 }
 
-/* Boksen */
+
+/* Grundboks */
 .prefs-table .box {
+  position: relative;              /* skaber stacking context */
   display: inline-block;
   width: 22px;
   height: 22px;
   border: 2px solid #2a3b5c;
   border-radius: 6px;
-  background: #808080;
-    position: relative;
+  background: #f3f4f6;
   transition: all 0.15s ease-in-out;
 }
 
-/* Hover-effekt */
+/* Hover (uændret) */
 .prefs-table td.sel:hover .box {
   border-color: #1f6feb;
-  background: #16284a;
+  background: #eaf2ff;
 }
 
-/* Aktiv/valgt */
+
+
+/* Checked-tilstand: grøn baggrund */
 .prefs-table input[type="radio"]:checked + label .box {
   border-color: #2ea043;
   background: #2ea043;
-  box-shadow: 0 0 3px 1px rgba(46, 160, 67, 0.5);
+  box-shadow: 0 0 3px 1px rgba(46,160,67,.35);
 }
 
-/* Flueben / kryds i midten */
+
+
+
+/* Flueben som SVG-overlay – altid ovenpå den grønne baggrund */
 .prefs-table input[type="radio"]:checked + label .box::after {
-  content: "✕"; /* Brug "✓" hvis du vil have flueben */
+  content: "";
   position: absolute;
-  color: #000000;
-  font-weight: 900;
-  font-size: 18px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  line-height: 1;
+  inset: 0;                        /* fylder hele boksen */
+  z-index: 1;                      /* sikker på at ligge over baggrunden */
+  pointer-events: none;
+
+  /* Skarpt, hvidt flueben med rund “stroke” – skaleret til 16x16 */
+  background:
+    center / 16px 16px no-repeat
+    url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>\
+<path d='M5 10.5l3 3 7-7' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/>\
+</svg>");
+}
+
+
+/* Responsiv: behold kolonner, men scroll hvis nødvendigt */
+@media (max-width: 640px) {
+  .prefs-table-wrapper {
+    overflow-x: auto;
+  }
+  .prefs-table {
+    min-width: 480px; /* sikrer at kolonner ikke bryder */
+  }
 }

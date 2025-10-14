@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-14T20:08:24.795791+02:00",
+"items": [
+{
+"obsid": "37837236",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Harboøre Tange Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "8,195297428353198",
+"lat": "56,659121919773305",
+"tid_fra": "16:00",
+"tid_til": "16:20",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-14T17:12:39.797067+02:00",
+"items": [
+{
+"obsid": "37835815",
+"art": "Rørdrum",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Gl. Hviding Engsø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bjarne",
+"efternavn": "Holm",
+"lon": "8,669626449237366",
+"lat": "55,24595182637745",
+"tid_fra": "17:00",
+"tid_til": "17:10",
+"kategori": "bemaerk"
+}
+]
+}

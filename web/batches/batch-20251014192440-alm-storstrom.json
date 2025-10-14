@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T19:24:40.112618+02:00",
+"items": [
+{
+"obsid": "37837036",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Saksfjed Inddæmning/Vildmark syd",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,439851",
+"lat": "54,628426",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

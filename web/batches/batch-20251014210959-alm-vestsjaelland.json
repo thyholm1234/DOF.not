@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T21:09:59.068189+02:00",
+"items": [
+{
+"obsid": "37838001",
+"art": "Spurvehøg",
+"antal": "29",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø agerland, syd",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,152884647571248",
+"lat": "55,15461714997204",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

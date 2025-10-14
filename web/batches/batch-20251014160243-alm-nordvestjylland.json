@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-14T16:02:43.650034+02:00",
+"items": [
+{
+"obsid": "37835130",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Vester Vandet",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Peter",
+"efternavn": "Halkier",
+"lon": "8,584007629719949",
+"lat": "57,0126322069776",
+"tid_fra": "15:40",
+"tid_til": "15:50",
+"kategori": "bemaerk"
+}
+]
+}

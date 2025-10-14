@@ -1,0 +1,22 @@
+{
+"client": "sub-storstrom",
+"count": 1,
+"generated": "2025-10-14T19:39:31.368077+02:00",
+"items": [
+{
+"obsid": "37837123",
+"art": "Mellemkjove",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Gedser",
+"efternavn": "Fuglestation",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:08",
+"tid_til": "12:08",
+"kategori": "sub"
+}
+]
+}

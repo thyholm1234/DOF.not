@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T21:06:32.532546+02:00",
+"items": [
+{
+"obsid": "37837968",
+"art": "Stillits",
+"antal": "32",
+"adf": "Fouragerende",
+"lok": "Knudshoved Odde øst for Draget til Knudsskov",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Svend",
+"efternavn": "Erik Jessen",
+"lon": "11,703984651295496",
+"lat": "55,066197216169954",
+"tid_fra": "11:10",
+"tid_til": "15:30",
+"kategori": "bemaerk"
+}
+]
+}

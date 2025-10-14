@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-14T21:08:51.531003+02:00",
+"items": [
+{
+"obsid": "37837993",
+"art": "Fiskeørn",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nors Sø",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Georg",
+"efternavn": "Guldvang",
+"lon": "8,613104436316155",
+"lat": "57,03151697941675",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

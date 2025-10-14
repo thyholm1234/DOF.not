@@ -7,19 +7,24 @@ import re
 import sqlite3
 import time
 import uuid
+import mimetypes
 from base64 import urlsafe_b64decode
 from datetime import datetime, timezone
 from pathlib import Path
 from threading import Lock
 from typing import Dict, List
 
-from fastapi import FastAPI, HTTPException, Request, Query
+from fastapi import FastAPI, HTTPException, Request, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pywebpush import WebPushException, webpush
 
-# ────────────────────────────── Stier & konfiguration ─────────────────────────
+from concurrent.futures import ThreadPoolExecutor, as_completed
+
+mimetypes.add_type("application/manifest+json", ".webmanifest")
+
+# ─────────────────────────────── Stier & konfiguration ───────────────────────────────
 APP_DIR = Path(__file__).resolve().parent.parent
 WEB_DIR = APP_DIR / "web"
 DB_PATH = Path(__file__).resolve().parent / "subscriptions.db"
@@ -35,6 +40,8 @@ VAPID_PRIVATE = os.getenv(
 )
 VAPID_CLAIMS = {"sub": os.getenv("VAPID_SUB", "mailto:cvh.privat@gmail.com")}
 
+PUSH_MAX_WORKERS=12
+
 # "Seneste push" til forsiden
 LATEST_FILE = WEB_DIR / "latest-push.json"
 _latest_lock = Lock()
@@ -44,9 +51,9 @@ logger = logging.getLogger("dofpush.server")
 if not logger.handlers:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
-app = FastAPI(title="DOF Web Push (lokal)", version="2.3")
+app = FastAPI(title="DOF Web Push (lokal)", version="2.4")
 
-# --- PREFS: udvidelser af valg -> effektive kategorier ---
+# ─── PREFS: udvidelser af valg -> effektive kategorier ───────────────────────────────
 _PREFS_CATEGORY_MAP = {
     "none": set(),
     "su": {"su"},
@@ -69,8 +76,7 @@ app.add_middleware(
     allow_credentials=True, allow_methods=["*"], allow_headers=["*"],
 )
 
-
-# --- helper: flet evt. eksisterende headers med 'Urgency' ---
+# ─── helper: flet evt. eksisterende headers med 'Urgency' ───────────────────────────
 def _merge_push_headers(payload: dict, default_urgency: str = "high") -> dict:
     headers = {}
     # Hvis afsenderen allerede har leveret headers, brug dem som base
@@ -81,46 +87,37 @@ def _merge_push_headers(payload: dict, default_urgency: str = "high") -> dict:
     headers.setdefault("Urgency", str(payload.get("urgency", default_urgency)))
     return headers
 
-
-# ────────────────────────────── DB-hjælpere ──────────────────────────────────
+# ─────────────────────────────── DB-hjælpere ───────────────────────────────
 def ensure_db() -> None:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(DB_PATH); cur = con.cursor()
-
     # Subscriptions
-    cur.execute("""
-      CREATE TABLE IF NOT EXISTS subs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        endpoint TEXT UNIQUE NOT NULL,
-        p256dh TEXT NOT NULL,
-        auth    TEXT NOT NULL
-      )
+    cur.execute(""" 
+    CREATE TABLE IF NOT EXISTS subs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      endpoint TEXT UNIQUE NOT NULL,
+      p256dh TEXT NOT NULL,
+      auth TEXT NOT NULL,
+      user_id TEXT
+    )
     """)
-
     # Users
     cur.execute("""
-      CREATE TABLE IF NOT EXISTS users (
-        id         TEXT PRIMARY KEY,
-        created_at INTEGER NOT NULL,
-        last_seen  INTEGER NOT NULL
-      )
+    CREATE TABLE IF NOT EXISTS users (
+      id TEXT PRIMARY KEY,
+      created_at INTEGER NOT NULL,
+      last_seen INTEGER NOT NULL
+    )
     """)
-
     # User prefs
     cur.execute("""
-      CREATE TABLE IF NOT EXISTS user_prefs (
-        user_id TEXT PRIMARY KEY,
-        prefs   TEXT NOT NULL,
-        ts      INTEGER,
-        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-      )
+    CREATE TABLE IF NOT EXISTS user_prefs (
+      user_id TEXT PRIMARY KEY,
+      prefs TEXT NOT NULL,
+      ts INTEGER,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
     """)
-
-    # Migration: subs.user_id
-    cols = {r[1] for r in cur.execute("PRAGMA table_info(subs)").fetchall()}
-    if "user_id" not in cols:
-        cur.execute("ALTER TABLE subs ADD COLUMN user_id TEXT")
-
     con.commit(); con.close()
 
 def add_subscription(sub: Dict) -> None:
@@ -148,7 +145,7 @@ def subscriptions_count() -> int:
     cnt = con.execute("SELECT COUNT(*) FROM subs").fetchone()[0]
     con.close(); return int(cnt)
 
-# ────────────────────────────── VAPID-validering ─────────────────────────────
+# ─────────────────────────────── VAPID-validering ───────────────────────────────
 _B64URL_RE = re.compile(r"^[A-Za-z0-9\-\_]+$")
 def _b64url_decode(s: str) -> bytes:
     if not s: raise ValueError("tom streng")
@@ -160,7 +157,7 @@ def validate_vapid_keys() -> Dict[str, object]:
     result = {"public_ok": False, "private_ok": False, "errors": []}
     try:
         pb = _b64url_decode(VAPID_PUBLIC)
-        if len(pb) != 65 or pb[0] != 0x04: result["errors"].append("VAPID_PUBLIC: forventet 65 bytes"); 
+        if len(pb) != 65 or pb[0] != 0x04: result["errors"].append("VAPID_PUBLIC: forventet 65 bytes");
         else: result["public_ok"] = True
     except Exception as e:
         result["errors"].append(f"VAPID_PUBLIC decode-fejl: {e}")
@@ -173,7 +170,7 @@ def validate_vapid_keys() -> Dict[str, object]:
     result["valid"] = bool(result["public_ok"] and result["private_ok"])
     return result
 
-# ────────────────────────────── Helpers (latest) ─────────────────────────────
+# ─────────────────────────────── Helpers (latest) ───────────────────────────────
 def _write_latest(items: List[Dict], kind: str) -> None:
     WEB_DIR.mkdir(parents=True, exist_ok=True)
     doc = {
@@ -208,10 +205,10 @@ def _enrich_payload_for_latest(payload: dict) -> dict:
                 if obsid:
                     out["url"] = f"https://dofbasen.dk/popobs.php?obsid={obsid}&summering=tur&obs=obs"
                 if title: out["title"] = title
-                if body:  out["body"]  = body
+                if body: out["body"] = body
     return out
 
-# ────────────────────────────── User helpers ──────────────────────────────────
+# ─────────────────────────────── User helpers ───────────────────────────────
 VALID_PREF_VALUES = {"none", "su", "sub", "alle"}
 def _normalize_prefs(prefs: dict) -> dict:
     if not isinstance(prefs, dict): return {}
@@ -227,9 +224,9 @@ def _ensure_user(con, user_id: str):
     now = int(time.time() * 1000)
     row = con.execute("SELECT id FROM users WHERE id=?", (user_id,)).fetchone()
     if row: con.execute("UPDATE users SET last_seen=? WHERE id=?", (now, user_id))
-    else:   con.execute("INSERT INTO users(id, created_at, last_seen) VALUES (?,?,?)",(user_id, now, now))
+    else: con.execute("INSERT INTO users(id, created_at, last_seen) VALUES (?,?,?)",(user_id, now, now))
 
-# ────────────────────────────── Middleware ────────────────────────────────────
+# ─────────────────────────────── Middleware ───────────────────────────────
 @app.middleware("http")
 async def log_requests(request: Request, call_next):
     req_id = uuid.uuid4().hex[:8]; start = time.perf_counter()
@@ -243,7 +240,7 @@ async def log_requests(request: Request, call_next):
         logger.exception("[API %s] %s %s FAILED (%.1f ms) size=%sB ip=%s err=%s", req_id, request.method, request.url.path, dur_ms, clen or "?", client, e)
         raise
 
-# ────────────────────────────── API ──────────────────────────────────────────
+# ─────────────────────────────── API ───────────────────────────────
 @app.on_event("startup")
 def _on_startup():
     ensure_db()
@@ -274,7 +271,7 @@ def latest():
     except Exception:
         return JSONResponse(status_code=204, content=None)
 
-# --- GLOBAL /api/prefs ER UDFASET (returnerer 410 Gone) ----------------------
+# ─── GLOBAL /api/prefs ER UDFASET (returnerer 410 Gone) ─────────────────────────────
 @app.get("/api/prefs")
 def get_prefs_deprecated():
     raise HTTPException(status_code=410, detail="Global prefs er udfaset – brug /api/prefs/user")
@@ -283,7 +280,28 @@ def get_prefs_deprecated():
 async def save_prefs_deprecated(req: Request):
     raise HTTPException(status_code=410, detail="Global prefs er udfaset – brug /api/prefs/user")
 
-# --- NYT: bruger-initialisering og prefs pr. bruger --------------------------
+
+# ─── NYT: PWA ─────────────────────────────
+
+@app.get("/sw.js")
+def serve_sw():
+    path = WEB_DIR / "sw.js"
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="sw.js mangler i /web")
+    # Undgå hård caching af service worker
+    return FileResponse(path, media_type="application/javascript",
+                        headers={"Cache-Control": "no-cache"})
+
+@app.get("/manifest.webmanifest")
+def serve_manifest():
+    path = WEB_DIR / "manifest.webmanifest"
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="manifest.webmanifest mangler i /web")
+    # Manifest må gerne caches lidt
+    return FileResponse(path, media_type="application/manifest+json",
+                        headers={"Cache-Control": "public, max-age=3600, immutable"})
+
+# ─── NYT: bruger-initialisering og prefs pr. bruger ─────────────────────────────
 @app.post("/api/user/init")
 async def user_init(req: Request):
     data = await req.json()
@@ -309,7 +327,6 @@ async def save_user_prefs(req: Request):
     if not user_id: raise HTTPException(status_code=400, detail="user_id mangler")
     prefs = _normalize_prefs(data.get("prefs", {}))
     ts = int(data.get("ts") or 0) or int(time.time() * 1000)
-
     con = sqlite3.connect(DB_PATH); _ensure_user(con, user_id)
     con.execute(
         "INSERT INTO user_prefs(user_id, prefs, ts) VALUES (?,?,?) "
@@ -337,69 +354,113 @@ async def subscribe(req: Request):
         logger.warning("[SUB] Ugyldig subscription: %s", e)
         raise HTTPException(status_code=400, detail=f"Ugyldig subscription: {e}")
 
-# --- Publish (uændret) -------------------------------------------------------
+# ─────────────────────────────── Parallel baggrundsafsendelse ───────────────────────
+PUSH_MAX_WORKERS = int(os.getenv("PUSH_MAX_WORKERS", "12"))
+
+def _send_one_push(sub: Dict, payload: dict, ttl: int, headers: dict) -> str:
+    """Afsend én webpush til en subscription (køres i trådpool)."""
+    try:
+        webpush(
+            subscription_info=sub,
+            data=json.dumps(payload),
+            vapid_private_key=VAPID_PRIVATE,
+            vapid_claims=VAPID_CLAIMS,
+            ttl=ttl,
+            headers=headers,
+        )
+        return "sent"
+    except WebPushException as ex:
+        status = getattr(ex, "response", None).status_code if getattr(ex, "response", None) else None
+        if status in (404, 410):
+            delete_subscription(sub["endpoint"])
+            return "deleted"
+        return "error"
+    except Exception:
+        return "error"
+
+def _send_pushes_parallel(payload: dict) -> None:
+    """Send push til alle subscriptions parallelt i en trådpool."""
+    subs = list(all_subscriptions())
+    if not subs:
+        logger.info("[PUSH/bg] Ingen subscriptions (skip).")
+        return
+    ttl = int(payload.get("ttl") or 86400)
+    headers = _merge_push_headers(payload, default_urgency="high")
+    t0 = time.perf_counter()
+    acc = {"sent": 0, "deleted": 0, "errors": 0}
+    with ThreadPoolExecutor(max_workers=PUSH_MAX_WORKERS) as pool:
+        futures = [pool.submit(_send_one_push, sub, payload, ttl, headers) for sub in subs]
+        for fut in as_completed(futures):
+            res = fut.result()
+            if res in acc: acc[res] += 1
+    dur_ms = (time.perf_counter() - t0) * 1000
+    logger.info("[PUSH/bg] subs=%d -> sent=%d deleted=%d errors=%d (%.1f ms) ttl=%s urgency=%s workers=%d",
+                len(subs), acc["sent"], acc["deleted"], acc["errors"], dur_ms, ttl, headers.get("Urgency"), PUSH_MAX_WORKERS)
 
 @app.post("/api/publish")
-async def publish(req: Request):
+async def publish(req: Request, background_tasks: BackgroundTasks):
     payload = await req.json()
     check = validate_vapid_keys()
     if not check["valid"]:
         logger.error("[PUSH] VAPID ugyldig: %s", check["errors"])
         raise HTTPException(status_code=500, detail={"msg": "VAPID-nøgler er ikke gyldige", "details": check})
+    try:
+        _write_latest([_enrich_payload_for_latest(payload)], kind="single")
+    except Exception:
+        logger.warning("[PUSH] Kunne ikke gemme latest-push.json")
+    # Start afsendelse i baggrunden og svar straks
+    background_tasks.add_task(_send_pushes_parallel, payload)
+    return {"accepted": True, "count_subscriptions": subscriptions_count(), "workers": PUSH_MAX_WORKERS}
 
-    subs = list(all_subscriptions())
-    if not subs:
-        logger.info("[PUSH] Ingen subscriptions. Gemmer latest og returnerer.")
-        try:
-            _write_latest([_enrich_payload_for_latest(payload)], kind="single")
-        except Exception:
-            logger.warning("[PUSH] Kunne ikke gemme latest-push.json")
-        return {"sent": 0, "deleted": 0, "errors": 0, "count_subscriptions": 0}
-
-    # Ny: ttl + urgency headers
-    ttl = int(payload.get("ttl") or 86400)  # 24 timer default
-    headers = _merge_push_headers(payload, default_urgency="high")
-
-    t0 = time.perf_counter()
-    results = {"sent": 0, "deleted": 0, "errors": 0}
-    for sub in subs:
+# ─────────────────────────────── /api/publish-batch ───────────────────────────────
+def _send_batch_to_sub(sub: Dict, payloads: list, ttl: int, headers: dict) -> tuple[int, int]:
+    """Send hele batchen (sekventielt) til én subscription. Returnér (sent, errors)."""
+    sent = err = 0
+    for item in payloads:
         try:
             webpush(
                 subscription_info=sub,
-                data=json.dumps(payload),
+                data=json.dumps(item),
                 vapid_private_key=VAPID_PRIVATE,
                 vapid_claims=VAPID_CLAIMS,
                 ttl=ttl,
                 headers=headers,
             )
-            results["sent"] += 1
+            sent += 1
         except WebPushException as ex:
             status = getattr(ex, "response", None).status_code if getattr(ex, "response", None) else None
             if status in (404, 410):
                 delete_subscription(sub["endpoint"])
-                results["deleted"] += 1
             else:
-                results["errors"] += 1
+                err += 1
         except Exception:
-            results["errors"] += 1
+            err += 1
+    return sent, err
 
+def _send_batch_parallel(payloads: list) -> None:
+    subs = list(all_subscriptions())
+    if not subs:
+        logger.info("[BATCH/bg] Ingen subscriptions (skip).")
+        return
+    first = payloads[0] if payloads else {}
+    ttl = int((first or {}).get("ttl") or 86400)
+    headers = _merge_push_headers(first or {}, default_urgency="high")
+    t0 = time.perf_counter()
+    sent_total = err_total = 0
+    with ThreadPoolExecutor(max_workers=PUSH_MAX_WORKERS) as pool:
+        futures = {pool.submit(_send_batch_to_sub, sub, payloads, ttl, headers): sub for sub in subs}
+        for fut in as_completed(futures):
+            try:
+                s, e = fut.result()
+                sent_total += s; err_total += e
+            except Exception:
+                err_total += 1
     dur_ms = (time.perf_counter() - t0) * 1000
-    logger.info(
-        "[PUSH] url=%s subs=%d -> sent=%d deleted=%d errors=%d (%.1f ms) ttl=%s urgency=%s",
-        payload.get("url"), len(subs), results["sent"], results["deleted"], results["errors"],
-        dur_ms, ttl, headers.get("Urgency"),
-    )
-    results.update({"count_subscriptions": len(subs), "duration_ms": round(dur_ms, 1)})
+    logger.info("[BATCH/bg] payloads=%d subs=%d -> sent=%d errors=%d (%.1f ms) ttl=%s urgency=%s workers=%d",
+                len(payloads), len(subs), sent_total, err_total, dur_ms, ttl, headers.get("Urgency"), PUSH_MAX_WORKERS)
 
-    try:
-        _write_latest([_enrich_payload_for_latest(payload)], kind="single")
-    except Exception:
-        logger.warning("[PUSH] Kunne ikke gemme latest-push.json")
-    return results
-
-# --- /api/publish-batch (én webpush pr. sub pr. batch, med ttl/urgency) ---
 @app.post("/api/publish-batch")
-async def publish_batch(req: Request):
+async def publish_batch(req: Request, background_tasks: BackgroundTasks):
     try:
         payloads = await req.json()
         if not isinstance(payloads, list):
@@ -407,8 +468,7 @@ async def publish_batch(req: Request):
         if not payloads:
             logger.info("[BATCH] Tom liste -> intet sendt")
             _write_latest([], kind="batch")
-            return {"sent": 0, "deleted": 0, "errors": 0,
-                    "count_payloads": 0, "count_subscriptions": subscriptions_count()}
+            return {"accepted": True, "count_payloads": 0, "count_subscriptions": subscriptions_count(), "workers": PUSH_MAX_WORKERS}
     except HTTPException:
         raise
     except Exception:
@@ -419,57 +479,9 @@ async def publish_batch(req: Request):
         logger.error("[BATCH] VAPID ugyldig: %s", check["errors"])
         raise HTTPException(status_code=500, detail={"msg": "VAPID-nøgler er ikke gyldige", "details": check})
 
-    subs = list(all_subscriptions())
-    if not subs:
-        logger.info("[BATCH] Ingen subscriptions. payloads=%d", len(payloads))
-        _write_latest(payloads, kind="batch")
-        return {"sent": 0, "deleted": 0, "errors": 0,
-                "count_payloads": len(payloads), "count_subscriptions": 0}
-
-    # Ny: ttl/urgency – ens for hele batchen (kan evt. udledes fra 1. payload)
-    first = payloads[0] if payloads else {}
-    ttl = int((first or {}).get("ttl") or 86400)
-    headers = _merge_push_headers(first or {}, default_urgency="high")
-
-    # Vi sender (som før) hver payload til hver sub – men nu med ttl/urgency
-    t0 = time.perf_counter()
-    results = {"sent": 0, "deleted": 0, "errors": 0}
-    for sub in subs:
-        for item in payloads:
-            try:
-                webpush(
-                    subscription_info=sub,
-                    data=json.dumps(item),
-                    vapid_private_key=VAPID_PRIVATE,
-                    vapid_claims=VAPID_CLAIMS,
-                    ttl=ttl,
-                    headers=headers,
-                )
-                results["sent"] += 1
-            except WebPushException as ex:
-                status = getattr(ex, "response", None).status_code if getattr(ex, "response", None) else None
-                if status in (404, 410):
-                    delete_subscription(sub["endpoint"])
-                    results["deleted"] += 1
-                else:
-                    results["errors"] += 1
-            except Exception:
-                results["errors"] += 1
-
-    dur_ms = (time.perf_counter() - t0) * 1000
-    logger.info(
-        "[BATCH] payloads=%d subs=%d -> sent=%d deleted=%d errors=%d (%.1f ms) ttl=%s urgency=%s",
-        len(payloads), len(subs), results["sent"], results["deleted"], results["errors"],
-        dur_ms, ttl, headers.get("Urgency"),
-    )
-    results.update({
-        "count_payloads": len(payloads),
-        "count_subscriptions": len(subs),
-        "duration_ms": round(dur_ms, 1),
-    })
-
     _write_latest(payloads, kind="batch")
-    return results
+    background_tasks.add_task(_send_batch_parallel, payloads)
+    return {"accepted": True, "count_payloads": len(payloads), "count_subscriptions": subscriptions_count(), "workers": PUSH_MAX_WORKERS}
 
 @app.post("/api/publish-latest")
 def publish_latest():
@@ -496,7 +508,7 @@ def publish_latest():
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Fejl: {e}")
 
-# ────────────────────────────── Statiske filer ───────────────────────────────
+# ─────────────────────────────── Statiske filer ───────────────────────────────
 @app.get("/")
 def index():
     index_path = WEB_DIR / "index.html"

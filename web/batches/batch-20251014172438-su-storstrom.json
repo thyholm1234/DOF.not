@@ -1,0 +1,22 @@
+{
+"client": "su-storstrom",
+"count": 1,
+"generated": "2025-10-14T17:24:38.869455+02:00",
+"items": [
+{
+"obsid": "37835954",
+"art": "Tajgapiber",
+"antal": "0",
+"adf": "Overflyvende",
+"lok": "Hundevængsgård",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Thomas",
+"efternavn": "Hellesen",
+"lon": "12,538286360795478",
+"lat": "54,95272695656857",
+"tid_fra": "09:38",
+"tid_til": "11:45",
+"kategori": "su"
+}
+]
+}

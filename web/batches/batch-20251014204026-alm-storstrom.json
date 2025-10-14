@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T20:40:26.285416+02:00",
+"items": [
+{
+"obsid": "37837678",
+"art": "Skarv",
+"antal": "500",
+"adf": "Rastende på overnatningsplads",
+"lok": "Rødbyhavn Strand øst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,380119323730469",
+"lat": "54,63331276401969",
+"tid_fra": "18:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

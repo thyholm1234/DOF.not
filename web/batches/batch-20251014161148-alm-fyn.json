@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-14T16:11:48.426059+02:00",
+"items": [
+{
+"obsid": "37835193",
+"art": "Grågås",
+"antal": "540",
+"adf": "Rastende",
+"lok": "Ringe Sø",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,469113516553413",
+"lat": "55,236451321715236",
+"tid_fra": "16:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T17:51:48.359743+02:00",
+"items": [
+{
+"obsid": "37836298",
+"art": "Pibeand",
+"antal": "630",
+"adf": "Fouragerende",
+"lok": "Sortedamssøen. S-del",
+"dof_afdeling": "DOF København",
+"fornavn": "Michael",
+"efternavn": "Borch Grell",
+"lon": "12,566923393720108",
+"lat": "55,68909701938415",
+"tid_fra": "17:40",
+"tid_til": "17:51",
+"kategori": "bemaerk"
+}
+]
+}

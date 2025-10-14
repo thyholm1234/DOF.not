@@ -1,0 +1,37 @@
+{
+"client": "alm-nordvestjylland",
+"count": 2,
+"generated": "2025-10-14T20:43:29.966312+02:00",
+"items": [
+{
+"obsid": "37837728",
+"art": "Krikand",
+"antal": "2050",
+"adf": "Rastende",
+"lok": "Agger Tange",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Georg",
+"efternavn": "Guldvang",
+"lon": "8,234834649956834",
+"lat": "56,73659471056408",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37837733",
+"art": "Knarand",
+"antal": "35",
+"adf": "Rastende",
+"lok": "Agger Tange",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Georg",
+"efternavn": "Guldvang",
+"lon": "8,234834649956834",
+"lat": "56,73659471056408",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

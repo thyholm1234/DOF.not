@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T17:26:45.354763+02:00",
+"items": [
+{
+"obsid": "37834159",
+"art": "Ederfugl",
+"antal": "2155",
+"adf": "Trækkende mod sydvest",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Gedser",
+"efternavn": "Fuglestation",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:08",
+"tid_til": "12:08",
+"kategori": "bemaerk"
+}
+]
+}

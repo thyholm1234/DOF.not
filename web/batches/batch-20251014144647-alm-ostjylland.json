@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-14T14:46:47.470929+02:00",
+"items": [
+{
+"obsid": "37834364",
+"art": "Hjejle",
+"antal": "35",
+"adf": "Rastende",
+"lok": "Mårup, Mårup Mark",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,593919185696334",
+"lat": "56,334127240863666",
+"tid_fra": "14:35",
+"tid_til": "",
+"kategori": "alm"
+},
+{
+"obsid": "37834363",
+"art": "Stormmåge",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bølling Sø og områder omkr. søen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Jakob",
+"efternavn": "Bendix Hansen",
+"lon": "9,374651",
+"lat": "56,176297",
+"tid_fra": "14:45",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

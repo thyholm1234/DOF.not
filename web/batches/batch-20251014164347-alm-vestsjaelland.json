@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-14T16:43:47.563398+02:00",
+"items": [
+{
+"obsid": "37835485",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Hallebygård, Enge nordøst for",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,324649566715179",
+"lat": "55,5985686065049",
+"tid_fra": "16:39",
+"tid_til": "16:43",
+"kategori": "bemaerk"
+}
+]
+}

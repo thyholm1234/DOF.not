@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T14:34:51.321568+02:00",
+"items": [
+{
+"obsid": "37834210",
+"art": "Fuglekonge",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Skæring Hede/Skæring Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Mikael",
+"efternavn": "Lassen",
+"lon": "10,33416509628296",
+"lat": "56,23785765160022",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "alm"
+}
+]
+}

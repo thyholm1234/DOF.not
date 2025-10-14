@@ -1,0 +1,37 @@
+{
+"client": "alm-bornholm",
+"count": 2,
+"generated": "2025-10-14T16:15:02.104951+02:00",
+"items": [
+{
+"obsid": "37835228",
+"art": "Trane",
+"antal": "65",
+"adf": "Fouragerende",
+"lok": "Skørrebro",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Steen E.",
+"efternavn": "Jensen",
+"lon": "14,893662929534914",
+"lat": "55,09099274104877",
+"tid_fra": "13:10",
+"tid_til": "13:17",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37835230",
+"art": "Ravn",
+"antal": "12",
+"adf": "Rastende",
+"lok": "Skørrebro",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Steen E.",
+"efternavn": "Jensen",
+"lon": "14,892934817598682",
+"lat": "55,09103667749659",
+"tid_fra": "13:10",
+"tid_til": "13:17",
+"kategori": "bemaerk"
+}
+]
+}

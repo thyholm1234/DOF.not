@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-14T17:38:59.601805+02:00",
+"items": [
+{
+"obsid": "37836140",
+"art": "Hedelærke",
+"antal": "11",
+"adf": "Trækkende mod syd",
+"lok": "Kroghage ved Gedser",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Simon",
+"efternavn": "Vikstrøm",
+"lon": "11,920556286205926",
+"lat": "54,576390744662774",
+"tid_fra": "16:30",
+"tid_til": "17:35",
+"kategori": "bemaerk"
+}
+]
+}

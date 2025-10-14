@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T15:05:46.619611+02:00",
+"items": [
+{
+"obsid": "37834578",
+"art": "Blisgås",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Egå Engsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Henning",
+"efternavn": "Lykke Larsen",
+"lon": "10,22448653998671",
+"lat": "56,21593075244746",
+"tid_fra": "07:45",
+"tid_til": "13:50",
+"kategori": "alm"
+}
+]
+}

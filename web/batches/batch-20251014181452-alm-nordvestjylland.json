@@ -1,0 +1,52 @@
+{
+"client": "alm-nordvestjylland",
+"count": 3,
+"generated": "2025-10-14T18:14:52.746659+02:00",
+"items": [
+{
+"obsid": "37836573",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "15:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37836574",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "15:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37836595",
+"art": "Trane",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "15:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

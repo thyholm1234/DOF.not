@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-14T19:32:15.283190+02:00",
+"items": [
+{
+"obsid": "37837079",
+"art": "Hjejle",
+"antal": "4000",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Mogens",
+"efternavn": "Kristensen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "12:40",
+"tid_til": "16:45",
+"kategori": "bemaerk"
+}
+]
+}

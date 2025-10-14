@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-14T19:45:31.441554+02:00",
+"items": [
+{
+"obsid": "37837148",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Bølling Sø og områder omkr. søen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bo Ryge",
+"efternavn": "Sørensen",
+"lon": "9,377031753931396",
+"lat": "56,17464207987629",
+"tid_fra": "15:10",
+"tid_til": "17:05",
+"kategori": "bemaerk"
+}
+]
+}
