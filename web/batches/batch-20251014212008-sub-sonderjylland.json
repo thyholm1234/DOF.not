@@ -1,0 +1,22 @@
+{
+"client": "sub-sonderjylland",
+"count": 1,
+"generated": "2025-10-14T21:20:08.240069+02:00",
+"items": [
+{
+"obsid": "37838101",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Rimmevejmarkerne, Rømø",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Henrik",
+"efternavn": "Kristensen",
+"lon": "8,514265820278712",
+"lat": "55,092566806238295",
+"tid_fra": "16:30",
+"tid_til": "17:30",
+"kategori": "sub"
+}
+]
+}

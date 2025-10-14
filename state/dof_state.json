@@ -208,8 +208,8 @@
     "antal": 3.0
   },
   "Allike\n555212": {
-    "date": "2025-10-13",
-    "antal": 85.0
+    "date": "2025-10-14",
+    "antal": 10.0
   },
   "Allike\n571082": {
     "date": "2025-10-14",
@@ -4136,8 +4136,8 @@
     "antal": 10.0
   },
   "Fuglekonge\n555216": {
-    "date": "2025-10-13",
-    "antal": 4.0
+    "date": "2025-10-14",
+    "antal": 20.0
   },
   "Fuglekonge\n555445": {
     "date": "2025-10-13",
@@ -4436,8 +4436,8 @@
     "antal": 3.0
   },
   "Gransanger\n531605": {
-    "date": "2025-10-13",
-    "antal": 2.0
+    "date": "2025-10-14",
+    "antal": 7.0
   },
   "Gransanger\n531780": {
     "date": "2025-10-13",
@@ -5428,8 +5428,8 @@
     "antal": 1.0
   },
   "Gråsisken\n555209": {
-    "date": "2025-10-13",
-    "antal": 2.0
+    "date": "2025-10-14",
+    "antal": 1.0
   },
   "Gråsisken\n555445": {
     "date": "2025-10-13",
@@ -6828,8 +6828,8 @@
     "antal": 1.0
   },
   "Havørn\n213050": {
-    "date": "2025-10-13",
-    "antal": 2.0
+    "date": "2025-10-14",
+    "antal": 1.0
   },
   "Havørn\n215091": {
     "date": "2025-10-13",
@@ -7816,7 +7816,7 @@
     "antal": 1.0
   },
   "Hvidbrynet Løvsanger\n555216": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Hvidbrynet Løvsanger\n571601": {
@@ -9760,8 +9760,8 @@
     "antal": 10.0
   },
   "Kvækerfinke\n555209": {
-    "date": "2025-10-13",
-    "antal": 2.0
+    "date": "2025-10-14",
+    "antal": 1.0
   },
   "Kvækerfinke\n555212": {
     "date": "2025-10-14",
@@ -10021,7 +10021,7 @@
   },
   "Lille Korsnæb\n555212": {
     "date": "2025-10-14",
-    "antal": 40.0
+    "antal": 65.0
   },
   "Lille Korsnæb\n555445": {
     "date": "2025-10-14",
@@ -11389,7 +11389,7 @@
   },
   "Musvåge\n555209": {
     "date": "2025-10-14",
-    "antal": 1.0
+    "antal": 2.0
   },
   "Musvåge\n555212": {
     "date": "2025-10-14",
@@ -11480,8 +11480,8 @@
     "antal": 73.0
   },
   "Musvåge\n741412": {
-    "date": "2025-10-13",
-    "antal": 31.0
+    "date": "2025-10-14",
+    "antal": 18.0
   },
   "Musvåge\n751041": {
     "date": "2025-10-13",
@@ -12805,7 +12805,7 @@
   },
   "Rød Glente\n213050": {
     "date": "2025-10-14",
-    "antal": 1.0
+    "antal": 2.0
   },
   "Rød Glente\n215091": {
     "date": "2025-10-13",
@@ -16252,8 +16252,8 @@
     "antal": 2.0
   },
   "Sortstrubet Bynkefugl\n531605": {
-    "date": "2025-10-13",
-    "antal": 1.0
+    "date": "2025-10-14",
+    "antal": 6.0
   },
   "Sortstrubet Bynkefugl\n531780": {
     "date": "2025-10-14",
@@ -16292,8 +16292,8 @@
     "antal": 1.0
   },
   "Sortstrubet Bynkefugl\n555216": {
-    "date": "2025-10-13",
-    "antal": 3.0
+    "date": "2025-10-14",
+    "antal": 1.0
   },
   "Sortstrubet Bynkefugl\n555218": {
     "date": "2025-10-13",
@@ -16732,7 +16732,7 @@
     "antal": 1.0
   },
   "Spurvehøg\n555212": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Spurvehøg\n555445": {
@@ -19716,7 +19716,7 @@
     "antal": 1.0
   },
   "Træløber\n555209": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Træløber\n571601": {
@@ -19869,7 +19869,7 @@
   },
   "Tårnfalk\n213050": {
     "date": "2025-10-14",
-    "antal": 2.0
+    "antal": 6.0
   },
   "Tårnfalk\n215091": {
     "date": "2025-10-13",
@@ -31545,7 +31545,7 @@
   },
   "Sangdrossel\n905448": {
     "date": "2025-10-14",
-    "antal": 57.0
+    "antal": 100.0
   },
   "Musvåge\n900641": {
     "date": "2025-10-14",
@@ -38373,7 +38373,7 @@
   },
   "Bramgås\n389022": {
     "date": "2025-10-14",
-    "antal": 4530.0
+    "antal": 4870.0
   },
   "Musvit\n787191": {
     "date": "2025-10-14",
@@ -38406,5 +38406,141 @@
   "Rødtoppet Fuglekonge\n787191": {
     "date": "2025-10-14",
     "antal": 1.0
+  },
+  "Bogfinke\n787191": {
+    "date": "2025-10-14",
+    "antal": 5.0
+  },
+  "Bramgås\n741412": {
+    "date": "2025-10-14",
+    "antal": 210.0
+  },
+  "Grønsisken\n787191": {
+    "date": "2025-10-14",
+    "antal": 5.0
+  },
+  "Isfugl\n741412": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Lille Lappedykker\n741412": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Rørhøne\n741412": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Rørspurv\n787191": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Gråand\n741412": {
+    "date": "2025-10-14",
+    "antal": 7.0
+  },
+  "Toppet Skallesluger\n389022": {
+    "date": "2025-10-14",
+    "antal": 21.0
+  },
+  "Hvidbrynet Løvsanger\n531605": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Musvåge\n271190": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Musvåge\n389340": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Enkeltbekkasin\n531800": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Lapværling\n531800": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Vandrefalk\n531800": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Kernebider\n101126": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Musvåge\n101126": {
+    "date": "2025-10-14",
+    "antal": 15.0
+  },
+  "Bramgås\n101222": {
+    "date": "2025-10-14",
+    "antal": 300.0
+  },
+  "Spurvehøg\n101222": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Engpiber\n101222": {
+    "date": "2025-10-14",
+    "antal": 50.0
+  },
+  "Grågås\n101222": {
+    "date": "2025-10-14",
+    "antal": 7.0
+  },
+  "Musvåge\n101222": {
+    "date": "2025-10-14",
+    "antal": 20.0
+  },
+  "Svartbag\n101222": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Ringdue\n555141": {
+    "date": "2025-10-14",
+    "antal": 60.0
+  },
+  "Lapværling\n517103": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Gulspurv\n555216": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Gærdesmutte\n555216": {
+    "date": "2025-10-14",
+    "antal": 3.0
+  },
+  "Bjergløvsanger\n517103": {
+    "date": "2025-10-14",
+    "antal": 4.0
+  },
+  "Havørn\n555216": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Mosehornugle\n555216": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Blåmejse\n555216": {
+    "date": "2025-10-14",
+    "antal": 10.0
+  },
+  "Gransanger\n555216": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Stenpikker\n555216": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Canadagås\n701340": {
+    "date": "2025-10-14",
+    "antal": 46.0
   }
 }

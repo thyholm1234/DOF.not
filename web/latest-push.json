@@ -1,14 +1,14 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-14T21:16:45.698873+02:00",
+  "received_at": "2025-10-14T21:52:09.678403+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Rødtoppet Fuglekonge, Nors Sø",
-      "body": "Georg, Guldvang",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37838076&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-nordvestjylland",
+      "title": "100 Sangdrossel, Gellerupparken Toveshøj",
+      "body": "Christian, Vemmelund Helligsø",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37838195&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-ostjylland",
       "renotify": true
     }
   ]
