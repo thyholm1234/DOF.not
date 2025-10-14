@@ -1,30 +1,26 @@
+# birdnotification.py
 # -*- coding: utf-8 -*-
 """
 Henter DOFbasens CSV for en valgt dato (DD-MM-YYYY), gemmer den,
 detekterer første observation pr. (Artnavn × Loknr) pr. dag (DK-tid)
 og leverer resultater pr. klient-profil via stdout/fil/webpush.
 
-Denne version (L1-hybrid klar):
+Denne version:
 - CLI-output er kompakt: én linje pr. observation (uden noter).
 - [alm | sub | su | bemaerk] vises i CLI og medsendes pr. item i batch-JSON.
 - 'bemaerk' bestemmes ud fra regionale tærskler pr. art (data/*bemaerk*.csv).
 - Webpush/digest udsendes parallelt; klient-POSTs bruger Session + konfigurerbar timeout.
 - Per-klient filtrering bevares (species, adfærd, lokation, tid, bbox, antal, kategori).
 - Ændringer fra alle grupper sendes samlet pr. polling-runde.
-- NYT: payload til server inkluderer 'regions' + 'categories' (gør server-side grovfilter mulig),
-       samt 'urgency' (high ved su/bemaerk, ellers normal).
-- NYT: atomic writes for state- og batchfiler.
-- FIX: only_with_coords-masken brugte forkert operator—rettet til OR/AND.
 """
-
+import re  # ← robust parsning af 'Antal'
 import argparse
 import datetime as dt
 import json
 import sys
 import time
-import unicodedata
+import unicodedata, re
 import warnings
-import re
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
@@ -34,7 +30,7 @@ import yaml
 from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-# ───────────────────────────────── Konstanter og stier ─────────────────────────────────
+# ─── Konstanter og stier ─────────────────────────────────────────────────────
 warnings.simplefilter(action="ignore", category=FutureWarning)
 DK_TZ = ZoneInfo("Europe/Copenhagen")
 DOF_URL = (
@@ -42,20 +38,18 @@ DOF_URL = (
     "?design=excel&soeg=soeg&periode=dato&dato={dato}"
     "&obstype=observationer&species=alle&sortering=dato"
 )
-
 APP_DIR = Path.cwd()
 STATE_DIR = APP_DIR / "state"
 DL_DIR = APP_DIR / "downloads"
 OUT_DIR = APP_DIR / "out"
 DATA_DIR = APP_DIR / "data"
-
 FEED_FILE = Path("web") / "feed.jsonl"
 META_FILE = Path("web") / "meta.json"
 LATEST_PUSH_FILE = Path("web") / "latest-push.json"
 STATE_FILE = STATE_DIR / "dof_state.json"
 SU_LIST = DATA_DIR / "SU-arter.csv"
 SUB_LIST = DATA_DIR / "SUB-arter.csv"
-BATCH_DIR = Path("web") / "batches"
+BATCH_DIR = Path("web") / "batches" 
 
 REQUIRED_COLS = [
     "Artnavn", "Loknr", "Adfbeskrivelse", "Loknavn",
@@ -64,18 +58,11 @@ REQUIRED_COLS = [
     "lok_laengdegrad", "lok_breddegrad",
 ]
 
-# ───────────────────────────────── Utilities ─────────────────────────────────
+# ─── Utility ─────────────────────────────────────────────────────────────────
 def ensure_dirs():
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     DL_DIR.mkdir(parents=True, exist_ok=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-
-def _atomic_write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
-    """Skriv atomisk: path.tmp -> replace(path)."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(text, encoding=encoding)
-    tmp.replace(path)
 
 def build_url(date_dd_mm_yyyy: str) -> str:
     try:
@@ -87,7 +74,7 @@ def build_url(date_dd_mm_yyyy: str) -> str:
 def fetch_csv(url: str) -> Path:
     ts = dt.datetime.now(DK_TZ).strftime("%Y%m%d_%H%M%S")
     dest = DL_DIR / f"search_result_{ts}.csv"
-    headers = {"User-Agent": "birdnotification/1.6 (+local)"}
+    headers = {"User-Agent": "birdnotification/1.5 (+local)"}
     try:
         with requests.get(url, headers=headers, timeout=60) as r:
             r.raise_for_status()
@@ -132,10 +119,32 @@ def read_csv_with_fallback(path: Path) -> Tuple[pd.DataFrame, str]:
             continue
     raise SystemExit(f"Kunne ikke læse CSV med kendte encodings: {last_err}")
 
+
+
 def _region_key(text: str) -> str:
+    """
+    Returnér region-nøglen som-is (med kapitaler og diakritik bevaret),
+    kun trimmet for whitespace. Selve match sker case-insensitivt senere.
+    """
     return (text or "").strip()
 
-# ─────────────────────── State ───────────────────────
+def _pick_region_for_row(row: Optional[pd.Series]) -> str:
+    """
+    Brug DOF_afdeling som den er (case-insensitivt).
+    Hvis tom, og vi kun har indlæst én bemaerk-region, brug den som default.
+    """
+    if row is None:
+        return ""
+    rk = _region_key(str(row.get("DOF_afdeling", "")))
+    if rk:
+        return rk
+    # fallback: kun én region i kortet?
+    if len(BEMAERK_MAP) == 1:
+        return next(iter(BEMAERK_MAP.keys()))
+    return ""
+
+
+# ─── State ───────────────────────────────────────────────────────────────────
 def load_state() -> Dict[str, dict]:
     if not STATE_FILE.exists():
         return {}
@@ -162,7 +171,7 @@ def load_state() -> Dict[str, dict]:
         return {}
 
 def save_state(state: Dict[str, dict]):
-    _atomic_write_text(STATE_FILE, json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
+    STATE_FILE.write_text(json.dumps(state, ensure_ascii=False, indent=2), encoding="utf-8")
 
 def clear_state_and_downloads():
     try:
@@ -180,7 +189,7 @@ def clear_state_and_downloads():
     except Exception as e:
         print(f"[Advarsel] Fejl ved oprydning i downloads/: {e}", file=sys.stderr)
 
-# ─────────────────────── Parsning/normalisering ───────────────────────
+# ─── Parsning/normalisering ──────────────────────────────────────────────────
 def parse_float_str(s: str) -> str:
     return s.replace(",", ".") if s else ""
 
@@ -220,7 +229,7 @@ def _parse_antal(val):
         return None
     return max(float(x) for x in nums)
 
-# ─────────────────────── Region- og navne-normalisering ───────────────────────
+# ─── Region- og navne-normalisering ──────────────────────────────────────────
 def _strip_accents(s: str) -> str:
     return "".join(ch for ch in unicodedata.normalize("NFKD", s) if not unicodedata.combining(ch))
 
@@ -231,6 +240,7 @@ def _slug_region(s: str) -> str:
         return ""
     s1 = _strip_accents(s0)
     s1 = re.sub(r"[^a-z0-9]+", "", s1)
+    # aliaser/variationer
     aliases = {
         "kbh": "kobenhavn",
         "kobenhavn": "kobenhavn",
@@ -249,12 +259,13 @@ def _slug_region(s: str) -> str:
         "sonderjylland": "sonderjylland",
         "kobenhavnskommune": "kobenhavn",
     }
+    # prøv fulde former først (fx 'odense' er ikke en afdeling – behold s1)
     return aliases.get(s1, s1)
 
 def _norm_art(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").strip().lower())
 
-# ─────────────────────── SU/SUB- og BEMÆRK-data ───────────────────────
+# ─── SU/SUB- og BEMÆRK-data ─────────────────────────────────────────────────
 def _read_semicolon_csv_with_fallback(path: Path) -> pd.DataFrame:
     if not path.exists():
         return pd.DataFrame()
@@ -295,9 +306,11 @@ def load_bemaerk_thresholds() -> Dict[str, Dict[str, float]]:
         region_key = _region_key(region_hint_raw)  # 'københavn'
         if not region_key:
             continue
+
         df = _read_semicolon_csv_with_fallback(p)
         if df.empty:
             continue
+
         cols = {c.strip().lower(): c for c in df.columns}
         if "artsnavn" not in cols or "bemaerk_antal" not in cols:
             possible = [c for c in df.columns if "bemaerk" in c.lower() and "antal" in c.lower()]
@@ -306,6 +319,7 @@ def load_bemaerk_thresholds() -> Dict[str, Dict[str, float]]:
                 continue
             cols["bemaerk_antal"] = possible[0]
             cols.setdefault("artsnavn", df.columns[0])
+
         a_col = cols["artsnavn"]; t_col = cols["bemaerk_antal"]
         reg_map = out.setdefault(region_key, {})
         for _, r in df.iterrows():
@@ -318,33 +332,37 @@ def load_bemaerk_thresholds() -> Dict[str, Dict[str, float]]:
             except Exception:
                 continue
             reg_map[art] = thr
-    return out
 
+    return out
 try:
     BEMAERK_MAP = load_bemaerk_thresholds()
 except Exception as e:
     print(f"[Advarsel] Kunne ikke læse bemaerk-lister: {e}", file=sys.stderr)
     BEMAERK_MAP = {}
 
-# ─────────────────────── Kategorisering (hierarki) ───────────────────────
+# ─── Kategorisering (hierarki) ──────────────────────────────────────────────
 def art_kategori(artnavn: str, row: Optional[pd.Series] = None,
                  antal_override: Optional[float] = None, debug: bool = False) -> str:
     a_raw = (artnavn or "").strip()
     if not a_raw:
         return "alm"
+
     # SU / SUB først
     if a_raw in SU_SET:
         return "su"
     if a_raw in SUB_SET:
         return "sub"
+
     # bemaerk: fleksibelt opslag mod BEMAERK_MAP (DOF_afdeling forbliver uændret)
     if row is not None and BEMAERK_MAP:
         region_raw = (row.get("DOF_afdeling") or "").strip()
         if region_raw:
+            # Kandidater: rå, lower, uden "DOF " (rå), uden "DOF " (lower)
             region_candidates = [region_raw, region_raw.lower()]
             region_wo_dof = re.sub(r"^DOF\s+", "", region_raw, flags=re.IGNORECASE).strip()
             if region_wo_dof:
                 region_candidates += [region_wo_dof, region_wo_dof.lower()]
+
             reg_map = None
             chosen_key = None
             for key in region_candidates:
@@ -352,6 +370,7 @@ def art_kategori(artnavn: str, row: Optional[pd.Series] = None,
                 if reg_map:
                     chosen_key = key
                     break
+
             if reg_map:
                 thr = reg_map.get(_norm_art(a_raw))
                 if thr is not None:
@@ -360,13 +379,13 @@ def art_kategori(artnavn: str, row: Optional[pd.Series] = None,
                         antal_val = _parse_antal(row.get("Antal", ""))
                     if antal_val is not None and antal_val >= thr:
                         return "bemaerk"
-                if debug:
-                    print(f"[bemaerk:no] art='{a_raw}' antal={antal_val} < thr={thr} region_key='{chosen_key}'")
+                    if debug:
+                        print(f"[bemaerk:no] art='{a_raw}' antal={antal_val} < thr={thr} region_key='{chosen_key}'")
             elif debug:
                 print(f"[bemaerk:no] ingen region-match for '{region_raw}' (prøvede: {region_candidates})")
-    return "alm"
 
-# ─────────────────────── Filtrering (regler) ───────────────────────
+
+# ─── Filtrering (regler) ────────────────────────────────────────────────────
 def load_clients_config(path: Optional[str]) -> List[dict]:
     if not path:
         return [{"id": "default", "sinks": [{"type": "stdout"}], "rules": {}}]
@@ -391,7 +410,6 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
     kategori ["alm","sub","su","bemaerk"]
     """
     m = pd.Series(True, index=df.index)
-
     # 1) Arter
     species = rules.get("species")
     if species:
@@ -399,7 +417,6 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
     ex = rules.get("exclude_species")
     if ex:
         m &= ~df["Artnavn"].isin(ex)
-
     # 2) Adfærd / Loknavn (literal substring, case-insensitive)
     adf_lit = rules.get("adf_contains") or rules.get("adf_regex")
     if adf_lit:
@@ -407,7 +424,6 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
     lok_lit = rules.get("loknavn_contains") or rules.get("loknavn_regex")
     if lok_lit:
         m &= df["Loknavn"].str.contains(str(lok_lit), case=False, na=False, regex=False)
-
     # 3) Lokation
     loknr = rules.get("loknr")
     if loknr:
@@ -415,7 +431,6 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
     dof = rules.get("dof_afdelinger")
     if dof and "DOF_afdeling" in df.columns:
         m &= df["DOF_afdeling"].isin(dof)
-
     # 4) Tid
     tr = rules.get("time_range")
     if tr and (tr.get("from") or tr.get("to")):
@@ -425,16 +440,13 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
             m &= have_time & (t_from_series >= tr["from"])
         if tr.get("to"):
             m &= have_time & (t_from_series <= tr["to"])
-
     # 5) Antal
     min_a = rules.get("min_antal")
     if (min_a is not None) and ("Antal" in df.columns):
         antal = pd.to_numeric(df["Antal"], errors="coerce").fillna(0)
         m &= antal >= float(min_a)
-
     # 6) Koordinater / BBox
     if rules.get("only_with_coords"):
-        # FIX: OR/AND-logik (obs OR lok) pr. akse, derefter AND mellem akser
         has_lon = df["obs_laengdegrad"].ne("") | df["lok_laengdegrad"].ne("")
         has_lat = df["obs_breddegrad"].ne("") | df["lok_breddegrad"].ne("")
         m &= has_lon & has_lat
@@ -446,7 +458,6 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
         lon = pd.to_numeric(lon.astype(str).str.replace(",", "."), errors="coerce")
         lat = pd.to_numeric(lat.astype(str).str.replace(",", "."), errors="coerce")
         m &= (lon >= lon_min) & (lon <= lon_max) & (lat >= lat_min) & (lat <= lat_max)
-
     # 7) Kategori
     cats = rules.get("kategori")
     if cats:
@@ -457,10 +468,9 @@ def build_mask(df: pd.DataFrame, rules: dict) -> pd.Series:
             df.apply(lambda r: art_kategori(r.get("Artnavn",""), r), axis=1)
         )
         m &= s_cat.isin(cats_norm)
-
     return m
 
-# ─────────────────────── CLI-rendering ───────────────────────
+# ─── CLI-rendering ──────────────────────────────────────────────────────────
 def render_output_line(r: pd.Series, timestamp_mode: str, kategori: str) -> str:
     ts = obs_timestamp_dk(r) if timestamp_mode == "obs" else _current_ts_dk()
     antal = (r.get("Antal", "") or "").strip()
@@ -481,37 +491,22 @@ def render_output_line(r: pd.Series, timestamp_mode: str, kategori: str) -> str:
     parts = [ts, f"[{kategori}]", antal_art, adf, lok, dof_afd, name, coords, t_span]
     return " · ".join([p for p in parts if p])
 
-# ─────────────────────── Fanout (stdout/file + webpush) ───────────────────────
-def _write_digest_file(cid: str, rows_c: pd.DataFrame) -> Tuple[str, List[dict], List[str], List[str]]:
-    """
-    Skriver batchfil (atomisk) for klientens chunk og returnerer:
-      (url_path, items, regions, categories)
-
-    regions/categories bruges både til at vise i UI og til server-side grovfilter.
-    """
+# ─── Fanout (stdout/file + webpush) – med parallel POST ─────────────────────
+def _write_digest_file(cid: str, rows_c: pd.DataFrame) -> str:
     batch_dir = BATCH_DIR
     batch_dir.mkdir(parents=True, exist_ok=True)
     ts = dt.datetime.now(DK_TZ).strftime("%Y%m%d%H%M%S")
     fname = f"batch-{ts}-{cid}.json"
-
-    items: List[dict] = []
-    regions_set, cats_set = set(), set()
-
+    items = []
     for _, r in rows_c.iterrows():
         cat = art_kategori(r.get("Artnavn", ""), r)  # kategori pr. item
-        afd = (r.get("DOF_afdeling", "") or "").strip()
-        if afd:
-            regions_set.add(afd)
-        if cat:
-            cats_set.add(cat)
-
         items.append({
             "obsid": r.get("Obsid",""),
             "art": r.get("Artnavn",""),
             "antal": r.get("Antal",""),
             "adf": r.get("Adfbeskrivelse",""),
             "lok": r.get("Loknavn",""),
-            "dof_afdeling": afd,
+            "dof_afdeling": r.get("DOF_afdeling",""),
             "fornavn": r.get("Fornavn",""),
             "efternavn": r.get("Efternavn",""),
             "lon": r.get("obs_laengdegrad") or r.get("lok_laengdegrad",""),
@@ -520,19 +515,14 @@ def _write_digest_file(cid: str, rows_c: pd.DataFrame) -> Tuple[str, List[dict],
             "tid_til": r.get("Obstidtil",""),
             "kategori": cat
         })
-
     payload = {
         "client": cid,
         "count": len(items),
         "generated": dt.datetime.now(DK_TZ).isoformat(),
         "items": items
     }
-
-    # Atomisk skrivning
-    out_path = (batch_dir / fname)
-    _atomic_write_text(out_path, json.dumps(payload, ensure_ascii=False, indent=0), encoding="utf-8")
-
-    return f"/batches/{fname}", items, sorted(regions_set), sorted(cats_set)
+    (batch_dir / fname).write_text(json.dumps(payload, ensure_ascii=False, indent=0), encoding="utf-8")
+    return f"/batches/{fname}"
 
 def purge_old_batches(max_age_hours: int = 24, verbose: bool = False) -> int:
     """
@@ -542,8 +532,10 @@ def purge_old_batches(max_age_hours: int = 24, verbose: bool = False) -> int:
     base = BATCH_DIR
     if not base.exists():
         return 0
+
     now_ts = dt.datetime.now(DK_TZ).timestamp()
     cutoff = now_ts - (max_age_hours * 3600)
+
     deleted = 0
     for p in base.glob("batch-*.json"):
         try:
@@ -589,7 +581,7 @@ def fanout_to_clients(new_rows: pd.DataFrame, clients: List[dict], timestamp_mod
         else:
             rows_for_mask = new_rows
 
-        # Filtrer rækker for denne klient
+        # Filtrér rækker for denne klient
         rows_c = rows_for_mask[build_mask(rows_for_mask, rules)]
         if rows_c.empty:
             continue
@@ -623,35 +615,21 @@ def fanout_to_clients(new_rows: pd.DataFrame, clients: List[dict], timestamp_mod
             tasks = []
             for start in range(0, len(rows_c), CHUNK):
                 chunk = rows_c.iloc[start:start + CHUNK]
-
-                # Skriv batchfil og udled regions/categories for denne chunk
-                url_path, items, regions, categories = _write_digest_file(cid, chunk)
-
-                # Byg titel/teaser
+                url_path = _write_digest_file(cid, chunk)
                 n = len(chunk)
                 head = ", ".join(
                     f"{r.get('Antal','')} {r.get('Artnavn','')}".strip()
                     for _, r in chunk.head(3).iterrows()
                 )
                 more = f" … +{n-3} flere" if n > 3 else ""
-
-                # Urgency: "high" hvis chunk har su/bemaerk, ellers "normal"
-                cats_lc = {str(x).lower() for x in categories}
-                urgency = "high" if ("su" in cats_lc or "bemaerk" in cats_lc) else "normal"
-
                 payload = {
                     "type": "digest",
                     "title": f"[{cid}] {n} nye obs",
                     "body": (head + more).strip(" ,·"),
                     "url": url_path,
                     "tag": f"bird-digest-{cid}",
-                    "renotify": True,
-                    # NYT: server-side filter hints
-                    "regions": regions,         # fx ["DOF København", "DOF Fyn"]
-                    "categories": list(cats_lc),# fx ["su","bemaerk"]
-                    "urgency": urgency          # bruges af serverens header-merge
+                    "renotify": True
                 }
-
                 _write_latest_push({
                     "client": cid, "title": payload["title"], "body": payload["body"],
                     "url": payload["url"], "count": n, "tag": payload["tag"]
@@ -674,7 +652,7 @@ def fanout_to_clients(new_rows: pd.DataFrame, clients: List[dict], timestamp_mod
                         for f in as_completed(futs):
                             _ = f.result()
 
-# ─────────────────────── FEED/META helpers ───────────────────────
+# ─── FEED/META helpers ──────────────────────────────────────────────────────
 def _append_to_feed(cid: str, rows_c: pd.DataFrame) -> None:
     FEED_FILE.parent.mkdir(parents=True, exist_ok=True)
     now_iso = dt.datetime.now(DK_TZ).isoformat()
@@ -714,18 +692,18 @@ def _update_meta(rows_c: pd.DataFrame) -> None:
     new_vals = set(v for v in rows_c.get("DOF_afdeling", pd.Series(dtype=str)).astype(str).tolist() if v)
     meta["afdelinger"] = sorted(existing | new_vals)
     meta["lastUpdated"] = now_iso
-    _atomic_write_text(META_FILE, json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    META_FILE.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
 def _write_latest_push(payload: dict) -> None:
     try:
         LATEST_PUSH_FILE.parent.mkdir(parents=True, exist_ok=True)
         payload = dict(payload)
         payload["generated"] = dt.datetime.now(DK_TZ).isoformat()
-        _atomic_write_text(LATEST_PUSH_FILE, json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+        LATEST_PUSH_FILE.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     except Exception as e:
         print(f"[Advarsel] Kunne ikke skrive latest-push.json: {e}", file=sys.stderr)
 
-# ─────────────────────── Ændringsdetektion (loknr/dag) ───────────────────────
+# ─── Ændringsdetektion (loknr/dag) ──────────────────────────────────────────
 def _choose_latest_row(gdf: pd.DataFrame) -> pd.Series:
     if "Obstidfra" in gdf.columns:
         g2 = gdf.copy()
@@ -791,10 +769,9 @@ def detect_and_report_changes(
         if sort_cols:
             all_new = all_new.sort_values(sort_cols, kind="stable")
         fanout_to_clients(all_new, clients, timestamp_mode)
-
     return updated_state
 
-# ─────────────────────── Kørsel ───────────────────────
+# ─── Kørsel ─────────────────────────────────────────────────────────────────
 def run_once(date_str: str, clients: List[dict], timestamp_mode: str) -> None:
     ensure_dirs()
     url = build_url(date_str)
@@ -824,6 +801,9 @@ def run_once(date_str: str, clients: List[dict], timestamp_mode: str) -> None:
 
     new_state = detect_and_report_changes(df, state, clients, timestamp_mode)
     save_state(new_state)
+
+
+
 
 def run_watch(initial_date_str: str, clients: List[dict], interval_sec: int, timestamp_mode: str) -> None:
     ensure_dirs()
@@ -864,6 +844,7 @@ def main():
         print(f"[Advarsel] Kunne ikke genindlæse bemaerk-lister: {e}", file=sys.stderr)
 
     clients = load_clients_config(args.config)
+
     if args.watch:
         run_watch(args.date, clients, args.interval, timestamp_mode=args.timestamp)
     else:

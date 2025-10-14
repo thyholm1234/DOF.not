@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-14T22:04:34.914078+02:00",
+"items": [
+{
+"obsid": "37838255",
+"art": "Nordisk Lappedykker",
+"antal": "7",
+"adf": "Rastende",
+"lok": "Vest for Rømø (maritim lokalitet)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Rasmus",
+"efternavn": "Strack",
+"lon": "8,387016139202593",
+"lat": "55,12748038200854",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37838258",
+"art": "Sortgrå Ryle",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Vest for Rømø (maritim lokalitet)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Rasmus",
+"efternavn": "Strack",
+"lon": "8,387016139202593",
+"lat": "55,12748038200854",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

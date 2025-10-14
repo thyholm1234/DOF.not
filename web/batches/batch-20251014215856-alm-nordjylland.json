@@ -1,0 +1,52 @@
+{
+"client": "alm-nordjylland",
+"count": 3,
+"generated": "2025-10-14T21:58:56.830841+02:00",
+"items": [
+{
+"obsid": "37838215",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Reservatet, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,614780858047183",
+"lat": "57,74539654253644",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37838216",
+"art": "Sølvhejre",
+"antal": "33",
+"adf": "Fouragerende",
+"lok": "Tofte Mose, Lille Vildmose",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Claus Quist",
+"efternavn": "Pedersen",
+"lon": "10,180883584175369",
+"lat": "56,847652739299804",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37838220",
+"art": "Sortstrubet Bynkefugl",
+"antal": "4",
+"adf": "Fouragerende",
+"lok": "Tofte Mose, Lille Vildmose",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Claus Quist",
+"efternavn": "Pedersen",
+"lon": "10,180883584175369",
+"lat": "56,847652739299804",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

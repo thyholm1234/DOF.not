@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-14T22:05:44.680437+02:00",
+"items": [
+{
+"obsid": "37838262",
+"art": "Sortand",
+"antal": "1500",
+"adf": "Rastende",
+"lok": "Vest for Rømø (maritim lokalitet)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Rasmus",
+"efternavn": "Strack",
+"lon": "8,387016139202593",
+"lat": "55,12748038200854",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37838264",
+"art": "Fløjlsand",
+"antal": "11",
+"adf": "Rastende",
+"lok": "Vest for Rømø (maritim lokalitet)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Rasmus",
+"efternavn": "Strack",
+"lon": "8,387016139202593",
+"lat": "55,12748038200854",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

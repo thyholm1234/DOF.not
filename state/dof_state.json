@@ -605,7 +605,7 @@
   },
   "Bjergvipstjert\n555209": {
     "date": "2025-10-14",
-    "antal": 2.0
+    "antal": 3.0
   },
   "Bjergvipstjert\n555445": {
     "date": "2025-10-14",
@@ -2357,7 +2357,7 @@
   },
   "Dobbeltbekkasin\n183025": {
     "date": "2025-10-14",
-    "antal": 2.0
+    "antal": 3.0
   },
   "Dobbeltbekkasin\n189050": {
     "date": "2025-10-13",
@@ -3892,8 +3892,8 @@
     "antal": 12.0
   },
   "Fløjlsand\n531505": {
-    "date": "2025-10-13",
-    "antal": 31.0
+    "date": "2025-10-14",
+    "antal": 11.0
   },
   "Fløjlsand\n555208": {
     "date": "2025-10-13",
@@ -4272,8 +4272,8 @@
     "antal": 6.0
   },
   "Fuglekonge\n901605": {
-    "date": "2025-10-13",
-    "antal": 60.0
+    "date": "2025-10-14",
+    "antal": 8.0
   },
   "Fuglekonge\n901973": {
     "date": "2025-10-14",
@@ -7744,7 +7744,7 @@
     "antal": 3.0
   },
   "Hvid Vipstjert\n555209": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Hvid Vipstjert\n563005": {
@@ -10748,7 +10748,7 @@
     "antal": 1.0
   },
   "Musvit\n749200": {
-    "date": "2025-10-13",
+    "date": "2025-10-14",
     "antal": 1.0
   },
   "Musvit\n749201": {
@@ -11692,8 +11692,8 @@
     "antal": 1.0
   },
   "Nordisk Lappedykker\n531505": {
-    "date": "2025-10-13",
-    "antal": 11.0
+    "date": "2025-10-14",
+    "antal": 7.0
   },
   "Nordisk Lappedykker\n563239": {
     "date": "2025-10-13",
@@ -12040,8 +12040,8 @@
     "antal": 2.0
   },
   "Ravn\n749200": {
-    "date": "2025-10-13",
-    "antal": 1.0
+    "date": "2025-10-14",
+    "antal": 3.0
   },
   "Ravn\n749201": {
     "date": "2025-10-14",
@@ -16001,7 +16001,7 @@
   },
   "Sortand\n531505": {
     "date": "2025-10-14",
-    "antal": 120.0
+    "antal": 1500.0
   },
   "Sortand\n555208": {
     "date": "2025-10-13",
@@ -16068,8 +16068,8 @@
     "antal": 1.0
   },
   "Sortgrå Ryle\n531505": {
-    "date": "2025-10-13",
-    "antal": 1.0
+    "date": "2025-10-14",
+    "antal": 2.0
   },
   "Sortgrå Ryle\n555208": {
     "date": "2025-10-14",
@@ -18280,8 +18280,8 @@
     "antal": 4.0
   },
   "Sule\n531505": {
-    "date": "2025-10-13",
-    "antal": 1.0
+    "date": "2025-10-14",
+    "antal": 2.0
   },
   "Sule\n555209": {
     "date": "2025-10-14",
@@ -26173,7 +26173,7 @@
   },
   "Strandskade\n563299": {
     "date": "2025-10-14",
-    "antal": 250.0
+    "antal": 425.0
   },
   "Isfugl\n707250": {
     "date": "2025-10-14",
@@ -31545,7 +31545,7 @@
   },
   "Sangdrossel\n905448": {
     "date": "2025-10-14",
-    "antal": 100.0
+    "antal": 101.0
   },
   "Musvåge\n900641": {
     "date": "2025-10-14",
@@ -33589,7 +33589,7 @@
   },
   "Ravn\n565315": {
     "date": "2025-10-14",
-    "antal": 2.0
+    "antal": 3.0
   },
   "Lille Korsnæb\n565315": {
     "date": "2025-10-14",
@@ -38542,5 +38542,201 @@
   "Canadagås\n701340": {
     "date": "2025-10-14",
     "antal": 46.0
+  },
+  "Bjergvipstjert\n531610": {
+    "date": "2025-10-14",
+    "antal": 14.0
+  },
+  "Blå Kærhøg\n841024": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Hedelærke\n531610": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Rødtoppet Fuglekonge\n531610": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Skægmejse\n531610": {
+    "date": "2025-10-14",
+    "antal": 12.0
+  },
+  "Sortstrubet Bynkefugl\n837050": {
+    "date": "2025-10-14",
+    "antal": 4.0
+  },
+  "Sølvhejre\n837050": {
+    "date": "2025-10-14",
+    "antal": 33.0
+  },
+  "Landsvale\n901433": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Munk\n531610": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Skægmejse\n901433": {
+    "date": "2025-10-14",
+    "antal": 5.0
+  },
+  "Blisgås\n837036": {
+    "date": "2025-10-14",
+    "antal": 37.0
+  },
+  "Dobbeltbekkasin\n901433": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Fuglekonge\n531610": {
+    "date": "2025-10-14",
+    "antal": 50.0
+  },
+  "Gransanger\n531610": {
+    "date": "2025-10-14",
+    "antal": 6.0
+  },
+  "Knarand\n183025": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Pibeand\n901433": {
+    "date": "2025-10-14",
+    "antal": 10.0
+  },
+  "Vandrikse\n901433": {
+    "date": "2025-10-14",
+    "antal": 3.0
+  },
+  "Bramgås\n837036": {
+    "date": "2025-10-14",
+    "antal": 14.0
+  },
+  "Korsnæb sp.\n531605": {
+    "date": "2025-10-14",
+    "antal": 6.0
+  },
+  "Rødtoppet Fuglekonge\n531310": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Rødtoppet Fuglekonge\n531605": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Tårnfalk\n841024": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Bjergvipstjert\n531605": {
+    "date": "2025-10-14",
+    "antal": 3.0
+  },
+  "Hedelærke\n531605": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Kongeørn\n837120": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Sandløber\n531505": {
+    "date": "2025-10-14",
+    "antal": 4.0
+  },
+  "Stenvender\n813011": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Ride\n813011": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Sildemåge\n813011": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Bogfinke\n901605": {
+    "date": "2025-10-14",
+    "antal": 6.0
+  },
+  "Grønsisken\n901605": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Isfugl\n901605": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Musvit\n901605": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Rørdrum\n531825": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Grønspætte\n749200": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Stor Flagspætte\n749200": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Sumpmejse\n749200": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Topmejse\n749200": {
+    "date": "2025-10-14",
+    "antal": 4.0
+  },
+  "Træløber\n749200": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Grønirisk\n749200": {
+    "date": "2025-10-14",
+    "antal": 4.0
+  },
+  "Sortmejse\n749200": {
+    "date": "2025-10-14",
+    "antal": 2.0
+  },
+  "Fuglekonge\n749200": {
+    "date": "2025-10-14",
+    "antal": 8.0
+  },
+  "Grønirisk\n565315": {
+    "date": "2025-10-14",
+    "antal": 4.0
+  },
+  "Grønspætte\n565315": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Musvit\n565315": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Sumpmejse\n565315": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Træløber\n565315": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Tårnfalk\n561202": {
+    "date": "2025-10-14",
+    "antal": 1.0
+  },
+  "Bjergvipstjert\n329110": {
+    "date": "2025-10-14",
+    "antal": 1.0
   }
 }

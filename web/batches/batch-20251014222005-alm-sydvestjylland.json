@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-14T22:20:05.474223+02:00",
+"items": [
+{
+"obsid": "37838287",
+"art": "Grønspætte",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Grene Sande",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kirsten",
+"efternavn": "Friis",
+"lon": "9,04347388266018",
+"lat": "55,71915617592148",
+"tid_fra": "10:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

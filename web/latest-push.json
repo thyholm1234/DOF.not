@@ -1,14 +1,14 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-14T21:52:09.678403+02:00",
+  "received_at": "2025-10-14T22:30:00.753179+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "100 Sangdrossel, Gellerupparken Toveshøj",
-      "body": "Christian, Vemmelund Helligsø",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37838195&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-ostjylland",
+      "title": "1 Bjergvipstjert, Ringsted",
+      "body": "Eyvind, Malchow-Møller",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37838303&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-vestsjaelland",
       "renotify": true
     }
   ]

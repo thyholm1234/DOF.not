@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-14T22:05:46.758267+02:00",
+"items": [
+{
+"obsid": "37838263",
+"art": "Ride",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Hirsholm",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Kjeld",
+"efternavn": "Tommy Pedersen",
+"lon": "10,622871504308577",
+"lat": "57,484802370995745",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}
