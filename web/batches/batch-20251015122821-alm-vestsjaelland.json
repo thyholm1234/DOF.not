@@ -1,0 +1,37 @@
+{
+"client": "alm-vestsjaelland",
+"count": 2,
+"generated": "2025-10-15T12:28:21.262752+02:00",
+"items": [
+{
+"obsid": "37840620",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Halsskov Havn",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Bo",
+"efternavn": "Brauner",
+"lon": "11,108629152877981",
+"lat": "55,34542104337776",
+"tid_fra": "12:20",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840626",
+"art": "Husrødstjert",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Halsskov Havn",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Bo",
+"efternavn": "Brauner",
+"lon": "11,108629152877981",
+"lat": "55,34542104337776",
+"tid_fra": "12:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

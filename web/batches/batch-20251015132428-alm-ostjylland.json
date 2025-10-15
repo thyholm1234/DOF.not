@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-15T13:24:28.940843+02:00",
+"items": [
+{
+"obsid": "37841205",
+"art": "Musvåge",
+"antal": "83",
+"adf": "Trækkende mod nordvest",
+"lok": "Mårup/Samsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Joan",
+"efternavn": "Laursen",
+"lon": "10,566795805596136",
+"lat": "55,94849713272188",
+"tid_fra": "11:30",
+"tid_til": "11:45",
+"kategori": "bemaerk"
+}
+]
+}

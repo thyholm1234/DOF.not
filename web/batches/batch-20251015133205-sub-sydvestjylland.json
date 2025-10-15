@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T13:32:05.595168+02:00",
+"items": [
+{
+"obsid": "37841263",
+"art": "Stor Korsnæb",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Kallesmærsk Hede",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonathan",
+"efternavn": "Hemmer-Hansen",
+"lon": "8,108401365242093",
+"lat": "55,56957500893762",
+"tid_fra": "08:25",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

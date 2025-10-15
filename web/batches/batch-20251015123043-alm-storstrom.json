@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T12:30:43.185894+02:00",
+"items": [
+{
+"obsid": "37840659",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Bøtø Enge",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Bjarke",
+"efternavn": "Moe",
+"lon": "11,922194817102",
+"lat": "54,659750211315554",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

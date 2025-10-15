@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T13:37:21.749891+02:00",
+"items": [
+{
+"obsid": "37840394",
+"art": "Spurvehøg",
+"antal": "11",
+"adf": "Trækkende",
+"lok": "Ristinge Klint",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Holger",
+"efternavn": "Daugaard",
+"lon": "10,612802901472659",
+"lat": "54,8275705431139",
+"tid_fra": "11:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-15T12:52:05.328069+02:00",
+"items": [
+{
+"obsid": "37840871",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Damsø Enge",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Mogens",
+"efternavn": "Bak",
+"lon": "8,534779295876985",
+"lat": "55,92879985146527",
+"tid_fra": "12:51",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

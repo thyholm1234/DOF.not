@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T13:10:22.602745+02:00",
+"items": [
+{
+"obsid": "37841046",
+"art": "Dværgfalk",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Holmegård/Langelandsfortet",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Søren M",
+"efternavn": "Kristiansen",
+"lon": "10,71291976570072",
+"lat": "54,749162074782106",
+"tid_fra": "12:20",
+"tid_til": "13:09",
+"kategori": "bemaerk"
+}
+]
+}

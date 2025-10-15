@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-15T13:29:51.340411+02:00",
+"items": [
+{
+"obsid": "37841257",
+"art": "Rødtoppet Fuglekonge",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Blåvandshuk Golfbane",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Markus",
+"efternavn": "Clément",
+"lon": "8,233512329858609",
+"lat": "55,54284636139761",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37841258",
+"art": "Fyrremejse",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Kallesmærsk Hede",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonathan",
+"efternavn": "Hemmer-Hansen",
+"lon": "8,092295773851035",
+"lat": "55,57439715892021",
+"tid_fra": "08:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

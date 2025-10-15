@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-15T13:09:16.560367+02:00",
+"items": [
+{
+"obsid": "37841031",
+"art": "Skestork",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Rømødæmningen",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Gert",
+"efternavn": "Lystrup Jørgensen",
+"lon": "8,642224224566172",
+"lat": "55,1501198764679",
+"tid_fra": "10:58",
+"tid_til": "11:05",
+"kategori": "bemaerk"
+}
+]
+}

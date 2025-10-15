@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-15T13:09:18.655222+02:00",
+"items": [
+{
+"obsid": "37841016",
+"art": "Tejst",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Nordstrand, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Janne",
+"efternavn": "Møller Christensen",
+"lon": "10,603972328548657",
+"lat": "57,75165524452214",
+"tid_fra": "12:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

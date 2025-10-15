@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T12:30:41.103208+02:00",
+"items": [
+{
+"obsid": "37840665",
+"art": "Vandstær",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Rådvad til Strandmøllen",
+"dof_afdeling": "DOF København",
+"fornavn": "Rene",
+"efternavn": "Petersen",
+"lon": "12,559552788789007",
+"lat": "55,805224588974184",
+"tid_fra": "10:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

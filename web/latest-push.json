@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-15T12:22:03.290165+02:00",
+  "received_at": "2025-10-15T13:52:18.334261+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "120 Stillits, Helberskov Udflyttere",
-      "body": "Søren, Skriver",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37840576&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-nordjylland",
+      "title": "1 Isfugl, Melsted",
+      "body": "Merete, Mortensen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37841361&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-bornholm",
       "renotify": true,
       "regions": [
-        "DOF Nordjylland"
+        "DOF Bornholm"
       ],
       "categories": [
         "bemaerk"

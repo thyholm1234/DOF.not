@@ -5,7 +5,7 @@
 
 // Basal URL-hjælper (bevarer understøttelse af base href)
 const BASE = document.baseURI || document.location.href;
-const abs  = (p) => new URL(p, BASE).toString();
+const abs = (p) => new URL(p, BASE).toString();
 
 // Element helpers (tåler at element mangler)
 const $id = (id) => document.getElementById(id);
@@ -21,11 +21,23 @@ function setDiag(msg, color = '#f2a900', ttlMs = 0) {
 (function setupDiagnostics() {
   const stamp = new Date().toISOString();
   setDiag(`app.js loaded @ ${stamp}`);
-  window.addEventListener('error', (e) => setDiag(`JS-fejl: ${e.message}`, '#d32f2f'));
+  window.addEventListener('error', (e) =>
+    setDiag(`JS-fejl: ${e.message}`, '#d32f2f')
+  );
   window.addEventListener('unhandledrejection', (e) =>
     setDiag(`Promise-fejl: ${e?.reason?.message ?? String(e.reason)}`, '#d32f2f')
   );
 })();
+
+async function fetchFirstOk(urls) {
+  for (const url of urls) {
+    try {
+      const r = await fetch(abs(url), { cache: 'no-cache' });
+      if (r.ok) return await r.text();
+    } catch { /* prøv næste */ }
+  }
+  return '';
+}
 
 // Robust bruger-ID (én definition – fjernede dublet)
 function getOrCreateUserId() {
@@ -43,7 +55,7 @@ function getOrCreateUserId() {
 }
 
 // Platform capabilities
-const isIOS        = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = () =>
   window.matchMedia('(display-mode: standalone)').matches ||
   window.navigator.standalone === true;
@@ -66,7 +78,7 @@ function postToSW(msg) {
   });
 }
 
-// Sikker HTML-escaping (rettet – tidligere var det no-op)
+// Sikker HTML-escaping (rigtig)
 function escapeHtml(s) {
   return String(s ?? '')
     .replace(/&/g, '&amp;')
@@ -76,7 +88,7 @@ function escapeHtml(s) {
     .replace(/'/g, '&#39;');
 }
 
-// Stabil slugify (rettet regex)
+// Stabil slugify
 function slugify(s) {
   return String(s ?? '')
     .toLowerCase()
@@ -91,29 +103,74 @@ const DOF_AFDELINGER = [
   "DOF Fyn","DOF Sønderjylland","DOF Sydvestjylland","DOF Sydøstjylland","DOF Vestjylland",
   "DOF Østjylland","DOF Nordvestjylland","DOF Nordjylland"
 ];
-
-const CHOICE_ORDER  = ['none', 'su', 'sub', 'alle'];
+const CHOICE_ORDER = ['none', 'su', 'sub', 'alle'];
 const CHOICE_LABELS = { none: 'Ingen', su: 'SU', sub: 'SUB', alle: 'alle' };
-
 const _norm = (s) => String(s ?? '').trim().toLowerCase();
 
+// === Klassifikation fra én CSV: arter_filter_klassificeret.csv ===
+// Forventet header: "artsid;artsnavn;klassifikation"
+let __CLASS_MAP = null; // Map<normName, "SU"|"SUB"|"Alm">
+async function loadClassificationMap() {
+  if (__CLASS_MAP) return __CLASS_MAP;
+  // Prøv begge stier, så det virker både i /web/data og /data
+  const text = await fetchFirstOk([
+    './web/data/arter_filter_klassificeret.csv',
+    './data/arter_filter_klassificeret.csv'
+  ]);
+  if (!text) {
+    console.warn('[klassifikation] Fandt ikke arter_filter_klassificeret.csv i /web/data eller /data');
+    __CLASS_MAP = new Map(); // default: alt bliver 'Alm'
+    return __CLASS_MAP;
+  }
+  const lines = text.split(/\r?\n/).filter(Boolean);
+  if (!lines.length) { __CLASS_MAP = new Map(); return __CLASS_MAP; }
+
+  // Find kolonneindeks
+  const hdr = lines[0].split(';').map(h => h.trim().toLowerCase());
+  const iNavn = hdr.indexOf('artsnavn');
+  const iKls  = hdr.indexOf('klassifikation');
+
+  const start = (iNavn >= 0 && iKls >= 0) ? 1 : 0;
+  const map = new Map();
+  for (let i = start; i < lines.length; i++) {
+    const cols = lines[i].split(';');
+    const navn  = (iNavn >= 0 ? cols[iNavn] : cols[1]) ?? '';
+    const klass = (iKls  >= 0 ? cols[iKls]  : cols[2]) ?? '';
+    const key = normArtKey(navn);
+    const val = (klass ?? '').trim();
+    if (key) {
+      const K = (val === 'SU' || val === 'SUB') ? val : 'Alm';
+      const prev = map.get(key);
+      map.set(key, prev === 'SU' ? 'SU' : K); // SU > SUB > Alm
+    }
+  }
+  __CLASS_MAP = map;
+  return __CLASS_MAP;
+}
+// Sikker klassifikation (kaldes fra render-funktioner)
+async function ensureClassificationLoaded() { await loadClassificationMap(); }
+// Returnér 'su' | 'sub' | 'alm' (CSS-venlig)
+function classifySpeciesName(name) {
+  const key = normArtKey(name);
+  const k = __CLASS_MAP?.get(key); // "SU" | "SUB" | "Alm" | undefined
+  return (k === 'SU') ? 'su' : (k === 'SUB') ? 'sub' : 'alm';
+}
 
 // ============================================================================
 // 2) PREFERENCES & PUSH (abonnementsmatrix + push-subscription)
 // ============================================================================
-
-const elGrid   = $id('grid');
-const elSave   = $id('save');         // hovedknap (Gem/Abonnér/Opdater)
-const elUnsub  = $id('unsubscribe');  // afmeld push
+const elGrid = $id('grid');
+const elSave = $id('save'); // hovedknap (Gem/Abonnér/Opdater)
+const elUnsub = $id('unsubscribe'); // afmeld push
 
 function renderPrefsTable(prefs) {
   if (!elGrid) return;
   let html = `
-  <table class="prefs-table" aria-label="Abonnementsfiltre pr. lokalafdeling">
-    <thead>
-      <tr><th>Lokalafdeling</th><th>Ingen</th><th>SU</th><th>SUB</th><th>BV</th></tr>
-    </thead>
-    <tbody>`;
+<table class="prefs-table" aria-label="Abonnementsfiltre pr. lokalafdeling">
+  <thead>
+    <tr><th>Lokalafdeling</th><th>Ingen</th><th>SU</th><th>SUB</th><th>BV</th></tr>
+  </thead>
+  <tbody>`;
   for (const afd of DOF_AFDELINGER) {
     const slug = slugify(afd);
     const current = (prefs && prefs[afd]) ? String(prefs[afd]).toLowerCase() : 'none';
@@ -122,16 +179,15 @@ function renderPrefsTable(prefs) {
       const id = `pref-${slug}-${v}`;
       const label = CHOICE_LABELS[v] || v.toUpperCase();
       html += `
-        <td class="sel">
-          <input type="radio" id="${id}" name="pref-${slug}" value="${v}" ${current===v?'checked':''} />
-          <label for="${id}" title="${label}"><span class="box"></span></label>
-        </td>`;
+<td class="sel">
+  <input type="radio" id="${id}" name="pref-${slug}" value="${v}" ${current===v?'checked':''} />
+  <label for="${id}" title="${label}"><span class="box"></span></label>
+</td>`;
     }
     html += `</tr>`;
   }
   html += `</tbody></table>`;
   elGrid.innerHTML = html;
-
   // Klik på hele cellen for at vælge radio
   elGrid.querySelectorAll('.prefs-table td.sel').forEach((td) => {
     td.addEventListener('click', () => {
@@ -148,12 +204,10 @@ function setSaveBtnState(state, label) {
   btn.dataset.state = state;
   btn.classList.remove('is-subscribed','is-unsubscribed','is-blocked','is-unsupported');
   btn.classList.add(`is-${state}`);
-
   const labelEl = btn.querySelector('[data-role="label"]');
   if (labelEl) labelEl.textContent = label; else btn.textContent = label;
   btn.setAttribute('aria-label', label);
   btn.disabled = (state === 'blocked' || state === 'unsupported');
-
   if (elUnsub) elUnsub.disabled = (state !== 'subscribed');
 }
 
@@ -162,7 +216,6 @@ function updateSaveButtonLabel() {
   if (!elSave) return;
   const myRun = ++_labelRunId;
   const safe = (state, label) => { if (myRun === _labelRunId) setSaveBtnState(state, label); };
-
   (async () => {
     if (!supportsPush()) { safe('unsupported', 'Gem præferencer'); return; }
     try {
@@ -183,12 +236,10 @@ function updateSaveButtonLabel() {
 async function ensurePushSubscription({ forcePrompt = false } = {}) {
   await ensureSW();
   await navigator.serviceWorker.ready;
-
   if (isIOS && !isStandalone()) {
     throw new Error('På iOS virker push først, når appen er føjet til hjemmeskærm.');
   }
   if (!supportsPush()) throw new Error('Push understøttes ikke i denne browser/enhed.');
-
   const reg = await navigator.serviceWorker.getRegistration();
   if (!reg) throw new Error('Service worker ikke registreret');
 
@@ -219,7 +270,6 @@ async function ensurePushSubscription({ forcePrompt = false } = {}) {
       applicationServerKey: toKey(publicKey)
     });
   }
-
   // Knyt subscription til user_id
   const user_id = getOrCreateUserId();
   const resp = await fetch(abs('api/subscribe'), {
@@ -239,9 +289,6 @@ async function unsubscribePush() {
   if (sub) {
     try {
       await sub.unsubscribe();
-      // (Valgfrit) informér serveren:
-      // await fetch(abs('api/unsubscribe'), { method:'POST', headers:{'Content-Type':'application/json'},
-      //   body: JSON.stringify({ endpoint: sub.endpoint, user_id: getOrCreateUserId() }) });
       return true;
     } catch (e) {
       console.warn('Unsubscribe fejlede:', e);
@@ -257,7 +304,6 @@ async function onSave() {
     const sel = document.querySelector(`input[name="pref-${slug}"]:checked`);
     prefs[afd] = sel ? sel.value : 'none';
   }
-
   // Gem lokalt (SW + localStorage)
   await postToSW({ type: 'SAVE_PREFS', prefs });
   try { localStorage.setItem('dofnot-prefs', JSON.stringify(prefs)); } catch {}
@@ -307,7 +353,6 @@ async function initPrefsAndPush() {
       body: JSON.stringify({ user_id: userId })
     });
   } catch {}
-
   postToSW({ type: 'SET_USER', user_id: userId });
 
   // Hent bruger-prefs (fallback til local)
@@ -323,7 +368,7 @@ async function initPrefsAndPush() {
   // Render og bind knapper
   renderPrefsTable(prefs);
   updateSaveButtonLabel();
-  if (elSave)  elSave.addEventListener('click', onSave);
+  if (elSave) elSave.addEventListener('click', onSave);
   if (elUnsub) elUnsub.addEventListener('click', onUnsubscribe);
 
   // Hold label frisk
@@ -335,7 +380,7 @@ async function initPrefsAndPush() {
     });
   }
 
-  // Valgfrit auto-subscribe: hvis permission=granted men ingen subscription
+  // Valgfrit auto-subscribe
   if (supportsPush()) {
     try {
       await navigator.serviceWorker.ready;
@@ -351,22 +396,20 @@ async function initPrefsAndPush() {
   }
 }
 
-
 // ============================================================================
 // 3) OBSERVATIONER (log-filer → liste)
 // ============================================================================
 
 /* === Indstillinger === */
-const LOG_BASE              = './logs';
-const CONCURRENCY           = 8;
-const MAX_ITEMS_PER_REGION  = 250;
-const TZ                    = 'Europe/Copenhagen'; // DK‑tid til "i dag"
+const LOG_BASE = './logs';
+const CONCURRENCY = 8;
+const MAX_ITEMS_PER_REGION = 250;
+const TZ = 'Europe/Copenhagen'; // DK‑tid til "i dag"
 
-const $status   = $id('obs-status');
-const $list     = $id('obs-list');
+const $status = $id('obs-status');
+const $list   = $id('obs-list');
 const $hideZero = $id('toggle-hide-zero');
 const $limitSel = $id('limit-select');
-
 function setObsStatus(m) { if ($status) $status.textContent = m; }
 
 /* Gem/indlæs valgt limit (valgfrit – for bedre UX) */
@@ -379,7 +422,6 @@ function setObsStatus(m) { if ($status) $status.textContent = m; }
     }
   } catch {}
 })();
-
 if ($limitSel) {
   $limitSel.addEventListener('change', () => {
     try { localStorage.setItem('obs-limit', $limitSel.value); } catch {}
@@ -414,7 +456,7 @@ async function loadUserPrefsFromServer() {
   return data?.prefs ?? {};
 }
 
-/* Fortolkning af valg: SU → {su}, SUB → {su,sub}, "alle" (Bemærkelsesværdige) → {su,sub} */
+/* Fortolkning af valg: SU → {su}, SUB → {su,sub}, "alle" → {su,sub} */
 function expandPrefValueToAllowedSources(val) {
   const v = String(val ?? '').toLowerCase();
   if (v === 'su')   return new Set(['su']);
@@ -431,7 +473,6 @@ function buildRegionPlan(prefs) {
     if (!slug) continue;
     const allow = expandPrefValueToAllowedSources(sel);
     if (allow.size === 0) continue;
-
     const entry = plan.get(slug) ?? { allow: new Set(), files: [] };
     if (allow.has('su'))  { entry.allow.add('su');  entry.files.push(`${LOG_BASE}/su-${slug}.log`); }
     if (allow.has('sub')) { entry.allow.add('sub'); entry.files.push(`${LOG_BASE}/sub-${slug}.log`); }
@@ -452,18 +493,20 @@ function setSelectionOnList(regions) {
 /* ==== Parsing helpers ==== */
 function extractCoordsFromString(s) {
   if (!s) return { lon: null, lat: null };
-  const m = s.match(/\(-?\d+(?:\.\d+)?\)\s*,\s*\(-?\d+(?:\.\d+)?\)/); // (lon, lat) – hvis dette var den præcise struktur
-  if (!m) {
-    // fallback: uden parenteser
-    const m2 = s.match(/(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/);
-    if (!m2) return { lon: null, lat: null };
-    const lon2 = Number(m2[1]), lat2 = Number(m2[2]);
-    return { lon: Number.isFinite(lon2) ? lon2 : null, lat: Number.isFinite(lat2) ? lat2 : null };
+  // (lon, lat)
+  let m = s.match(/\((-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\)/);
+  if (m) {
+    const lon = Number(m[1]), lat = Number(m[2]);
+    return { lon: Number.isFinite(lon) ? lon : null, lat: Number.isFinite(lat) ? lat : null };
   }
-  // Hvis match ovenfor med parenteser bruges, juster indices her (eksempel beholder fallback).
+  // uden parenteser: lon, lat
+  m = s.match(/(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/);
+  if (m) {
+    const lon = Number(m[1]), lat = Number(m[2]);
+    return { lon: Number.isFinite(lon) ? lon : null, lat: Number.isFinite(lat) ? lat : null };
+  }
   return { lon: null, lat: null };
 }
-
 function extractCoordsFromParts(parts) {
   let out = { lon: null, lat: null };
   for (const p of parts) {
@@ -472,13 +515,11 @@ function extractCoordsFromParts(parts) {
   }
   return out;
 }
-
 function parseLocalDateFromHeader(header) {
   // Matcher: ...] YYYY-MM-DD HH:MM:SS
   const m = header.match(/\]\s+(\d{4}-\d{2}-\d{2})\s+(\d{2}:\d{2}:\d{2})/);
   return m ? new Date(`${m[1]}T${m[2]}`) : null; // lokal tid
 }
-
 function parseLogLine(line) {
   if (!line || !line.trim()) return null;
   const parts = line.split(' · ').map((s) => s.trim());
@@ -494,14 +535,17 @@ function parseLogLine(line) {
 
   const { lon, lat } = extractCoordsFromParts(parts);
 
-  const mTag = header.match(/^\[(?<key>[^\]]+)\]/); // rettet regex (named group)
-  const key = mTag?.groups?.key ?? '';
+  // Udtræk key "[su-<region>]" -> "su-<region>"
+  const mTag = header.match(/^\[([^\]]+)\]/);
+  const key = mTag ? mTag[1] : '';
   const [srcFromKey, regionFromKey] = key.split('-', 2);
 
-  const mSrc  = sourceBr.match(/\[(?<src>su|sub)\]/i);
-  const source = (mSrc?.groups?.src ?? srcFromKey ?? '').toLowerCase();
+  // Udtræk kilde fra "[su]" eller "[sub]"
+  const mSrc = sourceBr.match(/\[(su|sub)\]/i);
+  const source = (mSrc?.[1] || srcFromKey || '').toLowerCase();
 
-  const mCount  = countSpecies.match(/^\s*(\d+)\s+(.+)$/);
+  // Udlæs antal + artsnavn
+  const mCount = countSpecies.match(/^\s*(\d+)\s+(.+)$/);
   const count   = mCount ? Number(mCount[1]) : null;
   const species = mCount ? mCount[2].trim() : countSpecies;
 
@@ -520,7 +564,6 @@ async function fetchText(url) {
   if (!res.ok) throw new Error(res.status + ' ' + url);
   return res.text();
 }
-
 async function fetchRegionFiles(entry, hideZero) {
   const items = [];
   for (const url of entry.files) {
@@ -542,13 +585,11 @@ async function fetchRegionFiles(entry, hideZero) {
   }
   return items;
 }
-
 async function fetchAll(plan, hideZero, limit = CONCURRENCY) {
   const regions = [...plan.keys()];
   const results = [];
   let i = 0;
   const inflight = new Set();
-
   async function pump() {
     if (i >= regions.length) return;
     const slug = regions[i++];
@@ -572,16 +613,23 @@ function el(tag, className, text) {
   if (text != null) e.textContent = String(text);
   return e;
 }
-
 function renderItem(item) {
   const li = el('li', 'obs-item');
   const article = el('article');
-
   const header = el('header');
+
+  const sp = el(
+    'h3',
+    'title species sp-name',
+    `${Number.isFinite(item.count) ? item.count + ' ' : ''}${item.species}`
+  );
+  // tilføj klassifikation 'su' | 'sub' | 'alm' til artstitlen (for farver)
+  sp.classList.add(classifySpeciesName(item.species));
+
   header.append(
     el('span', 'badge badge-src', item.source.toUpperCase()),
     el('span', 'badge badge-region', item.region),
-    el('span', 'species', `${item.count ?? ''} ${item.species}`)
+    sp
   );
 
   const meta = el('div', 'meta');
@@ -597,8 +645,7 @@ function renderItem(item) {
 
   const byline = el('footer', 'byline');
   if (item.observer) byline.append(el('span', 'observer', item.observer));
-  if (item.org) byline.append(el('span', 'org', item.org));
-
+  if (item.org)      byline.append(el('span', 'org', item.org));
   const t = document.createElement('time');
   if (item.date instanceof Date && !isNaN(item.date)) {
     t.dateTime = item.date.toISOString();
@@ -617,22 +664,18 @@ function ymdInTZ(d, tz) {
     timeZone: tz, year:'numeric', month:'2-digit', day:'2-digit'
   }).format(d); // "YYYY-MM-DD"
 }
-
 let cache = { today: [], totalToday: 0, selectionRegions: [] };
 
 function renderFromCache() {
   if (!$list) return;
   $list.innerHTML = '';
-
   const allToday = cache.today ?? [];
   const val = $limitSel ? $limitSel.value : 'all';
   const limit = (val === 'all') ? allToday.length : Number(val);
   const items = allToday.slice(0, limit);
-
   const frag = document.createDocumentFragment();
   for (const item of items) frag.appendChild(renderItem(item));
   $list.appendChild(frag);
-
   const shown = items.length;
   const total = allToday.length;
   const regCount = cache.selectionRegions.length;
@@ -643,7 +686,6 @@ async function loadAndRender() {
   if (!$list) return; // observationssektionen findes ikke på siden
   $list.innerHTML = '';
   setObsStatus('Henter præferencer …');
-
   let prefs = {};
   try { prefs = await loadUserPrefsFromServer(); }
   catch (e) { setObsStatus('Kunne ikke hente præferencer fra serveren.'); return; }
@@ -652,7 +694,6 @@ async function loadAndRender() {
   const selected = [...plan.keys()];
   setSelectionOnList(selected);
   cache.selectionRegions = selected;
-
   if (selected.length === 0) {
     setObsStatus('Ingen regioner har aktive valg (SU/SUB).');
     return;
@@ -671,32 +712,26 @@ async function loadAndRender() {
 
   // Nyeste først
   dataToday.sort((a,b) => (b.date?.getTime?.() ?? -Infinity) - (a.date?.getTime?.() ?? -Infinity));
-
   cache.today = dataToday;
   cache.totalToday = dataToday.length;
+
+  await ensureClassificationLoaded();
   renderFromCache();
 }
 
 if ($hideZero) $hideZero.addEventListener('change', () => { loadAndRender().catch(console.error); });
 
-
 // ============================================================================
 // 4) INIT (kald begge moduler, men kun hvis deres DOM findes)
 // ============================================================================
-
 document.addEventListener('DOMContentLoaded', () => {
   // Preferences/Push modulet initialiseres altid (tåler at grid/save ikke findes)
   initPrefsAndPush().catch(console.error);
-
   // Observationer initialiseres kun hvis deres DOM-IDs findes
   if ($id('obs-list')) {
     loadAndRender().catch(console.error);
   }
 });
-
-// ============================================================================
-// 5) Avanceret filtrering
-// ============================================================================
 
 // ============================================================================
 // 5) AVANCERET FILTRERING (arter) – lokalt UI + sync til SW + (valgfrit) server
@@ -705,8 +740,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /** Læs artsliste (semicolon-CSV) – returnerer [{id, navn}, ...] */
 async function loadSpeciesList() {
   const tryUrls = [
-    './data/arter_filter.csv',                         // primær hvis du allerede har den
-    './data/arter_sammenflettet_sorteret.csv'         // fallback (kolonner: artsid;artsnavn)
+    './data/arter_filter.csv',
+    './data/arter_sammenflettet_sorteret.csv' // fallback (kolonner: artsid;artsnavn)
   ];
   let text = '';
   for (const url of tryUrls) {
@@ -719,32 +754,49 @@ async function loadSpeciesList() {
   const lines = text.split(/\r?\n/).filter(Boolean);
   const out = [];
   // detekter header (forventer artsnavn)
-  const header = (lines[0] || '').toLowerCase();
+  const header = (lines[0] ?? '').toLowerCase();
   const hasHeader = header.includes('artsnavn');
   const start = hasHeader ? 1 : 0;
   for (let i = start; i < lines.length; i++) {
     const [id, name] = lines[i].split(';');
-    const navn = (name || '').trim();
+    const navn = (name ?? '').trim();
     if (!navn) continue;
-    out.push({ id: (id || '').trim(), navn });
+    out.push({ id: (id ?? '').trim(), navn });
   }
   return out;
 }
 
-/** Normaliser artnavn til nøgle */
+// Normaliser artsnavn robust (æ/ø/å, diakritik, klammer, bindestreger, whitespace)
 function normArtKey(s) {
-  return String(s || '').trim().toLowerCase();
+  let t = String(s ?? '').normalize('NFKD');
+  // Dansk special-mapping
+  t = t
+    .replace(/\u00C6/g,'AE').replace(/\u00E6/g,'ae')
+    .replace(/\u00D8/g,'OE').replace(/\u00F8/g,'oe')
+    .replace(/\u00C5/g,'AA').replace(/\u00E5/g,'aa');
+  // Fjern kombinationstegn efter NFKD (diakritik)
+  t = t.replace(/[\u0300-\u036f]/g, '');
+  // Fjern/ensret typisk støj
+  t = t
+    .replace(/[\"'«»„”“’”“\[\]\{\}]/g, ' ') // citater/klammer
+    .replace(/[.,;:]/g, ' ')               // punktuation
+    .replace(/[\u2010-\u2014\u2212]/g, '-')// bindestreger → '-'
+    .replace(/\u00A0/g, ' ')               // NBSP → space
+    .replace(/\s+/g, ' ')                  // kollaps whitespace
+    .trim()
+    .toLowerCase();
+  return t;
 }
 
 /**
  * Model for overrides (global): { include: Set<key>, exclude: Set<key> }
  * UI: tri-state pr. art:
- *   0=default (ingen override) · 1=include · 2=exclude
+ * 0=default (ingen override) · 1=include · 2=exclude
  */
 function overridesToState(ov) {
   return {
-    include: new Set([...(ov?.include || [])].map(normArtKey)),
-    exclude: new Set([...(ov?.exclude || [])].map(normArtKey))
+    include: new Set([...(ov?.include ?? [])].map(normArtKey)),
+    exclude: new Set([...(ov?.exclude ?? [])].map(normArtKey))
   };
 }
 function stateToOverrides(state) {
@@ -758,7 +810,6 @@ function stateToOverrides(state) {
 async function saveSpeciesOverridesToServer(overrides) {
   try {
     const userId = getOrCreateUserId();
-    // Minimal endpoint – hvis ikke implementeret på serveren, ignorer 404
     const resp = await fetch(abs('api/prefs/user/species'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -772,12 +823,11 @@ async function saveSpeciesOverridesToServer(overrides) {
   }
 }
 
-
 /** Lidt hjælpere til reset-beskyttelse */
 function makeChallenge() {
   // Små tal for hurtig læsning – ingen negative resultater.
-  const a = Math.floor(Math.random() * 9) + 1;   // 1..9
-  const b = Math.floor(Math.random() * 9) + 1;   // 1..9
+  const a = Math.floor(Math.random() * 9) + 1; // 1..9
+  const b = Math.floor(Math.random() * 9) + 1; // 1..9
   const useMinus = Math.random() < 0.4 && a > b; // ca. 40% minus, undgå negativt
   const op = useMinus ? '-' : '+';
   const res = useMinus ? (a - b) : (a + b);
@@ -786,28 +836,23 @@ function makeChallenge() {
 
 async function guardedResetOverrides() {
   const { text, answer } = makeChallenge();
-
   // Trin 1: prompt med regnestykke (brugeren skal trykke OK for at indsende)
   const input = self.prompt(text, '');
   if (input === null) {
-    // Brugeren trykkede Cancel
     if ($status) { $status.textContent = 'Nulstilling annulleret.'; setTimeout(() => $status.textContent='', 1500); }
     return false;
   }
-
   const parsed = Number(String(input).trim().replace(',', '.'));
   if (!Number.isFinite(parsed) || parsed !== answer) {
     self.alert('Forkert svar – nulstilling blev afbrudt.');
     return false;
   }
-
   // Trin 2: ekstra sikkerheds-spørgsmål
   const ok = self.confirm('Er du sikker på, at du vil nulstille alle arts-overrides til Default?');
   if (!ok) {
     if ($status) { $status.textContent = 'Nulstilling annulleret.'; setTimeout(() => $status.textContent='', 1500); }
     return false;
   }
-
   // Trin 3: udfør nulstilling i UI (samme effekt som før)
   overrides.include.clear();
   overrides.exclude.clear();
@@ -816,7 +861,6 @@ async function guardedResetOverrides() {
     btn.textContent = 'Default';
     btn.classList.remove('is-include','is-exclude');
   });
-
   if ($status) { $status.textContent = 'Nulstillet – husk at trykke Gem.'; setTimeout(() => $status.textContent='', 2500); }
   return true;
 }
@@ -824,23 +868,18 @@ async function guardedResetOverrides() {
 // ============================================================================
 // Avanceret filtrering (arter) – komplet erstatning af initAdvancedFilteringPage()
 // ============================================================================
-
-// Two-state version: "Inkl." (grå/baseline) ↔ "Eksl.", samt per-art antal (>0)
-// Bevarer alle funktioner: søg, vis-kun-filtrerede, nulstilling (challenge+confirm),
-// eksport/import (back-compat), gem til SW+localStorage+server.
-// Forudsætter: loadSpeciesList, normArtKey, postToSW, saveSpeciesOverridesToServer findes globalt.
 async function initAdvancedFilteringPage() {
   // Unikke element-referencer for Advanced-siden
-  const $advList       = document.getElementById('adv-list');
+  const $advList = document.getElementById('adv-list');
   if (!$advList) return; // siden er ikke i brug
-  const $advSearch     = document.getElementById('adv-search');
-  const $advSave       = document.getElementById('adv-save');
-  const $advClear      = document.getElementById('adv-clear');
-  const $advStatus     = document.getElementById('adv-status');
+  const $advSearch = document.getElementById('adv-search');
+  const $advSave   = document.getElementById('adv-save');
+  const $advClear  = document.getElementById('adv-clear');
+  const $advStatus = document.getElementById('adv-status');
   const $advShowActive = document.getElementById('adv-show-active');
-  const $advExport     = document.getElementById('adv-export');
-  const $advImport     = document.getElementById('adv-import');
-  const $advFile       = document.getElementById('adv-file');
+  const $advExport = document.getElementById('adv-export');
+  const $advImport = document.getElementById('adv-import');
+  const $advFile   = document.getElementById('adv-file');
 
   // --- Hjælpere (lokale) ---
   function dirtyUI() { if ($advStatus) $advStatus.textContent = 'Ikke gemt …'; }
@@ -851,8 +890,8 @@ async function initAdvancedFilteringPage() {
     if (!obj || typeof obj !== 'object') return m;
     for (const [k, v] of Object.entries(obj)) {
       const mode = (v && v.mode === 'eq') ? 'eq' : 'gte';
-      const raw  = Number(v?.value);
-      const num  = Number.isFinite(raw) ? Math.floor(raw) : null;
+      const raw = Number(v?.value);
+      const num = Number.isFinite(raw) ? Math.floor(raw) : null;
       if (num != null && num > 0) m.set(normArtKey(k), { mode, value: num });
     }
     return m;
@@ -870,6 +909,7 @@ async function initAdvancedFilteringPage() {
 
   // 1) Hent artsliste (semicolon-CSV)
   const arts = await loadSpeciesList();
+  await ensureClassificationLoaded();
   if (!Array.isArray(arts) || arts.length === 0) {
     if ($advStatus) $advStatus.textContent = 'Kunne ikke indlæse artsliste.';
     return;
@@ -924,19 +964,18 @@ async function initAdvancedFilteringPage() {
     const label = document.createElement('span');
     label.className = 'sp-name';
     label.textContent = name;
+    label.classList.add(classifySpeciesName(name));
 
     // --- per-art ANTAL: operator + input ---
     const tools = document.createElement('div');
     tools.className = 'sp-tools';
-
     const op = document.createElement('select');
     op.className = 'sp-cnt-op';
     op.innerHTML = '<option value="gte">≥</option><option value="eq">=</option>';
-
     const val = document.createElement('input');
     val.className = 'sp-cnt-val';
     val.type = 'number';
-    val.min = '1';        // forhindr 0 i UI (0 gemmes alligevel ikke)
+    val.min = '1';
     val.step = '1';
     val.placeholder = 'Antal';
     val.inputMode = 'numeric';
@@ -948,7 +987,6 @@ async function initAdvancedFilteringPage() {
     btn.className = 'sp-toggle';
     btn.type = 'button';
     btn.setAttribute('aria-label', `Filter for ${name}`);
-
     const isExcluded = () => overrides.exclude.has(key);
     const setBtnUI = () => {
       const excluded = isExcluded();
@@ -970,32 +1008,27 @@ async function initAdvancedFilteringPage() {
       const raw = String(val.value ?? '').trim();
       const n = Number(raw);
       const valid = Number.isFinite(n);
-
       if (!valid || n <= 0) {
         overrides.counts.delete(key);
         op.value = 'gte';
-        // I baseline (Inkl.) ryd input, så "0" ikke hænger ved
         if (!isExcluded()) val.value = '';
       } else {
         overrides.counts.set(key, { mode: (op.value === 'eq' ? 'eq' : 'gte'), value: Math.floor(n) });
       }
-
       li.dataset.filtered = (isExcluded() || overrides.counts.has(key)) ? '1' : '0';
       refreshListVisibility();
       dirtyUI();
     };
-
     op.addEventListener('change', persistCount);
     val.addEventListener('input', persistCount);
 
-    // Toggle exclude on/off (To-state)
+    // Toggle exclude on/off (Two-state)
     btn.addEventListener('click', () => {
       if (isExcluded()) {
-        overrides.exclude.delete(key);   // -> Inkl. (grå)
+        overrides.exclude.delete(key); // -> Inkl. (grå)
       } else {
-        overrides.exclude.add(key);      // -> Eksl.
+        overrides.exclude.add(key);    // -> Eksl.
       }
-      // Hvis feltet står til 0/ugyldigt når vi går til Inkl., ryd det
       if (!isExcluded() && (String(val.value ?? '').trim() === '0')) {
         overrides.counts.delete(key);
         val.value = '';
@@ -1007,6 +1040,7 @@ async function initAdvancedFilteringPage() {
     });
 
     setBtnUI();
+
     tools.append(op, val);
     li.append(label, tools, btn);
     return li;
@@ -1037,30 +1071,29 @@ async function initAdvancedFilteringPage() {
   }
 
   // 5) Nulstil (challenge + confirm) – rydder exclude + counts
-  function makeChallenge() {
-    const a = Math.floor(Math.random() * 9) + 1, b = Math.floor(Math.random() * 9) + 1;
+  function makeChallengeLocal() {
+    const a = Math.floor(Math.random()*9)+1, b = Math.floor(Math.random()*9)+1;
     const useMinus = Math.random() < 0.4 && a > b;
     const op = useMinus ? '-' : '+';
     const res = useMinus ? (a - b) : (a + b);
     return { text: `Sikkerhedstjek: Hvad er ${a} ${op} ${b}?`, answer: res };
   }
   async function guardedResetOverridesLocal() {
-    const { text, answer } = makeChallenge();
+    const { text, answer } = makeChallengeLocal();
     const input = self.prompt(text, '');
     if (input === null) { if ($advStatus) { $advStatus.textContent = 'Nulstilling annulleret.'; setTimeout(() => $advStatus.textContent='', 1500); } return false; }
     const parsed = Number(String(input).trim().replace(',', '.'));
     if (!Number.isFinite(parsed) || parsed !== answer) { self.alert('Forkert svar – nulstilling blev afbrudt.'); return false; }
     const ok = self.confirm('Er du sikker på, at du vil nulstille alle artsfiltre? (Eksl. + antal)');
     if (!ok) { if ($advStatus) { $advStatus.textContent = 'Nulstilling annulleret.'; setTimeout(() => $advStatus.textContent='', 1500); } return false; }
-
     overrides.exclude.clear();
     overrides.counts.clear();
     $advList.querySelectorAll('.species-row').forEach(li => {
       const btn = li.querySelector('.sp-toggle');
-      const op  = li.querySelector('.sp-cnt-op');
+      const op = li.querySelector('.sp-cnt-op');
       const val = li.querySelector('.sp-cnt-val');
       if (btn) { btn.textContent = 'Inkl.'; btn.classList.remove('is-exclude'); btn.classList.add('is-muted'); }
-      if (op)  op.value = 'gte';
+      if (op) op.value = 'gte';
       if (val) val.value = '';
       li.dataset.filtered = '0';
     });
@@ -1096,45 +1129,40 @@ async function initAdvancedFilteringPage() {
     $advFile.addEventListener('change', async () => {
       const file = $advFile.files?.[0]; if (!file) return;
       try {
-        const text = await file.text(); const data = JSON.parse(text || '{}');
+        const text = await file.text(); const data = JSON.parse(text ?? '{}');
         const exc = Array.isArray(data.exclude) ? data.exclude.map(normArtKey) : [];
         const countsObj = (data.counts && typeof data.counts === 'object') ? data.counts : {};
         const newCounts = toCountsMap(countsObj);
-
         const replace = self.confirm('Importér: Erstat nuværende filtre? (OK = erstat · Annuller = flet)');
         if (replace) {
           overrides.exclude = new Set(exc);
-          overrides.counts  = newCounts;
+          overrides.counts = newCounts;
         } else {
           exc.forEach(k => overrides.exclude.add(k));
           newCounts.forEach((v, k) => { overrides.counts.set(k, v); });
         }
-
         // Opdater UI efter import
         $advList.querySelectorAll('.species-row').forEach(li => {
           const key = li.dataset.key;
           const btn = li.querySelector('.sp-toggle');
-          const op  = li.querySelector('.sp-cnt-op');
+          const op = li.querySelector('.sp-cnt-op');
           const val = li.querySelector('.sp-cnt-val');
-
           const excluded = overrides.exclude.has(key);
           if (btn) {
             btn.textContent = excluded ? 'Eksl.' : 'Inkl.';
             btn.classList.toggle('is-exclude', excluded);
             btn.classList.toggle('is-muted', !excluded);
           }
-
           const cf = overrides.counts.get(key);
           if (cf) {
-            if (op)  op.value  = (cf.mode === 'eq' ? 'eq' : 'gte');
+            if (op) op.value = (cf.mode === 'eq' ? 'eq' : 'gte');
             if (val) val.value = String(cf.value);
           } else {
-            if (op)  op.value  = 'gte';
+            if (op) op.value = 'gte';
             if (val) val.value = '';
           }
           li.dataset.filtered = hasRowFilter(key) ? '1' : '0';
         });
-
         refreshListVisibility();
         if ($advStatus) { $advStatus.textContent = 'Importeret – husk at trykke Gem.'; setTimeout(() => $advStatus.textContent='', 2500); }
       } catch {
@@ -1159,7 +1187,6 @@ async function initAdvancedFilteringPage() {
       try { localStorage.setItem('dofnot-species-overrides', JSON.stringify(ov)); } catch {}
       // server (best effort – helper håndterer 404/410)
       await saveSpeciesOverridesToServer(ov);
-
       if ($advStatus) { $advStatus.textContent = 'Gemt ✔'; setTimeout(() => $advStatus.textContent='', 1500); }
     });
   }

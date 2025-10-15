@@ -1,0 +1,67 @@
+{
+"client": "alm-bornholm",
+"count": 4,
+"generated": "2025-10-15T12:29:33.284839+02:00",
+"items": [
+{
+"obsid": "37840638",
+"art": "Halemejse",
+"antal": "7",
+"adf": "Rastende",
+"lok": "Ertholmene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Per",
+"efternavn": "Kjær",
+"lon": "15,183579965334616",
+"lat": "55,323732642528455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840641",
+"art": "Træløber",
+"antal": "25",
+"adf": "Rastende",
+"lok": "Ertholmene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Per",
+"efternavn": "Kjær",
+"lon": "15,183579965334616",
+"lat": "55,323732642528455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840643",
+"art": "Gråsisken",
+"antal": "20",
+"adf": "Rastende",
+"lok": "Ertholmene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Per",
+"efternavn": "Kjær",
+"lon": "15,183579965334616",
+"lat": "55,323732642528455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840645",
+"art": "Dompap",
+"antal": "25",
+"adf": "Rastende",
+"lok": "Ertholmene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Per",
+"efternavn": "Kjær",
+"lon": "15,183579965334616",
+"lat": "55,323732642528455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

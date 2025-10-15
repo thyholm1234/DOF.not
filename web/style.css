@@ -76,6 +76,9 @@ select { padding: 4px 6px; }
 /* =========================================================
    Prefs-table (som før)
    ========================================================= */
+/* Ikon til knappen #save (Opdater abonnement) */
+
+
 .prefs-table {
   width: 100%;
   border-collapse: separate;
@@ -448,7 +451,6 @@ section.controls #adv-show-active::before {
   pointer-events: none;
 }
 
-
 /* Dynamisk reserve via data-attribut */
 .sp-toggle[data-reserve]::after {
   content: attr(data-reserve);
@@ -480,11 +482,50 @@ section.controls #adv-show-active::before {
   }
 }
 
-/* SU og SUB-arter */
-/* I avanceret filter */
-#adv-list .sp-name.SU  { color: red; }
-#adv-list .sp-name.SUB { color: green; }
 
-/* I observationslisten */
-.obs-item .species.SU  { color: red; }
-.obs-item .species.SUB { color: green; }
+/* =========================================================
+   SU / SUB / Alm – fælles farver (fast, bold version)
+   ========================================================= */
+:root {
+  /* Farver – rød (SU), grøn (SUB), sort (Alm) */
+  --col-su:  #d32f2f;  /* rød */
+  --col-sub: #2e7d32;  /* grøn */
+  --col-alm: #000000;  /* sort */
+}
+
+/* Avanceret filter – farvelæg navnet */
+#adv-list .sp-name.SU  { color: var(--col-su);  font-weight: 700; }
+#adv-list .sp-name.SUB { color: var(--col-sub); font-weight: 700; }
+#adv-list .sp-name.Alm { color: var(--col-alm); font-weight: 500; opacity: .92; }
+
+/* Observationslisten – farvelæg artsnavnet */
+.obs-item .species.SU  { color: var(--col-su);  font-weight: 700; }
+.obs-item .species.SUB { color: var(--col-sub); font-weight: 700; }
+.obs-item .species.Alm { color: var(--col-alm); font-weight: 700; opacity: .92; }
+
+/* (valgfrit) lowercase-synonymer – hvis du bruger små bogstaver i klassernes navne */
+#adv-list .sp-name.su,  .obs-item .species.su  { color: var(--col-su);  font-weight: 700; }
+#adv-list .sp-name.sub, .obs-item .species.sub { color: var(--col-sub); font-weight: 700; }
+#adv-list .sp-name.alm, .obs-item .species.alm { color: var(--col-alm); font-weight: 700; opacity: .92; }
+
+#save::before {
+  content: "";
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  background-color: currentColor;
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+<path fill='black' d='M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.07-.28 2.07-.77 2.94l1.46 1.46A7.963 7.963 0 0020 12c0-4.42-3.58-8-8-8zm-6.69.69L3.86 6.14A7.963 7.963 0 004 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6 0-1.07.28-2.07.77-2.94l-1.46-1.46z'/>\
+</svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+<path fill='black' d='M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.07-.28 2.07-.77 2.94l1.46 1.46A7.963 7.963 0 0020 12c0-4.42-3.58-8-8-8zm-6.69.69L3.86 6.14A7.963 7.963 0 004 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6 0-1.07.28-2.07.77-2.94l-1.46-1.46z'/>\
+</svg>");
+}

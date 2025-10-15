@@ -1,0 +1,22 @@
+{
+"client": "sub-bornholm",
+"count": 1,
+"generated": "2025-10-15T12:28:25.411500+02:00",
+"items": [
+{
+"obsid": "37840630",
+"art": "Fuglekongesanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ertholmene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Per",
+"efternavn": "Kjær",
+"lon": "15,183579965334616",
+"lat": "55,323732642528455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

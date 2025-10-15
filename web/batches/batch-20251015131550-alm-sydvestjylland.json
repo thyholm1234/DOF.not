@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T13:15:50.645312+02:00",
+"items": [
+{
+"obsid": "37841112",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Blåvand By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kristoffer",
+"efternavn": "Hansen",
+"lon": "8,138597980141641",
+"lat": "55,54974178416868",
+"tid_fra": "13:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}
