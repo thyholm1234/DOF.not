@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-15T08:34:30.552782+02:00",
+"items": [
+{
+"obsid": "37839161",
+"art": "Knarand",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Bygholm Sø",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Lars",
+"efternavn": "Nielsen",
+"lon": "9,796810892939313",
+"lat": "55,87027146276648",
+"tid_fra": "08:26",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

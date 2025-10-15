@@ -230,8 +230,9 @@ self.addEventListener('push', (event) => {
 async function handlePush(event) {
   let data = {};
   try { if (event.data) data = event.data.json(); } catch {}
-
   const url = data && data.url;
+
+  // 1) Hent batch (hvis URL medfølger)
   let items = [];
   if (url) {
     try {
@@ -243,48 +244,51 @@ async function handlePush(event) {
     } catch {}
   }
 
-  // Hent lokale prefs + species overrides
+  // 2) Hent lokale prefs + arts-overrides (inkl. counts) fra IndexedDB
   let prefs = {};
-  let speciesOv = { include: [], exclude: [] };
-  try { prefs = (await idbGetPrefs()) ?? {}; } catch { prefs = {}; }
-  try { speciesOv = (await idbGetSpecies()) ?? { include: [], exclude: [] }; } catch {}
+  let speciesOv = { include: [], exclude: [], counts: {} };
+  try { prefs = (await idbGetPrefs()) ?? {}; } catch {}
+  try { speciesOv = (await idbGetSpecies()) ?? { include: [], exclude: [], counts: {} }; } catch {}
 
-  const usePrefs = Object.keys(prefs).length > 0;
+  const havePrefs = Object.keys(prefs).length > 0;
 
-  // 1) region/kategori (som før)
-  const afterPrefs = usePrefs ? applyRegionCategoryFilter(items, prefs) : items;
-  // 2) species overrides
-  const filtered = applySpeciesOverrides(afterPrefs, speciesOv);
-  let afterCount = applyPerSpeciesCount(filtered, speciesOv?.counts);
-  // Back-compat: hvis ingen per-art counts, brug evtl. globalt countFilter
-  if ((!speciesOv?.counts || Object.keys(speciesOv.counts).length === 0) && speciesOv?.countFilter) {
-    afterCount = applyCountFilter(filtered, speciesOv.countFilter);
-  }
+  // 3) Filtrér i rækkefølge (KUN pr. art)
+  //    a) Region/kategori pr. prefs
+  const afterPrefs   = havePrefs ? applyRegionCategoryFilter(items, prefs) : items;
+  //    b) Arts-overrides (inkl./udeluk)
+  const afterSpecies = applySpeciesOverrides(afterPrefs, speciesOv);
+  //    c) Per-art "antal"-filter (EQ / GTE)  ←  det der betyder noget her
+  const finalItems   = applyPerSpeciesCount(afterSpecies, speciesOv?.counts);
 
+  // 4) Ingen matches? Så dropper vi notifikationer
+  if (url && finalItems.length === 0) return;
 
-  // Drop notifikation hvis en batch-URL kom men intet matcher
-  if (url && filtered.length === 0) return;
-
-  // Vis én notifikation pr. observation (din oprindelige model) – uændret
-  const notifPromises = filtered.map((r) => {
+  // 5) Notifikation pr. observation (kun for dem, der består alle filtre)
+  const notifPromises = finalItems.map(r => {
     const obsid = (r.obsid ?? '').toString().trim();
     const antal = (r.antal ?? '').toString().trim();
     const art   = (r.art   ?? '').toString().trim();
     const lok   = (r.lok   ?? '').toString().trim();
     const adf   = (r.adf   ?? '').toString().trim();
-    const fn    = (r.fornavn ?? '').toString().trim();
+    const fn    = (r.fornavn   ?? '').toString().trim();
     const en    = (r.efternavn ?? '').toString().trim();
 
-    const titleParts = [ [antal, art].filter(Boolean).join(' ') ].concat(lok ? [`, ${lok}`] : []);
-    const title = titleParts.join('').trim();
-    const navn  = [fn, en].filter(Boolean).join(' ').trim();
-    const body  = [adf, navn].filter(Boolean).join(', ').trim();
+    const titleParts = [ [antal, art].filter(Boolean).join(' ') ]
+      .concat(lok ? [`, ${lok}`] : []);
+    const title = titleParts.join('').trim() || 'Ny observation';
+
+    const navn = [fn, en].filter(Boolean).join(' ').trim();
+    const body = [adf, navn].filter(Boolean).join(', ').trim();
+
     const urlToOpen = obsid
       ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(obsid)}&summering=tur&obs=obs`
       : (data.url ?? '/');
-    const tag = obsid ? `obs-${obsid}` : `obs-${crypto.randomUUID?.() || Math.random().toString(36).slice(2)}`;
 
-    return self.registration.showNotification(title || 'Ny observation', {
+    const tag = obsid
+      ? `obs-${obsid}`
+      : `obs-${(crypto.randomUUID?.() ?? Math.random().toString(36).slice(2))}`;
+
+    return self.registration.showNotification(title, {
       body,
       tag,
       renotify: true,
@@ -294,14 +298,6 @@ async function handlePush(event) {
   });
 
   await Promise.all(notifPromises);
-
-
-  await self.registration.showNotification(title, {
-    body,
-    tag,
-    renotify: true,
-    data: { url: urlToOpen },
-  });
 }
 
 function filterItemsByPrefs(items, prefs) {

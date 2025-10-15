@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T08:48:23.609172+02:00",
+"items": [
+{
+"obsid": "37839260",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Lumby Middelgrund",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Peter",
+"efternavn": "Lillesø",
+"lon": "10,514001846313478",
+"lat": "55,46773739528765",
+"tid_fra": "08:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

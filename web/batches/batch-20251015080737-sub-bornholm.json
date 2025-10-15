@@ -1,0 +1,22 @@
+{
+"client": "sub-bornholm",
+"count": 1,
+"generated": "2025-10-15T08:07:37.370449+02:00",
+"items": [
+{
+"obsid": "37839024",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Åkirkeby",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Carsten",
+"efternavn": "Andersen",
+"lon": "14,917909421205277",
+"lat": "55,07019815119625",
+"tid_fra": "07:55",
+"tid_til": "08:04",
+"kategori": "sub"
+}
+]
+}

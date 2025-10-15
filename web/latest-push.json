@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-15T07:33:58.044156+02:00",
+  "received_at": "2025-10-15T08:50:37.609072+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Isfugl, Rudbøl Sø",
-      "body": "Timme, Nyegaard",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37838869&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-sonderjylland",
+      "title": "1 Vandrefalk, Bygholm Vejle, Vestsø",
+      "body": "Morten, Borup",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37839284&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-nordvestjylland",
       "renotify": true,
       "regions": [
-        "DOF Sønderjylland"
+        "DOF Nordvestjylland"
       ],
       "categories": [
         "bemaerk"

@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T08:26:08.712722+02:00",
+"items": [
+{
+"obsid": "37839118",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tipmose & Heden ved Lysbjerge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Gustav",
+"efternavn": "Juel",
+"lon": "8,24591665891829",
+"lat": "55,53976380851551",
+"tid_fra": "08:10",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

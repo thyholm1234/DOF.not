@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T08:02:22.198728+02:00",
+"items": [
+{
+"obsid": "37838993",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Munkebo",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Holger",
+"efternavn": "Daugaard",
+"lon": "10,557640887861618",
+"lat": "55,45699271023318",
+"tid_fra": "07:30",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+}
+]
+}
