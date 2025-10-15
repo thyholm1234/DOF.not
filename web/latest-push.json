@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-14T23:07:44.282095+02:00",
+  "received_at": "2025-10-15T07:33:58.044156+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "8 Halemejse, Ho Plantage",
-      "body": "Ole Zoltan, Gøller",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37838343&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-sydvestjylland",
+      "title": "1 Isfugl, Rudbøl Sø",
+      "body": "Timme, Nyegaard",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37838869&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-sonderjylland",
       "renotify": true,
       "regions": [
-        "DOF Sydvestjylland"
+        "DOF Sønderjylland"
       ],
       "categories": [
         "bemaerk"

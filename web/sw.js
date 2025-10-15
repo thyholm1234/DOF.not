@@ -199,6 +199,29 @@ function applySpeciesOverrides(items, overrides) {
   });
 }
 
+
+function parseAntalToNumber(val) {
+  if (val == null) return null;
+  const s = String(val).toLowerCase().replace(',', '.');
+  const m = s.match(/\d+(?:\.\d+)?/g);
+  if (!m || !m.length) return null;
+  return Math.max(...m.map(Number));
+}
+
+function applyPerSpeciesCount(items, countsObj) {
+  if (!items || !items.length) return [];
+  const counts = countsObj && typeof countsObj === 'object' ? countsObj : {};
+  return items.filter((it) => {
+    const key = normalizeSpeciesName(it.art);
+    const cf  = counts[key];
+    if (!cf || cf.value == null) return true;       // intet filter for denne art
+    const a = parseAntalToNumber(it.antal);
+    if (!Number.isFinite(a)) return false;          // kan ikke vurderes -> bortfiltrer
+    return (cf.mode === 'eq') ? (a === cf.value)    : (a >= cf.value);
+  });
+}
+
+
 /* ───────────── PUSH ───────────── */
 self.addEventListener('push', (event) => {
   event.waitUntil(handlePush(event));
@@ -232,6 +255,12 @@ async function handlePush(event) {
   const afterPrefs = usePrefs ? applyRegionCategoryFilter(items, prefs) : items;
   // 2) species overrides
   const filtered = applySpeciesOverrides(afterPrefs, speciesOv);
+  let afterCount = applyPerSpeciesCount(filtered, speciesOv?.counts);
+  // Back-compat: hvis ingen per-art counts, brug evtl. globalt countFilter
+  if ((!speciesOv?.counts || Object.keys(speciesOv.counts).length === 0) && speciesOv?.countFilter) {
+    afterCount = applyCountFilter(filtered, speciesOv.countFilter);
+  }
+
 
   // Drop notifikation hvis en batch-URL kom men intet matcher
   if (url && filtered.length === 0) return;

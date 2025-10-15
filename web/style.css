@@ -201,12 +201,12 @@ select {
   }
 }
 
-/* style.css – små helpers */
-.species-list { list-style: none; padding: 0; margin: 0; }
-.species-row { display: flex; align-items: center; justify-content: space-between; padding: .5rem .25rem; border-bottom: 1px solid #eee; }
+/* advanced.css bits (kan i din style.css) */
+.controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .5rem 0; }
+#adv-search { flex: 1; min-width: 14rem; }
+.species-list { list-style: none; padding: 0; margin: .25rem 0; }
+.species-row { display: flex; align-items: center; justify-content: space-between; padding: .4rem .25rem; border-bottom: 1px solid #eee; }
 .sp-name { flex: 1; margin-right: .5rem; }
 .sp-toggle { min-width: 7rem; }
 .sp-toggle.is-include { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
 .sp-toggle.is-exclude { background: #ffebee; border-color: #c62828; color: #c62828; }
-.controls { display: flex; gap: .5rem; align-items: center; padding: .5rem 0; }
-#adv-search { flex: 1; }

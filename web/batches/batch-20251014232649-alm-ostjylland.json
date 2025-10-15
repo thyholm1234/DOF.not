@@ -1,22 +1,22 @@
 {
 "client": "alm-ostjylland",
 "count": 1,
-"generated": "2025-10-13T20:37:26.162057+02:00",
+"generated": "2025-10-14T23:26:49.060028+02:00",
 "items": [
 {
-"obsid": "37821314",
-"art": "Vindrossel",
-"antal": "94",
-"adf": "Trækkende",
+"obsid": "37838362",
+"art": "Havørn",
+"antal": "5",
+"adf": "Overflyvende",
 "lok": "Gellerupparken Toveshøj",
 "dof_afdeling": "DOF Østjylland",
 "fornavn": "Christian",
 "efternavn": "Vemmelund Helligsø",
 "lon": "10,136546771449865",
 "lat": "56,158903617777895",
-"tid_fra": "00:08",
+"tid_fra": "",
 "tid_til": "",
-"kategori": "alm"
+"kategori": "bemaerk"
 }
 ]
 }

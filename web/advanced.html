@@ -46,15 +46,68 @@
 
   <main>
     <section class="controls">
-      <input id="adv-search" type="search" placeholder="Søg art ..." aria-label="Søg art" />
-      <button id="adv-clear">Nulstil til Default</button>
-      <button id="adv-save">Gem</button>
-      <span id="adv-status" role="status" aria-live="polite"></span>
+      <!-- Søgning -->
+      <input 
+        id="adv-search" 
+        type="search" 
+        placeholder="Søg art ..." 
+        aria-label="Søg art" 
+      />
+
+      <!-- Vis kun filtrerede -->
+      <button 
+        id="adv-show-active" 
+        type="button" 
+        title="Vis/Skjul kun arter der har filter"
+      >
+        Vis kun filtrerede
+      </button>
+
+      <!-- Export / Import -->
+      <button 
+        id="adv-export" 
+        type="button" 
+        title="Eksportér avanceret filter"
+      >
+        Export
+      </button>
+
+      <button 
+        id="adv-import" 
+        type="button" 
+        title="Importér avanceret filter"
+      >
+        Import
+      </button>
+
+      <input 
+        id="adv-file" 
+        type="file" 
+        accept="application/json" 
+        style="display: none;" 
+      />
+
+      <!-- Nulstil og Gem -->
+      <button id="adv-clear" type="button">
+        Nulstil til Default
+      </button>
+
+      <button id="adv-save" type="button">
+        Gem
+      </button>
+
+      <!-- Status -->
+      <span 
+        id="adv-status" 
+        role="status" 
+        aria-live="polite"
+      ></span>
     </section>
 
-    <section>
-      <ul id="adv-list" class="species-list" aria-label="Arter med overrides"></ul>
-    </section>
+  <ul id="adv-list" class="species-list">
+  <!-- Listen bevares som før – hver række har nu egne antal-felter -->
+  </ul>  
+
   </main>
 
   <script src="./app.js"></script>
