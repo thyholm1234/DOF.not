@@ -1,0 +1,22 @@
+{
+"client": "sub-storstrom",
+"count": 1,
+"generated": "2025-10-15T09:25:12.210259+02:00",
+"items": [
+{
+"obsid": "37839557",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Bøtø By",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Morten",
+"efternavn": "Lisse",
+"lon": "11,958668891387948",
+"lat": "54,6577714617857",
+"tid_fra": "09:21",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

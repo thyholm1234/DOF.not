@@ -825,71 +825,70 @@ async function guardedResetOverrides() {
 // Avanceret filtrering (arter) – komplet erstatning af initAdvancedFilteringPage()
 // ============================================================================
 
+// Two-state version: "Inkl." (grå/baseline) ↔ "Eksl.", samt per-art antal (>0)
+// Bevarer alle funktioner: søg, vis-kun-filtrerede, nulstilling (challenge+confirm),
+// eksport/import (back-compat), gem til SW+localStorage+server.
+// Forudsætter: loadSpeciesList, normArtKey, postToSW, saveSpeciesOverridesToServer findes globalt.
 async function initAdvancedFilteringPage() {
-  // Unikke element-referencer (undgå kollision med $list fra observations-modulet)
-  const $advList   = document.getElementById('adv-list');
+  // Unikke element-referencer for Advanced-siden
+  const $advList       = document.getElementById('adv-list');
   if (!$advList) return; // siden er ikke i brug
-  const $advSearch = document.getElementById('adv-search');
-  const $advSave   = document.getElementById('adv-save');
-  const $advClear  = document.getElementById('adv-clear');
-  const $advStatus = document.getElementById('adv-status');
-
+  const $advSearch     = document.getElementById('adv-search');
+  const $advSave       = document.getElementById('adv-save');
+  const $advClear      = document.getElementById('adv-clear');
+  const $advStatus     = document.getElementById('adv-status');
   const $advShowActive = document.getElementById('adv-show-active');
-  const $advExport = document.getElementById('adv-export');
-  const $advImport = document.getElementById('adv-import');
-  const $advFile   = document.getElementById('adv-file');
+  const $advExport     = document.getElementById('adv-export');
+  const $advImport     = document.getElementById('adv-import');
+  const $advFile       = document.getElementById('adv-file');
 
-  // 1) Hent artsliste (CSV)
-  const arts = await loadSpeciesList(); // [{ id, navn }, ...]
+  // --- Hjælpere (lokale) ---
+  function dirtyUI() { if ($advStatus) $advStatus.textContent = 'Ikke gemt …'; }
+
+  // Kun positive counts; 0 og ugyldige ignoreres (nulstiller også operator ved rydning)
+  function toCountsMap(obj) {
+    const m = new Map();
+    if (!obj || typeof obj !== 'object') return m;
+    for (const [k, v] of Object.entries(obj)) {
+      const mode = (v && v.mode === 'eq') ? 'eq' : 'gte';
+      const raw  = Number(v?.value);
+      const num  = Number.isFinite(raw) ? Math.floor(raw) : null;
+      if (num != null && num > 0) m.set(normArtKey(k), { mode, value: num });
+    }
+    return m;
+  }
+  function countsMapToObj(map) {
+    const out = {};
+    for (const [k, v] of map.entries()) {
+      const n = Number(v?.value);
+      if (v && Number.isFinite(n) && n > 0) {
+        out[k] = { mode: (v.mode === 'eq' ? 'eq' : 'gte'), value: Math.floor(n) };
+      }
+    }
+    return out;
+  }
+
+  // 1) Hent artsliste (semicolon-CSV)
+  const arts = await loadSpeciesList();
   if (!Array.isArray(arts) || arts.length === 0) {
     if ($advStatus) $advStatus.textContent = 'Kunne ikke indlæse artsliste.';
     return;
   }
 
-  // 2) Hent eksisterende overrides (forsøg SW -> localStorage -> tom)
-  //    Udvidet til at understøtte per-art counts: { counts: { key: {mode, value} } }
-  function toCountsMap(obj) {
-  const m = new Map();
-  if (!obj || typeof obj !== 'object') return m;
-
-  for (const [k, v] of Object.entries(obj)) {
-    const mode = (v && v.mode === 'eq') ? 'eq' : 'gte';
-    const raw  = Number(v?.value);
-    const num  = Number.isFinite(raw) ? Math.floor(raw) : null;
-
-    // Gem KUN positive tal; 0/negativ = "ingen værdi"
-    if (num != null && num > 0) {
-      m.set(normArtKey(k), { mode, value: num });
-    }
-  }
-  return m;
-  }
-
-  function countsMapToObj(map) {
-  const out = {};
-  for (const [k, v] of map.entries()) {
-    const n = Number(v?.value);
-    if (v && Number.isFinite(n) && n > 0) {
-      out[k] = { mode: (v.mode === 'eq' ? 'eq' : 'gte'), value: Math.floor(n) };
-    }
-  }
-  return out;
-  }
-
-
+  // 2) Hent eksisterende overrides (SW ▶︎ localStorage ▶︎ tom)
   let overrides = await (async () => {
-    // SW: GET_SPECIES_OVERRIDES
+    // SW: GET_SPECIES_OVERRIDES (IndexedDB)
     try {
       await navigator.serviceWorker?.ready;
       const ch = new MessageChannel();
-      const req = new Promise((resolve) => { ch.port1.onmessage = (e) => resolve(e.data?.overrides || null); });
+      const req = new Promise(resolve => { ch.port1.onmessage = (e) => resolve(e.data?.overrides ?? null); });
       navigator.serviceWorker?.controller?.postMessage({ type: 'GET_SPECIES_OVERRIDES' }, [ch.port2]);
       const fromSw = await Promise.race([req, new Promise(r => setTimeout(() => r(null), 800))]);
       if (fromSw) {
         return {
-          include: new Set([...(fromSw.include || [])].map(normArtKey)),
-          exclude: new Set([...(fromSw.exclude || [])].map(normArtKey)),
-          counts : toCountsMap(fromSw.counts || fromSw.countFilter /* back-compat: global -> ignoreres her */)
+          // Two-state: ignorér include; behold exclude + counts (back-compat: countFilter -> ignoreres)
+          exclude: new Set([...(fromSw.exclude ?? [])].map(normArtKey)),
+          counts : toCountsMap(fromSw.counts ?? fromSw.countFilter)
         };
       }
     } catch { /* ignore */ }
@@ -900,146 +899,120 @@ async function initAdvancedFilteringPage() {
       if (raw) {
         const parsed = JSON.parse(raw);
         return {
-          include: new Set([...(parsed.include || [])].map(normArtKey)),
-          exclude: new Set([...(parsed.exclude || [])].map(normArtKey)),
-          counts : toCountsMap(parsed.counts || parsed.countFilter)
+          exclude: new Set([...(parsed.exclude ?? [])].map(normArtKey)),
+          counts : toCountsMap(parsed.counts ?? parsed.countFilter)
         };
       }
     } catch { /* ignore */ }
 
-    return { include: new Set(), exclude: new Set(), counts: new Map() };
+    return { exclude: new Set(), counts: new Map() };
   })();
 
-  // Hjælpere
-  function dirtyUI() { if ($advStatus) $advStatus.textContent = 'Ikke gemt …'; }
+  // Helper: row har “aktivt filter” hvis exclude eller counts for arten
   function hasRowFilter(key) {
-    return overrides.include.has(key) || overrides.exclude.has(key) || overrides.counts.has(key);
+    return overrides.exclude.has(key) || overrides.counts.has(key);
   }
 
-  // 3) Render liste: tri-state + per-art antal (operator + værdi)
-  // RENDER ÉN RÆKKE: navn + tri-state + per-art ANTAL (operator + værdi)
+  // 3) Render liste: Two-state knap + per-art antal
   const makeLi = (name) => {
-  const key = normArtKey(name);
+    const key = normArtKey(name);
+    const li = document.createElement('li');
+    li.className = 'species-row';
+    li.dataset.key = key;
 
-  const li = document.createElement('li');
-  li.className = 'species-row';
-  li.dataset.key = key;
-
-  // --- navn ---
-  const label = document.createElement('span');
-  label.className = 'sp-name';
-  label.textContent = name;
+    // --- navn ---
+    const label = document.createElement('span');
+    label.className = 'sp-name';
+    label.textContent = name;
 
     // --- per-art ANTAL: operator + input ---
-  const tools = document.createElement('div');
-  tools.className = 'sp-tools';
+    const tools = document.createElement('div');
+    tools.className = 'sp-tools';
 
-  const op = document.createElement('select');
-  op.className = 'sp-cnt-op';
-  op.innerHTML = '<option value="gte">≥</option><option value="eq">=</option>';
+    const op = document.createElement('select');
+    op.className = 'sp-cnt-op';
+    op.innerHTML = '<option value="gte">≥</option><option value="eq">=</option>';
 
-  const val = document.createElement('input');
-  val.className = 'sp-cnt-val';
-  val.type = 'number';
-  val.min = '0';
-  val.step = '1';
-  val.placeholder = 'Antal';
-  val.inputMode = 'numeric';      // på mobil
-  val.autocomplete = 'off';
-  val.style.width = '6.5rem';
+    const val = document.createElement('input');
+    val.className = 'sp-cnt-val';
+    val.type = 'number';
+    val.min = '1';        // forhindr 0 i UI (0 gemmes alligevel ikke)
+    val.step = '1';
+    val.placeholder = 'Antal';
+    val.inputMode = 'numeric';
+    val.autocomplete = 'off';
+    val.style.width = '6.5rem';
 
-  // --- tri-state knap (Default/Inkl./Udeluk) ---
-  const btn = document.createElement('button');
-  btn.className = 'sp-toggle';
-  btn.type = 'button';
-  btn.setAttribute('aria-label', `Override for ${name}`);
+    // --- Two-state knap: Inkl. (grå baseline) ↔ Eksl. ---
+    const btn = document.createElement('button');
+    btn.className = 'sp-toggle';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', `Filter for ${name}`);
 
-  const getTri = () => (overrides.include.has(key) ? 1 : (overrides.exclude.has(key) ? 2 : 0));
-  const setTri = () => {
-    const s = getTri();
-    btn.dataset.state = String(s);
-    btn.textContent   = (s === 1 ? 'Inkl.' : (s === 2 ? 'Udeluk' : 'Default'));
-    btn.classList.toggle('is-include', s === 1);
-    btn.classList.toggle('is-exclude', s === 2);
-    li.dataset.filtered = (overrides.include.has(key) || overrides.exclude.has(key) || overrides.counts.has(key)) ? '1' : '0';
-  };
-  setTri();
+    const isExcluded = () => overrides.exclude.has(key);
+    const setBtnUI = () => {
+      const excluded = isExcluded();
+      btn.textContent = excluded ? 'Eksl.' : 'Inkl.';
+      btn.classList.toggle('is-exclude', excluded);
+      btn.classList.toggle('is-muted', !excluded); // “grå” stil til Inkl.
+      li.dataset.filtered = (excluded || overrides.counts.has(key)) ? '1' : '0';
+    };
 
-  
-btn.addEventListener('click', () => {
-  const s = getTri();
-  if (s === 0) { overrides.exclude.delete(key); overrides.include.add(key); }
-  else if (s === 1) { overrides.include.delete(key); overrides.exclude.add(key); }
-  else { overrides.include.delete(key); overrides.exclude.delete(key); }
-
-  setTri();
-
-  // Hvis tri = Default og feltet er 0, så nulstil feltet & count
-  const rawVal = String(val.value ?? '').trim();
-  if (getTri() === 0 && (rawVal === '0' || Number(rawVal) === 0)) {
-    overrides.counts.delete(key);
-    val.value = '';
-    op.value  = 'gte';
-  }
-
-  refreshListVisibility();
-  dirtyUI();
-  });
-
-
-  // init fra state (per-art counts)
-  const cf = overrides.counts.get(key);
-  if (cf && Number.isFinite(Number(cf.value))) {
-    op.value = (cf.mode === 'eq' ? 'eq' : 'gte');
-    val.value = String(Math.floor(Number(cf.value)));
-  }
-
-  
-const persistCount = () => {
-  const tri  = getTri();
-  const raw  = String(val.value ?? '').trim();
-  const n    = Number(raw);
-  const valid = Number.isFinite(n);
-
-  // Ugyldigt tal ⇒ fjern & nulstil operator
-  if (!valid) {
-    overrides.counts.delete(key);
-    op.value = 'gte';
-  } else if (n <= 0) {
-    // 0/negativ gemmes ikke
-    overrides.counts.delete(key);
-
-    // Kravet: "nulstil arten når antal = 0 og tri‑state = Default"
-    if (tri === 0) {
-      val.value = '';
-      op.value  = 'gte';
+    // Init fra state (per-art counts)
+    const cf = overrides.counts.get(key);
+    if (cf && Number.isFinite(Number(cf.value))) {
+      op.value = (cf.mode === 'eq' ? 'eq' : 'gte');
+      val.value = String(Math.floor(Number(cf.value)));
     }
-  } else {
-    // Kun positive heltal
-    overrides.counts.set(key, { mode: (op.value === 'eq' ? 'eq' : 'gte'), value: Math.floor(n) });
-  }
 
-  li.dataset.filtered = (
-    overrides.include.has(key) ||
-    overrides.exclude.has(key) ||
-    overrides.counts.has(key)
-  ) ? '1' : '0';
+    // Persistér antal (>0) eller ryd; opdater “filtreret”-markering
+    const persistCount = () => {
+      const raw = String(val.value ?? '').trim();
+      const n = Number(raw);
+      const valid = Number.isFinite(n);
 
-  refreshListVisibility();
-  dirtyUI();
+      if (!valid || n <= 0) {
+        overrides.counts.delete(key);
+        op.value = 'gte';
+        // I baseline (Inkl.) ryd input, så "0" ikke hænger ved
+        if (!isExcluded()) val.value = '';
+      } else {
+        overrides.counts.set(key, { mode: (op.value === 'eq' ? 'eq' : 'gte'), value: Math.floor(n) });
+      }
+
+      li.dataset.filtered = (isExcluded() || overrides.counts.has(key)) ? '1' : '0';
+      refreshListVisibility();
+      dirtyUI();
+    };
+
+    op.addEventListener('change', persistCount);
+    val.addEventListener('input', persistCount);
+
+    // Toggle exclude on/off (To-state)
+    btn.addEventListener('click', () => {
+      if (isExcluded()) {
+        overrides.exclude.delete(key);   // -> Inkl. (grå)
+      } else {
+        overrides.exclude.add(key);      // -> Eksl.
+      }
+      // Hvis feltet står til 0/ugyldigt når vi går til Inkl., ryd det
+      if (!isExcluded() && (String(val.value ?? '').trim() === '0')) {
+        overrides.counts.delete(key);
+        val.value = '';
+        op.value = 'gte';
+      }
+      setBtnUI();
+      refreshListVisibility();
+      dirtyUI();
+    });
+
+    setBtnUI();
+    tools.append(op, val);
+    li.append(label, tools, btn);
+    return li;
   };
 
-
-  op.addEventListener('change', persistCount);
-  val.addEventListener('input', persistCount);
-
-  tools.append(op, val);
-
-  // --- saml rækken ---
-  li.append(label, tools, btn);
-  return li;
-  };
-
+  // Render alle rækker
   const frag = document.createDocumentFragment();
   for (const a of arts) frag.appendChild(makeLi(a.navn));
   $advList.appendChild(frag);
@@ -1047,7 +1020,7 @@ const persistCount = () => {
   // 4) Søg + “Vis kun filtrerede”
   let showActiveOnly = false;
   function refreshListVisibility() {
-    const q = normArtKey($advSearch?.value || '');
+    const q = (String($advSearch?.value ?? '')).trim().toLowerCase();
     $advList.querySelectorAll('.species-row').forEach(li => {
       const hitText = li.dataset.key.includes(q);
       const hitAct  = (!showActiveOnly) || li.dataset.filtered === '1';
@@ -1063,7 +1036,7 @@ const persistCount = () => {
     });
   }
 
-  // 5) Beskyttet nulstilling (regnestykke + confirm) – rydder også per-art antal
+  // 5) Nulstil (challenge + confirm) – rydder exclude + counts
   function makeChallenge() {
     const a = Math.floor(Math.random() * 9) + 1, b = Math.floor(Math.random() * 9) + 1;
     const useMinus = Math.random() < 0.4 && a > b;
@@ -1077,16 +1050,18 @@ const persistCount = () => {
     if (input === null) { if ($advStatus) { $advStatus.textContent = 'Nulstilling annulleret.'; setTimeout(() => $advStatus.textContent='', 1500); } return false; }
     const parsed = Number(String(input).trim().replace(',', '.'));
     if (!Number.isFinite(parsed) || parsed !== answer) { self.alert('Forkert svar – nulstilling blev afbrudt.'); return false; }
-    const ok = self.confirm('Er du sikker på, at du vil nulstille alle arts-overrides til Default?');
+    const ok = self.confirm('Er du sikker på, at du vil nulstille alle artsfiltre? (Eksl. + antal)');
     if (!ok) { if ($advStatus) { $advStatus.textContent = 'Nulstilling annulleret.'; setTimeout(() => $advStatus.textContent='', 1500); } return false; }
 
-    overrides.include.clear(); overrides.exclude.clear(); overrides.counts.clear();
+    overrides.exclude.clear();
+    overrides.counts.clear();
     $advList.querySelectorAll('.species-row').forEach(li => {
       const btn = li.querySelector('.sp-toggle');
-      btn.dataset.state = '0'; btn.textContent = 'Default';
-      btn.classList.remove('is-include','is-exclude');
-      const op = li.querySelector('.sp-cnt-op'); const val = li.querySelector('.sp-cnt-val');
-      if (op) op.value = 'gte'; if (val) val.value = '';
+      const op  = li.querySelector('.sp-cnt-op');
+      const val = li.querySelector('.sp-cnt-val');
+      if (btn) { btn.textContent = 'Inkl.'; btn.classList.remove('is-exclude'); btn.classList.add('is-muted'); }
+      if (op)  op.value = 'gte';
+      if (val) val.value = '';
       li.dataset.filtered = '0';
     });
     refreshListVisibility();
@@ -1095,7 +1070,7 @@ const persistCount = () => {
   }
   if ($advClear) $advClear.addEventListener('click', (e) => { e.preventDefault(); guardedResetOverridesLocal().catch(console.error); });
 
-  // 6) Export / Import (inklusiv counts)
+  // 6) Export / Import (back-compat: inkluderer tom include[])
   function downloadJson(filename, obj) {
     const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json;charset=utf-8' });
     const url = URL.createObjectURL(blob);
@@ -1108,7 +1083,7 @@ const persistCount = () => {
   if ($advExport) {
     $advExport.addEventListener('click', () => {
       const ov = {
-        include: Array.from(overrides.include),
+        include: [], // two-state: behold tom for back-compat
         exclude: Array.from(overrides.exclude),
         counts : countsMapToObj(overrides.counts)
       };
@@ -1119,106 +1094,62 @@ const persistCount = () => {
   if ($advImport && $advFile) {
     $advImport.addEventListener('click', () => $advFile.click());
     $advFile.addEventListener('change', async () => {
-  const file = $advFile.files?.[0];
-  if (!file) return;
+      const file = $advFile.files?.[0]; if (!file) return;
+      try {
+        const text = await file.text(); const data = JSON.parse(text || '{}');
+        const exc = Array.isArray(data.exclude) ? data.exclude.map(normArtKey) : [];
+        const countsObj = (data.counts && typeof data.counts === 'object') ? data.counts : {};
+        const newCounts = toCountsMap(countsObj);
 
-  try {
-    const text = await file.text();
-    const data = JSON.parse(text || '{}');
+        const replace = self.confirm('Importér: Erstat nuværende filtre? (OK = erstat · Annuller = flet)');
+        if (replace) {
+          overrides.exclude = new Set(exc);
+          overrides.counts  = newCounts;
+        } else {
+          exc.forEach(k => overrides.exclude.add(k));
+          newCounts.forEach((v, k) => { overrides.counts.set(k, v); });
+        }
 
-    // Normaliser include/exclude
-    const inc = Array.isArray(data.include) ? data.include.map(normArtKey) : [];
-    const exc = Array.isArray(data.exclude) ? data.exclude.map(normArtKey) : [];
+        // Opdater UI efter import
+        $advList.querySelectorAll('.species-row').forEach(li => {
+          const key = li.dataset.key;
+          const btn = li.querySelector('.sp-toggle');
+          const op  = li.querySelector('.sp-cnt-op');
+          const val = li.querySelector('.sp-cnt-val');
 
-    // Normaliser counts (kun > 0 gemmes)
-    const countsObj = (data.counts && typeof data.counts === 'object') ? data.counts : {};
-    const newCounts = new Map();
-    for (const [k, v] of Object.entries(countsObj)) {
-      const key = normArtKey(k);
-      const n = Math.floor(Number(v?.value));
-      if (Number.isFinite(n) && n > 0) {
-        newCounts.set(key, { mode: (v?.mode === 'eq' ? 'eq' : 'gte'), value: n });
-      }
-    }
+          const excluded = overrides.exclude.has(key);
+          if (btn) {
+            btn.textContent = excluded ? 'Eksl.' : 'Inkl.';
+            btn.classList.toggle('is-exclude', excluded);
+            btn.classList.toggle('is-muted', !excluded);
+          }
 
-    // Spørg om erstat/flet
-    const replace = self.confirm('Importér: Erstat nuværende filtre? (OK = erstat · Annuller = flet)');
+          const cf = overrides.counts.get(key);
+          if (cf) {
+            if (op)  op.value  = (cf.mode === 'eq' ? 'eq' : 'gte');
+            if (val) val.value = String(cf.value);
+          } else {
+            if (op)  op.value  = 'gte';
+            if (val) val.value = '';
+          }
+          li.dataset.filtered = hasRowFilter(key) ? '1' : '0';
+        });
 
-    if (replace) {
-      overrides.include = new Set(inc);
-      overrides.exclude = new Set(exc);
-      overrides.counts  = newCounts;
-    } else {
-      inc.forEach(k => { overrides.exclude.delete(k); overrides.include.add(k); });
-      exc.forEach(k => { overrides.include.delete(k); overrides.exclude.add(k); });
-      newCounts.forEach((v, k) => { overrides.counts.set(k, v); });
-    }
-
-    // Prune: fjern ugyldige/≤0 counts og counts i tri=Default uden positiv værdi
-    overrides.counts.forEach((v, k) => {
-      const n = Math.floor(Number(v?.value));
-      const triDefault = !overrides.include.has(k) && !overrides.exclude.has(k);
-      if (!Number.isFinite(n) || n <= 0 || (triDefault && n <= 0)) {
-        overrides.counts.delete(k);
+        refreshListVisibility();
+        if ($advStatus) { $advStatus.textContent = 'Importeret – husk at trykke Gem.'; setTimeout(() => $advStatus.textContent='', 2500); }
+      } catch {
+        alert('Import fejlede: ugyldig JSON.');
+      } finally {
+        $advFile.value = '';
       }
     });
-
-    // Opdater UI
-    $advList.querySelectorAll('.species-row').forEach(li => {
-      const key   = li.dataset.key;
-      const btn   = li.querySelector('.sp-toggle');
-      const opEl  = li.querySelector('.sp-cnt-op');
-      const valEl = li.querySelector('.sp-cnt-val');
-
-      const isInc = overrides.include.has(key);
-      const isExc = overrides.exclude.has(key);
-      const tri   = isInc ? 1 : (isExc ? 2 : 0);
-
-      // Tri-state UI
-      if (btn) {
-        btn.dataset.state = String(tri);
-        btn.textContent   = (tri === 1 ? 'Inkl.' : (tri === 2 ? 'Udeluk' : 'Default'));
-        btn.classList.toggle('is-include', tri === 1);
-        btn.classList.toggle('is-exclude', tri === 2);
-      }
-
-      // Count UI
-      const cf = overrides.counts.get(key);
-      if (cf) {
-        if (opEl)  opEl.value  = (cf.mode === 'eq' ? 'eq' : 'gte');
-        if (valEl) valEl.value = String(cf.value);
-      } else {
-        if (opEl)  opEl.value  = 'gte';
-        if (valEl) valEl.value = '';
-      }
-
-      // Markér som filtreret hvis tri/antal aktivt
-      li.dataset.filtered = (
-        overrides.include.has(key) ||
-        overrides.exclude.has(key) ||
-        overrides.counts.has(key)
-      ) ? '1' : '0';
-    });
-
-    refreshListVisibility();
-    if ($advStatus) { 
-      $advStatus.textContent = 'Importeret – husk at trykke Gem.'; 
-      setTimeout(() => ($advStatus.textContent = ''), 2500); 
-    }
-  } catch {
-    alert('Import fejlede: ugyldig JSON.');
-  } finally {
-    // Nulstil filinput så man kan importere samme fil igen
-    $advFile.value = '';
-  }
-  });
   }
 
   // 7) Gem (SW + localStorage + server best-effort)
   if ($advSave) {
     $advSave.addEventListener('click', async () => {
       const ov = {
-        include: Array.from(overrides.include),
+        include: [], // two-state: ikke brugt (back-compat)
         exclude: Array.from(overrides.exclude),
         counts : countsMapToObj(overrides.counts)
       };
@@ -1226,14 +1157,14 @@ const persistCount = () => {
       await postToSW({ type: 'SAVE_SPECIES_OVERRIDES', overrides: ov });
       // localStorage (cache)
       try { localStorage.setItem('dofnot-species-overrides', JSON.stringify(ov)); } catch {}
-      // server (best effort – ignorer 404/410)
+      // server (best effort – helper håndterer 404/410)
       await saveSpeciesOverridesToServer(ov);
+
       if ($advStatus) { $advStatus.textContent = 'Gemt ✔'; setTimeout(() => $advStatus.textContent='', 1500); }
     });
   }
 
-  // Første visning
-  // Markér rows med eksisterende filtre
+  // Første visning – markér rows med aktive filtre og anvend søg/visning
   $advList.querySelectorAll('.species-row').forEach(li => {
     const key = li.dataset.key;
     li.dataset.filtered = hasRowFilter(key) ? '1' : '0';

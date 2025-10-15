@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T11:47:35.237527+02:00",
+"items": [
+{
+"obsid": "37840389",
+"art": "Lille Flagspætte",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Bøtø Nor ved Nørresø (reservatet ved tårnene)",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Bo",
+"efternavn": "Christensen",
+"lon": "11,940474562414336",
+"lat": "54,644877231710126",
+"tid_fra": "11:35",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

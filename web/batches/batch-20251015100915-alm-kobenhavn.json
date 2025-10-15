@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T10:09:15.190994+02:00",
+"items": [
+{
+"obsid": "37839806",
+"art": "Mosehornugle",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Aflandshage",
+"dof_afdeling": "DOF København",
+"fornavn": "Rasmus",
+"efternavn": "Turin",
+"lon": "12,59734562210857",
+"lat": "55,55737730175329",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

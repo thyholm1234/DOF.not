@@ -1,0 +1,22 @@
+{
+"client": "sub-vestsjaelland",
+"count": 1,
+"generated": "2025-10-15T11:58:20.888877+02:00",
+"items": [
+{
+"obsid": "37840463",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bjergene, Fårevejle",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Joshua",
+"efternavn": "Haahr",
+"lon": "11,389469600871475",
+"lat": "55,795764127847136",
+"tid_fra": "11:44",
+"tid_til": "11:48",
+"kategori": "sub"
+}
+]
+}

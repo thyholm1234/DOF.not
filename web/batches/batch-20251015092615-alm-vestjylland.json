@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-15T09:26:15.244465+02:00",
+"items": [
+{
+"obsid": "37839562",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Thorsminde, nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kurt",
+"efternavn": "Willumsen",
+"lon": "8,122724902498717",
+"lat": "56,380416630976214",
+"tid_fra": "09:19",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

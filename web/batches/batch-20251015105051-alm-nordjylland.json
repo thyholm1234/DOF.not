@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-15T10:50:51.842049+02:00",
+"items": [
+{
+"obsid": "37840099",
+"art": "Gråand",
+"antal": "1000",
+"adf": "Rastende",
+"lok": "Mariager Fjord, Yderfjorden",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Søren",
+"efternavn": "Skriver",
+"lon": "10,258815486101787",
+"lat": "56,70301975217413",
+"tid_fra": "10:49",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840101",
+"art": "Svømmeand sp.",
+"antal": "1500",
+"adf": "Rastende",
+"lok": "Mariager Fjord, Yderfjorden",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Søren",
+"efternavn": "Skriver",
+"lon": "10,258815486101787",
+"lat": "56,70301975217413",
+"tid_fra": "10:49",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

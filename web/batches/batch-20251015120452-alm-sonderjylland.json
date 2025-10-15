@@ -1,0 +1,52 @@
+{
+"client": "alm-sonderjylland",
+"count": 3,
+"generated": "2025-10-15T12:04:52.777398+02:00",
+"items": [
+{
+"obsid": "37840497",
+"art": "Trane",
+"antal": "61",
+"adf": "Trækkende til/fra overnatning",
+"lok": "Vidåen, åløbet mellem Højer- og Vidåsluse",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Peter Ellegård",
+"efternavn": "Larsen",
+"lon": "8,671477279173182",
+"lat": "54,95995821851025",
+"tid_fra": "07:15",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840500",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Vidåen, åløbet mellem Højer- og Vidåsluse",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Peter Ellegård",
+"efternavn": "Larsen",
+"lon": "8,671477279173182",
+"lat": "54,95995821851025",
+"tid_fra": "07:15",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37840501",
+"art": "Havørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Vidåen, åløbet mellem Højer- og Vidåsluse",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Peter Ellegård",
+"efternavn": "Larsen",
+"lon": "8,671477279173182",
+"lat": "54,95995821851025",
+"tid_fra": "07:15",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T10:24:02.872470+02:00",
+"items": [
+{
+"obsid": "37839933",
+"art": "Skægmejse",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Saksfjed - Fugleværnsfondens Område",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Benny",
+"efternavn": "Steinmejer",
+"lon": "11,47963569446382",
+"lat": "54,62518417693627",
+"tid_fra": "07:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

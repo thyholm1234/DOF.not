@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T09:01:04.223395+02:00",
+"items": [
+{
+"obsid": "37839169",
+"art": "Bramgås",
+"antal": "1100",
+"adf": "Overflyvende",
+"lok": "Strandenge v/Jersore",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Ella",
+"efternavn": "Mikkelsen",
+"lon": "10,201961552699833",
+"lat": "55,59175405361512",
+"tid_fra": "08:27",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

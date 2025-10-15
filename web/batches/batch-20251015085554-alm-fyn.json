@@ -1,0 +1,37 @@
+{
+"client": "alm-fyn",
+"count": 2,
+"generated": "2025-10-15T08:55:54.002752+02:00",
+"items": [
+{
+"obsid": "37839343",
+"art": "Sølvhejre",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Fyns Hoved",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Martin Søgaard",
+"efternavn": "Nielsen",
+"lon": "10,592253223588079",
+"lat": "55,61485104377306",
+"tid_fra": "07:45",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37839346",
+"art": "Hjejle",
+"antal": "300",
+"adf": "Overflyvende",
+"lok": "Fyns Hoved",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Martin Søgaard",
+"efternavn": "Nielsen",
+"lon": "10,592253223588079",
+"lat": "55,61485104377306",
+"tid_fra": "07:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

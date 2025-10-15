@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T11:25:29.176300+02:00",
+"items": [
+{
+"obsid": "37840268",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Mandø, gl. dige og krat syd",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "8,55682770000199",
+"lat": "55,2712533999985",
+"tid_fra": "11:25",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

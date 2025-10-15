@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-15T10:30:34.808889+02:00",
+"items": [
+{
+"obsid": "37839999",
+"art": "Bjergirisk",
+"antal": "50",
+"adf": "Rastende",
+"lok": "Fyldområde, Nexø Havn",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Steen E.",
+"efternavn": "Jensen",
+"lon": "15,138581644516725",
+"lat": "55,06181295027392",
+"tid_fra": "09:45",
+"tid_til": "10:30",
+"kategori": "bemaerk"
+}
+]
+}

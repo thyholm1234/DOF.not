@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-15T10:12:31.150043+02:00",
+"items": [
+{
+"obsid": "37839202",
+"art": "Skægmejse",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Nørrestrand",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Jimmy",
+"efternavn": "Kristensen",
+"lon": "9,87591711648783",
+"lat": "55,878150684045266",
+"tid_fra": "08:33",
+"tid_til": "10:03",
+"kategori": "bemaerk"
+}
+]
+}

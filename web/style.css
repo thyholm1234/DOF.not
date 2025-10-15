@@ -1,5 +1,21 @@
+/* =========================================================
+   Global theme + base
+   ========================================================= */
 :root {
   color-scheme: light dark;
+
+  /* Controls (advanced-header) theme */
+  --col-ink:       #2a3b5c;   /* mørk blå/grå som i prefs */
+  --col-accent:    #1f6feb;   /* blå accent (hover/focus) */
+  --col-success:   #2ea043;   /* grøn (gem) */
+  --col-danger:    #d32f2f;   /* rød (nulstil) */
+  --col-border:    #d0d0d0;   /* kort-kant */
+  --bg-elev:       #f9fafb;   /* lys “head”-baggrund */
+  --bg-input:      #f3f4f6;   /* inputs/knapper baseline */
+
+  /* Avanceret filtering – fælles højder */
+  --ctrl-h: 32px;         /* desktop/tablet */
+  --ctrl-h-mobile: 30px;  /* mobil */
 }
 
 body {
@@ -7,9 +23,7 @@ body {
   margin: 20px;
 }
 
-h1 {
-  margin: 0 0 8px;
-}
+h1 { margin: 0 0 8px; }
 
 #obs-status {
   margin: 6px 0 14px;
@@ -24,6 +38,7 @@ h1 {
   flex-wrap: wrap;
 }
 
+/* Observationer (beholdt) */
 .obs-list {
   list-style: none;
   padding: 0;
@@ -31,14 +46,12 @@ h1 {
   display: grid;
   gap: 12px;
 }
-
 .obs-item article {
   border: 1px solid #d0d0d0;
   border-radius: 10px;
   padding: 12px;
   background: #fff;
 }
-
 .badge {
   display: inline-block;
   font-size: 12px;
@@ -47,166 +60,431 @@ h1 {
   margin-right: 6px;
   background: #eee;
 }
-
-.badge-src {
-  background: #002d62;
-  color: #fff;
+.badge-src { background: #002d62; color:#fff; }
+.badge-region { background: #e6f2ff; color:#003366; text-transform: lowercase; }
+.species { font-weight: 700; }
+.meta, .byline {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  color: #555; margin-top: 6px;
 }
+.meta a { color:#0b62d6; text-decoration: none; }
+.meta a:hover { text-decoration: underline; }
+label.row { display:inline-flex; align-items:center; gap:6px; color:#555; }
+.muted { color:#666; }
+select { padding: 4px 6px; }
 
-.badge-region {
-  background: #e6f2ff;
-  color: #003366;
-  text-transform: lowercase;
-}
-
-.species {
-  font-weight: 700;
-}
-
-.meta,
-.byline {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  color: #555;
-  margin-top: 6px;
-}
-
-.meta a {
-  color: #0b62d6;
-  text-decoration: none;
-}
-
-.meta a:hover {
-  text-decoration: underline;
-}
-
-label.row {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #555;
-}
-
-.muted {
-  color: #666;
-}
-
-select {
-  padding: 4px 6px;
-}
-
-/* Prefs-table med samme look som obs-list */
+/* =========================================================
+   Prefs-table (som før)
+   ========================================================= */
 .prefs-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 12px; /* afstand mellem rækker */
 }
-
 .prefs-table tbody tr {
   background: #fff;
   border: 1px solid #d0d0d0;
   border-radius: 10px;
   overflow: hidden;
 }
-
-.prefs-table td {
-  padding: 12px;
-  text-align: center;
-}
-
+.prefs-table td { padding: 12px; text-align: center; }
 .prefs-table td.afd {
-  font-weight: 600;
-  text-align: left;
-  white-space: nowrap;
+  font-weight: 600; text-align: left; white-space: nowrap;
 }
-
 /* Header */
 .prefs-table thead th {
-  padding: 8px 12px;
-  font-weight: 700;
-  font-size: 14px;
-  text-align: center;
-  background: #f9fafb;
+  padding: 8px 12px; font-weight: 700; font-size: 14px;
+  text-align: center; background: #f9fafb;
 }
-
-/* Radio-knapper */
+/* Radio */
 .prefs-table input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
+  position: absolute; opacity: 0; pointer-events: none;
 }
-
-.prefs-table label {
-  display: inline-block;
-  cursor: pointer;
-}
-
-
-/* Grundboks */
+.prefs-table label { display: inline-block; cursor: pointer; }
+/* Boks */
 .prefs-table .box {
-  position: relative;              /* skaber stacking context */
-  display: inline-block;
-  width: 22px;
-  height: 22px;
-  border: 2px solid #2a3b5c;
-  border-radius: 6px;
-  background: #f3f4f6;
-  transition: all 0.15s ease-in-out;
+  position: relative; display: inline-block;
+  width: 22px; height: 22px;
+  border: 2px solid #2a3b5c; border-radius: 6px;
+  background: #f3f4f6; transition: all .15s ease-in-out;
 }
-
-/* Hover (uændret) */
-.prefs-table td.sel:hover .box {
-  border-color: #1f6feb;
-  background: #eaf2ff;
-}
-
-
-
-/* Checked-tilstand: grøn baggrund */
+/* Hover */
+.prefs-table td.sel:hover .box { border-color:#1f6feb; background:#eaf2ff; }
+/* Checked */
 .prefs-table input[type="radio"]:checked + label .box {
-  border-color: #2ea043;
-  background: #2ea043;
+  border-color:#2ea043; background:#2ea043;
   box-shadow: 0 0 3px 1px rgba(46,160,67,.35);
 }
-
-
-
-
-/* Flueben som SVG-overlay – altid ovenpå den grønne baggrund */
+/* Flueben */
 .prefs-table input[type="radio"]:checked + label .box::after {
-  content: "";
-  position: absolute;
-  inset: 0;                        /* fylder hele boksen */
-  z-index: 1;                      /* sikker på at ligge over baggrunden */
-  pointer-events: none;
-
-  /* Skarpt, hvidt flueben med rund “stroke” – skaleret til 16x16 */
-  background:
-    center / 16px 16px no-repeat
+  content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:center / 16px 16px no-repeat
     url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>\
 <path d='M5 10.5l3 3 7-7' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/>\
 </svg>");
 }
-
-
-/* Responsiv: behold kolonner, men scroll hvis nødvendigt */
+/* Prefs – responsiv scroll hvis meget smalt */
 @media (max-width: 640px) {
-  .prefs-table-wrapper {
-    overflow-x: auto;
+  .prefs-table-wrapper { overflow-x: auto; }
+  .prefs-table { min-width: 480px; }
+}
+
+/* =========================================================
+   Advanced filtering – rækker (kort-look som prefs)
+   ========================================================= */
+#adv-list { list-style:none; margin:0; padding:0; }
+
+/* Desktop/tablet: én linje: navn | tools | knap */
+#adv-list .species-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content max-content; /* navn | tools | knap */
+  align-items: center;
+  column-gap: 12px;
+  row-gap: 8px;
+  background: #fff;
+  border: 1px solid #d0d0d0;
+  border-radius: 10px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+#adv-list .species-row:hover {
+  border-color: #1f6feb;
+  box-shadow: 0 0 0 3px rgba(31,111,235,.08);
+}
+
+/* Navn */
+#adv-list .sp-name {
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0; /* for ellipsis i grid */
+}
+
+/* Tools til højre for navn – hold på én linje */
+#adv-list .sp-tools {
+  display: flex; align-items: center; gap: 8px;
+  justify-self: end; flex-wrap: nowrap; min-width: 0;
+}
+
+/* Kontroller – kompakte, ens højde og box sizing */
+.sp-cnt-op, .sp-cnt-val, .sp-toggle {
+  box-sizing: border-box;
+  height: var(--ctrl-h);
+  line-height: 1;
+}
+
+/* Select/input style */
+.sp-cnt-op, .sp-cnt-val {
+  padding: 4px 8px;
+  border: 1.5px solid #2a3b5c;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #1c2b45;
+  transition: all .15s ease-in-out;
+  white-space: nowrap;
+}
+.sp-cnt-val { width: 6rem; }
+
+/* Knap – to-state, ens bredde og centreret label */
+.sp-toggle {
+  padding: 0 10px;                 /* lodret padding = 0, højde styres af height */
+  border: 2px solid #2a3b5c;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #2a3b5c;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  justify-self: end;
+  white-space: nowrap;
+
+  /* Ens bredde + centreret label */
+  display: inline-grid;            /* nødvendig for ::after-tricket */
+  place-items: center;             /* center både vertikalt og horisontalt */
+}
+/* Reservér bredde til længste label (brug 'Udeluk' som reference) */
+.sp-toggle::after {
+  content: 'Udeluk';
+  visibility: hidden; pointer-events: none; white-space: nowrap;
+}
+/* Valgfrit: dynamisk reserve via data-attribut */
+.sp-toggle[data-reserve]::after { content: attr(data-reserve); }
+
+/* Tilstande */
+.sp-toggle.is-muted { opacity:.75; filter:grayscale(100%); }
+.sp-toggle.is-exclude {
+  background:#d32f2f; border-color:#b71c1c; color:#fff;
+  box-shadow: 0 0 3px 1px rgba(211,47,47,.35);
+}
+
+/* Fokus-states */
+.sp-cnt-op:focus, .sp-cnt-val:focus, .sp-toggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31,111,235,.25);
+  border-color: #1f6feb;
+  background: #eaf2ff;
+}
+
+/* Tablet: behold én linje, men komprimer lidt */
+@media (max-width: 900px) and (min-width: 641px) {
+  #adv-list .species-row { column-gap: 10px; padding: 8px 10px; }
+  #adv-list .sp-tools { gap: 6px; }
+  .sp-cnt-val { width: 4.75rem; }
+  .sp-toggle { padding: 0 9px; }
+}
+
+/* Mobil (≤ 640px): navn øverst, tools + knap på samme linje */
+@media (max-width: 640px) {
+  #adv-list .species-row {
+    display: grid !important;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "name  name"
+      "tools toggle";
+    align-items: center;
+    gap: 8px 8px;
+    padding: 10px;
   }
-  .prefs-table {
-    min-width: 480px; /* sikrer at kolonner ikke bryder */
+  #adv-list .sp-name {
+    grid-area: name; margin: 0; font-size: 14px;
+    white-space: normal; overflow: visible; text-overflow: clip;
+  }
+  #adv-list .sp-tools {
+    grid-area: tools; display:flex; align-items:center; gap:8px;
+    justify-self: start; flex-wrap: nowrap; min-width: 0;
+  }
+  .sp-cnt-op, .sp-cnt-val, .sp-toggle { height: var(--ctrl-h-mobile); }
+  .sp-cnt-op, .sp-cnt-val { padding: 2px 6px; }
+  .sp-cnt-val { width: 4.6rem; } /* justér til 4.3rem hvis pladsen er stram */
+
+  #adv-list .sp-toggle {
+    grid-area: toggle;
+    display: inline-grid;        /* behold grid også på mobil */
+    place-items: center;
+    justify-self: end;
+    width: auto !important;
+    white-space: nowrap;
+    padding: 0 8px;              /* kompakt på mobil */
   }
 }
 
-/* advanced.css bits (kan i din style.css) */
-.controls { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; padding: .5rem 0; }
-#adv-search { flex: 1; min-width: 14rem; }
-.species-list { list-style: none; padding: 0; margin: .25rem 0; }
-.species-row { display: flex; align-items: center; justify-content: space-between; padding: .4rem .25rem; border-bottom: 1px solid #eee; }
-.sp-name { flex: 1; margin-right: .5rem; }
-.sp-toggle { min-width: 7rem; }
-.sp-toggle.is-include { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
-.sp-toggle.is-exclude { background: #ffebee; border-color: #c62828; color: #c62828; }
+/* =========================================================
+   Controls (øverst på adv-siden)
+   ========================================================= */
+section.controls {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: 8px 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--col-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 0 0 12px 0;
+}
+
+/* Søgning fylder resten */
+section.controls #adv-search[type="search"] {
+  flex: 1 1 280px; min-width: 220px;
+  height: 36px; padding: 6px 10px;
+  border: 1.5px solid var(--col-ink);
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--col-ink);
+  transition: all .15s ease-in-out;
+}
+section.controls #adv-search::placeholder { color:#6b7280; }
+section.controls #adv-search::-webkit-search-decoration,
+section.controls #adv-search::-webkit-search-cancel-button { -webkit-appearance:none; }
+
+/* Knapper – fælles */
+section.controls button {
+  appearance: none;
+  border: 2px solid var(--col-ink);
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--col-ink);
+  height: 36px;
+  padding: 6px 12px;
+  font-weight: 600; line-height: 1;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
+}
+section.controls button:hover,
+section.controls #adv-search:focus {
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.18);
+  background: #eaf2ff;
+  outline: none;
+}
+section.controls button:disabled,
+section.controls button[disabled] {
+  opacity: .55; cursor: not-allowed; filter: grayscale(100%);
+}
+
+/* Primær/sekundær/fare */
+section.controls #adv-save {
+  background: var(--col-success); border-color:#268a38; color:#fff; box-shadow:none;
+}
+section.controls #adv-save:hover { box-shadow: 0 0 0 3px rgba(46,160,67,.25); }
+
+section.controls #adv-clear {
+  background:#fff5f5; border-color: var(--col-danger); color: var(--col-danger);
+}
+section.controls #adv-clear:hover { background:#ffe9e9; box-shadow:0 0 0 3px rgba(211,47,47,.18); }
+
+section.controls #adv-export, section.controls #adv-import {
+  background:#fff; border-color: var(--col-ink); color: var(--col-ink);
+}
+section.controls #adv-export:hover, section.controls #adv-import:hover {
+  background:#eef2f7;
+}
+
+/* Ghost/toggle for “Vis kun filtrerede” */
+section.controls #adv-show-active {
+  background: transparent; border-color:#94a3b8; color: var(--col-ink);
+}
+section.controls #adv-show-active:hover { background:#eef2f7; border-color: var(--col-accent); }
+/* (valgfrit) aktiv tilstand – kræver .classList.toggle('is-on') i JS */
+section.controls #adv-show-active.is-on {
+  background:#e6f2ff; border-color: var(--col-accent); color:#0b4cc2;
+}
+
+/* Status helt til højre (wrap’er pænt på små bredder) */
+section.controls #adv-status {
+  margin-left: auto; font-size: .95rem; color:#607d8b; min-width:120px; text-align:right;
+}
+
+/* Små ikoner på knapper via ::before (SVG data-URI) */
+section.controls button::before {
+  content:""; width:1em; height:1em; display:inline-block;
+  mask-size:100% 100%; mask-repeat:no-repeat; mask-position:center;
+  -webkit-mask-size:100% 100%; -webkit-mask-repeat:no-repeat; -webkit-mask-position:center;
+  background-color: currentColor;
+}
+section.controls #adv-export::before {
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12 3l4 4h-3v6h-2V7H8l4-4zm-7 14h14v2H5v-2z'/></svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12 3l4 4h-3v6h-2V7H8l4-4zm-7 14h14v2H5v-2z'/></svg>");
+}
+section.controls #adv-import::before {
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12 21l-4-4h3V11h2v6h3l-4 4zM5 5h14v2H5V5z'/></svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M12 21l-4-4h3V11h2v6h3l-4 4zM5 5h14v2H5V5z'/></svg>");
+}
+section.controls #adv-clear::before {
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z'/></svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 3h6l1 2h4v2H4V5h4l1-2zm1 6h2v8h-2V9zm4 0h2v8h-2V9zM7 9h2v8H7V9z'/></svg>");
+}
+section.controls #adv-save::before {
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5L9 16.2z'/></svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5L9 16.2z'/></svg>");
+}
+section.controls #adv-show-active::before {
+  mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M3 5h18l-7 8v5l-4-2v-3L3 5z'/></svg>");
+  -webkit-mask-image: url("data:image/svg+xml;utf8,\
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M3 5h18l-7 8v5l-4-2v-3L3 5z'/></svg>");
+}
+
+/* Controls responsivitet */
+@media (max-width: 900px) {
+  section.controls { gap: 8px 10px; padding: 10px; }
+  section.controls #adv-search { flex: 1 1 100%; min-width: 0; }
+  section.controls #adv-status { flex: 1 1 100%; text-align: left; margin-left: 0; }
+}
+
+/* =========================================================
+   Dark mode
+   ========================================================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --col-ink:     #dbe1ea;
+    --col-border:  #384454;
+    --bg-elev:     #101826;
+    --bg-input:    #0f172a;
+  }
+  section.controls { border-color: var(--col-border); }
+  section.controls #adv-status { color: #94a3b8; }
+  section.controls #adv-clear { background:#2a0f10; }
+  section.controls #adv-clear:hover { background:#3a1517; }
+}
+
+
+/* ==== Center "Inkl." / "Eksl." i knappen + bevar ens bredde ==== */
+
+/* Desktop/Tablet */
+.sp-toggle {
+  position: relative;
+  display: inline-flex;           /* flex er bedre her end grid */
+  align-items: center;            /* centrerer vertikalt */
+  justify-content: center;        /* centrerer horisontalt */
+  height: var(--ctrl-h);
+  min-width: 80px;
+  padding: 0 10px;
+  border: 2px solid #2a3b5c;
+  border-radius: 6px;
+  background: #f3f4f6;
+  color: #2a3b5c;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  white-space: nowrap;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Reservér plads til længste label uden at vise den */
+.sp-toggle::after {
+  content: 'Eksl.'; /* længste label */
+  visibility: hidden;
+  position: absolute; /* fjerner fra flow */
+  pointer-events: none;
+}
+
+
+/* Dynamisk reserve via data-attribut */
+.sp-toggle[data-reserve]::after {
+  content: attr(data-reserve);
+}
+
+/* Tilstande */
+.sp-toggle.is-muted {
+  opacity: .75;
+  filter: grayscale(100%);
+}
+
+.sp-toggle.is-exclude {
+  background: #d32f2f;
+  border-color: #b71c1c;
+  color: #fff;
+  box-shadow: 0 0 3px 1px rgba(211,47,47,.35);
+}
+/* Mobil */
+@media (max-width: 640px) {
+  #adv-list .sp-toggle {
+    height: var(--ctrl-h-mobile);
+    min-width: 72px; /* lidt smallere på mobil */
+    padding: 0 8px;
+  }
+
+  #adv-list .sp-toggle::after {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+/* SU og SUB-arter */
+/* I avanceret filter */
+#adv-list .sp-name.SU  { color: red; }
+#adv-list .sp-name.SUB { color: green; }
+
+/* I observationslisten */
+.obs-item .species.SU  { color: red; }
+.obs-item .species.SUB { color: green; }

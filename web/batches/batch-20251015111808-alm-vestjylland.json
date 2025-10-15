@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-15T11:18:08.807688+02:00",
+"items": [
+{
+"obsid": "37840111",
+"art": "Grønirisk",
+"antal": "127",
+"adf": "Rastende",
+"lok": "Føling Sø og Bæk",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Peter",
+"efternavn": "Leth Olsen",
+"lon": "8,262315911128619",
+"lat": "56,11933174405246",
+"tid_fra": "10:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

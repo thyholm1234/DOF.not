@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T11:52:49.770153+02:00",
+"items": [
+{
+"obsid": "37840422",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Stillebæk",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Kurt Due",
+"efternavn": "Johansen",
+"lon": "10,143374200003336",
+"lat": "55,44932210000013",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

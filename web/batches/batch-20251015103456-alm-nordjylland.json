@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-15T10:34:56.479233+02:00",
+"items": [
+{
+"obsid": "37840039",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Brændeskov",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Hans",
+"efternavn": "Christophersen",
+"lon": "9,87750122081049",
+"lat": "56,829525488472584",
+"tid_fra": "10:34",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T12:00:34.315844+02:00",
+"items": [
+{
+"obsid": "37840480",
+"art": "Lille Korsnæb",
+"antal": "15",
+"adf": "Rastende",
+"lok": "Ho Plantage",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Anders",
+"efternavn": "Søgaard",
+"lon": "8,235503309537943",
+"lat": "55,531514907176906",
+"tid_fra": "11:58",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

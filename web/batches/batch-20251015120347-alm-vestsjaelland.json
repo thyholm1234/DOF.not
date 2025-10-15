@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-15T12:03:47.140713+02:00",
+"items": [
+{
+"obsid": "37840494",
+"art": "Musvåge",
+"antal": "500",
+"adf": "Trækkende",
+"lok": "Halsskov Odde",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Bo",
+"efternavn": "Brauner",
+"lon": "11,093069791003453",
+"lat": "55,34595486769001",
+"tid_fra": "11:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

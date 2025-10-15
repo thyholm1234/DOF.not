@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-15T12:21:59.181295+02:00",
+"items": [
+{
+"obsid": "37840089",
+"art": "Skærpiber",
+"antal": "8",
+"adf": "Rastende",
+"lok": "Stensmark Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "10,938324523642438",
+"lat": "56,46139761992032",
+"tid_fra": "10:47",
+"tid_til": "12:21",
+"kategori": "bemaerk"
+}
+]
+}

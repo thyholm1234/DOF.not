@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-15T08:50:37.609072+02:00",
+  "received_at": "2025-10-15T12:22:03.290165+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Vandrefalk, Bygholm Vejle, Vestsø",
-      "body": "Morten, Borup",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37839284&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-nordvestjylland",
+      "title": "120 Stillits, Helberskov Udflyttere",
+      "body": "Søren, Skriver",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37840576&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-nordjylland",
       "renotify": true,
       "regions": [
-        "DOF Nordvestjylland"
+        "DOF Nordjylland"
       ],
       "categories": [
         "bemaerk"
