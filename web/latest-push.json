@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-15T23:40:45.667803+02:00",
+  "received_at": "2025-10-16T00:41:53.608158+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "52 Knarand, Tueholms Sø",
-      "body": "Jonas, Hansen Tchikai",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37845314&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-kobenhavn",
+      "title": "56 Sangdrossel, Gellerupparken Toveshøj",
+      "body": "Christian, Vemmelund Helligsø",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37845391&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [
-        "DOF København"
+        "DOF Østjylland"
       ],
       "categories": [
         "bemaerk"

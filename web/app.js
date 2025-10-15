@@ -195,6 +195,71 @@ function classifySpeciesName(name) {
   return (k === 'SU') ? 'su' : (k === 'SUB') ? 'sub' : 'alm';
 }
 
+
+async function confirmSubscribeWithMath() {
+  const mk = (typeof makeChallenge === 'function')
+    ? makeChallenge
+    : function () {
+        const a = Math.floor(Math.random()*9)+1;
+        const b = Math.floor(Math.random()*9)+1;
+        const useMinus = Math.random() < 0.4 && a > b;
+        const op = useMinus ? '-' : '+';
+        const res = useMinus ? (a - b) : (a + b);
+        return { text: `Sikkerhedstjek: Hvad er ${a} ${op} ${b}?`, answer: res };
+      };
+
+  const { text, answer } = mk();
+  const input = self.prompt(text, '');
+  if (input === null) { // bruger trykkede Annuller
+    try { setDiag('Oprettelse annulleret.', '#607d8b', 1500); } catch {}
+    return false;
+  }
+  const parsed = Number(String(input).trim().replace(',', '.'));
+  if (!Number.isFinite(parsed) || parsed !== answer) {
+    alert('Forkert svar — oprettelse blev afbrudt.');
+    return false;
+  }
+  const ok = self.confirm('Er du sikker på, at du vil oprette abonnement på denne enhed?');
+  if (!ok) {
+    try { setDiag('Oprettelse annulleret.', '#607d8b', 1500); } catch {}
+    return false;
+  }
+  return true;
+}
+
+// Bekræft AFMELDING med en simpel matematik-test (+ ekstra "Er du sikker?").
+// Genbruger eksisterende makeChallenge() hvis den findes; ellers fallback.
+async function confirmUnsubscribeWithMath() {
+  const mk = (typeof makeChallenge === 'function')
+    ? makeChallenge
+    : function () {
+        const a = Math.floor(Math.random()*9)+1;
+        const b = Math.floor(Math.random()*9)+1;
+        const useMinus = Math.random() < 0.4 && a > b;
+        const op = useMinus ? '-' : '+';
+        const res = useMinus ? (a - b) : (a + b);
+        return { text: `Sikkerhedstjek: Hvad er ${a} ${op} ${b}?`, answer: res };
+      };
+
+  const { text, answer } = mk();
+  const input = self.prompt(text, '');
+  if (input === null) {
+    try { setDiag('Afmelding annulleret.', '#607d8b', 1500); } catch {}
+    return false;
+  }
+  const parsed = Number(String(input).trim().replace(',', '.'));
+  if (!Number.isFinite(parsed) || parsed !== answer) {
+    alert('Forkert svar — afmelding blev afbrudt.');
+    return false;
+  }
+  const ok = self.confirm('Er du sikker på, at du vil afmelde abonnement på denne enhed?');
+  if (!ok) {
+    try { setDiag('Afmelding annulleret.', '#607d8b', 1500); } catch {}
+    return false;
+  }
+  return true;
+}
+
 // ============================================================================
 // 2) PREFERENCES & PUSH (abonnementsmatrix + push-subscription)
 // ============================================================================
@@ -419,17 +484,19 @@ async function unsubscribePush() {
 }
 
 async function onSave() {
+  // 1) Indsaml prefs fra tabellen
   const prefs = {};
   for (const afd of DOF_AFDELINGER) {
     const slug = slugify(afd);
     const sel = document.querySelector(`input[name="pref-${slug}"]:checked`);
     prefs[afd] = sel ? sel.value : 'none';
   }
-  // Gem lokalt (SW + localStorage)
+
+  // 2) Gem lokalt (SW + localStorage)
   await postToSW({ type: 'SAVE_PREFS', prefs });
   try { localStorage.setItem('dofnot-prefs', JSON.stringify(prefs)); } catch {}
 
-  // Gem centralt pr. bruger
+  // 3) Gem centralt pr. bruger
   try {
     const userId = getOrCreateUserId();
     await fetch(abs('api/prefs/user'), {
@@ -441,34 +508,139 @@ async function onSave() {
     console.warn('POST /api/prefs/user fejlede:', e);
   }
 
-  
+  // Tjek tilstand og intention
+  const manualIntent = !!(elSave && elSave.dataset && elSave.dataset.state === 'unsubscribed');
+
+  // Har brugeren mindst ét aktivt valg?
+  const hasActive = Object.values(prefs || {}).some(v =>
+    ['su','sub','alle'].includes(String(v).toLowerCase())
+  );
+
   try {
-    const hasActive = Object.values(prefs || {}).some(v =>
-      ['su','sub','alle'].includes(String(v).toLowerCase())
-    );
-    if (!isOptedOut() && hasActive) {
+    if (manualIntent) {
+      // Brugeren har klikket “Abonnér”
+      if (!hasActive) {
+        alert('Du har valgt "Ingen" i alle lokalafdelinger.\nVælg mindst én kategori (SU, SUB eller alle), før du kan oprette abonnement.');
+        try { setDiag('Præferencer gemt (ingen oprettelse — ingen aktive valg).', '#607d8b', 2500); } catch {}
+        return; // Stop: ingen subscribe
+      }
+
+      // Opret abonnement (ingen matematik ved oprettelse)
+      await ensurePushSubscription({ forcePrompt: true });
+      setOptOut?.(false);
+      try {
+        const uid = getOrCreateUserId();
+        const did = getOrCreateDeviceId();
+        await setServerOptOut?.(uid, did, false);
+      } catch {}
+      setDiag('Abonneret + præferencer gemt.', '#2e7d32', 2000);
+
+    } else if (!isOptedOut() && hasActive) {
+      // Auto-subscribe (som før)
       await ensurePushSubscription({ forcePrompt: true });
       setDiag('Abonnement + præferencer gemt.', '#2e7d32', 2000);
+
     } else {
+      // Gemt uden at forsøge subscription
       setDiag('Præferencer gemt (ingen auto-abonnement).', '#607d8b', 2000);
     }
-  } catch {
+
+  } catch (e) {
+    console.warn('ensurePushSubscription fejlede:', e);
     setDiag('Gemte præferencer (push ikke tilladt/understøttet).', '#607d8b', 2500);
+
   } finally {
     updateSaveButtonLabel();
   }
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// Fuld NULSTILLING af lokal data (push, SW, caches, localStorage, IndexedDB)
+// ─────────────────────────────────────────────────────────────────────────────
+async function wipeAllLocalData() {
+  // (Valgfrit) Gem user/device før vi rydder, hvis du vil bruge dem til sidste server-kald
+  let userId, deviceId;
+  try { userId = localStorage.getItem('dofnot-user-id') || ''; } catch {}
+  try { deviceId = localStorage.getItem('dofnot-device-id') || ''; } catch {}
+
+  // 1) Afmeld push (hvis der stadig er en subscription)
+  try {
+    await navigator.serviceWorker?.ready;
+    const reg = await navigator.serviceWorker.getRegistration();
+    const sub = await reg?.pushManager.getSubscription();
+    if (sub) { try { await sub.unsubscribe(); } catch {} }
+  } catch {}
+
+  // 2) Ryd localStorage + sessionStorage (hele origin)
+  try { localStorage.clear(); } catch {}
+  try { sessionStorage.clear(); } catch {}
+
+  // 3) Ryd alle Cache Storage-buckets
+  if ('caches' in window) {
+    try {
+      const names = await caches.keys();
+      await Promise.all(names.map(n => caches.delete(n)));
+    } catch {}
+  }
+
+  // 4) Slet alle IndexedDB databaser (best effort)
+  try {
+    if (indexedDB.databases) {
+      const dbs = await indexedDB.databases();
+      await Promise.all((dbs || []).map(db => {
+        if (!db?.name) return Promise.resolve();
+        return new Promise(res => {
+          const req = indexedDB.deleteDatabase(db.name);
+          req.onsuccess = req.onerror = req.onblocked = () => res();
+        });
+      }));
+    } else {
+      // Fallback: kendte navne (tilpas hvis du har specifikke DB-navne)
+      const known = ['dofnot-db', 'workbox-precache-v2', 'keyval-store'];
+      await Promise.all(known.map(name => new Promise(res => {
+        const req = indexedDB.deleteDatabase(name);
+        req.onsuccess = req.onerror = req.onblocked = () => res();
+      })));
+    }
+  } catch {}
+
+  // 5) Afregistrer alle service workers
+  if ('serviceWorker' in navigator) {
+    try {
+      const regs = await navigator.serviceWorker.getRegistrations();
+      await Promise.all(regs.map(r => r.unregister()));
+    } catch {}
+  }
+
+  // 6) Genindlæs siden (frisk kontekst)
+  try { location.reload(); } catch {}
+}
+
+// Afmeld + AUTOWIPE uden at spørge (matematik-test stadig kun ved afmelding)
 async function onUnsubscribe() {
   try {
-    const ok = await unsubscribePush();
-    if (ok) setDiag('Abonnement afmeldt på denne enhed.', '#2e7d32', 2000);
+    // 1) Matematik + “Er du sikker?” før vi afmelder
+    const okConfirm = await confirmUnsubscribeWithMath();
+    if (!okConfirm) return;
+
+    // 2) Forsøg at afmelde (browser + server). Uanset resultat, wiper vi bagefter.
+    await unsubscribePush();
+
+    // (Valgfrit) kort status – siden reloades alligevel straks efter
+    try { setDiag('Afmeldt – rydder alt lokalt …', '#2e7d32', 800); } catch {}
+
+    // 3) Wipe ALT lokalt uden at spørge (SW, caches, IndexedDB, storage) + reload
+    await wipeAllLocalData();
+    return; // reload trigges inde i wipeAllLocalData()
+
   } catch (e) {
     console.warn('Unsubscribe fejlede:', e);
   } finally {
-    updateSaveButtonLabel();
+    // Fallback hvis noget forhindrede reload
+    try { updateSaveButtonLabel(); } catch {}
   }
 }
+
 
 async function initPrefsAndPush() {
   // Init/bruger-tilknytning server-side
@@ -1181,30 +1353,48 @@ async function initAdvancedFilteringPage() {
   $advList.appendChild(frag);
 
   // 4) Søg + “Vis kun filtrerede”
-  let showActiveOnly = false;
+let showActiveOnly = false;
 
-  function refreshListVisibility() {
-    // VIGTIGT: brug samme normalisering som li.dataset.key (æ→ae, ø→oe, å→aa, mm.)
-    const q = normArtKey(String($advSearch?.value ?? ''));
-    $advList.querySelectorAll('.species-row').forEach(li => {
-      const hitText = li.dataset.key.includes(q);
-      const hitAct  = (!showActiveOnly) || li.dataset.filtered === '1';
-      li.style.display = (hitText && hitAct) ? '' : 'none';
+function refreshListVisibility() {
+  // VIGTIGT: brug samme normalisering som li.dataset.key (æ→ae, ø→oe, å→aa, mm.)
+  const q = normArtKey(String($advSearch?.value ?? ''));
+  $advList.querySelectorAll('.species-row').forEach(li => {
+    const hitText = li.dataset.key.includes(q);
+    const hitAct  = (!showActiveOnly) || li.dataset.filtered === '1';
+    li.style.display = (hitText && hitAct) ? '' : 'none';
+  });
+}
+
+if ($advSearch) {
+  $advSearch.addEventListener('input',  refreshListVisibility);
+  $advSearch.addEventListener('search', refreshListVisibility); // Android søgeknap/clear
+  $advSearch.addEventListener('change', refreshListVisibility);
+  // Hjælp mobilen: undgå autokorrektion/autocap
+  try {
+    $advSearch.setAttribute('autocapitalize', 'none');
+    $advSearch.setAttribute('autocomplete',   'off');
+    $advSearch.setAttribute('autocorrect',    'off');
+    $advSearch.setAttribute('spellcheck',     'false');
+    $advSearch.setAttribute('enterkeyhint',   'search');
+  } catch {}
+}
+
+  // --- Toggle: "Vis kun filtrerede" ---
+  if ($advShowActive) {
+    const updateShowActiveUI = () => {
+      $advShowActive.classList.toggle('is-on', showActiveOnly);
+      $advShowActive.setAttribute('aria-pressed', showActiveOnly ? 'true' : 'false');
+      // (valgfrit) skift label når aktiv:
+      // $advShowActive.textContent = showActiveOnly ? 'Vis alle' : 'Vis kun filtrerede';
+    };
+
+    $advShowActive.addEventListener('click', () => {
+      showActiveOnly = !showActiveOnly;
+      updateShowActiveUI();
+      refreshListVisibility();
     });
-  }
 
-  if ($advSearch) {
-    $advSearch.addEventListener('input',  refreshListVisibility);
-    $advSearch.addEventListener('search', refreshListVisibility); // Android søgeknap/clear
-    $advSearch.addEventListener('change', refreshListVisibility);
-    // Hjælp mobilen: undgå autokorrektion/autocap
-    try {
-      $advSearch.setAttribute('autocapitalize', 'none');
-      $advSearch.setAttribute('autocomplete',   'off');
-      $advSearch.setAttribute('autocorrect',    'off');
-      $advSearch.setAttribute('spellcheck',     'false');
-      $advSearch.setAttribute('enterkeyhint',   'search');
-    } catch {}
+    updateShowActiveUI();
   }
 
   // 5) Nulstil (challenge + confirm) – rydder exclude + counts
