@@ -101,31 +101,60 @@ def _merge_push_headers(payload: dict, default_urgency: str = "high") -> dict:
 def ensure_db() -> None:
     DB_PATH.parent.mkdir(parents=True, exist_ok=True)
     con = sqlite3.connect(DB_PATH); cur = con.cursor()
-    # Subscriptions
+
+    # Subscriptions (din kode bruger 'subs', men tabellen manglede i ensure_db)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS subs (
+      endpoint TEXT PRIMARY KEY,
+      p256dh   TEXT NOT NULL,
+      auth     TEXT NOT NULL,
+      user_id  TEXT,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+    )
+    """)
+
+    # Users
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+      id TEXT PRIMARY KEY,
+      created_at INTEGER NOT NULL,
+      last_seen  INTEGER NOT NULL
+    )
+    """)
+
+    # User prefs
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS user_prefs (
+      user_id TEXT PRIMARY KEY,
+      prefs   TEXT NOT NULL,
+      ts      INTEGER,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+    """)
+
+    # Arts-overrides pr. bruger
     cur.execute("""
     CREATE TABLE IF NOT EXISTS user_species_overrides (
       user_id TEXT PRIMARY KEY,
       data    TEXT NOT NULL,
       ts      INTEGER,
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-    )""")
-    # Users
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-      id TEXT PRIMARY KEY,
-      created_at INTEGER NOT NULL,
-      last_seen INTEGER NOT NULL
-    )""")
-    # User prefs
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS user_prefs (
-      user_id TEXT PRIMARY KEY,
-      prefs TEXT NOT NULL,
-      ts INTEGER,
-      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
-    )""")
-    con.commit(); con.close()
+    )
+    """)
 
+    # NYT: opt-out pr. bruger+enhed (bliver respekteret ved reload)
+    cur.execute("""
+    CREATE TABLE IF NOT EXISTS push_optout (
+      user_id   TEXT NOT NULL,
+      device_id TEXT NOT NULL,
+      opted_out INTEGER NOT NULL,
+      ts        INTEGER,
+      PRIMARY KEY (user_id, device_id),
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    )
+    """)
+
+    con.commit(); con.close()
 def add_subscription(sub: Dict) -> None:
     endpoint = sub.get("endpoint"); keys = sub.get("keys", {})
     p256dh = keys.get("p256dh"); auth = keys.get("auth")
@@ -506,20 +535,91 @@ async def save_user_species(req: Request):
 @app.post("/api/subscribe")
 async def subscribe(req: Request):
     data = await req.json()
-    sub = data; user_id = str(data.get("user_id") or "").strip() or None
+    sub = data
+    user_id = str(data.get("user_id") or "").strip() or None
+    device_id = str(data.get("device_id") or "").strip() or None
     try:
         add_subscription(sub)
         if user_id:
             con = sqlite3.connect(DB_PATH); _ensure_user(con, user_id)
             con.execute("UPDATE subs SET user_id=? WHERE endpoint=?", (user_id, sub.get("endpoint")))
+            # NYT: ryd opt-out for denne enhed (brugeren har netop tilmeldt sig igen)
+            if device_id:
+                ts = int(time.time() * 1000)
+                con.execute(
+                    """
+                    INSERT INTO push_optout(user_id, device_id, opted_out, ts)
+                    VALUES (?,?,?,?)
+                    ON CONFLICT(user_id, device_id) DO UPDATE
+                      SET opted_out=excluded.opted_out, ts=excluded.ts
+                    """,
+                    (user_id, device_id, 0, ts)
+                )
             con.commit(); con.close()
-        endpoint = sub.get("endpoint",""); short = (endpoint[:64] + "...") if len(endpoint) > 67 else endpoint
+        endpoint = sub.get("endpoint","")
+        short = (endpoint[:64] + "...") if len(endpoint) > 67 else endpoint
         total = subscriptions_count()
-        logger.info("[SUB] Gemt subscription: %s · total=%d · user=%s", short, total, user_id or "-")
+        logger.info("[SUB] Gemt subscription: %s · total=%d · user=%s device=%s", short, total, user_id or "-", device_id or "-")
         return {"ok": True, "total": total}
     except Exception as e:
         logger.warning("[SUB] Ugyldig subscription: %s", e)
         raise HTTPException(status_code=400, detail=f"Ugyldig subscription: {e}")
+@app.get("/api/push/optout")
+def get_push_optout(user_id: str, device_id: str):
+    con = sqlite3.connect(DB_PATH)
+    row = con.execute(
+        "SELECT opted_out, ts FROM push_optout WHERE user_id=? AND device_id=?",
+        (user_id, device_id)
+    ).fetchone()
+    con.close()
+    if not row:
+        return {"opted_out": False, "ts": None, "source": "none"}
+    return {"opted_out": bool(row[0]), "ts": row[1], "source": "db"}
+
+@app.post("/api/push/optout")
+async def set_push_optout(req: Request):
+    data = await req.json()
+    user_id   = str(data.get("user_id")   or "").strip()
+    device_id = str(data.get("device_id") or "").strip()
+    opted_out = bool(data.get("opted_out"))
+    ts = int(data.get("ts") or 0) or int(time.time() * 1000)
+    if not user_id or not device_id:
+        raise HTTPException(status_code=400, detail="user_id/device_id mangler")
+    con = sqlite3.connect(DB_PATH); _ensure_user(con, user_id)
+    con.execute(
+        "INSERT INTO push_optout(user_id, device_id, opted_out, ts) VALUES (?,?,?,?) "
+        "ON CONFLICT(user_id, device_id) DO UPDATE SET opted_out=excluded.opted_out, ts=excluded.ts",
+        (user_id, device_id, int(opted_out), ts)
+    )
+    con.commit(); con.close()
+    return {"ok": True, "opted_out": opted_out, "ts": ts}
+
+@app.post("/api/unsubscribe")
+async def api_unsubscribe(req: Request):
+    data = await req.json()
+    endpoint = str(data.get("endpoint") or "").strip()
+    user_id = str(data.get("user_id") or "").strip()
+    device_id = str(data.get("device_id") or "").strip()
+    if not endpoint:
+        raise HTTPException(status_code=400, detail="endpoint mangler")
+    delete_subscription(endpoint)
+    # Hvis vi har user+device, marker opt-out på serveren
+    if user_id and device_id:
+        con = sqlite3.connect(DB_PATH); _ensure_user(con, user_id)
+        ts = int(time.time() * 1000)
+        con.execute(
+            """
+            INSERT INTO push_optout(user_id, device_id, opted_out, ts)
+            VALUES (?,?,?,?)
+            ON CONFLICT(user_id, device_id) DO UPDATE
+              SET opted_out=excluded.opted_out, ts=excluded.ts
+            """,
+            (user_id, device_id, 1, ts)
+        )
+        con.commit(); con.close()
+    total = subscriptions_count()
+    logger.info("[UNSUB] Slettede endpoint. total=%d user=%s device=%s", total, user_id or "-", device_id or "-")
+    return {"ok": True, "total": total}
 
 # ──────────────── Parallel baggrundsafsendelse (med L1-filter) ───────────────
 def _send_one_push(sub: Dict, payload: dict, ttl: int, headers: dict) -> str:

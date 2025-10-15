@@ -54,6 +54,45 @@ function getOrCreateUserId() {
   }
 }
 
+function getOrCreateDeviceId() {
+  try {
+    let id = localStorage.getItem('dofnot-device-id');
+    if (!id) {
+      id = (crypto?.randomUUID ? crypto.randomUUID()
+           : (Date.now() + '-' + Math.random().toString(16).slice(2)));
+      localStorage.setItem('dofnot-device-id', id);
+    }
+    return id;
+  } catch {
+    return Date.now() + '-' + Math.random().toString(16).slice(2);
+  }
+}
+
+// Lokal opt-out flag (bruges også som cache)
+const OPT_OUT_KEY = 'dofnot-push-optout';
+const isOptedOut = () => { try { return localStorage.getItem(OPT_OUT_KEY) === '1'; } catch { return false; } };
+const setOptOut  = (v)   => { try { localStorage.setItem(OPT_OUT_KEY, v ? '1' : '0'); } catch {} };
+
+// Server-sync helpers
+async function getServerOptOut(userId, deviceId) {
+  const url = abs(`api/push/optout?user_id=${encodeURIComponent(userId)}&device_id=${encodeURIComponent(deviceId)}`);
+  const r = await fetch(url, { cache: 'no-cache' });
+  if (!r.ok) return { opted_out: false };
+  return r.json();
+}
+async function setServerOptOut(userId, deviceId, opted) {
+  try {
+    await fetch(abs('api/push/optout'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user_id: userId, device_id: deviceId, opted_out: !!opted, ts: Date.now() })
+    });
+  } catch (e) {
+    console.warn('Kunne ikke sync’e opt-out til serveren:', e);
+  }
+}
+
+
 // Platform capabilities
 const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 const isStandalone = () =>
@@ -236,10 +275,12 @@ function updateSaveButtonLabel() {
 async function ensurePushSubscription({ forcePrompt = false } = {}) {
   await ensureSW();
   await navigator.serviceWorker.ready;
+
   if (isIOS && !isStandalone()) {
     throw new Error('På iOS virker push først, når appen er føjet til hjemmeskærm.');
   }
   if (!supportsPush()) throw new Error('Push understøttes ikke i denne browser/enhed.');
+
   const reg = await navigator.serviceWorker.getRegistration();
   if (!reg) throw new Error('Service worker ikke registreret');
 
@@ -270,31 +311,111 @@ async function ensurePushSubscription({ forcePrompt = false } = {}) {
       applicationServerKey: toKey(publicKey)
     });
   }
-  // Knyt subscription til user_id
+
+  // Server: gem subscription og ryd opt-out for denne enhed
   const user_id = getOrCreateUserId();
+  const device_id = getOrCreateDeviceId();
   const resp = await fetch(abs('api/subscribe'), {
     method: 'POST',
     headers: {'Content-Type':'application/json'},
-    body: JSON.stringify({ ...sub.toJSON(), user_id })
+    body: JSON.stringify({ ...sub.toJSON(), user_id, device_id })
   });
   if (!resp.ok) throw new Error(`Server afviste api/subscribe (HTTP ${resp.status})`);
+
+  setOptOut(false);
+  setServerOptOut(user_id, device_id, false);
   return true;
 }
 
+// Komplet, robust afmelding – paste 1:1
 async function unsubscribePush() {
-  await ensureSW();
-  await navigator.serviceWorker.ready;
-  const reg = await navigator.serviceWorker.getRegistration();
-  const sub = await reg?.pushManager.getSubscription();
-  if (sub) {
+  // --- små fallbacks, hvis helpers ikke findes globalt ---
+  const getDevId = () => {
     try {
-      await sub.unsubscribe();
-      return true;
-    } catch (e) {
-      console.warn('Unsubscribe fejlede:', e);
+      if (typeof getOrCreateDeviceId === 'function') return getOrCreateDeviceId();
+      // Fallback: lav et device-id og gem lokalt
+      let id = localStorage.getItem('dofnot-device-id');
+      if (!id) {
+        id = (crypto?.randomUUID ? crypto.randomUUID()
+             : (Date.now() + '-' + Math.random().toString(16).slice(2)));
+        localStorage.setItem('dofnot-device-id', id);
+      }
+      return id;
+    } catch {
+      return Date.now() + '-' + Math.random().toString(16).slice(2);
     }
+  };
+  const setLocalOptOut = (v) => {
+    try {
+      if (typeof setOptOut === 'function') setOptOut(!!v);
+      else localStorage.setItem('dofnot-push-optout', v ? '1' : '0');
+    } catch {}
+  };
+  const setServerOptOutSafe = async (user_id, device_id, opted) => {
+    try {
+      if (typeof setServerOptOut === 'function') {
+        await setServerOptOut(user_id, device_id, !!opted);
+      } else {
+        await fetch(abs('api/push/optout'), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ user_id, device_id, opted_out: !!opted, ts: Date.now() })
+        });
+      }
+    } catch (e) {
+      console.warn('Kunne ikke sync’e opt-out til serveren:', e);
+    }
+  };
+
+  try {
+    await ensureSW?.();
+    await navigator.serviceWorker?.ready;
+
+    const reg = await navigator.serviceWorker.getRegistration();
+    if (!reg) return false;
+
+    const sub = await reg.pushManager.getSubscription();
+
+    // Hvis der slet ikke er et subscription-objekt: marker stadig opt-out server-side
+    if (!sub) {
+      const user_id = getOrCreateUserId();
+      const device_id = getDevId();
+      setLocalOptOut(true);
+      await setServerOptOutSafe(user_id, device_id, true);
+      return false;
+    }
+
+    // 1) Afmeld i browseren (husk endpoint før unsubscribe())
+    const endpoint = sub.endpoint;
+    const ok = await sub.unsubscribe();
+
+    // 2) Fortæl serveren at endpoint er slettet + sæt opt-out for (user, device)
+    const user_id = getOrCreateUserId();
+    const device_id = getDevId();
+
+    try {
+      await fetch(abs('api/unsubscribe'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ endpoint, user_id, device_id })
+      });
+    } catch (e) {
+      console.warn('Server-unsubscribe fejlede:', e);
+      // fortsæt: vi prøver stadig at skrive opt-out
+    }
+
+    // 3) Persistér opt-out (lokalt + server)
+    setLocalOptOut(true);
+    await setServerOptOutSafe(user_id, device_id, true);
+
+    // 4) (valgfrit) opdatér UI-knapper
+    try { updateSaveButtonLabel?.(); } catch {}
+
+    return ok;
+  } catch (e) {
+    console.warn('Unsubscribe fejlede:', e);
+    return false;
   }
-  return false;
 }
 
 async function onSave() {
@@ -320,10 +441,17 @@ async function onSave() {
     console.warn('POST /api/prefs/user fejlede:', e);
   }
 
-  // Forsøg at sikre subscription (prompt hvis nødvendigt)
+  
   try {
-    await ensurePushSubscription({ forcePrompt: true });
-    setDiag('Abonnement + præferencer gemt.', '#2e7d32', 2000);
+    const hasActive = Object.values(prefs || {}).some(v =>
+      ['su','sub','alle'].includes(String(v).toLowerCase())
+    );
+    if (!isOptedOut() && hasActive) {
+      await ensurePushSubscription({ forcePrompt: true });
+      setDiag('Abonnement + præferencer gemt.', '#2e7d32', 2000);
+    } else {
+      setDiag('Præferencer gemt (ingen auto-abonnement).', '#607d8b', 2000);
+    }
   } catch {
     setDiag('Gemte præferencer (push ikke tilladt/understøttet).', '#607d8b', 2500);
   } finally {
@@ -381,17 +509,18 @@ async function initPrefsAndPush() {
   }
 
   // Valgfrit auto-subscribe
+  
   if (supportsPush()) {
     try {
       await navigator.serviceWorker.ready;
       const reg = await navigator.serviceWorker.getRegistration();
       const sub = await reg?.pushManager.getSubscription();
-      if (!sub && Notification.permission === 'granted') {
+      if (!sub && Notification.permission === 'granted' && !isOptedOut() && hasActive) {
         await ensurePushSubscription({ forcePrompt: false });
         updateSaveButtonLabel();
       }
     } catch (e) {
-      console.warn('[initPrefsAndPush] auto-subscribe failed:', e);
+      console.warn('[initPrefsAndPush] auto-subscribe skipped/failed:', e);
     }
   }
 }

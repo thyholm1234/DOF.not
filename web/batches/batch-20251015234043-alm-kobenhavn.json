@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T23:40:43.603551+02:00",
+"items": [
+{
+"obsid": "37845314",
+"art": "Knarand",
+"antal": "52",
+"adf": "Rastende",
+"lok": "Tueholms Sø",
+"dof_afdeling": "DOF København",
+"fornavn": "Jonas",
+"efternavn": "Hansen Tchikai",
+"lon": "12,346867874687137",
+"lat": "55,64259612915865",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T23:35:19.358253+02:00",
+"items": [
+{
+"obsid": "37845311",
+"art": "Enkeltbekkasin",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Gjesing (Esbjerg)",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jens Hasager",
+"efternavn": "Kirk",
+"lon": "8,441445299997552",
+"lat": "55,50596639999884",
+"tid_fra": "17:35",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

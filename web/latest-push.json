@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-15T23:08:27.782968+02:00",
+  "received_at": "2025-10-15T23:40:45.667803+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Duehøg, Nørreådalen omkring Skjern Hovedgård",
-      "body": "Thorkil, Brandt",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37845284&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-nordvestjylland",
+      "title": "52 Knarand, Tueholms Sø",
+      "body": "Jonas, Hansen Tchikai",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37845314&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-kobenhavn",
       "renotify": true,
       "regions": [
-        "DOF Nordvestjylland"
+        "DOF København"
       ],
       "categories": [
         "bemaerk"
