@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-15T20:55:56.246838+02:00",
+"items": [
+{
+"obsid": "37844784",
+"art": "Sortgrå Ryle",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Dueodde-Dammebæks udløb",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Hans",
+"efternavn": "Okkels Birk",
+"lon": "15,070667266845705",
+"lat": "54,98810423846448",
+"tid_fra": "13:45",
+"tid_til": "14:45",
+"kategori": "bemaerk"
+}
+]
+}

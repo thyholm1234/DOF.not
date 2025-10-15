@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-15T22:48:54.186767+02:00",
+"items": [
+{
+"obsid": "37845249",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nørreådalen, Øby-Løvskal",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Thorkil",
+"efternavn": "Brandt",
+"lon": "9,680368422850735",
+"lat": "56,452325442167385",
+"tid_fra": "13:35",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+}
+]
+}

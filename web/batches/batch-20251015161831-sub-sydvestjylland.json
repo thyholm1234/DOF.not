@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T16:18:31.671902+02:00",
+"items": [
+{
+"obsid": "37842589",
+"art": "Silkehejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Lars",
+"efternavn": "Grøn",
+"lon": "8,559212227716845",
+"lat": "55,279651469401784",
+"tid_fra": "07:45",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

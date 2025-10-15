@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-15T14:26:46.549870+02:00",
+"items": [
+{
+"obsid": "37841661",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Tisvilde Hegn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Henning Bach",
+"efternavn": "Christensen",
+"lon": "12,062083372295975",
+"lat": "56,03717067274178",
+"tid_fra": "10:30",
+"tid_til": "11:30",
+"kategori": "sub"
+}
+]
+}

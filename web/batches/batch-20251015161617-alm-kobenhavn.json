@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T16:16:17.789418+02:00",
+"items": [
+{
+"obsid": "37842567",
+"art": "Rødtoppet Fuglekonge",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,332345500572046",
+"lat": "55,696449291138585",
+"tid_fra": "07:20",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

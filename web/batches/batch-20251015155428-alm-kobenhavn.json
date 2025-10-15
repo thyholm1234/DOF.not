@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T15:54:28.502512+02:00",
+"items": [
+{
+"obsid": "37842429",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ganløse Ore",
+"dof_afdeling": "DOF København",
+"fornavn": "Stig",
+"efternavn": "Linander",
+"lon": "12,305502891540527",
+"lat": "55,80804638220087",
+"tid_fra": "14:45",
+"tid_til": "15:25",
+"kategori": "bemaerk"
+}
+]
+}

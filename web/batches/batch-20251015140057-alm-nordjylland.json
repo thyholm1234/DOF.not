@@ -1,0 +1,52 @@
+{
+"client": "alm-nordjylland",
+"count": 3,
+"generated": "2025-10-15T14:00:57.717352+02:00",
+"items": [
+{
+"obsid": "37841420",
+"art": "Sortgrå Ryle",
+"antal": "7",
+"adf": "Rastende",
+"lok": "Det Grå Fyr, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Jonas Morsing",
+"efternavn": "Thomasen",
+"lon": "10,63047622269132",
+"lat": "57,736405432633916",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37841422",
+"art": "Krage, Sortkrage (ssp. corone)",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Det Grå Fyr, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Jonas Morsing",
+"efternavn": "Thomasen",
+"lon": "10,63047622269132",
+"lat": "57,736405432633916",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37841417",
+"art": "Sortgrå Ryle",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Lønstrup Strand",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Jesper",
+"efternavn": "Brodersen",
+"lon": "9,796153",
+"lat": "57,477708",
+"tid_fra": "13:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-15T16:25:03.229029+02:00",
+"items": [
+{
+"obsid": "37842658",
+"art": "Vandrikse",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Sjælsø vest",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Christian",
+"efternavn": "Glahder",
+"lon": "12,417210662018885",
+"lat": "55,869167611634936",
+"tid_fra": "13:00",
+"tid_til": "13:55",
+"kategori": "bemaerk"
+}
+]
+}

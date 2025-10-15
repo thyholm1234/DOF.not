@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-15T18:48:09.734399+02:00",
+"items": [
+{
+"obsid": "37843952",
+"art": "Krikand",
+"antal": "185",
+"adf": "Rastende",
+"lok": "Lungholm Sø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,429301292464036",
+"lat": "54,62864551725377",
+"tid_fra": "11:25",
+"tid_til": "13:15",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37843949",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Lungholm Sø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,429301292464036",
+"lat": "54,62864551725377",
+"tid_fra": "12:43",
+"tid_til": "12:59",
+"kategori": "bemaerk"
+}
+]
+}

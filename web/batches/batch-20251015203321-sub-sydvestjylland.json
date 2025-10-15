@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T20:33:21.665067+02:00",
+"items": [
+{
+"obsid": "37844638",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Lysbjerge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Rune Sø",
+"efternavn": "Neergaard",
+"lon": "8,241676219160688",
+"lat": "55,52911694317601",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

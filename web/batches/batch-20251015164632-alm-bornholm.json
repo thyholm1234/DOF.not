@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-15T16:46:32.672372+02:00",
+"items": [
+{
+"obsid": "37842801",
+"art": "Stormmåge",
+"antal": "950",
+"adf": "Fouragerende",
+"lok": "Årsdalevang",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Sune",
+"efternavn": "Riis Sørensen",
+"lon": "15,134559587500389",
+"lat": "55,100531104872516",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

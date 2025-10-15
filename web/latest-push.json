@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-15T13:52:18.334261+02:00",
+  "received_at": "2025-10-15T23:08:27.782968+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Isfugl, Melsted",
-      "body": "Merete, Mortensen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37841361&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-bornholm",
+      "title": "1 Duehøg, Nørreådalen omkring Skjern Hovedgård",
+      "body": "Thorkil, Brandt",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37845284&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-nordvestjylland",
       "renotify": true,
       "regions": [
-        "DOF Bornholm"
+        "DOF Nordvestjylland"
       ],
       "categories": [
         "bemaerk"

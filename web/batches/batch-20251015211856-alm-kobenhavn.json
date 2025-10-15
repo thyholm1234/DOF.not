@@ -1,0 +1,52 @@
+{
+"client": "alm-kobenhavn",
+"count": 3,
+"generated": "2025-10-15T21:18:56.572872+02:00",
+"items": [
+{
+"obsid": "37845006",
+"art": "Stor Kobbersneppe, Islandsk (ssp. islandica)",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "13:45",
+"tid_til": "18:10",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37845014",
+"art": "Sortklire",
+"antal": "22",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "13:45",
+"tid_til": "18:10",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37845018",
+"art": "Spidsand",
+"antal": "46",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "13:45",
+"tid_til": "18:10",
+"kategori": "bemaerk"
+}
+]
+}

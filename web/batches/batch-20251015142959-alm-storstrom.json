@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T14:29:59.352659+02:00",
+"items": [
+{
+"obsid": "37841688",
+"art": "Ravn",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Saksfjed Inddæmning/Vildmark nord",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Benny",
+"efternavn": "Steinmejer",
+"lon": "11,460030861703196",
+"lat": "54,633071609838396",
+"tid_fra": "14:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

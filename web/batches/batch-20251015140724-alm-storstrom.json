@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T14:07:24.725515+02:00",
+"items": [
+{
+"obsid": "37841486",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Bøtø Nor ved Nørresø (reservatet ved tårnene)",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Poul",
+"efternavn": "Larsen",
+"lon": "11,940474562414336",
+"lat": "54,644877231710126",
+"tid_fra": "09:05",
+"tid_til": "10:55",
+"kategori": "bemaerk"
+}
+]
+}

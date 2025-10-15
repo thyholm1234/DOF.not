@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-15T16:31:28.625272+02:00",
+"items": [
+{
+"obsid": "37842700",
+"art": "Toppet Lappedykker",
+"antal": "224",
+"adf": "Rastende",
+"lok": "Sjælsø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Christian",
+"efternavn": "Glahder",
+"lon": "12,443424166010466",
+"lat": "55,86713754903079",
+"tid_fra": "13:55",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

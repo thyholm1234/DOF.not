@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T14:00:45.380902+02:00",
+"items": [
+{
+"obsid": "37841424",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Bøtøskoven",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Poul",
+"efternavn": "Larsen",
+"lon": "11,9586985999979",
+"lat": "54,63039279999967",
+"tid_fra": "07:30",
+"tid_til": "08:15",
+"kategori": "bemaerk"
+}
+]
+}

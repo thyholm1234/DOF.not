@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-15T18:16:57.315631+02:00",
+"items": [
+{
+"obsid": "37843667",
+"art": "Gransanger, Sibirisk (ssp. tristis)",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Fjand",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kurt",
+"efternavn": "Willumsen",
+"lon": "8,151729297696875",
+"lat": "56,32613233112554",
+"tid_fra": "11:00",
+"tid_til": "11:10",
+"kategori": "sub"
+}
+]
+}

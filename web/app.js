@@ -958,7 +958,7 @@ async function initAdvancedFilteringPage() {
     const key = normArtKey(name);
     const li = document.createElement('li');
     li.className = 'species-row';
-    li.dataset.key = key;
+    li.dataset.key = normArtKey(name);
 
     // --- navn ---
     const label = document.createElement('span');
@@ -1053,21 +1053,29 @@ async function initAdvancedFilteringPage() {
 
   // 4) Søg + “Vis kun filtrerede”
   let showActiveOnly = false;
+
   function refreshListVisibility() {
-    const q = (String($advSearch?.value ?? '')).trim().toLowerCase();
+    // VIGTIGT: brug samme normalisering som li.dataset.key (æ→ae, ø→oe, å→aa, mm.)
+    const q = normArtKey(String($advSearch?.value ?? ''));
     $advList.querySelectorAll('.species-row').forEach(li => {
       const hitText = li.dataset.key.includes(q);
       const hitAct  = (!showActiveOnly) || li.dataset.filtered === '1';
       li.style.display = (hitText && hitAct) ? '' : 'none';
     });
   }
-  if ($advSearch) $advSearch.addEventListener('input', refreshListVisibility);
-  if ($advShowActive) {
-    $advShowActive.addEventListener('click', () => {
-      showActiveOnly = !showActiveOnly;
-      $advShowActive.textContent = showActiveOnly ? 'Vis alle arter' : 'Vis kun filtrerede';
-      refreshListVisibility();
-    });
+
+  if ($advSearch) {
+    $advSearch.addEventListener('input',  refreshListVisibility);
+    $advSearch.addEventListener('search', refreshListVisibility); // Android søgeknap/clear
+    $advSearch.addEventListener('change', refreshListVisibility);
+    // Hjælp mobilen: undgå autokorrektion/autocap
+    try {
+      $advSearch.setAttribute('autocapitalize', 'none');
+      $advSearch.setAttribute('autocomplete',   'off');
+      $advSearch.setAttribute('autocorrect',    'off');
+      $advSearch.setAttribute('spellcheck',     'false');
+      $advSearch.setAttribute('enterkeyhint',   'search');
+    } catch {}
   }
 
   // 5) Nulstil (challenge + confirm) – rydder exclude + counts

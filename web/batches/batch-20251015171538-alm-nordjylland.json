@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-15T17:15:38.050607+02:00",
+"items": [
+{
+"obsid": "37843029",
+"art": "Ravn",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Anders",
+"efternavn": "Østerby",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:00",
+"tid_til": "10:30",
+"kategori": "bemaerk"
+}
+]
+}

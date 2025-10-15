@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T21:43:51.871959+02:00",
+"items": [
+{
+"obsid": "37845110",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Påø Enge (tørre)",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Mogens Lind",
+"efternavn": "Jørgensen",
+"lon": "10,777988907608556",
+"lat": "54,844362896612196",
+"tid_fra": "11:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

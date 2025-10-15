@@ -1,0 +1,37 @@
+{
+"client": "alm-fyn",
+"count": 2,
+"generated": "2025-10-15T16:17:24.769825+02:00",
+"items": [
+{
+"obsid": "37842582",
+"art": "Musvåge",
+"antal": "1447",
+"adf": "Trækkende",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,849797197639509",
+"lat": "55,29564339923891",
+"tid_fra": "12:30",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37842584",
+"art": "Rød Glente",
+"antal": "16",
+"adf": "Trækkende",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,849797197639509",
+"lat": "55,29564339923891",
+"tid_fra": "12:30",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

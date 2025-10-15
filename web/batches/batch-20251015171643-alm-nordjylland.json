@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-15T17:16:43.282821+02:00",
+"items": [
+{
+"obsid": "37843039",
+"art": "Træløber, Nordlig (ssp. familiaris)",
+"antal": "3",
+"adf": "Fouragerende",
+"lok": "Hulsig",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Anders",
+"efternavn": "Østerby",
+"lon": "10,468635741104347",
+"lat": "57,65759937723888",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37843049",
+"art": "Musvit",
+"antal": "20",
+"adf": "Fouragerende",
+"lok": "Hulsig",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Anders",
+"efternavn": "Østerby",
+"lon": "10,468635741104347",
+"lat": "57,65759937723888",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

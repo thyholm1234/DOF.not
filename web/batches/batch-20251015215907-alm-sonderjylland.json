@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-15T21:59:07.439958+02:00",
+"items": [
+{
+"obsid": "37845153",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Emmerlev Kyst",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Martin",
+"efternavn": "Iversen",
+"lon": "8,650188446044924",
+"lat": "54,998493600520156",
+"tid_fra": "17:30",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37845154",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Margrethekog Nord (nord for Vidåen)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Martin",
+"efternavn": "Iversen",
+"lon": "8,674169131128886",
+"lat": "54,966974950105055",
+"tid_fra": "18:15",
+"tid_til": "18:40",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-15T16:00:59.817549+02:00",
+"items": [
+{
+"obsid": "37842483",
+"art": "Sortstrubet Lom",
+"antal": "13",
+"adf": "Rastende",
+"lok": "Havet ud for Nordfelt",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Thomas",
+"efternavn": "Hellesen",
+"lon": "12,393703835405661",
+"lat": "55,03014272291074",
+"tid_fra": "12:40",
+"tid_til": "13:50",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37842485",
+"art": "Alk",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Havet ud for Nordfelt",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Thomas",
+"efternavn": "Hellesen",
+"lon": "12,393703835405661",
+"lat": "55,03014272291074",
+"tid_fra": "12:40",
+"tid_til": "13:50",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37842487",
+"art": "Nordisk Lappedykker",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Havet ud for Nordfelt",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Thomas",
+"efternavn": "Hellesen",
+"lon": "12,393703835405661",
+"lat": "55,03014272291074",
+"tid_fra": "12:40",
+"tid_til": "13:50",
+"kategori": "bemaerk"
+}
+]
+}

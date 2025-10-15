@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T18:32:01.538706+02:00",
+"items": [
+{
+"obsid": "37843800",
+"art": "Taffeland",
+"antal": "615",
+"adf": "Rastende",
+"lok": "Rørsø ved Nysted",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,724118688241981",
+"lat": "54,66866671286857",
+"tid_fra": "14:15",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

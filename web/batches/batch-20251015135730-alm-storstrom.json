@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T13:57:30.711058+02:00",
+"items": [
+{
+"obsid": "37841393",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "10:45",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

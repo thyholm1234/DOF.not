@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-15T23:08:25.732420+02:00",
+"items": [
+{
+"obsid": "37845284",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nørreådalen omkring Skjern Hovedgård",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Thorkil",
+"efternavn": "Brandt",
+"lon": "9,760792043307257",
+"lat": "56,45044634410138",
+"tid_fra": "16:35",
+"tid_til": "18:05",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T17:15:35.954638+02:00",
+"items": [
+{
+"obsid": "37843026",
+"art": "Sangdrossel",
+"antal": "28",
+"adf": "Rastende",
+"lok": "Gl. Havdrup Mose",
+"dof_afdeling": "DOF København",
+"fornavn": "Mikael",
+"efternavn": "Blicher",
+"lon": "12,15637612386356",
+"lat": "55,560310278929194",
+"tid_fra": "14:00",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+}
+]
+}

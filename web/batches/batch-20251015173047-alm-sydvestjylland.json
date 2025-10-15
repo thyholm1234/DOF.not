@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T17:30:47.336209+02:00",
+"items": [
+{
+"obsid": "37843192",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jakob",
+"efternavn": "Engelhard",
+"lon": "8,559212227716845",
+"lat": "55,279651469401784",
+"tid_fra": "07:45",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+}
+]
+}

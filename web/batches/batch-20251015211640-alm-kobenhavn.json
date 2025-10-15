@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T21:16:40.065490+02:00",
+"items": [
+{
+"obsid": "37844985",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "13:45",
+"tid_til": "18:10",
+"kategori": "bemaerk"
+}
+]
+}

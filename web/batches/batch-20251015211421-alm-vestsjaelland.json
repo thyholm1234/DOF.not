@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-15T21:14:21.580968+02:00",
+"items": [
+{
+"obsid": "37844922",
+"art": "Rød Glente",
+"antal": "15",
+"adf": "Trækkende mod nordvest",
+"lok": "Klarskov, Korsør",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Bech",
+"lon": "11,19638548430471",
+"lat": "55,30465003356758",
+"tid_fra": "08:00",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

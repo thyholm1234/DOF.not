@@ -1,0 +1,22 @@
+{
+"client": "sub-nordjylland",
+"count": 1,
+"generated": "2025-10-15T14:00:59.797073+02:00",
+"items": [
+{
+"obsid": "37841414",
+"art": "Lapværling",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ågårde",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "René",
+"efternavn": "Rørbæk",
+"lon": "10,163242220005488",
+"lat": "57,54294842641792",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

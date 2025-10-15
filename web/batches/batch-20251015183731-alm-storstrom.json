@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T18:37:31.048119+02:00",
+"items": [
+{
+"obsid": "37843863",
+"art": "Blishøne",
+"antal": "780",
+"adf": "Fouragerende",
+"lok": "Nysted Nor",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,727639235786775",
+"lat": "54,66102661845744",
+"tid_fra": "15:05",
+"tid_til": "15:45",
+"kategori": "bemaerk"
+}
+]
+}

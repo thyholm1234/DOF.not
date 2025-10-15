@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-15T17:31:52.671425+02:00",
+"items": [
+{
+"obsid": "37843206",
+"art": "Vandrikse",
+"antal": "13",
+"adf": "Rastende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jakob",
+"efternavn": "Engelhard",
+"lon": "8,559212227716845",
+"lat": "55,279651469401784",
+"tid_fra": "07:45",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37843210",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Grønningen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Carsten",
+"efternavn": "Svejstrup Sørensen",
+"lon": "8,191267717549584",
+"lat": "55,533595316612576",
+"tid_fra": "14:47",
+"tid_til": "15:06",
+"kategori": "bemaerk"
+}
+]
+}

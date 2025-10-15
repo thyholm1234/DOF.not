@@ -1,0 +1,37 @@
+{
+"client": "alm-vestsjaelland",
+"count": 2,
+"generated": "2025-10-15T17:08:02.372361+02:00",
+"items": [
+{
+"obsid": "37842985",
+"art": "Rød Glente",
+"antal": "14",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø agerland, nord",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,16884842514992",
+"lat": "55,16308308331443",
+"tid_fra": "12:00",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37842988",
+"art": "Blå Kærhøg",
+"antal": "4",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø agerland, nord",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,172828264258941",
+"lat": "55,16908710069973",
+"tid_fra": "12:00",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

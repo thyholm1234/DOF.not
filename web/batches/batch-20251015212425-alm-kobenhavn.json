@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-15T21:24:25.539929+02:00",
+"items": [
+{
+"obsid": "37845054",
+"art": "Klyde",
+"antal": "35",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "13:45",
+"tid_til": "18:10",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37845056",
+"art": "Bjergvipstjert",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "13:45",
+"tid_til": "18:10",
+"kategori": "bemaerk"
+}
+]
+}

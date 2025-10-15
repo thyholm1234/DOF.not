@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T14:03:06.078713+02:00",
+"items": [
+{
+"obsid": "37840400",
+"art": "Engpiber",
+"antal": "125",
+"adf": "Trækkende",
+"lok": "Ristinge Klint",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Holger",
+"efternavn": "Daugaard",
+"lon": "10,612802901472659",
+"lat": "54,8275705431139",
+"tid_fra": "11:13",
+"tid_til": "13:55",
+"kategori": "bemaerk"
+}
+]
+}

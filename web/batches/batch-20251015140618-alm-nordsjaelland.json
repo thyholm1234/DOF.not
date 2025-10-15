@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-15T14:06:18.477798+02:00",
+"items": [
+{
+"obsid": "37841470",
+"art": "Blisgås",
+"antal": "22",
+"adf": "Fouragerende",
+"lok": "Holløse Bredning",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Peter",
+"efternavn": "Rand",
+"lon": "12,124094737131472",
+"lat": "56,039093841963776",
+"tid_fra": "10:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

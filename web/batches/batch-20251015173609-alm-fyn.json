@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T17:36:09.644007+02:00",
+"items": [
+{
+"obsid": "37843230",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Gulstav Mose",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Holger",
+"efternavn": "Daugaard",
+"lon": "10,68963208944188",
+"lat": "54,727243235912006",
+"tid_fra": "14:30",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

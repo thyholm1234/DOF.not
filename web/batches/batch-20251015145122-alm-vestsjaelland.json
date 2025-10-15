@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-15T14:51:22.736807+02:00",
+"items": [
+{
+"obsid": "37841841",
+"art": "Hjejle",
+"antal": "700",
+"adf": "Rastende",
+"lok": "Korevlerne",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Niels",
+"efternavn": "Klausen",
+"lon": "11,527393414148873",
+"lat": "55,88493896058901",
+"tid_fra": "14:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

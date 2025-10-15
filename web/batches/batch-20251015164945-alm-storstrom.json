@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T16:49:45.631814+02:00",
+"items": [
+{
+"obsid": "37842816",
+"art": "Skægmejse",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Mose vest for Rødbyhavn",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Kirsten",
+"efternavn": "Pedersen",
+"lon": "11,33827420000439",
+"lat": "54,66139789999917",
+"tid_fra": "16:48",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

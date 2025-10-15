@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-15T22:26:02.958240+02:00",
+"items": [
+{
+"obsid": "37845212",
+"art": "Rød Glente",
+"antal": "52",
+"adf": "Rastende på overnatningsplads",
+"lok": "Tindbæk Hestehave",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Thorkil",
+"efternavn": "Brandt",
+"lon": "9,724362781170846",
+"lat": "56,46715663627015",
+"tid_fra": "18:15",
+"tid_til": "18:50",
+"kategori": "bemaerk"
+}
+]
+}

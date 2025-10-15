@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-15T15:53:23.668486+02:00",
+"items": [
+{
+"obsid": "37842423",
+"art": "Havørn",
+"antal": "3",
+"adf": "Overflyvende",
+"lok": "Rudbøl Sø",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Gert",
+"efternavn": "Lystrup Jørgensen",
+"lon": "8,758585607372487",
+"lat": "54,89554899846547",
+"tid_fra": "15:52",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

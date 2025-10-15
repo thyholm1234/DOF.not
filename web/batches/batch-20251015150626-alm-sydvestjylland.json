@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-15T15:06:26.951923+02:00",
+"items": [
+{
+"obsid": "37841998",
+"art": "Dværgfalk",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Mandø, nordøstlige forlandsknold",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "8,57406578982189",
+"lat": "55,29210497698543",
+"tid_fra": "14:49",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

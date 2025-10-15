@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-15T18:32:03.618126+02:00",
+"items": [
+{
+"obsid": "37843797",
+"art": "Stor Korsnæb",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Husby Klitplantage",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kurt",
+"efternavn": "Willumsen",
+"lon": "8,133240509268946",
+"lat": "56,30389247215281",
+"tid_fra": "13:30",
+"tid_til": "14:30",
+"kategori": "sub"
+}
+]
+}

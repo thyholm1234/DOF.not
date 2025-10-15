@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T16:19:36.537440+02:00",
+"items": [
+{
+"obsid": "37842107",
+"art": "Fuglekonge",
+"antal": "21",
+"adf": "Rastende",
+"lok": "Vestre Kirkegård",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Speiermann",
+"lon": "12,529926692777162",
+"lat": "55,65939808586788",
+"tid_fra": "15:09",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

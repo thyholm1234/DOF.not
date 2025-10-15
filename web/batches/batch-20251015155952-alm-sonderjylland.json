@@ -1,0 +1,52 @@
+{
+"client": "alm-sonderjylland",
+"count": 3,
+"generated": "2025-10-15T15:59:52.897700+02:00",
+"items": [
+{
+"obsid": "37842473",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Rickelsbüller Kog (Tyskland)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Timme",
+"efternavn": "Nyegaard",
+"lon": "8,649426355085156",
+"lat": "54,89708042316866",
+"tid_fra": "10:00",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37842474",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Rickelsbüller Kog (Tyskland)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Timme",
+"efternavn": "Nyegaard",
+"lon": "8,649426355085156",
+"lat": "54,89708042316866",
+"tid_fra": "10:00",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37842475",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Rickelsbüller Kog (Tyskland)",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Timme",
+"efternavn": "Nyegaard",
+"lon": "8,649426355085156",
+"lat": "54,89708042316866",
+"tid_fra": "10:00",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

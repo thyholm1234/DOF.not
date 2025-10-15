@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-15T14:40:45.109126+02:00",
+"items": [
+{
+"obsid": "37841735",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Lønstrup",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Jesper",
+"efternavn": "Brodersen",
+"lon": "9,797558394639776",
+"lat": "57,466866552665294",
+"tid_fra": "14:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

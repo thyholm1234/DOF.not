@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-15T16:26:10.219066+02:00",
+"items": [
+{
+"obsid": "37842666",
+"art": "Sule",
+"antal": "3",
+"adf": "Overflyvende",
+"lok": "Hornbæk Strand",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Anne",
+"efternavn": "Eiby",
+"lon": "12,446968262063983",
+"lat": "56,092731887379244",
+"tid_fra": "16:19",
+"tid_til": "16:24",
+"kategori": "bemaerk"
+}
+]
+}

@@ -241,7 +241,7 @@ select { padding: 4px 6px; }
 /* Mobil (≤ 640px): navn øverst, tools + knap på samme linje */
 @media (max-width: 640px) {
   #adv-list .species-row {
-    display: grid !important;
+    display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
       "name  name"

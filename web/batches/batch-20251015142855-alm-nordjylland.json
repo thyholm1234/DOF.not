@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-15T14:28:55.062411+02:00",
+"items": [
+{
+"obsid": "37841651",
+"art": "Sandløber",
+"antal": "34",
+"adf": "Fouragerende",
+"lok": "Gjøl Bredning",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Lars",
+"efternavn": "Askholm",
+"lon": "9,670874276628028",
+"lat": "57,05448941095847",
+"tid_fra": "14:23",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

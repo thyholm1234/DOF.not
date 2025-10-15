@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T18:58:00.198365+02:00",
+"items": [
+{
+"obsid": "37844024",
+"art": "Ederfugl",
+"antal": "2600",
+"adf": "Trækkende mod vest",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:30",
+"tid_til": "13:20",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-15T16:12:00.440546+02:00",
+"items": [
+{
+"obsid": "37842543",
+"art": "Fuglekonge",
+"antal": "22",
+"adf": "Rastende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:20",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

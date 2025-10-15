@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T15:56:40.519395+02:00",
+"items": [
+{
+"obsid": "37842461",
+"art": "Musvåge",
+"antal": "118",
+"adf": "Trækkende",
+"lok": "Østerø Sø (Knudshoved)",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,84719604250495",
+"lat": "55,291913165031936",
+"tid_fra": "11:45",
+"tid_til": "12:10",
+"kategori": "bemaerk"
+}
+]
+}

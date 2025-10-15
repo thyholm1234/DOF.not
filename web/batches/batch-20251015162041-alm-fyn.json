@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-15T16:20:41.469596+02:00",
+"items": [
+{
+"obsid": "37842615",
+"art": "Sule",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,849797197639509",
+"lat": "55,29564339923891",
+"tid_fra": "12:30",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

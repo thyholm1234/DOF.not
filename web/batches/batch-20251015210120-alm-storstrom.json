@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T21:01:20.532730+02:00",
+"items": [
+{
+"obsid": "37844809",
+"art": "Storspove",
+"antal": "22",
+"adf": "Fouragerende",
+"lok": "Vester Kippinge Mader",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Leif H.",
+"efternavn": "Jacobsen",
+"lon": "11,7578403446945",
+"lat": "54,91415116653974",
+"tid_fra": "16:30",
+"tid_til": "16:50",
+"kategori": "bemaerk"
+}
+]
+}

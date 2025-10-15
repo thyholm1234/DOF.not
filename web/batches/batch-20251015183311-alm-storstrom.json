@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-15T18:33:11.138026+02:00",
+"items": [
+{
+"obsid": "37843805",
+"art": "Skeand",
+"antal": "20",
+"adf": "Fouragerende",
+"lok": "Rørsø ved Nysted",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,724118688241981",
+"lat": "54,66866671286857",
+"tid_fra": "14:15",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37843809",
+"art": "Knarand",
+"antal": "42",
+"adf": "Fouragerende",
+"lok": "Rørsø ved Nysted",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,724118688241981",
+"lat": "54,66866671286857",
+"tid_fra": "14:15",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

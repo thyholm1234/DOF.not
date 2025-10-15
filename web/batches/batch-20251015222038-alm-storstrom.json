@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-15T22:20:38.093226+02:00",
+"items": [
+{
+"obsid": "37845203",
+"art": "Kernebider",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Møns Klint",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Juan Bosco",
+"efternavn": "Darimont",
+"lon": "12,549958952223454",
+"lat": "54,970973537402585",
+"tid_fra": "12:00",
+"tid_til": "17:14",
+"kategori": "bemaerk"
+}
+]
+}

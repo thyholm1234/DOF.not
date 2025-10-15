@@ -1,0 +1,22 @@
+{
+"client": "sub-nordjylland",
+"count": 1,
+"generated": "2025-10-15T17:57:30.929318+02:00",
+"items": [
+{
+"obsid": "37843366",
+"art": "Islom",
+"antal": "1",
+"adf": "Trækkende mod sydøst til rast",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "09:18",
+"tid_til": "09:53",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-15T16:23:56.244863+02:00",
+"items": [
+{
+"obsid": "37842652",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Nordre Skanse, Frederikshavn",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Herluf",
+"efternavn": "Johansen",
+"lon": "10,545570836038506",
+"lat": "57,45088767353208",
+"tid_fra": "09:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

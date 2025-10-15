@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-15T19:47:39.180540+02:00",
+"items": [
+{
+"obsid": "37844207",
+"art": "Sortgrå Ryle",
+"antal": "21",
+"adf": "Trækkende mod nord",
+"lok": "Havet vest for Fjaltring",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "8,100187968650728",
+"lat": "56,46772720295107",
+"tid_fra": "09:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "su-sonderjylland",
+"count": 1,
+"generated": "2025-10-15T21:19:00.749751+02:00",
+"items": [
+{
+"obsid": "37845004",
+"art": "Korttået Lærke",
+"antal": "0",
+"adf": "Trækkende",
+"lok": "Landsende, Rømø",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Rasmus",
+"efternavn": "Strack",
+"lon": "8,551214106501456",
+"lat": "55,07305537185306",
+"tid_fra": "07:51",
+"tid_til": "11:15",
+"kategori": "su"
+}
+]
+}
