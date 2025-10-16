@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T18:11:17.737342+02:00",
+"items": [
+{
+"obsid": "37850710",
+"art": "Hjejle",
+"antal": "2000",
+"adf": "Rastende",
+"lok": "Stensnæs",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Ole Garsdal",
+"efternavn": "Hansen",
+"lon": "10,543792265100102",
+"lat": "57,226084818746244",
+"tid_fra": "18:10",
+"tid_til": "13:40",
+"kategori": "bemaerk"
+}
+]
+}

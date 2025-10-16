@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T17:07:58.873771+02:00",
+"items": [
+{
+"obsid": "37849901",
+"art": "Steppehøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Søborg Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Henrik",
+"efternavn": "Boeg",
+"lon": "12,320726498778571",
+"lat": "56,0788964307725",
+"tid_fra": "08:10",
+"tid_til": "12:20",
+"kategori": "sub"
+}
+]
+}

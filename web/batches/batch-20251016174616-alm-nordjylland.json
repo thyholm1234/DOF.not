@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T17:46:16.877391+02:00",
+"items": [
+{
+"obsid": "37850447",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Græsdal",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Hans",
+"efternavn": "Ullemose",
+"lon": "10,174275788804062",
+"lat": "57,394229939499155",
+"tid_fra": "14:15",
+"tid_til": "14:20",
+"kategori": "bemaerk"
+}
+]
+}

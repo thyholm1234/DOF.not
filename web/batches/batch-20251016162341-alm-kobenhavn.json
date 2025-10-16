@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T16:23:41.493505+02:00",
+"items": [
+{
+"obsid": "37849537",
+"art": "Rørspurv",
+"antal": "25",
+"adf": "Trækkende mod nordvest",
+"lok": "Kongelundsområdet (alle lok.nr. 155031-155055)",
+"dof_afdeling": "DOF København",
+"fornavn": "Stig",
+"efternavn": "Kjærgaard Rasmussen",
+"lon": "12,567581616062647",
+"lat": "55,56836979977541",
+"tid_fra": "07:25",
+"tid_til": "11:20",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T17:01:08.533357+02:00",
+"items": [
+{
+"obsid": "37849784",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Ganløse Ore",
+"dof_afdeling": "DOF København",
+"fornavn": "Kurt E.",
+"efternavn": "Nielsen",
+"lon": "12,301340103149416",
+"lat": "55,811507020260024",
+"tid_fra": "10:00",
+"tid_til": "13:15",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-16T19:38:23.286720+02:00",
+"items": [
+{
+"obsid": "37851356",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Mellempoldene, Randers Fjord",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,344834923744203",
+"lat": "56,61128646793596",
+"tid_fra": "08:20",
+"tid_til": "12:30",
+"kategori": "bemaerk"
+}
+]
+}

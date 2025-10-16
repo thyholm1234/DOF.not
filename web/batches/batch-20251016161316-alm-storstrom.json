@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T16:13:16.293833+02:00",
+"items": [
+{
+"obsid": "37849476",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Nørre Alslev",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Jakob",
+"efternavn": "Futtrup",
+"lon": "11,87819359735068",
+"lat": "54,89413609328582",
+"tid_fra": "16:07",
+"tid_til": "16:12",
+"kategori": "bemaerk"
+}
+]
+}

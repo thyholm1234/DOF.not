@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T14:28:01.268484+02:00",
+"items": [
+{
+"obsid": "37848391",
+"art": "Hjejle",
+"antal": "500",
+"adf": "Overflyvende",
+"lok": "Blanke Fed og Aulby Mølleå ved udløbet",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Michael",
+"efternavn": "Brunhøj Hansen",
+"lon": "9,86378353166477",
+"lat": "55,51204690493162",
+"tid_fra": "07:35",
+"tid_til": "12:30",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T14:54:06.626083+02:00",
+"items": [
+{
+"obsid": "37848156",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Vesteregn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Hans",
+"efternavn": "Knakkergaard",
+"lon": "10,66920636619338",
+"lat": "54,781903966672786",
+"tid_fra": "14:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

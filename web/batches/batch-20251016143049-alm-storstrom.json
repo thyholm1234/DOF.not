@@ -1,0 +1,52 @@
+{
+"client": "alm-storstrom",
+"count": 3,
+"generated": "2025-10-16T14:30:49.470320+02:00",
+"items": [
+{
+"obsid": "37848409",
+"art": "Bjergirisk",
+"antal": "210",
+"adf": "Rastende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "10:15",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37848411",
+"art": "Sanglærke",
+"antal": "55",
+"adf": "Rastende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "10:15",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37848412",
+"art": "Vibe",
+"antal": "700",
+"adf": "Rastende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "10:15",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

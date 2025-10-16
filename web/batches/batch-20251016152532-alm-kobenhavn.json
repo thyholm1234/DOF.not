@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T15:25:32.681979+02:00",
+"items": [
+{
+"obsid": "37848745",
+"art": "Pibeand",
+"antal": "420",
+"adf": "Rastende",
+"lok": "Lille Vejlesø",
+"dof_afdeling": "DOF København",
+"fornavn": "Leif Sturla",
+"efternavn": "Nielsen",
+"lon": "12,364366413174142",
+"lat": "55,599658781873785",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

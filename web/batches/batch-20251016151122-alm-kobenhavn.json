@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T15:11:22.421949+02:00",
+"items": [
+{
+"obsid": "37848632",
+"art": "Stillits",
+"antal": "39",
+"adf": "Trækkende",
+"lok": "Kongelundsområdet (alle lok.nr. 155031-155055)",
+"dof_afdeling": "DOF København",
+"fornavn": "Ole",
+"efternavn": "Søgaard",
+"lon": "12,567581616062647",
+"lat": "55,56836979977541",
+"tid_fra": "07:20",
+"tid_til": "11:10",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-16T17:21:18.971325+02:00",
+"items": [
+{
+"obsid": "37850036",
+"art": "Rød Glente",
+"antal": "5",
+"adf": "Trækkende",
+"lok": "Ølene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Steen E.",
+"efternavn": "Jensen",
+"lon": "15,007815685238015",
+"lat": "55,099511151397905",
+"tid_fra": "13:30",
+"tid_til": "15:40",
+"kategori": "bemaerk"
+}
+]
+}

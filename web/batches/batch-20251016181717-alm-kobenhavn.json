@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T18:17:17.269998+02:00",
+"items": [
+{
+"obsid": "37850776",
+"art": "Krikand",
+"antal": "175",
+"adf": "Overflyvende",
+"lok": "Sydvestpynten, del 3 af Kongelundsstranden",
+"dof_afdeling": "DOF København",
+"fornavn": "Steffen",
+"efternavn": "S. Nielsen",
+"lon": "12,559800983966436",
+"lat": "55,56111981929746",
+"tid_fra": "07:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

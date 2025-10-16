@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T17:04:29.782049+02:00",
+"items": [
+{
+"obsid": "37849846",
+"art": "Lille Korsnæb",
+"antal": "10",
+"adf": "Overflyvende",
+"lok": "Ganløse Ore",
+"dof_afdeling": "DOF København",
+"fornavn": "Kurt E.",
+"efternavn": "Nielsen",
+"lon": "12,307648658752441",
+"lat": "55,80157042460162",
+"tid_fra": "10:00",
+"tid_til": "13:15",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T14:26:22.039397+02:00",
+"items": [
+{
+"obsid": "37848360",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Filsø, Petersholm",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Erik Vikkelsø",
+"efternavn": "Rasmussen",
+"lon": "8,202781082692262",
+"lat": "55,68880215015997",
+"tid_fra": "08:50",
+"tid_til": "10:40",
+"kategori": "bemaerk"
+}
+]
+}

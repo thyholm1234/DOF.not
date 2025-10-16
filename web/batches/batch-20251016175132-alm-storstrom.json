@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T17:51:32.715231+02:00",
+"items": [
+{
+"obsid": "37850533",
+"art": "Blisgås",
+"antal": "40",
+"adf": "Rastende",
+"lok": "Nakskov Indrefjord",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Svend",
+"efternavn": "Erik Jessen",
+"lon": "11,149743361492252",
+"lat": "54,81442903289761",
+"tid_fra": "14:50",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T19:28:36.184799+02:00",
+"items": [
+{
+"obsid": "37851290",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sloen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kristoffer",
+"efternavn": "Hansen",
+"lon": "8,461271412670614",
+"lat": "55,373004124059506",
+"tid_fra": "15:30",
+"tid_til": "16:30",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T18:59:50.734266+02:00",
+"items": [
+{
+"obsid": "37851053",
+"art": "Lille Korsnæb",
+"antal": "29",
+"adf": "Trækkende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Tim Hesselballe",
+"efternavn": "Hansen",
+"lon": "8,559212227716845",
+"lat": "55,279651469401784",
+"tid_fra": "07:30",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+}
+]
+}

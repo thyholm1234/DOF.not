@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-16T17:46:32.676589+02:00",
+"items": [
+{
+"obsid": "37850453",
+"art": "Toppet Skallesluger",
+"antal": "30",
+"adf": "Fouragerende",
+"lok": "Balka-Snogebæk Havn incl havn",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Hans",
+"efternavn": "Okkels Birk",
+"lon": "15,117187500000002",
+"lat": "55,03367926152292",
+"tid_fra": "09:00",
+"tid_til": "09:40",
+"kategori": "bemaerk"
+}
+]
+}

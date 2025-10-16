@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-16T17:28:54.894623+02:00",
+"items": [
+{
+"obsid": "37850140",
+"art": "Rødtoppet Fuglekonge",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Vejers Strand",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Ole Zoltan",
+"efternavn": "Gøller",
+"lon": "8,117326164840852",
+"lat": "55,62676344885534",
+"tid_fra": "12:40",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37850142",
+"art": "Rødtoppet Fuglekonge",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Vejers Sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Michael Mosebo",
+"efternavn": "Jensen",
+"lon": "8,128134772663488",
+"lat": "55,62564561837743",
+"tid_fra": "12:40",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T17:40:23.233538+02:00",
+"items": [
+{
+"obsid": "37850320",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Kagsmosen",
+"dof_afdeling": "DOF København",
+"fornavn": "Jørgen",
+"efternavn": "Eng Jensen",
+"lon": "12,455513630931746",
+"lat": "55,712121527440274",
+"tid_fra": "10:00",
+"tid_til": "11:10",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T14:30:12.896229+02:00",
+"items": [
+{
+"obsid": "37848404",
+"art": "Sule",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Øresund fra Helsingør til Ålsgårde",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Christian",
+"efternavn": "Glahder",
+"lon": "12,61917649999601",
+"lat": "56,04744120000231",
+"tid_fra": "12:20",
+"tid_til": "12:35",
+"kategori": "bemaerk"
+}
+]
+}

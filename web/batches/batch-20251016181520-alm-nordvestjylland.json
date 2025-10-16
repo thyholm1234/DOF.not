@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-16T18:15:20.745807+02:00",
+"items": [
+{
+"obsid": "37850750",
+"art": "Sule",
+"antal": "112",
+"adf": "Trækkende mod vest",
+"lok": "Roshage og havet ud for",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Niels",
+"efternavn": "Kristian Bech Jensen",
+"lon": "8,619291822532995",
+"lat": "57,12588227663005",
+"tid_fra": "16:52",
+"tid_til": "17:52",
+"kategori": "bemaerk"
+}
+]
+}

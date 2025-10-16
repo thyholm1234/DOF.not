@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T19:06:34.866911+02:00",
+"items": [
+{
+"obsid": "37851101",
+"art": "Bjergirisk",
+"antal": "45",
+"adf": "Rastende",
+"lok": "Kofoeds Enge, del 1 af Kongelundsstranden",
+"dof_afdeling": "DOF København",
+"fornavn": "Mogens",
+"efternavn": "Kristensen",
+"lon": "12,575151395541473",
+"lat": "55,55542956811044",
+"tid_fra": "14:10",
+"tid_til": "16:45",
+"kategori": "bemaerk"
+}
+]
+}

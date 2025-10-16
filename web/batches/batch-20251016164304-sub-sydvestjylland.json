@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T16:43:04.940789+02:00",
+"items": [
+{
+"obsid": "37849655",
+"art": "Søkonge",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Sverre",
+"efternavn": "Porsgaard",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "16:30",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

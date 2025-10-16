@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T16:54:00.375737+02:00",
+"items": [
+{
+"obsid": "37849724",
+"art": "Havørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Vejrholm",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Tom Bak",
+"efternavn": "Andersen",
+"lon": "10,143757897832849",
+"lat": "56,997847825345076",
+"tid_fra": "12:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T18:39:52.248203+02:00",
+"items": [
+{
+"obsid": "37850952",
+"art": "Hedelærke",
+"antal": "3",
+"adf": "Overflyvende",
+"lok": "Klarskov, Korsør",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Bech",
+"lon": "11,19638548430471",
+"lat": "55,30465003356758",
+"tid_fra": "08:30",
+"tid_til": "15:30",
+"kategori": "bemaerk"
+}
+]
+}

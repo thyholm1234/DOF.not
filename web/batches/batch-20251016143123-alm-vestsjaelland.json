@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T14:31:23.994473+02:00",
+"items": [
+{
+"obsid": "37848426",
+"art": "Silkehale",
+"antal": "1",
+"adf": "Trækkende mod nordøst",
+"lok": "Klintebjerg ved Klint",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "11,586197446727216",
+"lat": "55,961170093053084",
+"tid_fra": "12:00",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

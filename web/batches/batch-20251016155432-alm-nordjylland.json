@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T15:54:32.931523+02:00",
+"items": [
+{
+"obsid": "37849209",
+"art": "Bjerglærke",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:53",
+"tid_til": "09:53",
+"kategori": "bemaerk"
+}
+]
+}

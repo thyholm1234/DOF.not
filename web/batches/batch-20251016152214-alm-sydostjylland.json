@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-16T15:22:14.320910+02:00",
+"items": [
+{
+"obsid": "37848729",
+"art": "Bomlærke",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Stourup",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Kirsten",
+"efternavn": "Friis",
+"lon": "9,978802382979653",
+"lat": "55,79162991545809",
+"tid_fra": "07:30",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+}
+]
+}

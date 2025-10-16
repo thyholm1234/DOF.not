@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T18:29:22.171803+02:00",
+"items": [
+{
+"obsid": "37850891",
+"art": "Stor Kobbersneppe, Islandsk (ssp. islandica)",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Vallensbæk og Ishøj Strandenge",
+"dof_afdeling": "DOF København",
+"fornavn": "Torben",
+"efternavn": "Lindholm Sørensen",
+"lon": "12,377305978750083",
+"lat": "55,61273555294781",
+"tid_fra": "15:45",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+}
+]
+}

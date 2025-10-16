@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T16:17:48.886857+02:00",
+"items": [
+{
+"obsid": "37849507",
+"art": "Musvåge",
+"antal": "4447",
+"adf": "Trækkende mod vest",
+"lok": "Korsør Nor",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Kim",
+"efternavn": "Vøttrup",
+"lon": "11,177353317202591",
+"lat": "55,338245533340825",
+"tid_fra": "08:30",
+"tid_til": "16:09",
+"kategori": "bemaerk"
+}
+]
+}

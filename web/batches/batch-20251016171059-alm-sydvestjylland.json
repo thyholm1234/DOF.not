@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T17:10:59.788818+02:00",
+"items": [
+{
+"obsid": "37849916",
+"art": "Lille Korsnæb",
+"antal": "10",
+"adf": "Overflyvende",
+"lok": "Ho By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Freddy",
+"efternavn": "Hansen",
+"lon": "8,21450999375884",
+"lat": "55,55575534829281",
+"tid_fra": "10:30",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

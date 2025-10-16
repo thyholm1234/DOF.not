@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-16T17:23:04.366753+02:00",
+"items": [
+{
+"obsid": "37850061",
+"art": "Sodfarvet Skråpe",
+"antal": "0",
+"adf": "Trækkende mod nord",
+"lok": "Thorsminde Havn",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Peter",
+"efternavn": "Markussen",
+"lon": "8,123644777349655",
+"lat": "56,36800010814821",
+"tid_fra": "10:10",
+"tid_til": "10:40",
+"kategori": "sub"
+}
+]
+}

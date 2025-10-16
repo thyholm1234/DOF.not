@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T19:30:04.924293+02:00",
+"items": [
+{
+"obsid": "37851309",
+"art": "Rødtoppet Fuglekonge",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Sloen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kristoffer",
+"efternavn": "Hansen",
+"lon": "8,456193655729296",
+"lat": "55,375515028898946",
+"tid_fra": "15:30",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+}
+]
+}

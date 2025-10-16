@@ -223,23 +223,23 @@ function applyPerSpeciesCount(items, countsObj) {
 
 
 /* ───────────── PUSH ───────────── */
+
+
+// --- PUSH: vis ALTID en synlig notifikation på iOS ---
+// (krav i Safari – ellers kan permission blive trukket tilbage)  [Apple doc]
 self.addEventListener('push', (event) => {
   event.waitUntil(handlePush(event));
 });
 
-// Minimal, iOS-robust push-håndtering
 async function handlePush(event) {
   // 1) Parse payload forsigtigt
   let data = {};
-  try { if (event.data) data = event.data.json(); } catch {}
-
-  // Fallback-felter fra payload (single)
+  try { if (event.data) data = event.data.json(); } catch (_) {}
   const fbTitle = data.title || 'Ny besked';
   const fbBody  = data.body  || '';
   const fbUrl   = data.url   || '/';
 
-  // 2) Hvis du arbejder med batch-URL'er (valgfrit):
-  //    Forsøg at bygge notifikationer fra batchen – men vis FALDBACK hvis der ikke kom noget.
+  // 2) Batch: prøv at bygge flere notifikationer – ellers falder vi tilbage
   try {
     if (typeof data.url === 'string' && data.url.startsWith('/batches/')) {
       const res = await fetch(data.url, { cache: 'no-cache' });
@@ -248,22 +248,24 @@ async function handlePush(event) {
         const items = Array.isArray(batch.items) ? batch.items : [];
 
         if (items.length > 0) {
-          // Vis en notifikation pr. observation (begræns evt. til fx 5)
-          const notifPromises = items.slice(0, 5).map(it => {
+          // Vis en notifikation pr. observation (begræns evt. til 5)
+          const notifPromises = items.slice(0, 5).map((it) => {
             const antal = (it.antal ?? '').toString().trim();
             const art   = (it.art   ?? '').toString().trim();
             const lok   = (it.lok   ?? '').toString().trim();
             const adf   = (it.adf   ?? '').toString().trim();
             const navn  = [it.fornavn, it.efternavn].filter(Boolean).join(' ').trim();
 
-            const title = [ [antal, art].filter(Boolean).join(' '), lok ].filter(Boolean).join(', ') || fbTitle;
+            const title = [[antal, art].filter(Boolean).join(' '), lok].filter(Boolean).join(', ') || fbTitle;
             const body  = [adf, navn].filter(Boolean).join(', ') || fbBody;
 
             const url = it.obsid
               ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(it.obsid)}&summering=tur&obs=obs`
               : fbUrl;
 
-            const tag = it.obsid ? `obs-${it.obsid}` : `obs-${crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)}`;
+            const tag = it.obsid
+              ? `obs-${it.obsid}`
+              : `obs-${crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)}`;
 
             return self.registration.showNotification(title, {
               body,
@@ -275,38 +277,47 @@ async function handlePush(event) {
           });
 
           await Promise.all(notifPromises);
-          return; // ✅ vi har vist notifikationer
+          return; // ✅ mindst én notifikation vist
         }
       }
     }
   } catch (e) {
-    // Netværksfejl o.l. → vi bruger fallback nedenfor
+    // Netværksfejl o.l. — vi falder tilbage nedenfor
+    console.warn('[SW] batch fetch/parse failed:', e);
   }
 
-  // 3) FALDBACK: Vis i det mindste én synlig notifikation
-  await self.registration.showNotification(fbTitle, {
-    body: fbBody,
-    tag: 'single-' + (crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)),
-    renotify: false,
-    timestamp: Date.now(),
-    data: { url: fbUrl }
-  });
+  // 3) Fallback: vis altid mindst én synlig notifikation
+  try {
+    await self.registration.showNotification(fbTitle, {
+      body: fbBody,
+      tag: 'single-' + (crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)),
+      renotify: false,
+      timestamp: Date.now(),
+      data: { url: fbUrl }
+    });
+  } catch (e) {
+    console.error('[SW] showNotification failed:', e);
+  }
 }
 
-// Åbn link ved klik på notifikationen (bevarer eksisterende fane hvis muligt)
+// --- ÉN fælles notificationclick-handler (fjern dubletter) ---
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
   const rawUrl = (event.notification.data && event.notification.data.url) || '/';
 
   event.waitUntil((async () => {
-    const targetUrl = new URL(rawUrl, (self.registration && self.registration.scope) || self.location.href).href;
+    const base = (self.registration && self.registration.scope) || self.location.href;
+    const targetUrl = new URL(rawUrl, base).href;
+
     const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    const client = all.find(c => c.url === targetUrl);
+    const client = all.find((c) => c.url === targetUrl);
 
     if (client) { await client.focus(); return; }
     await self.clients.openWindow(targetUrl);
   })());
 });
+
+
 
 
 function filterItemsByPrefs(items, prefs) {
@@ -322,16 +333,3 @@ function filterItemsByPrefs(items, prefs) {
     return false;
   });
 }
-
-/* ───────────── Notification click ───────────── */
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  const raw = (event.notification.data && event.notification.data.url) || './';
-  event.waitUntil((async () => {
-    const targetUrl = new URL(raw, SCOPE).href;
-    const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    const client = all.find((c) => c.url === targetUrl);
-    if (client) { await client.focus(); return; }
-    await self.clients.openWindow(targetUrl);
-  })());
-});

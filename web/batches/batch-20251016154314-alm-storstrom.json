@@ -1,0 +1,67 @@
+{
+"client": "alm-storstrom",
+"count": 4,
+"generated": "2025-10-16T15:43:14.134127+02:00",
+"items": [
+{
+"obsid": "37848964",
+"art": "Musvåge",
+"antal": "103",
+"adf": "Trækkende mod syd",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Gedser",
+"efternavn": "Fuglestation",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:12",
+"tid_til": "12:12",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37848962",
+"art": "Rød Glente",
+"antal": "51",
+"adf": "Trækkende",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:40",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37848968",
+"art": "Spurvehøg",
+"antal": "96",
+"adf": "Trækkende",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:40",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37848969",
+"art": "Fjeldvåge",
+"antal": "2",
+"adf": "Trækkende mod sydvest",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:40",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+}
+]
+}

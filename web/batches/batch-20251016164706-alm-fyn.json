@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T16:47:06.150582+02:00",
+"items": [
+{
+"obsid": "37849685",
+"art": "Ravn",
+"antal": "12",
+"adf": "Fouragerende",
+"lok": "Fiskerup Skov",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jane",
+"efternavn": "Ditzel",
+"lon": "10,3696346282959",
+"lat": "55,1413077584363",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T17:17:15.794541+02:00",
+"items": [
+{
+"obsid": "37849991",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Michael Mosebo",
+"efternavn": "Jensen",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "07:45",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

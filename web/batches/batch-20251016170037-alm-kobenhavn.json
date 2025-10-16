@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T17:00:37.879474+02:00",
+"items": [
+{
+"obsid": "37849775",
+"art": "Fjeldvåge",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Ganløse Ore",
+"dof_afdeling": "DOF København",
+"fornavn": "Kurt E.",
+"efternavn": "Nielsen",
+"lon": "12,301168441772463",
+"lat": "55,811603479630996",
+"tid_fra": "10:00",
+"tid_til": "13:15",
+"kategori": "bemaerk"
+}
+]
+}

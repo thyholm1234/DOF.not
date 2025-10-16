@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T18:29:54.036202+02:00",
+"items": [
+{
+"obsid": "37850895",
+"art": "Musvit",
+"antal": "145",
+"adf": "Trækkende mod nordvest",
+"lok": "Røsnæs spidsen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Mads",
+"efternavn": "Jensen Bunch",
+"lon": "10,884992284991812",
+"lat": "55,73969377218697",
+"tid_fra": "09:05",
+"tid_til": "13:30",
+"kategori": "bemaerk"
+}
+]
+}

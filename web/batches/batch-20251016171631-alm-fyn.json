@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T17:16:31.473986+02:00",
+"items": [
+{
+"obsid": "37849983",
+"art": "Musvåge",
+"antal": "52",
+"adf": "Trækkende mod nordvest",
+"lok": "Ristingehalvøen",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Claus",
+"efternavn": "Dalskov",
+"lon": "10,617522589204505",
+"lat": "54,83113884148525",
+"tid_fra": "13:15",
+"tid_til": "13:40",
+"kategori": "bemaerk"
+}
+]
+}

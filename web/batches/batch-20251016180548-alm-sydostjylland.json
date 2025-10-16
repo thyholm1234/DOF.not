@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-16T18:05:48.156138+02:00",
+"items": [
+{
+"obsid": "37850660",
+"art": "Isfugl",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Galtkær",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Peder Nygaard",
+"efternavn": "Nielsen",
+"lon": "9,207861019626007",
+"lat": "55,92918455237165",
+"tid_fra": "08:40",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

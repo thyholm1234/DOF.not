@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T17:06:21.387842+02:00",
+"items": [
+{
+"obsid": "37849868",
+"art": "Fjeldvåge",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Stevns Fyr",
+"dof_afdeling": "DOF København",
+"fornavn": "Bøje",
+"efternavn": "Nielsen",
+"lon": "12,451847416838493",
+"lat": "55,29064784005885",
+"tid_fra": "10:30",
+"tid_til": "14:00",
+"kategori": "bemaerk"
+}
+]
+}

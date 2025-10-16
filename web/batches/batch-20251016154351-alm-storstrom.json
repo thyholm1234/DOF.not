@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T15:43:51.115342+02:00",
+"items": [
+{
+"obsid": "37848983",
+"art": "Hedelærke",
+"antal": "5",
+"adf": "Trækkende mod sydvest",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:40",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+}
+]
+}

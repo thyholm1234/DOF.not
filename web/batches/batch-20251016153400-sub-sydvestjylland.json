@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T15:34:00.162788+02:00",
+"items": [
+{
+"obsid": "37848852",
+"art": "Gransanger, Sibirisk (ssp. tristis)",
+"antal": "0",
+"adf": "Rastende",
+"lok": "Mandø By",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "8,539153473476345",
+"lat": "55,27581223817978",
+"tid_fra": "08:34",
+"tid_til": "10:43",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T16:43:02.879815+02:00",
+"items": [
+{
+"obsid": "37849656",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Kronprins Frederiks Bro",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Hans",
+"efternavn": "Kromann",
+"lon": "12,03892410879568",
+"lat": "55,84294495594372",
+"tid_fra": "14:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

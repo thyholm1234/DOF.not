@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T16:58:42.430880+02:00",
+"items": [
+{
+"obsid": "37849759",
+"art": "Blisgås",
+"antal": "37",
+"adf": "Rastende",
+"lok": "Nørrevang, Rørvig",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Michael",
+"efternavn": "Sørensen",
+"lon": "11,76491103158312",
+"lat": "55,958771742226276",
+"tid_fra": "16:58",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

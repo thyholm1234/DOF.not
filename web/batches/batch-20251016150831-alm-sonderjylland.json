@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-16T15:08:31.016322+02:00",
+"items": [
+{
+"obsid": "37847368",
+"art": "Rød Glente",
+"antal": "5",
+"adf": "Trækkende",
+"lok": "Sønderskoven, Sønderborg",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Benjamin",
+"efternavn": "Windeballe Rösgen",
+"lon": "9,833701435239997",
+"lat": "54,90571702610228",
+"tid_fra": "12:00",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847369",
+"art": "Spurvehøg",
+"antal": "24",
+"adf": "Trækkende",
+"lok": "Sønderskoven, Sønderborg",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Benjamin",
+"efternavn": "Windeballe Rösgen",
+"lon": "9,833701435239997",
+"lat": "54,90571702610228",
+"tid_fra": "12:00",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

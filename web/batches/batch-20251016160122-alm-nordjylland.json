@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T16:01:22.529372+02:00",
+"items": [
+{
+"obsid": "37849349",
+"art": "Tejst",
+"antal": "1",
+"adf": "Trækkende mod sydøst",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "10:53",
+"tid_til": "11:53",
+"kategori": "bemaerk"
+}
+]
+}

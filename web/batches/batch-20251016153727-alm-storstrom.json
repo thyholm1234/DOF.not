@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T15:37:27.312360+02:00",
+"items": [
+{
+"obsid": "37848908",
+"art": "Sortgrå Ryle",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Gedser",
+"efternavn": "Fuglestation",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:12",
+"tid_til": "12:12",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T19:15:18.652886+02:00",
+"items": [
+{
+"obsid": "37851150",
+"art": "Bjergirisk",
+"antal": "45",
+"adf": "Rastende",
+"lok": "Nordhavnstippen/Stubben",
+"dof_afdeling": "DOF København",
+"fornavn": "Mathias Daniel",
+"efternavn": "Holm",
+"lon": "12,622133642435076",
+"lat": "55,7214545654316",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

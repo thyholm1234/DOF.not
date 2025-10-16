@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-16T16:58:07.091389+02:00",
+"items": [
+{
+"obsid": "37849751",
+"art": "Kortnæbbet Gås",
+"antal": "700",
+"adf": "Rastende",
+"lok": "Gammel Vrå Enge",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Ulrik",
+"efternavn": "Kjærsgaard",
+"lon": "9,88840333815473",
+"lat": "57,198543242419134",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37849755",
+"art": "Trane",
+"antal": "45",
+"adf": "Overflyvende",
+"lok": "Gammel Vrå Enge",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Ulrik",
+"efternavn": "Kjærsgaard",
+"lon": "9,88840333815473",
+"lat": "57,198543242419134",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

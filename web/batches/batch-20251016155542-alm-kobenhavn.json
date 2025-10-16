@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T15:55:42.941958+02:00",
+"items": [
+{
+"obsid": "37849242",
+"art": "Skeand",
+"antal": "100",
+"adf": "Overflyvende",
+"lok": "Kongelundsstranden (del 1-3)",
+"dof_afdeling": "DOF København",
+"fornavn": "Stig",
+"efternavn": "Kjærgaard Rasmussen",
+"lon": "12,560059698768262",
+"lat": "55,55876252949869",
+"tid_fra": "07:25",
+"tid_til": "11:20",
+"kategori": "bemaerk"
+}
+]
+}

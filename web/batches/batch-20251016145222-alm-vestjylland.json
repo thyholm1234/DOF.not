@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-16T14:52:22.855403+02:00",
+"items": [
+{
+"obsid": "37848513",
+"art": "Blisgås",
+"antal": "25",
+"adf": "Overflyvende",
+"lok": "Amholm",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,432519111129958",
+"lat": "55,91386912170282",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

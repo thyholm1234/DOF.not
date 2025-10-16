@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-16T14:25:15.092958+02:00",
+  "received_at": "2025-10-16T19:44:26.391857+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "2 Trane, Amholm",
-      "body": "Bent, Jakobsen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37848343&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-vestjylland",
+      "title": "105 Sangdrossel, Gellerupparken Toveshøj",
+      "body": "Christian, Vemmelund Helligsø",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37847972&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [
-        "DOF Vestjylland"
+        "DOF Østjylland"
       ],
       "categories": [
         "bemaerk"

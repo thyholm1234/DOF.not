@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T14:47:26.522989+02:00",
+"items": [
+{
+"obsid": "37848495",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Slots Bjergby",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,332984428743522",
+"lat": "55,369916942052164",
+"tid_fra": "14:42",
+"tid_til": "14:47",
+"kategori": "bemaerk"
+}
+]
+}

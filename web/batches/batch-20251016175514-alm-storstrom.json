@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T17:55:14.503038+02:00",
+"items": [
+{
+"obsid": "37850572",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Rønnede",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Jakob",
+"efternavn": "Futtrup",
+"lon": "12,02447136685862",
+"lat": "55,256201809373835",
+"tid_fra": "15:28",
+"tid_til": "15:54",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-16T19:19:54.251827+02:00",
+"items": [
+{
+"obsid": "37851187",
+"art": "Grønspætte",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sødringholm Strand",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,335947424173357",
+"lat": "56,62181818656686",
+"tid_fra": "08:20",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

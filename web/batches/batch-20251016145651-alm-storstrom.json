@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T14:56:51.248239+02:00",
+"items": [
+{
+"obsid": "37848525",
+"art": "Krikand",
+"antal": "350",
+"adf": "Rastende",
+"lok": "Sivet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,101462253970348",
+"lat": "55,1820819704748",
+"tid_fra": "10:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

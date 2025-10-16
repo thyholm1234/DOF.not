@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-16T18:27:56.816865+02:00",
+"items": [
+{
+"obsid": "37850878",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Hammerhavn",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Alexander",
+"efternavn": "Dobeson",
+"lon": "14,756172421328182",
+"lat": "55,277793994129325",
+"tid_fra": "12:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

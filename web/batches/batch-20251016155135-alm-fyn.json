@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T15:51:35.626891+02:00",
+"items": [
+{
+"obsid": "37849140",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Fynsværket, Baagø Kolonihaver & gl. kanal",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Tom",
+"efternavn": "Tjørnum",
+"lon": "10,416712862590323",
+"lat": "55,430900280519324",
+"tid_fra": "14:00",
+"tid_til": "14:15",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-16T14:33:07.383655+02:00",
+"items": [
+{
+"obsid": "37848439",
+"art": "Fjeldvåge",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "10:15",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37848442",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "10:15",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

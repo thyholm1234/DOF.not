@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T18:51:59.898130+02:00",
+"items": [
+{
+"obsid": "37851013",
+"art": "Nøddekrige",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Lillerød (tidl. Allerød)",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Lars",
+"efternavn": "Dinesen",
+"lon": "12,335894554635162",
+"lat": "55,86829625728088",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

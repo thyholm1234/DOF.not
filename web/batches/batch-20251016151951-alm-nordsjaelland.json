@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T15:19:51.038688+02:00",
+"items": [
+{
+"obsid": "37848713",
+"art": "Sortspætte",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ravnsholt",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Mogens",
+"efternavn": "Bryndum",
+"lon": "12,357483763149967",
+"lat": "55,84973442001558",
+"tid_fra": "15:19",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

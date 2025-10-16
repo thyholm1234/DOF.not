@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T17:07:03.259915+02:00",
+"items": [
+{
+"obsid": "37849882",
+"art": "Sule",
+"antal": "3",
+"adf": "Trækkende mod nord",
+"lok": "Stevns Fyr",
+"dof_afdeling": "DOF København",
+"fornavn": "Bøje",
+"efternavn": "Nielsen",
+"lon": "12,451847416838493",
+"lat": "55,29064784005885",
+"tid_fra": "10:30",
+"tid_til": "14:00",
+"kategori": "bemaerk"
+}
+]
+}

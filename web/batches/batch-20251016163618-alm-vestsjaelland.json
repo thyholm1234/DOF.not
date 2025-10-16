@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T16:36:18.804998+02:00",
+"items": [
+{
+"obsid": "37849616",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Tissø, Enge i syd",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,28476595651034",
+"lat": "55,55632710755424",
+"tid_fra": "16:34",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

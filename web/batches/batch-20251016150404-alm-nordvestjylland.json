@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-16T15:04:04.507501+02:00",
+"items": [
+{
+"obsid": "37848561",
+"art": "Ravn",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Nors Sø",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Peter",
+"efternavn": "Halkier",
+"lon": "8,613104436316155",
+"lat": "57,03151697941675",
+"tid_fra": "13:45",
+"tid_til": "14:05",
+"kategori": "bemaerk"
+}
+]
+}
