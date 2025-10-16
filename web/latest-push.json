@@ -1,13 +1,13 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-16T19:44:26.391857+02:00",
+  "received_at": "2025-10-16T19:44:56.798648+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "105 Sangdrossel, Gellerupparken Toveshøj",
-      "body": "Christian, Vemmelund Helligsø",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37847972&summering=tur&obs=obs",
+      "title": "1 Isfugl, Randers Fj. RåbyOdde-Udbyhøj",
+      "body": "Lars, Tom-Petersen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37851412&summering=tur&obs=obs",
       "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [

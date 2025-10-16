@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-16T19:44:54.747713+02:00",
+"items": [
+{
+"obsid": "37851412",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Randers Fj. RåbyOdde-Udbyhøj",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,294239102082233",
+"lat": "56,5996179856223",
+"tid_fra": "13:00",
+"tid_til": "13:20",
+"kategori": "bemaerk"
+}
+]
+}
