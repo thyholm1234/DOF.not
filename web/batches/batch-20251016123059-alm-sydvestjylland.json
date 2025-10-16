@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T12:30:59.211515+02:00",
+"items": [
+{
+"obsid": "37847478",
+"art": "Rørhøne",
+"antal": "28",
+"adf": "Fouragerende",
+"lok": "Guldager Mølledam",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Michael S.",
+"efternavn": "Johansen",
+"lon": "8,394344642595723",
+"lat": "55,52821673958877",
+"tid_fra": "12:00",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

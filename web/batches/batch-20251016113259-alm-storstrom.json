@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T11:32:59.949197+02:00",
+"items": [
+{
+"obsid": "37847031",
+"art": "Bjergirisk",
+"antal": "40",
+"adf": "Rastende",
+"lok": "Enø Overdrev",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Dissing",
+"lon": "11,703337759776401",
+"lat": "55,14895359023561",
+"tid_fra": "11:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

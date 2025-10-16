@@ -1,0 +1,22 @@
+{
+"client": "sub-fyn",
+"count": 1,
+"generated": "2025-10-16T14:25:10.982619+02:00",
+"items": [
+{
+"obsid": "37848316",
+"art": "Sort Glente",
+"antal": "1",
+"adf": "Trækkende mod vest",
+"lok": "Blanke Fed og Aulby Mølleå ved udløbet",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Michael",
+"efternavn": "Brunhøj Hansen",
+"lon": "9,86378353166477",
+"lat": "55,51204690493162",
+"tid_fra": "11:57",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

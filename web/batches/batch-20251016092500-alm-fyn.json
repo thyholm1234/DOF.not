@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T09:25:00.044755+02:00",
+"items": [
+{
+"obsid": "37846207",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sortemosen (Sydfyn)",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Hans",
+"efternavn": "Rytter",
+"lon": "10,652035789510188",
+"lat": "55,12516048296027",
+"tid_fra": "07:30",
+"tid_til": "11:30",
+"kategori": "bemaerk"
+}
+]
+}

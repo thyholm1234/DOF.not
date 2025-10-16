@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-16T09:41:49.706244+02:00",
+"items": [
+{
+"obsid": "37846313",
+"art": "Sodfarvet Skråpe",
+"antal": "1",
+"adf": "Trækkende mod nord",
+"lok": "Havet vest for Fjaltring",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kurt",
+"efternavn": "Willumsen",
+"lon": "8,100187968650728",
+"lat": "56,46772720295107",
+"tid_fra": "09:37",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

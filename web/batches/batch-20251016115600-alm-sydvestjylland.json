@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T11:56:00.744887+02:00",
+"items": [
+{
+"obsid": "37847244",
+"art": "Fyrremejse",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Filsø, Petersholm",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Peter",
+"efternavn": "Hartoft-Jacobsen",
+"lon": "8,202781082692262",
+"lat": "55,68880215015997",
+"tid_fra": "11:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

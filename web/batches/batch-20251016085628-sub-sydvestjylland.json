@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T08:56:28.477899+02:00",
+"items": [
+{
+"obsid": "37846100",
+"art": "Hvidvinget Måge",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Markus",
+"efternavn": "Clément",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:53",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

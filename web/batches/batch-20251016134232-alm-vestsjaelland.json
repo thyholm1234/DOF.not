@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T13:42:32.109593+02:00",
+"items": [
+{
+"obsid": "37847891",
+"art": "Krikand",
+"antal": "125",
+"adf": "Rastende",
+"lok": "Omø Mose",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,143726900230822",
+"lat": "55,15905906588907",
+"tid_fra": "09:30",
+"tid_til": "10:00",
+"kategori": "bemaerk"
+}
+]
+}

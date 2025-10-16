@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T13:17:17.105440+02:00",
+"items": [
+{
+"obsid": "37847756",
+"art": "Vibe",
+"antal": "227",
+"adf": "Rastende",
+"lok": "Vallensbæk og Ishøj Strandenge",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,377305978750083",
+"lat": "55,61273555294781",
+"tid_fra": "07:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

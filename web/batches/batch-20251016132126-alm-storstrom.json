@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T13:21:26.255559+02:00",
+"items": [
+{
+"obsid": "37847786",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Studemose - Engene vest for Rødebrovej, Holmegård",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,850640302593913",
+"lat": "55,28878728657108",
+"tid_fra": "11:00",
+"tid_til": "11:15",
+"kategori": "bemaerk"
+}
+]
+}

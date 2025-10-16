@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T12:18:55.954104+02:00",
+"items": [
+{
+"obsid": "37847406",
+"art": "Hjejle",
+"antal": "350",
+"adf": "Rastende",
+"lok": "Borreby Mose",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,282021170877362",
+"lat": "55,22970617872048",
+"tid_fra": "12:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

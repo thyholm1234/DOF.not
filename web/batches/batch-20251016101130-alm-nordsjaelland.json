@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T10:11:30.467039+02:00",
+"items": [
+{
+"obsid": "37846510",
+"art": "Sule",
+"antal": "36",
+"adf": "Trækkende mod vest",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,875967906240932",
+"lat": "55,98048737722473",
+"tid_fra": "08:00",
+"tid_til": "09:45",
+"kategori": "bemaerk"
+}
+]
+}

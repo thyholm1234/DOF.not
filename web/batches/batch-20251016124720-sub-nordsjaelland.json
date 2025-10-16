@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T12:47:20.942276+02:00",
+"items": [
+{
+"obsid": "37847569",
+"art": "Stor Korsnæb",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Asserbo slotsruin",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Casper",
+"efternavn": "Sylvester Jensen",
+"lon": "12,052857892663598",
+"lat": "56,024058771221604",
+"tid_fra": "12:46",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

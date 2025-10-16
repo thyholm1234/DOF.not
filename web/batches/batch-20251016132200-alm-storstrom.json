@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T13:22:00.694083+02:00",
+"items": [
+{
+"obsid": "37847786",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Porsmose ved Holmegårds Mose",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,876446575920612",
+"lat": "55,28469361712553",
+"tid_fra": "11:00",
+"tid_til": "11:15",
+"kategori": "bemaerk"
+}
+]
+}

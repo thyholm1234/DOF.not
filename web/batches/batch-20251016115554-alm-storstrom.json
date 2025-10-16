@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-16T11:55:54.498763+02:00",
+"items": [
+{
+"obsid": "37847247",
+"art": "Rød Glente",
+"antal": "8",
+"adf": "Trækkende mod sydvest",
+"lok": "Bøtø Nor ved Nørresø (reservatet ved tårnene)",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Poul",
+"efternavn": "Larsen",
+"lon": "11,940474562414336",
+"lat": "54,644877231710126",
+"tid_fra": "09:40",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847253",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Bøtø Nor ved Nørresø (reservatet ved tårnene)",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Poul",
+"efternavn": "Larsen",
+"lon": "11,940474562414336",
+"lat": "54,644877231710126",
+"tid_fra": "09:40",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

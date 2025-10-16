@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T10:01:47.717101+02:00",
+"items": [
+{
+"obsid": "37846308",
+"art": "Alkefugl sp.",
+"antal": "13",
+"adf": "Trækkende mod nord",
+"lok": "Nørre Lyngby Strand",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Christian",
+"efternavn": "Terp",
+"lon": "9,743081296758865",
+"lat": "57,41206058383872",
+"tid_fra": "08:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

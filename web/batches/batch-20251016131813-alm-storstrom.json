@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T13:18:13.630374+02:00",
+"items": [
+{
+"obsid": "37847768",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Gødstrup Engsø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,877596551851042",
+"lat": "55,27415067468718",
+"tid_fra": "11:55",
+"tid_til": "12:10",
+"kategori": "bemaerk"
+}
+]
+}

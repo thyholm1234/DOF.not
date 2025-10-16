@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T12:35:21.060078+02:00",
+"items": [
+{
+"obsid": "37847500",
+"art": "Mosehornugle",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Dybsø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Dissing",
+"lon": "11,719072235001882",
+"lat": "55,134551831870596",
+"tid_fra": "12:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

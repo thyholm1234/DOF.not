@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T13:04:41.475651+02:00",
+"items": [
+{
+"obsid": "37847684",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Thorbjørn",
+"efternavn": "Stoltze",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "12:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

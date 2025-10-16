@@ -1,28 +1,125 @@
-/* =========================================================
-   Global theme + base
-   ========================================================= */
+/* ======================================================================
+   DOF.not – Styles med fuld Light/Dark Theme-understøttelse
+   - Farver centraliseret i CSS-variabler
+   - System Dark Mode (prefers-color-scheme)
+   - Manuel override via :root[data-theme="dark|light"]
+   ====================================================================== */
+
+/* ===== Light defaults (kan overstyres af dark/override) ===== */
 :root {
   color-scheme: light dark;
 
-  /* Controls (advanced-header) theme */
-  --col-ink:       #2a3b5c;   /* mørk blå/grå som i prefs */
-  --col-accent:    #1f6feb;   /* blå accent (hover/focus) */
-  --col-success:   #2ea043;   /* grøn (gem) */
-  --col-danger:    #d32f2f;   /* rød (nulstil) */
-  --col-border:    #d0d0d0;   /* kort-kant */
-  --bg-elev:       #f9fafb;   /* lys “head”-baggrund */
-  --bg-input:      #f3f4f6;   /* inputs/knapper baseline */
+  /* Brand/semantiske farver (findes i originalen) */
+  --col-ink: #2a3b5c;      /* primær tekst/ramme */
+  --col-accent: #1f6feb;   /* accent/hover/focus */
+  --col-success: #2ea043;  /* succes (gem) */
+  --col-danger: #d32f2f;   /* fare (nulstil) */
+  --col-border: #d0d0d0;   /* generel kant */
+
+  /* Overflader */
+  --bg-page: #ffffff;      /* sidebaggrund */
+  --bg-elev: #f9fafb;      /* "elevated"/head */
+  --bg-input: #f3f4f6;     /* inputs/knapper */
+  --card-bg: #ffffff;      /* kort/rækker */
+  --card-border: #d0d0d0;  /* kort-kant */
+
+  /* Tekst & links */
+  --text-main: var(--col-ink);
+  --text-meta: #555555;
+  --text-muted: #666666;
+  --link: #0b62d6;
+
+  /* Badges */
+  --badge-bg: #eeeeee;
+  --badge-fg: #111111;
+  --badge-src-bg: #002d62;
+  --badge-src-fg: #ffffff;
+  --badge-region-bg: #e6f2ff;
+  --badge-region-fg: #003366;
+
+  /* Diverse */
+  --hover-elev: #eaf2ff;   /* lys hover-baggrund */
+  --status-text: #607d8b;  /* controls-status farve */
 
   /* Avanceret filtering – fælles højder */
-  --ctrl-h: 32px;         /* desktop/tablet */
-  --ctrl-h-mobile: 30px;  /* mobil */
+  --ctrl-h: 32px;          /* desktop/tablet */
+  --ctrl-h-mobile: 30px;   /* mobil */
+
+  /* SU / SUB / Alm – faste farver (brand) */
+  --col-su:  #d32f2f; /* rød  */
+  --col-sub: #2e7d32; /* grøn */
+  --col-alm: #000000; /* sort */
 }
 
+/* ===== Manuel theme override (sætter tema uanset systemvalg) ===== */
+:root[data-theme="dark"] {
+  --col-ink: #dbe1ea;
+  --col-border: #384454;
+  --bg-elev: #101826;
+  --bg-input: #0f172a;
+
+  --bg-page: #0b1220;
+  --card-bg: #0f172a;
+  --card-border: #273244;
+
+  --text-main: var(--col-ink);
+  --text-meta: #9aa7b6;
+  --text-muted: #a5b4c8;
+  --link: #6aa6ff;
+
+  --badge-bg: #263146;
+  --badge-fg: #dbe1ea;
+  --badge-src-bg: #0b3a74;
+  --badge-src-fg: #ffffff;
+  --badge-region-bg: #10253d;
+  --badge-region-fg: #bcd9ff;
+
+  --hover-elev: #13233c;
+  --status-text: #94a3b8;
+
+  --col-alm: #ffffff;
+}
+
+/* ===== System Dark Mode (gælder kun hvis man IKKE tvinger light) ===== */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --col-ink: #dbe1ea;
+    --col-border: #384454;
+    --bg-elev: #101826;
+    --bg-input: #0f172a;
+
+    --bg-page: #0b1220;
+    --card-bg: #0f172a;
+    --card-border: #273244;
+
+    --text-main: var(--col-ink);
+    --text-meta: #9aa7b6;
+    --text-muted: #a5b4c8;
+    --link: #6aa6ff;
+
+    --badge-bg: #263146;
+    --badge-fg: #dbe1ea;
+    --badge-src-bg: #0b3a74;
+    --badge-src-fg: #ffffff;
+    --badge-region-bg: #10253d;
+    --badge-region-fg: #bcd9ff;
+
+    --hover-elev: #13233c;
+    --status-text: #94a3b8;
+
+    --col-alm: #ffffff; /* hvid i dark mode */
+  }
+}
+
+/* ======================================================================
+   Global base
+   ====================================================================== */
 body {
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   margin: 20px;
+  background: var(--bg-page);
+  color: var(--text-main);
 }
-
 h1 { margin: 0 0 8px; }
 
 #obs-status {
@@ -47,96 +144,104 @@ h1 { margin: 0 0 8px; }
   gap: 12px;
 }
 .obs-item article {
-  border: 1px solid #d0d0d0;
+  border: 1px solid var(--card-border);
   border-radius: 10px;
   padding: 12px;
-  background: #fff;
+  background: var(--card-bg);
 }
+
 .badge {
   display: inline-block;
   font-size: 12px;
   padding: 2px 6px;
   border-radius: 999px;
   margin-right: 6px;
-  background: #eee;
+  background: var(--badge-bg);
+  color: var(--badge-fg);
 }
-.badge-src { background: #002d62; color:#fff; }
-.badge-region { background: #e6f2ff; color:#003366; text-transform: lowercase; }
+.badge-src    { background: var(--badge-src-bg);    color: var(--badge-src-fg); }
+.badge-region { background: var(--badge-region-bg); color: var(--badge-region-fg); text-transform: lowercase; }
+
 .species { font-weight: 700; }
 .meta, .byline {
   display: flex; gap: 12px; flex-wrap: wrap;
-  color: #555; margin-top: 6px;
+  color: var(--text-meta); margin-top: 6px;
 }
-.meta a { color:#0b62d6; text-decoration: none; }
+.meta a { color: var(--link); text-decoration: none; }
 .meta a:hover { text-decoration: underline; }
-label.row { display:inline-flex; align-items:center; gap:6px; color:#555; }
-.muted { color:#666; }
+
+label.row { display: inline-flex; align-items: center; gap: 6px; color: var(--text-meta); }
+.muted { color: var(--text-muted); }
 select { padding: 4px 6px; }
 
-/* =========================================================
-   Prefs-table (som før)
-   ========================================================= */
-/* Ikon til knappen #save (Opdater abonnement) */
-
-
+/* ======================================================================
+   Prefs-table
+   ====================================================================== */
 .prefs-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0 12px; /* afstand mellem rækker */
 }
 .prefs-table tbody tr {
-  background: #fff;
-  border: 1px solid #d0d0d0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 10px;
   overflow: hidden;
 }
 .prefs-table td { padding: 12px; text-align: center; }
-.prefs-table td.afd {
-  font-weight: 600; text-align: left; white-space: nowrap;
-}
+.prefs-table td.afd { font-weight: 600; text-align: left; white-space: nowrap; }
+
 /* Header */
 .prefs-table thead th {
-  padding: 8px 12px; font-weight: 700; font-size: 14px;
-  text-align: center; background: #f9fafb;
+  padding: 8px 12px;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  background: var(--bg-elev);
 }
+
 /* Radio */
 .prefs-table input[type="radio"] {
   position: absolute; opacity: 0; pointer-events: none;
 }
 .prefs-table label { display: inline-block; cursor: pointer; }
+
 /* Boks */
 .prefs-table .box {
   position: relative; display: inline-block;
   width: 22px; height: 22px;
-  border: 2px solid #2a3b5c; border-radius: 6px;
-  background: #f3f4f6; transition: all .15s ease-in-out;
+  border: 2px solid var(--col-ink); border-radius: 6px;
+  background: var(--bg-input); transition: all .15s ease-in-out;
 }
+
 /* Hover */
-.prefs-table td.sel:hover .box { border-color:#1f6feb; background:#eaf2ff; }
+.prefs-table td.sel:hover .box { border-color: var(--col-accent); background: var(--hover-elev); }
+
 /* Checked */
 .prefs-table input[type="radio"]:checked + label .box {
-  border-color:#2ea043; background:#2ea043;
+  border-color: var(--col-success); background: var(--col-success);
   box-shadow: 0 0 3px 1px rgba(46,160,67,.35);
 }
 /* Flueben */
 .prefs-table input[type="radio"]:checked + label .box::after {
   content:""; position:absolute; inset:0; z-index:1; pointer-events:none;
   background:center / 16px 16px no-repeat
-    url("data:image/svg+xml;utf8,\
+  url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'>\
 <path d='M5 10.5l3 3 7-7' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/>\
 </svg>");
 }
+
 /* Prefs – responsiv scroll hvis meget smalt */
 @media (max-width: 640px) {
   .prefs-table-wrapper { overflow-x: auto; }
   .prefs-table { min-width: 480px; }
 }
 
-/* =========================================================
+/* ======================================================================
    Advanced filtering – rækker (kort-look som prefs)
-   ========================================================= */
-#adv-list { list-style:none; margin:0; padding:0; }
+   ====================================================================== */
+#adv-list { list-style: none; margin: 0; padding: 0; }
 
 /* Desktop/tablet: én linje: navn | tools | knap */
 #adv-list .species-row {
@@ -145,14 +250,14 @@ select { padding: 4px 6px; }
   align-items: center;
   column-gap: 12px;
   row-gap: 8px;
-  background: #fff;
-  border: 1px solid #d0d0d0;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
   border-radius: 10px;
   padding: 8px 12px;
   margin-bottom: 10px;
 }
 #adv-list .species-row:hover {
-  border-color: #1f6feb;
+  border-color: var(--col-accent);
   box-shadow: 0 0 0 3px rgba(31,111,235,.08);
 }
 
@@ -166,7 +271,7 @@ select { padding: 4px 6px; }
   min-width: 0; /* for ellipsis i grid */
 }
 
-/* Tools til højre for navn – hold på én linje */
+/* Tools – hold på én linje */
 #adv-list .sp-tools {
   display: flex; align-items: center; gap: 8px;
   justify-self: end; flex-wrap: nowrap; min-width: 0;
@@ -182,10 +287,10 @@ select { padding: 4px 6px; }
 /* Select/input style */
 .sp-cnt-op, .sp-cnt-val {
   padding: 4px 8px;
-  border: 1.5px solid #2a3b5c;
+  border: 1.5px solid var(--col-ink);
   border-radius: 6px;
-  background: #f3f4f6;
-  color: #1c2b45;
+  background: var(--bg-input);
+  color: var(--col-ink);
   transition: all .15s ease-in-out;
   white-space: nowrap;
 }
@@ -193,41 +298,48 @@ select { padding: 4px 6px; }
 
 /* Knap – to-state, ens bredde og centreret label */
 .sp-toggle {
-  padding: 0 10px;                 /* lodret padding = 0, højde styres af height */
-  border: 2px solid #2a3b5c;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 0 10px;         /* lodret = 0; højde styres af height */
+  border: 2px solid var(--col-ink);
   border-radius: 6px;
-  background: #f3f4f6;
-  color: #2a3b5c;
+  background: var(--bg-input);
+  color: var(--col-ink);
   cursor: pointer;
   transition: all .15s ease-in-out;
-  justify-self: end;
   white-space: nowrap;
-
-  /* Ens bredde + centreret label */
-  display: inline-grid;            /* nødvendig for ::after-tricket */
-  place-items: center;             /* center både vertikalt og horisontalt */
+  text-align: center;
 }
-/* Reservér bredde til længste label (brug 'Udeluk' som reference) */
+
+/* Reservér bredde til længste label uden at vise den (brug 'Udeluk' som reference) */
 .sp-toggle::after {
   content: 'Udeluk';
-  visibility: hidden; pointer-events: none; white-space: nowrap;
+  visibility: hidden; pointer-events: none;
+  position: absolute;
 }
 /* Valgfrit: dynamisk reserve via data-attribut */
 .sp-toggle[data-reserve]::after { content: attr(data-reserve); }
 
 /* Tilstande */
-.sp-toggle.is-muted { opacity:.75; filter:grayscale(100%); }
+.sp-toggle.is-muted { opacity:.75; filter: grayscale(100%); }
 .sp-toggle.is-exclude {
-  background:#d32f2f; border-color:#b71c1c; color:#fff;
+  background: var(--col-danger);
+  border-color: #b71c1c;
+  color: #fff;
   box-shadow: 0 0 3px 1px rgba(211,47,47,.35);
 }
 
-/* Fokus-states */
-.sp-cnt-op:focus, .sp-cnt-val:focus, .sp-toggle:focus {
+/* Fokus-states – også for søgning/knapper i controls */
+.sp-cnt-op:focus, .sp-cnt-val:focus, .sp-toggle:focus,
+section.controls button:hover,
+section.controls #adv-search:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(31,111,235,.25);
-  border-color: #1f6feb;
-  background: #eaf2ff;
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.18);
+  background: var(--hover-elev);
 }
 
 /* Tablet: behold én linje, men komprimer lidt */
@@ -244,7 +356,7 @@ select { padding: 4px 6px; }
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      "name  name"
+      "name name"
       "tools toggle";
     align-items: center;
     gap: 8px 8px;
@@ -255,27 +367,22 @@ select { padding: 4px 6px; }
     white-space: normal; overflow: visible; text-overflow: clip;
   }
   #adv-list .sp-tools {
-    grid-area: tools; display:flex; align-items:center; gap:8px;
+    grid-area: tools; display: flex; align-items: center; gap: 8px;
     justify-self: start; flex-wrap: nowrap; min-width: 0;
   }
-  .sp-cnt-op, .sp-cnt-val, .sp-toggle { height: var(--ctrl-h-mobile); }
-  .sp-cnt-op, .sp-cnt-val { padding: 2px 6px; }
-  .sp-cnt-val { width: 4.6rem; } /* justér til 4.3rem hvis pladsen er stram */
-
   #adv-list .sp-toggle {
     grid-area: toggle;
-    display: inline-grid;        /* behold grid også på mobil */
-    place-items: center;
+    height: var(--ctrl-h-mobile);
+    min-width: 72px;
+    padding: 0 8px;
     justify-self: end;
-    width: auto !important;
     white-space: nowrap;
-    padding: 0 8px;              /* kompakt på mobil */
   }
 }
 
-/* =========================================================
+/* ======================================================================
    Controls (øverst på adv-siden)
-   ========================================================= */
+   ====================================================================== */
 section.controls {
   display: flex; flex-wrap: wrap; align-items: center;
   gap: 8px 12px;
@@ -296,7 +403,7 @@ section.controls #adv-search[type="search"] {
   color: var(--col-ink);
   transition: all .15s ease-in-out;
 }
-section.controls #adv-search::placeholder { color:#6b7280; }
+section.controls #adv-search::placeholder { color: #6b7280; }
 section.controls #adv-search::-webkit-search-decoration,
 section.controls #adv-search::-webkit-search-cancel-button { -webkit-appearance:none; }
 
@@ -314,13 +421,6 @@ section.controls button {
   transition: all .15s ease-in-out;
   display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
 }
-section.controls button:hover,
-section.controls #adv-search:focus {
-  border-color: var(--col-accent);
-  box-shadow: 0 0 0 3px rgba(31,111,235,.18);
-  background: #eaf2ff;
-  outline: none;
-}
 section.controls button:disabled,
 section.controls button[disabled] {
   opacity: .55; cursor: not-allowed; filter: grayscale(100%);
@@ -328,35 +428,30 @@ section.controls button[disabled] {
 
 /* Primær/sekundær/fare */
 section.controls #adv-save {
-  background: var(--col-success); border-color:#268a38; color:#fff; box-shadow:none;
+  background: var(--col-success); border-color: #268a38; color: #fff; box-shadow: none;
 }
 section.controls #adv-save:hover { box-shadow: 0 0 0 3px rgba(46,160,67,.25); }
-
 section.controls #adv-clear {
-  background:#fff5f5; border-color: var(--col-danger); color: var(--col-danger);
+  background: #fff5f5; border-color: var(--col-danger); color: var(--col-danger);
 }
-section.controls #adv-clear:hover { background:#ffe9e9; box-shadow:0 0 0 3px rgba(211,47,47,.18); }
-
-section.controls #adv-export, section.controls #adv-import {
-  background:#fff; border-color: var(--col-ink); color: var(--col-ink);
+section.controls #adv-clear:hover { background: #ffe9e9; box-shadow: 0 0 0 3px rgba(211,47,47,.18); }
+section.controls #adv-export,
+section.controls #adv-import {
+  background: var(--card-bg); border-color: var(--col-ink); color: var(--col-ink);
 }
-section.controls #adv-export:hover, section.controls #adv-import:hover {
-  background:#eef2f7;
-}
-
 /* Ghost/toggle for “Vis kun filtrerede” */
 section.controls #adv-show-active {
-  background: transparent; border-color:#94a3b8; color: var(--col-ink);
+  background: transparent; border-color: #94a3b8; color: var(--col-ink);
 }
-section.controls #adv-show-active:hover { background:#eef2f7; border-color: var(--col-accent); }
+section.controls #adv-show-active:hover { background: #eef2f7; border-color: var(--col-accent); }
 /* (valgfrit) aktiv tilstand – kræver .classList.toggle('is-on') i JS */
 section.controls #adv-show-active.is-on {
-  background:#e6f2ff; border-color: var(--col-accent); color:#0b4cc2;
+  background: #e6f2ff; border-color: var(--col-accent); color: #0b4cc2;
 }
 
 /* Status helt til højre (wrap’er pænt på små bredder) */
 section.controls #adv-status {
-  margin-left: auto; font-size: .95rem; color:#607d8b; min-width:120px; text-align:right;
+  margin-left: auto; font-size: .95rem; color: var(--status-text); min-width:120px; text-align:right;
 }
 
 /* Små ikoner på knapper via ::before (SVG data-URI) */
@@ -390,12 +485,6 @@ section.controls #adv-save::before {
   -webkit-mask-image: url("data:image/svg+xml;utf8,\
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5L9 16.2z'/></svg>");
 }
-section.controls #adv-show-active::before {
-  mask-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M3 5h18l-7 8v5l-4-2v-3L3 5z'/></svg>");
-  -webkit-mask-image: url("data:image/svg+xml;utf8,\
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='black' d='M3 5h18l-7 8v5l-4-2v-3L3 5z'/></svg>");
-}
 
 /* Controls responsivitet */
 @media (max-width: 900px) {
@@ -404,110 +493,35 @@ section.controls #adv-show-active::before {
   section.controls #adv-status { flex: 1 1 100%; text-align: left; margin-left: 0; }
 }
 
-/* =========================================================
-   Dark mode
-   ========================================================= */
+/* Ekstra dark-tilpasninger for controls' "clear"-knap */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --col-ink:     #dbe1ea;
-    --col-border:  #384454;
-    --bg-elev:     #101826;
-    --bg-input:    #0f172a;
-  }
-  section.controls { border-color: var(--col-border); }
-  section.controls #adv-status { color: #94a3b8; }
-  section.controls #adv-clear { background:#2a0f10; }
-  section.controls #adv-clear:hover { background:#3a1517; }
+  :root:not([data-theme="light"]) section.controls { border-color: var(--col-border); }
+  :root:not([data-theme="light"]) section.controls #adv-clear { background:#2a0f10; }
+  :root:not([data-theme="light"]) section.controls #adv-clear:hover { background:#3a1517; }
 }
+:root[data-theme="dark"] section.controls { border-color: var(--col-border); }
+:root[data-theme="dark"] section.controls #adv-clear { background:#2a0f10; }
+:root[data-theme="dark"] section.controls #adv-clear:hover { background:#3a1517; }
 
-
-/* ==== Center "Inkl." / "Eksl." i knappen + bevar ens bredde ==== */
-
-/* Desktop/Tablet */
-.sp-toggle {
-  position: relative;
-  display: inline-flex;           /* flex er bedre her end grid */
-  align-items: center;            /* centrerer vertikalt */
-  justify-content: center;        /* centrerer horisontalt */
-  height: var(--ctrl-h);
-  min-width: 80px;
-  padding: 0 10px;
-  border: 2px solid #2a3b5c;
-  border-radius: 6px;
-  background: #f3f4f6;
-  color: #2a3b5c;
-  cursor: pointer;
-  transition: all .15s ease-in-out;
-  white-space: nowrap;
-  text-align: center;
-  box-sizing: border-box;
-}
-
-/* Reservér plads til længste label uden at vise den */
-.sp-toggle::after {
-  content: 'Eksl.'; /* længste label */
-  visibility: hidden;
-  position: absolute; /* fjerner fra flow */
-  pointer-events: none;
-}
-
-/* Dynamisk reserve via data-attribut */
-.sp-toggle[data-reserve]::after {
-  content: attr(data-reserve);
-}
-
-/* Tilstande */
-.sp-toggle.is-muted {
-  opacity: .75;
-  filter: grayscale(100%);
-}
-
-.sp-toggle.is-exclude {
-  background: #d32f2f;
-  border-color: #b71c1c;
-  color: #fff;
-  box-shadow: 0 0 3px 1px rgba(211,47,47,.35);
-}
-/* Mobil */
-@media (max-width: 640px) {
-  #adv-list .sp-toggle {
-    height: var(--ctrl-h-mobile);
-    min-width: 72px; /* lidt smallere på mobil */
-    padding: 0 8px;
-  }
-
-  #adv-list .sp-toggle::after {
-    grid-row: 1;
-    grid-column: 1;
-  }
-}
-
-
-/* =========================================================
-   SU / SUB / Alm – fælles farver (fast, bold version)
-   ========================================================= */
-:root {
-  /* Farver – rød (SU), grøn (SUB), sort (Alm) */
-  --col-su:  #d32f2f;  /* rød */
-  --col-sub: #2e7d32;  /* grøn */
-  --col-alm: #000000;  /* sort */
-}
-
+/* ======================================================================
+   SU / SUB / Alm – farver til navn/artsnavn
+   ====================================================================== */
 /* Avanceret filter – farvelæg navnet */
 #adv-list .sp-name.SU  { color: var(--col-su);  font-weight: 700; }
 #adv-list .sp-name.SUB { color: var(--col-sub); font-weight: 700; }
 #adv-list .sp-name.Alm { color: var(--col-alm); font-weight: 500; opacity: .92; }
-
 /* Observationslisten – farvelæg artsnavnet */
 .obs-item .species.SU  { color: var(--col-su);  font-weight: 700; }
 .obs-item .species.SUB { color: var(--col-sub); font-weight: 700; }
 .obs-item .species.Alm { color: var(--col-alm); font-weight: 700; opacity: .92; }
-
-/* (valgfrit) lowercase-synonymer – hvis du bruger små bogstaver i klassernes navne */
+/* (valgfrit) lowercase-synonymer */
 #adv-list .sp-name.su,  .obs-item .species.su  { color: var(--col-su);  font-weight: 700; }
 #adv-list .sp-name.sub, .obs-item .species.sub { color: var(--col-sub); font-weight: 700; }
 #adv-list .sp-name.alm, .obs-item .species.alm { color: var(--col-alm); font-weight: 700; opacity: .92; }
 
+/* ======================================================================
+   Øvrige ikoner (save-ikon brugt andetsteds)
+   ====================================================================== */
 #save::before {
   content: "";
   width: 1em;

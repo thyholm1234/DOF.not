@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T11:16:10.588977+02:00",
+"items": [
+{
+"obsid": "37846934",
+"art": "Rødtoppet Fuglekonge",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Råhede By",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kurt Bredal",
+"efternavn": "Christensen",
+"lon": "8,696164488173297",
+"lat": "55,26824335406394",
+"tid_fra": "10:00",
+"tid_til": "10:15",
+"kategori": "bemaerk"
+}
+]
+}

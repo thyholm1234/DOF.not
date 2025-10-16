@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T09:50:05.591709+02:00",
+"items": [
+{
+"obsid": "37846376",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Sortemosen (Sydfyn)",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Hans",
+"efternavn": "Rytter",
+"lon": "10,652035789510188",
+"lat": "55,12516048296027",
+"tid_fra": "09:20",
+"tid_til": "11:30",
+"kategori": "bemaerk"
+}
+]
+}

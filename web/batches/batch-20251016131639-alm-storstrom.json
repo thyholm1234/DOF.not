@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T13:16:39.049096+02:00",
+"items": [
+{
+"obsid": "37847754",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Gødstrup",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,892691028541742",
+"lat": "55,26809158868042",
+"tid_fra": "11:55",
+"tid_til": "12:10",
+"kategori": "bemaerk"
+}
+]
+}

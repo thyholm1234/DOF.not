@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T08:28:10.193748+02:00",
+"items": [
+{
+"obsid": "37845918",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Bagenkop",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Holger",
+"efternavn": "Daugaard",
+"lon": "10,677332347910994",
+"lat": "54,749490829310815",
+"tid_fra": "08:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

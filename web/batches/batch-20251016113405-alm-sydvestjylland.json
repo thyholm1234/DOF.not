@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T11:34:05.570629+02:00",
+"items": [
+{
+"obsid": "37847045",
+"art": "Skestork",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Skallingen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "8,26347385965211",
+"lat": "55,5087732506494",
+"tid_fra": "11:33",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

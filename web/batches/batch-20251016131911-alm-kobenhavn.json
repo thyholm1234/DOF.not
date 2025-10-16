@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T13:19:11.979880+02:00",
+"items": [
+{
+"obsid": "37847477",
+"art": "Korttået Træløber",
+"antal": "7",
+"adf": "Rastende",
+"lok": "Vestre Kirkegård",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Speiermann",
+"lon": "12,529926692777162",
+"lat": "55,65939808586788",
+"tid_fra": "12:14",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

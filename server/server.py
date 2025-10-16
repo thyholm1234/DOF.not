@@ -21,6 +21,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pywebpush import WebPushException, webpush
+from starlette.responses import RedirectResponse
 
 mimetypes.add_type("application/manifest+json", ".webmanifest")
 
@@ -400,6 +401,28 @@ def _sub_allows_payload(sub: Dict, payload: dict, user_prefs: dict[str, dict[str
         if _user_allows_categories_for_region(user_prefs, uid, reg, cats):
             return True
     return False
+
+
+@app.get("/sw.js")
+def serve_sw():
+    path = WEB_DIR / "sw.js"
+    if not path.exists():
+        raise HTTPException(status_code=404, detail="sw.js mangler i /web")
+    # Ingen hård caching af SW
+    return FileResponse(
+        path, media_type="application/javascript",
+        headers={"Cache-Control": "no-cache"}
+    )
+
+@app.get("/service-worker.js")
+def serve_sw_alias_hyphen():
+    return serve_sw()
+
+@app.get("/service_worker.js")
+def redirect_sw_underscore():
+    return RedirectResponse(url="/sw.js", status_code=308)
+
+
 
 # ───────────────────────────────── Middleware ────────────────────────────────
 @app.middleware("http")

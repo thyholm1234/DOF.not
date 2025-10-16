@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-16T07:46:53.959817+02:00",
+"items": [
+{
+"obsid": "37845672",
+"art": "Sortgrå Ryle",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Havet vest for Fjaltring",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kurt",
+"efternavn": "Willumsen",
+"lon": "8,100187968650728",
+"lat": "56,46772720295107",
+"tid_fra": "07:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

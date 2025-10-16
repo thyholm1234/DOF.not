@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T14:21:13.552035+02:00",
+"items": [
+{
+"obsid": "37848239",
+"art": "Sortstrubet Bynkefugl",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Ho By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Ib",
+"efternavn": "Jensen",
+"lon": "8,228073119200403",
+"lat": "55,56088229980659",
+"tid_fra": "13:00",
+"tid_til": "14:15",
+"kategori": "bemaerk"
+}
+]
+}

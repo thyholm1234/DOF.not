@@ -1,0 +1,22 @@
+{
+"client": "sub-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T12:54:57.497536+02:00",
+"items": [
+{
+"obsid": "37847615",
+"art": "Stor Korsnæb",
+"antal": "4",
+"adf": "Trækkende mod sydvest",
+"lok": "Vallensbæk og Ishøj Strandenge",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,377305978750083",
+"lat": "55,61273555294781",
+"tid_fra": "11:06",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-16T11:53:42.955939+02:00",
+"items": [
+{
+"obsid": "37847220",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Hestholm Syd",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Leif",
+"efternavn": "Schack-Nielsen",
+"lon": "8,44738940809601",
+"lat": "55,917836318985024",
+"tid_fra": "11:52",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

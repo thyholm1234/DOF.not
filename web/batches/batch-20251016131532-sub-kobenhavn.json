@@ -1,0 +1,22 @@
+{
+"client": "sub-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T13:15:32.787870+02:00",
+"items": [
+{
+"obsid": "37847745",
+"art": "Rødhovedet And",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Gentofte Sø & Brobæk Mose (Insulinmosen)",
+"dof_afdeling": "DOF København",
+"fornavn": "Niels",
+"efternavn": "Klausen",
+"lon": "12,534044488140161",
+"lat": "55,74856564717575",
+"tid_fra": "13:12",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

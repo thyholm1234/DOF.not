@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T10:17:49.404152+02:00",
+"items": [
+{
+"obsid": "37846551",
+"art": "Rødtoppet Fuglekonge",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,875967906240932",
+"lat": "55,98048737722473",
+"tid_fra": "09:50",
+"tid_til": "10:00",
+"kategori": "bemaerk"
+}
+]
+}

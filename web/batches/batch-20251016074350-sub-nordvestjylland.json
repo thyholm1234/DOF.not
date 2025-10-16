@@ -1,0 +1,22 @@
+{
+"client": "sub-nordvestjylland",
+"count": 1,
+"generated": "2025-10-16T07:43:50.439034+02:00",
+"items": [
+{
+"obsid": "37845661",
+"art": "Sodfarvet Skråpe",
+"antal": "1",
+"adf": "Trækkende mod vest",
+"lok": "Havet ud for Lild strand",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Morten",
+"efternavn": "Christensen",
+"lon": "8,966020172096487",
+"lat": "57,158773129778865",
+"tid_fra": "07:37",
+"tid_til": "07:40",
+"kategori": "sub"
+}
+]
+}

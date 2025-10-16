@@ -1,0 +1,52 @@
+{
+"client": "alm-sydvestjylland",
+"count": 3,
+"generated": "2025-10-16T11:15:03.032386+02:00",
+"items": [
+{
+"obsid": "37846910",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Mandø, sydlige klæggrav",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Mette",
+"efternavn": "Lyngdorf",
+"lon": "8,546186943468172",
+"lat": "55,26915290984505",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37846798",
+"art": "Lille Korsnæb",
+"antal": "11",
+"adf": "Rastende",
+"lok": "Ho Plantage",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Svend Anker",
+"efternavn": "Schwebs",
+"lon": "8,215459785908944",
+"lat": "55,539072875789515",
+"tid_fra": "10:26",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37846914",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Mandø, sydøstlige klæggrav",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Gøran",
+"efternavn": "Jakobsen",
+"lon": "8,564655891325812",
+"lat": "55,26987614328982",
+"tid_fra": "11:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

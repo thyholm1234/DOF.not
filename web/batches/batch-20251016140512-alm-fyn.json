@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T14:05:12.647006+02:00",
+"items": [
+{
+"obsid": "37848109",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Tryggelev Nor & Salme Nor",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,66485654524514",
+"lat": "54,796763795191254",
+"tid_fra": "13:55",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

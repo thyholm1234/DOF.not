@@ -1,0 +1,37 @@
+{
+"client": "alm-vestsjaelland",
+"count": 2,
+"generated": "2025-10-16T13:49:18.312322+02:00",
+"items": [
+{
+"obsid": "37847961",
+"art": "Musvåge",
+"antal": "95",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø by",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,155455084974538",
+"lat": "55,16170151729867",
+"tid_fra": "11:00",
+"tid_til": "11:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847965",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø by",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,155455084974538",
+"lat": "55,16170151729867",
+"tid_fra": "11:00",
+"tid_til": "11:30",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-16T12:08:06.571662+02:00",
+"items": [
+{
+"obsid": "37847339",
+"art": "Svømmeand sp.",
+"antal": "1000",
+"adf": "Rastende",
+"lok": "Forlandet ud for Saltvandssøen, Margrethe Kog",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Martin",
+"efternavn": "Høj Hansen",
+"lon": "8,634980210115033",
+"lat": "54,93526245954831",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37846836",
+"art": "Musvåge",
+"antal": "344",
+"adf": "Trækkende mod vest",
+"lok": "Sønderskoven, Sønderborg",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Kjeld",
+"efternavn": "Jensen",
+"lon": "9,833701435239997",
+"lat": "54,90571702610228",
+"tid_fra": "11:01",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

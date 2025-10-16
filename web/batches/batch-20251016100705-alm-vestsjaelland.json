@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T10:07:05.413349+02:00",
+"items": [
+{
+"obsid": "37846469",
+"art": "Knarand",
+"antal": "11",
+"adf": "Rastende",
+"lok": "Sprogø",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Peter Pelle",
+"efternavn": "Clausen",
+"lon": "10,963839119274407",
+"lat": "55,33228530952553",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T13:47:31.661516+02:00",
+"items": [
+{
+"obsid": "37847950",
+"art": "Fasan",
+"antal": "50",
+"adf": "Rastende",
+"lok": "Flasken, Sevedø, inkl. moser og enge i nord",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,302847246549101",
+"lat": "55,200657917669844",
+"tid_fra": "13:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

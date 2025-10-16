@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-16T10:01:45.634403+02:00",
+"items": [
+{
+"obsid": "37846434",
+"art": "Skeand",
+"antal": "140",
+"adf": "Rastende",
+"lok": "Hovvig, Odsherred",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Scheel",
+"lon": "11,714372187370765",
+"lat": "55,920093539597644",
+"tid_fra": "10:01",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

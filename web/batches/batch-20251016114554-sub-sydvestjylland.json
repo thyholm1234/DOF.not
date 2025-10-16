@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-16T11:45:54.924677+02:00",
+"items": [
+{
+"obsid": "37847138",
+"art": "Lapværling",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "09:15",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

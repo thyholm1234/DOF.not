@@ -227,78 +227,87 @@ self.addEventListener('push', (event) => {
   event.waitUntil(handlePush(event));
 });
 
+// Minimal, iOS-robust push-håndtering
 async function handlePush(event) {
+  // 1) Parse payload forsigtigt
   let data = {};
   try { if (event.data) data = event.data.json(); } catch {}
-  const url = data && data.url;
 
-  // 1) Hent batch (hvis URL medfølger)
-  let items = [];
-  if (url) {
-    try {
-      const res = await fetch(url, { cache: 'no-cache' });
+  // Fallback-felter fra payload (single)
+  const fbTitle = data.title || 'Ny besked';
+  const fbBody  = data.body  || '';
+  const fbUrl   = data.url   || '/';
+
+  // 2) Hvis du arbejder med batch-URL'er (valgfrit):
+  //    Forsøg at bygge notifikationer fra batchen – men vis FALDBACK hvis der ikke kom noget.
+  try {
+    if (typeof data.url === 'string' && data.url.startsWith('/batches/')) {
+      const res = await fetch(data.url, { cache: 'no-cache' });
       if (res.ok) {
         const batch = await res.json();
-        items = Array.isArray(batch.items) ? batch.items : [];
+        const items = Array.isArray(batch.items) ? batch.items : [];
+
+        if (items.length > 0) {
+          // Vis en notifikation pr. observation (begræns evt. til fx 5)
+          const notifPromises = items.slice(0, 5).map(it => {
+            const antal = (it.antal ?? '').toString().trim();
+            const art   = (it.art   ?? '').toString().trim();
+            const lok   = (it.lok   ?? '').toString().trim();
+            const adf   = (it.adf   ?? '').toString().trim();
+            const navn  = [it.fornavn, it.efternavn].filter(Boolean).join(' ').trim();
+
+            const title = [ [antal, art].filter(Boolean).join(' '), lok ].filter(Boolean).join(', ') || fbTitle;
+            const body  = [adf, navn].filter(Boolean).join(', ') || fbBody;
+
+            const url = it.obsid
+              ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(it.obsid)}&summering=tur&obs=obs`
+              : fbUrl;
+
+            const tag = it.obsid ? `obs-${it.obsid}` : `obs-${crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)}`;
+
+            return self.registration.showNotification(title, {
+              body,
+              tag,
+              renotify: true,
+              timestamp: Date.now(),
+              data: { url }
+            });
+          });
+
+          await Promise.all(notifPromises);
+          return; // ✅ vi har vist notifikationer
+        }
       }
-    } catch {}
+    }
+  } catch (e) {
+    // Netværksfejl o.l. → vi bruger fallback nedenfor
   }
 
-  // 2) Hent lokale prefs + arts-overrides (inkl. counts) fra IndexedDB
-  let prefs = {};
-  let speciesOv = { include: [], exclude: [], counts: {} };
-  try { prefs = (await idbGetPrefs()) ?? {}; } catch {}
-  try { speciesOv = (await idbGetSpecies()) ?? { include: [], exclude: [], counts: {} }; } catch {}
-
-  const havePrefs = Object.keys(prefs).length > 0;
-
-  // 3) Filtrér i rækkefølge (KUN pr. art)
-  //    a) Region/kategori pr. prefs
-  const afterPrefs   = havePrefs ? applyRegionCategoryFilter(items, prefs) : items;
-  //    b) Arts-overrides (inkl./udeluk)
-  const afterSpecies = applySpeciesOverrides(afterPrefs, speciesOv);
-  //    c) Per-art "antal"-filter (EQ / GTE)  ←  det der betyder noget her
-  const finalItems   = applyPerSpeciesCount(afterSpecies, speciesOv?.counts);
-
-  // 4) Ingen matches? Så dropper vi notifikationer
-  if (url && finalItems.length === 0) return;
-
-  // 5) Notifikation pr. observation (kun for dem, der består alle filtre)
-  const notifPromises = finalItems.map(r => {
-    const obsid = (r.obsid ?? '').toString().trim();
-    const antal = (r.antal ?? '').toString().trim();
-    const art   = (r.art   ?? '').toString().trim();
-    const lok   = (r.lok   ?? '').toString().trim();
-    const adf   = (r.adf   ?? '').toString().trim();
-    const fn    = (r.fornavn   ?? '').toString().trim();
-    const en    = (r.efternavn ?? '').toString().trim();
-
-    const titleParts = [ [antal, art].filter(Boolean).join(' ') ]
-      .concat(lok ? [`, ${lok}`] : []);
-    const title = titleParts.join('').trim() || 'Ny observation';
-
-    const navn = [fn, en].filter(Boolean).join(' ').trim();
-    const body = [adf, navn].filter(Boolean).join(', ').trim();
-
-    const urlToOpen = obsid
-      ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(obsid)}&summering=tur&obs=obs`
-      : (data.url ?? '/');
-
-    const tag = obsid
-      ? `obs-${obsid}`
-      : `obs-${(crypto.randomUUID?.() ?? Math.random().toString(36).slice(2))}`;
-
-    return self.registration.showNotification(title, {
-      body,
-      tag,
-      renotify: true,
-      timestamp: Date.now(),
-      data: { url: urlToOpen },
-    });
+  // 3) FALDBACK: Vis i det mindste én synlig notifikation
+  await self.registration.showNotification(fbTitle, {
+    body: fbBody,
+    tag: 'single-' + (crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)),
+    renotify: false,
+    timestamp: Date.now(),
+    data: { url: fbUrl }
   });
-
-  await Promise.all(notifPromises);
 }
+
+// Åbn link ved klik på notifikationen (bevarer eksisterende fane hvis muligt)
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  const rawUrl = (event.notification.data && event.notification.data.url) || '/';
+
+  event.waitUntil((async () => {
+    const targetUrl = new URL(rawUrl, (self.registration && self.registration.scope) || self.location.href).href;
+    const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    const client = all.find(c => c.url === targetUrl);
+
+    if (client) { await client.focus(); return; }
+    await self.clients.openWindow(targetUrl);
+  })());
+});
+
 
 function filterItemsByPrefs(items, prefs) {
   if (!items || !items.length) return [];

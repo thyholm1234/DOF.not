@@ -105,7 +105,10 @@ const supportsPush = () =>
 async function ensureSW() {
   if (!('serviceWorker' in navigator)) return;
   try {
-    await navigator.serviceWorker.register('sw.js', { scope: './' });
+    await navigator.serviceWorker.register('/sw.js', {
+      scope: '/',            // dækker hele origin
+      updateViaCache: 'none' // hent altid nyeste sw.js
+    });
     await navigator.serviceWorker.ready;
   } catch (e) {
     console.warn('SW-registrering fejlede:', e);
@@ -153,8 +156,7 @@ async function loadClassificationMap() {
   if (__CLASS_MAP) return __CLASS_MAP;
   // Prøv begge stier, så det virker både i /web/data og /data
   const text = await fetchFirstOk([
-    './web/data/arter_filter_klassificeret.csv',
-    './data/arter_filter_klassificeret.csv'
+     './data/arter_filter_klassificeret.csv'
   ]);
   if (!text) {
     console.warn('[klassifikation] Fandt ikke arter_filter_klassificeret.csv i /web/data eller /data');

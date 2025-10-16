@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-16T13:14:28.747815+02:00",
+"items": [
+{
+"obsid": "37847740",
+"art": "Krikand",
+"antal": "70",
+"adf": "Rastende",
+"lok": "Broksø Enge",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,844366072860891",
+"lat": "55,301316056564815",
+"tid_fra": "12:15",
+"tid_til": "12:25",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847741",
+"art": "Knarand",
+"antal": "17",
+"adf": "Rastende",
+"lok": "Broksø Enge",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,844366072860891",
+"lat": "55,301316056564815",
+"tid_fra": "12:15",
+"tid_til": "12:25",
+"kategori": "bemaerk"
+}
+]
+}

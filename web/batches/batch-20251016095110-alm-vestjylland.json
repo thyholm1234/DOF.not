@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-16T09:51:10.737161+02:00",
+"items": [
+{
+"obsid": "37845707",
+"art": "Lomvie/Alk",
+"antal": "61",
+"adf": "Trækkende mod nord",
+"lok": "Havet vest for Fjaltring",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kurt",
+"efternavn": "Willumsen",
+"lon": "8,100187968650728",
+"lat": "56,46772720295107",
+"tid_fra": "07:40",
+"tid_til": "09:55",
+"kategori": "bemaerk"
+}
+]
+}

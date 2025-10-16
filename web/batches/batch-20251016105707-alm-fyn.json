@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T10:57:07.202386+02:00",
+"items": [
+{
+"obsid": "37846795",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Elsehoved",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Johnny",
+"efternavn": "Rasmussen",
+"lon": "10,772522183010745",
+"lat": "55,10256708814532",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-16T13:00:21.453717+02:00",
+"items": [
+{
+"obsid": "37847642",
+"art": "Ravn",
+"antal": "3",
+"adf": "Overflyvende",
+"lok": "Sø Torup sø",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Oliver",
+"efternavn": "Bøgh Jensen",
+"lon": "11,987886615599175",
+"lat": "55,29764976757025",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

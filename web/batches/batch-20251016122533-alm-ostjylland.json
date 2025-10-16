@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-16T12:25:33.501956+02:00",
+"items": [
+{
+"obsid": "37847377",
+"art": "Sandløber",
+"antal": "25",
+"adf": "Rastende",
+"lok": "Ebeltoft Færgehavn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Henrik",
+"efternavn": "Frier",
+"lon": "10,668048698460025",
+"lat": "56,153978662139195",
+"tid_fra": "12:01",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

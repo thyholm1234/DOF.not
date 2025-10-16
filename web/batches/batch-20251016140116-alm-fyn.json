@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T14:01:16.296379+02:00",
+"items": [
+{
+"obsid": "37848068",
+"art": "Skestork",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tryggelev Nor & Salme Nor",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,66485654524514",
+"lat": "54,796763795191254",
+"tid_fra": "13:55",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

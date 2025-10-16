@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-16T11:53:40.899371+02:00",
+"items": [
+{
+"obsid": "37847227",
+"art": "Toppet Skallesluger",
+"antal": "97",
+"adf": "Rastende",
+"lok": "Lunkebugten & Nørreskov Nor",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,64674650911729",
+"lat": "54,988404561421845",
+"tid_fra": "11:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

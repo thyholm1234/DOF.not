@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-16T09:37:39.771299+02:00",
+"items": [
+{
+"obsid": "37846276",
+"art": "Fuglekongesanger",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Kronborg",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Jan",
+"efternavn": "Hjort Christensen",
+"lon": "12,62174656017111",
+"lat": "56,038842559043104",
+"tid_fra": "09:20",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

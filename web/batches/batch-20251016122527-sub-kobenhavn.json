@@ -1,0 +1,22 @@
+{
+"client": "sub-kobenhavn",
+"count": 1,
+"generated": "2025-10-16T12:25:27.307552+02:00",
+"items": [
+{
+"obsid": "37847436",
+"art": "Stor Korsnæb",
+"antal": "2",
+"adf": "Trækkende mod nordvest",
+"lok": "Kongelundsstranden (del 1-3)",
+"dof_afdeling": "DOF København",
+"fornavn": "Rasmus",
+"efternavn": "Turin",
+"lon": "12,560059698768262",
+"lat": "55,55876252949869",
+"tid_fra": "09:50",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

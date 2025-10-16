@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-16T12:07:00.772790+02:00",
+"items": [
+{
+"obsid": "37847329",
+"art": "Lille Fluesnapper",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bjerregård øst",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Ole",
+"efternavn": "Amstrup",
+"lon": "8,1778388",
+"lat": "55,8794027",
+"tid_fra": "11:15",
+"tid_til": "11:55",
+"kategori": "sub"
+}
+]
+}

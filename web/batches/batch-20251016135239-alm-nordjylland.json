@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-16T13:52:39.635950+02:00",
+"items": [
+{
+"obsid": "37847992",
+"art": "Sortstrubet Lom",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Solsbæk",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Martin",
+"efternavn": "Lundholm",
+"lon": "10,537051433142889",
+"lat": "57,29144946156609",
+"tid_fra": "13:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

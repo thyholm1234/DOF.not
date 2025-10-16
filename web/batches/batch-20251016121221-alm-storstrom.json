@@ -1,0 +1,67 @@
+{
+"client": "alm-storstrom",
+"count": 4,
+"generated": "2025-10-16T12:12:21.346016+02:00",
+"items": [
+{
+"obsid": "37846999",
+"art": "Bramgås",
+"antal": "1800",
+"adf": "Rastende",
+"lok": "Enø Overdrev",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Dissing",
+"lon": "11,703337759776401",
+"lat": "55,14895359023561",
+"tid_fra": "11:10",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847004",
+"art": "Pibeand",
+"antal": "1600",
+"adf": "Rastende",
+"lok": "Enø Overdrev",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Dissing",
+"lon": "11,703337759776401",
+"lat": "55,14895359023561",
+"tid_fra": "11:10",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847364",
+"art": "Spidsand",
+"antal": "450",
+"adf": "Rastende",
+"lok": "Enø Overdrev",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Dissing",
+"lon": "11,703337759776401",
+"lat": "55,14895359023561",
+"tid_fra": "11:10",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37847365",
+"art": "Skeand",
+"antal": "20",
+"adf": "Rastende",
+"lok": "Enø Overdrev",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Dissing",
+"lon": "11,703337759776401",
+"lat": "55,14895359023561",
+"tid_fra": "11:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}
