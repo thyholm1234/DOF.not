@@ -122,6 +122,21 @@ body {
 }
 h1 { margin: 0 0 8px; }
 
+/* Theme toggle button (light/dark) */
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.7em;
+  padding: 0 0.2em;
+  line-height: 1;
+  color: var(--col-ink);
+  transition: color .2s;
+}
+#theme-toggle:hover {
+  color: var(--col-accent);
+}
+
 #obs-status {
   margin: 6px 0 14px;
   font-weight: 600;
@@ -135,44 +150,81 @@ h1 { margin: 0 0 8px; }
   flex-wrap: wrap;
 }
 
-/* Observationer (beholdt) */
+/* ======================================================================
+   Observationer – kort-look + kompakt mobil
+   ====================================================================== */
+
+/* Liste-layout: ingen bullets, grid-gap som prefs */
 .obs-list {
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
   display: grid;
   gap: 12px;
 }
+
+/* Genskab “card”-look for hvert obs */
+.obs-list > li { margin: 0; padding: 0; }
 .obs-item article {
+  background: var(--card-bg);
   border: 1px solid var(--card-border);
   border-radius: 10px;
   padding: 12px;
-  background: var(--card-bg);
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-.badge {
-  display: inline-block;
-  font-size: 12px;
-  padding: 2px 6px;
-  border-radius: 999px;
-  margin-right: 6px;
-  background: var(--badge-bg);
-  color: var(--badge-fg);
+/* Lidt tydeligere hover som på prefs */
+.obs-item article:hover {
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.08);
 }
-.badge-src    { background: var(--badge-src-bg);    color: var(--badge-src-fg); }
-.badge-region { background: var(--badge-region-bg); color: var(--badge-region-fg); text-transform: lowercase; }
 
-.species { font-weight: 700; }
-.meta, .byline {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  color: var(--text-meta); margin-top: 6px;
+/* Tættere meta/byline spacing som standard */
+.obs-item .meta, .obs-item .byline {
+  gap: 8px; /* var 12px i base */
 }
-.meta a { color: var(--link); text-decoration: none; }
-.meta a:hover { text-decoration: underline; }
 
-label.row { display: inline-flex; align-items: center; gap: 6px; color: var(--text-meta); }
-.muted { color: var(--text-muted); }
-select { padding: 4px 6px; }
+/* Tablet: let komprimering */
+@media (max-width: 900px) and (min-width: 641px) {
+  .obs-list { gap: 10px; }
+  .obs-item article { padding: 10px; }
+  .obs-item .meta, .obs-item .byline { gap: 6px; }
+}
+
+/* Mobil: kompakt visning (ikke 1:1 med prefs, men samme “card”-fornemmelse) */
+@media (max-width: 640px) {
+  .obs-list { gap: 8px; }
+
+  .obs-item article {
+    padding: 10px;          /* mindre padding end desktop */
+    border-radius: 8px;     /* en anelse mindre radius */
+  }
+
+  /* Artsnavn tættere og lidt mindre */
+  .obs-item .species {
+    font-size: 15px;
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+
+  /* Badges small */
+  .obs-item .badge {
+    font-size: 11px;
+    padding: 1px 6px;
+    margin-right: 4px;
+  }
+
+  /* Meta/byline kompakt med ellipsis */
+  .obs-item .meta,
+  .obs-item .byline {
+    margin-top: 4px;
+    gap: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 
 /* ======================================================================
    Prefs-table
@@ -235,13 +287,37 @@ select { padding: 4px 6px; }
 /* Prefs – responsiv scroll hvis meget smalt */
 @media (max-width: 640px) {
   .prefs-table-wrapper { overflow-x: auto; }
-  .prefs-table { min-width: 480px; }
+  .prefs-table {
+    width: 100%;
+    min-width: 0;
+    max-width: 100vw;
+    table-layout: auto;
+  }
+  .prefs-table,
+  .prefs-table td,
+  .prefs-table th {
+    font-size: min(3.5vw, 12px);
+    padding: min(2vw, 6px) min(2vw, 6px);
+  }
+  .prefs-table td.afd {
+    font-size: min(3.5vw, 12px);
+    padding-left: min(2vw, 6px);
+  }
+  .prefs-table .box {
+    width: min(5vw, 16px);
+    height: min(5vw, 16px);
+  }
 }
 
 /* ======================================================================
    Advanced filtering – rækker (kort-look som prefs)
    ====================================================================== */
-#adv-list { list-style: none; margin: 0; padding: 0; }
+#adv-list,
+.species-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
 /* Desktop/tablet: én linje: navn | tools | knap */
 #adv-list .species-row {
@@ -542,4 +618,123 @@ section.controls #adv-save::before {
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
 <path fill='black' d='M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.07-.28 2.07-.77 2.94l1.46 1.46A7.963 7.963 0 0020 12c0-4.42-3.58-8-8-8zm-6.69.69L3.86 6.14A7.963 7.963 0 004 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6 0-1.07.28-2.07.77-2.94l-1.46-1.46z'/>\
 </svg>");
+}
+
+/* Global container – dynamisk bredde, med vertikal padding */
+.wrap {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-inline: 12px;
+  padding-block: 8px 12px; /* top=8px, bottom=12px */
+  box-sizing: border-box;
+}
+@media (max-width: 640px) {
+  .wrap {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 10px;
+    padding-top: max(8px, env(safe-area-inset-top)); /* ikke additiv som før */
+    padding-bottom: 12px;
+  }
+  body { margin: 0; }
+}
+
+/* === Observationer – kort-look + kompakt mobil (udbygning) === */
+
+/* 1 kolonne, fuld bredde i wrap */
+.obs-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+/* Card */
+.obs-item article {
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden; /* rundede hjørner på evt. indhold */
+}
+
+/* Badge-styles (kategori/region/kilde) */
+.obs-item .badges { display:flex; gap:6px; align-items:center; margin-bottom:6px; }
+.obs-item .badge {
+  display:inline-block; border-radius:999px;
+  background: var(--badge-bg); color: var(--badge-fg);
+  font-weight: 600; font-size: 12px; line-height: 1.2;
+  padding: 2px 8px;
+}
+.obs-item .badge.region { background: var(--badge-region-bg); color: var(--badge-region-fg); }
+.obs-item .badge.src    { background: var(--badge-src-bg);    color: var(--badge-src-fg); }
+
+/* Kategori + Lokalafdeling med stort begyndelsesbogstav */
+.obs-item .category, .obs-item .region { text-transform: capitalize; }
+
+/* Antal + art – hver sin linje */
+.obs-item .count { font-weight: 700; margin: 0 0 2px 0; display: block; }
+.obs-item .species { display: block; }
+
+/* Saml meta + byline til én linje der ombrydes */
+.obs-item .info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+  margin-top: 6px;
+  color: var(--text-meta);
+  font-size: 13px;
+}
+
+/* Fjern egne layouts fra meta/byline og “løft” deres børn op i .info */
+.obs-item .meta,
+.obs-item .byline {
+  display: contents; /* børn bliver direkte flex-items i .info */
+}
+
+/* Slå gamle bullets fra meta/byline fra */
+.obs-item .meta > * + *::before,
+.obs-item .byline > * + *::before {
+  content: none !important;
+}
+
+/* === OBS: Nulstil tidligere "bullet-efter" på .info === */
+.obs-item .info > *:not(:last-child)::after { content: none !important; }
+
+/* Desktop/Tablet ≥641px: to linjer med bullets */
+@media (min-width: 641px) {
+  .obs-item .info { margin-top: 6px; }
+  .obs-item .meta,
+  .obs-item .byline {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    gap: 8px;
+    color: var(--text-meta);
+    font-size: 13px;
+  }
+  .obs-item .meta > * + *::before,
+  .obs-item .byline > * + *::before {
+    content: "•";
+    opacity: .55;
+    margin: 0 6px 0 2px;
+  }
+}
+
+/* Mobil ≤640px: ét item pr. linje – “lokation + kort” holdes sammen */
+@media (max-width: 640px) {
+  .obs-item .info {
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 4px;
+  }
+  /* Flad struktur: børn i .meta/.byline bliver rækker i .info */
+  .obs-item .meta, .obs-item .byline { display: contents; }
+
+  /* Ingen bullets på mobil */
+  .obs-item .meta > * + *::before,
+  .obs-item .byline > * + *::before { content: none !important; }
+
+  /* Lokation + kort-link i samme linje (samlet i .place) */
+  .obs-item .place { display: inline; }
+  .obs-item .place .map-link { margin-left: 6px; white-space: nowrap; }
 }

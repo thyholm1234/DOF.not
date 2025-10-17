@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-17T21:58:07.868556+02:00",
+"items": [
+{
+"obsid": "37858770",
+"art": "Skovskade",
+"antal": "15",
+"adf": "Rastende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:10",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

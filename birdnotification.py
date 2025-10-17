@@ -84,17 +84,18 @@ def build_url(date_dd_mm_yyyy: str) -> str:
         raise SystemExit(f"Ugyldig dato '{date_dd_mm_yyyy}' (forventet DD-MM-YYYY)") from e
     return DOF_URL.format(dato=date_dd_mm_yyyy)
 
-def fetch_csv(url: str) -> Path:
+def fetch_csv(url: str) -> Optional[Path]:
     ts = dt.datetime.now(DK_TZ).strftime("%Y%m%d_%H%M%S")
     dest = DL_DIR / f"search_result_{ts}.csv"
-    headers = {"User-Agent": "birdnotification/1.6 (+local)"}
+    headers = {"User-Agent": "birdnotification/1.7 (+local)"}
     try:
         with requests.get(url, headers=headers, timeout=60) as r:
             r.raise_for_status()
             dest.write_bytes(r.content)
+            return dest
     except requests.RequestException as e:
-        raise SystemExit(f"Kunne ikke hente CSV: {e}") from e
-    return dest
+        print(f"[Advarsel] Kunne ikke hente CSV: {e}", file=sys.stderr)
+        return None
 
 def _trim_whitespace(df: pd.DataFrame) -> pd.DataFrame:
     return df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
@@ -795,10 +796,18 @@ def detect_and_report_changes(
     return updated_state
 
 # ─────────────────────── Kørsel ───────────────────────
-def run_once(date_str: str, clients: List[dict], timestamp_mode: str) -> None:
+def run_once(date_str: str, clients: List[dict], timestamp_mode: str) -> bool:
+    """
+    Kører en enkelt iteration af scriptet.
+    Returnerer True hvis kørslen var succesfuld, False hvis der var fejl ved CSV-hentning.
+    """
     ensure_dirs()
     url = build_url(date_str)
     csv_path = fetch_csv(url)
+
+    if csv_path is None:
+        return False
+
     try:
         df, enc = read_csv_with_fallback(csv_path)
     finally:
@@ -820,16 +829,19 @@ def run_once(date_str: str, clients: List[dict], timestamp_mode: str) -> None:
         save_state(new_state)
         print(f"[Init] Lydløs baseline oprettet for {len(new_state)} grupper. (encoding={enc})")
         purge_old_batches(max_age_hours=24, verbose=False)
-        return
+        return True
 
     new_state = detect_and_report_changes(df, state, clients, timestamp_mode)
     save_state(new_state)
+    return True
 
 def run_watch(initial_date_str: str, clients: List[dict], interval_sec: int, timestamp_mode: str) -> None:
     ensure_dirs()
     active_date = initial_date_str
     last_day = dt.datetime.now(DK_TZ).date()
+    consecutive_failures = 0
     print(f"Starter overvågning hver {interval_sec} sek. for dato={active_date} …")
+    
     while True:
         try:
             today = dt.datetime.now(DK_TZ).date()
@@ -838,9 +850,22 @@ def run_watch(initial_date_str: str, clients: List[dict], interval_sec: int, tim
                 active_date = today.strftime("%d-%m-%Y")
                 print(f"[Midnat] Ny dag {active_date} – state nulstillet og tidligere downloads slettet.")
                 last_day = today
-            run_once(active_date, clients, timestamp_mode=timestamp_mode)
+            
+            success = run_once(active_date, clients, timestamp_mode=timestamp_mode)
+            
+            if success:
+                if consecutive_failures > 0:
+                    print(f"[Info] Forbindelse genoprettet efter {consecutive_failures} fejlede forsøg")
+                consecutive_failures = 0
+            else:
+                consecutive_failures += 1
+                if consecutive_failures == 1 or consecutive_failures % 10 == 0:
+                    print(f"[Advarsel] Kunne ikke hente data (forsøg #{consecutive_failures})")
+                    
         except Exception as e:
             print(f"[Fejl] {e}", file=sys.stderr)
+            consecutive_failures += 1
+            
         time.sleep(interval_sec)
 
 def main():

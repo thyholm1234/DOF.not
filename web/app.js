@@ -3,6 +3,46 @@
 // 1) COMMON UTILS (fælles for hele appen)
 // ============================================================================
 
+// Light/dark mode toggle med system default og localStorage
+const themeToggle = document.getElementById('theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+const THEME_KEY = 'dofnot-theme';
+
+function setTheme(theme) {
+  const root = document.documentElement;
+  if (theme === 'light' || theme === 'dark') {
+    root.setAttribute('data-theme', theme);
+  }
+  updateThemeIcon();
+}
+
+function updateThemeIcon() {
+  // Guard: elementet kan mangle på nogle sider (fx advanced.html), så undgå fejl
+  if (!themeIcon) return;
+  const theme = document.documentElement.getAttribute('data-theme');
+  themeIcon.textContent = theme === 'dark' ? '🌙' : '🌞';
+}
+
+themeToggle?.addEventListener('click', () => {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  setTheme(next);
+  localStorage.setItem(THEME_KEY, next);
+});
+
+// Init theme on load
+(function() {
+  const saved = localStorage.getItem(THEME_KEY);
+  if (saved === 'light' || saved === 'dark') {
+    setTheme(saved);
+  } else {
+    // Default: dark mode
+    setTheme('dark');
+    localStorage.setItem(THEME_KEY, 'dark');
+  }
+})();
+
 // Basal URL-hjælper (bevarer understøttelse af base href)
 const BASE = document.baseURI || document.location.href;
 const abs = (p) => new URL(p, BASE).toString();
@@ -156,7 +196,8 @@ async function loadClassificationMap() {
   if (__CLASS_MAP) return __CLASS_MAP;
   // Prøv begge stier, så det virker både i /web/data og /data
   const text = await fetchFirstOk([
-     './data/arter_filter_klassificeret.csv'
+     './data/arter_filter_klassificeret.csv',
+     '../data/arter_filter_klassificeret.csv'
   ]);
   if (!text) {
     console.warn('[klassifikation] Fandt ikke arter_filter_klassificeret.csv i /web/data eller /data');
@@ -926,7 +967,6 @@ function renderItem(item) {
     'title species sp-name',
     `${Number.isFinite(item.count) ? item.count + ' ' : ''}${item.species}`
   );
-  // tilføj klassifikation 'su' | 'sub' | 'alm' til artstitlen (for farver)
   sp.classList.add(classifySpeciesName(item.species));
 
   header.append(
@@ -939,11 +979,12 @@ function renderItem(item) {
   if (item.behavior) meta.append(el('span', null, item.behavior));
   if (item.locality) meta.append(el('span', null, item.locality));
   if (Number.isFinite(item.lat) && Number.isFinite(item.lon)) {
-    const sep = el('span', null, '·');
     const a = document.createElement('a');
     a.href = `https://www.openstreetmap.org/?mlat=${item.lat}&mlon=${item.lon}#map=13/${item.lat}/${item.lon}`;
-    a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'kort';
-    meta.append(sep, a);
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.textContent = 'kort';
+    meta.append(a);
   }
 
   const byline = el('footer', 'byline');
@@ -956,7 +997,11 @@ function renderItem(item) {
   }
   byline.append(t);
 
-  article.append(header, meta, byline);
+  // NY: Saml meta + byline i én wrap-linje
+  const info = el('div', 'info');
+  info.append(meta, byline);
+
+  article.append(header, info);
   li.append(article);
   return li;
 }
@@ -1006,8 +1051,11 @@ async function loadAndRender() {
   const data = await fetchAll(plan, !!$hideZero?.checked, CONCURRENCY);
   if (!data.length) { setObsStatus('Ingen relevante observationer fundet.'); return; }
 
-  // Kun i dag (DK-tid)
-  const todayYMD = ymdInTZ(new Date(), TZ);
+  // Kun i dag (DK-tid) - Nulstil 3 timer efter midnat
+  const now = new Date();
+  const resetHour = 3; // Nulstil kl. 03:00
+  const todayYMD = ymdInTZ(new Date(now.getTime() - resetHour * 60 * 60 * 1000), TZ);
+  
   const dataToday = data.filter((it) =>
     it.date instanceof Date && !isNaN(it.date) && ymdInTZ(it.date, TZ) === todayYMD
   );
@@ -1043,8 +1091,8 @@ document.addEventListener('DOMContentLoaded', () => {
 /** Læs artsliste (semicolon-CSV) – returnerer [{id, navn}, ...] */
 async function loadSpeciesList() {
   const tryUrls = [
-    './data/arter_filter.csv',
-    './data/arter_sammenflettet_sorteret.csv' // fallback (kolonner: artsid;artsnavn)
+    './data/arter_filter_klassificeret.csv',
+    '../data/arter_filter_klassificeret.csv'
   ];
   let text = '';
   for (const url of tryUrls) {

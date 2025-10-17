@@ -1,13 +1,13 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-16T19:44:56.798648+02:00",
+  "received_at": "2025-10-17T23:21:09.953516+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Isfugl, Randers Fj. RåbyOdde-Udbyhøj",
-      "body": "Lars, Tom-Petersen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37851412&summering=tur&obs=obs",
+      "title": "3 Sølvhejre, Armhoved (Arm Hage)",
+      "body": "Mogens, Wedel-Heinen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37859000&summering=tur&obs=obs",
       "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [

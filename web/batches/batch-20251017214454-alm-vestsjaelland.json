@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-17T21:44:54.979528+02:00",
+"items": [
+{
+"obsid": "37858712",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Tempelkrogsøen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Kaare",
+"efternavn": "Madsen",
+"lon": "11,778020099236961",
+"lat": "55,6537202278661",
+"tid_fra": "14:00",
+"tid_til": "16:00",
+"kategori": "bemaerk"
+}
+]
+}

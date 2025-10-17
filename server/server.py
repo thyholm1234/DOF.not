@@ -91,10 +91,14 @@ app.add_middleware(
 
 # ─────────── helper: flet evt. eksisterende headers med 'Urgency' ────────────
 def _merge_push_headers(payload: dict, default_urgency: str = "high") -> dict:
-    headers = {}
+    headers = {
+        "Urgency": "high",
+        "TTL": "2419200"  # Cache i 28 dage
+    }
     src = payload.get("headers") if isinstance(payload, dict) else None
     if isinstance(src, dict):
         headers.update({str(k): str(v) for k, v in src.items()})
+    # Bevar urgency fra payload HVIS den er sat, ellers brug "high"
     headers.setdefault("Urgency", str(payload.get("urgency", default_urgency)))
     return headers
 
@@ -625,21 +629,8 @@ async def api_unsubscribe(req: Request):
     device_id = str(data.get("device_id") or "").strip()
     if not endpoint:
         raise HTTPException(status_code=400, detail="endpoint mangler")
+    # Slet subscription fra databasen - det er alt vi behøver
     delete_subscription(endpoint)
-    # Hvis vi har user+device, marker opt-out på serveren
-    if user_id and device_id:
-        con = sqlite3.connect(DB_PATH); _ensure_user(con, user_id)
-        ts = int(time.time() * 1000)
-        con.execute(
-            """
-            INSERT INTO push_optout(user_id, device_id, opted_out, ts)
-            VALUES (?,?,?,?)
-            ON CONFLICT(user_id, device_id) DO UPDATE
-              SET opted_out=excluded.opted_out, ts=excluded.ts
-            """,
-            (user_id, device_id, 1, ts)
-        )
-        con.commit(); con.close()
     total = subscriptions_count()
     logger.info("[UNSUB] Slettede endpoint. total=%d user=%s device=%s", total, user_id or "-", device_id or "-")
     return {"ok": True, "total": total}
@@ -840,8 +831,11 @@ def publish_latest():
         results = {"sent": 0, "deleted": 0, "errors": 0}
         for sub in subs:
             try:
-                webpush(subscription_info=sub, data=json.dumps(payload),
-                        vapid_private_key=VAPID_PRIVATE, vapid_claims=VAPID_CLAIMS)
+                webpush(subscription_info=sub, 
+                       data=json.dumps(payload),
+                       vapid_private_key=VAPID_PRIVATE, 
+                       vapid_claims=VAPID_CLAIMS,
+                       headers=_merge_push_headers(payload))
                 results["sent"] += 1
             except WebPushException as ex:
                 status = getattr(ex, "response", None).status_code if getattr(ex, "response", None) else None
