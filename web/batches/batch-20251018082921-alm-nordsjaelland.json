@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T08:29:21.983233+02:00",
+"items": [
+{
+"obsid": "37859383",
+"art": "Dobbeltbekkasin",
+"antal": "20",
+"adf": "Rastende",
+"lok": "Søborg Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Dan",
+"efternavn": "Reichardt",
+"lon": "12,32170161878679",
+"lat": "56,07541858359863",
+"tid_fra": "07:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

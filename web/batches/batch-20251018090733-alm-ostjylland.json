@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T09:07:33.286791+02:00",
+"items": [
+{
+"obsid": "37859505",
+"art": "Enkeltbekkasin",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Kalø slotshalvø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Morten",
+"efternavn": "Borup",
+"lon": "10,471696916713144",
+"lat": "56,274518999509695",
+"tid_fra": "08:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

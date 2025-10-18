@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DOF.not – Tråd</title>
+  <meta name="theme-color" content="#0b3d91" />
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #0f172a;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --accent: #0b3d91;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1220;
+        --fg: #e5e7eb;
+        --muted: #9ca3af;
+        --line: #1f2937;
+      }
+    }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--fg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 1rem; }
+
+    header.wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 1rem 0.5rem;
+    }
+    header h1 { font-size: 1.1rem; margin: 0; font-weight: 700; }
+    #theme-toggle { background: none; border: none; cursor: pointer; font-size: 1.7em; padding: 0 0.2em; line-height: 1; }
+
+    main.wrap { padding: 0 1rem 2rem; }
+    .panel { background: transparent; border-radius: 10px; }
+
+    .sub { color: var(--muted); font-size: 0.95rem; }
+
+    .obs-list { list-style: none; margin: 0.5rem 0 0; padding: 0; }
+    .obs-item { padding: .6rem .2rem; border-bottom: 1px solid var(--line); }
+    .obs-item > a { display: block; font-weight: 600; }
+
+    .list-cat-line { margin-top: .15rem; }
+    .list-time-line { margin-top: .1rem; color: var(--muted); font-size: .95em; }
+
+    .badge { display: inline-block; padding: 0 .45em; line-height: 1.6; border-radius: .33rem; font-weight: 700; font-size: .85em; }
+    .badge.cat-su  { background: #991b1b; color: #fff; }
+    .badge.cat-sub { background: #1e3a8a; color: #fff; }
+    .badge.cat-alm { background: #065f46; color: #fff; }
+    .badge.cat-bemaerk { background: #92400e; color: #fff; }
+
+    /* Trådvisning */
+    #thread-title { margin: .2rem 0 .2rem; font-size: 1.25rem; }
+    #thread-sub { margin: 0 0 .8rem; }
+    .meta { color: var(--muted); font-size: .95rem; display: flex; gap: .6rem; }
+    .byline { color: var(--muted); font-size: .95rem; margin-top: .15rem; }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <h1><a href="./">DOF.not</a> · Tråd</h1>
+    <button id="theme-toggle" aria-label="Skift lys/mørk tema">
+      <span id="theme-icon" aria-hidden="true">🌙</span>
+    </button>
+  </header>
+
+  <main class="wrap">
+    <div id="thread-status" class="sub"></div>
+
+    <section class="panel" id="thread-panel" style="display:none">
+      <h2 id="thread-title"></h2>
+      <p class="sub" id="thread-sub"></p>
+      <ul id="thread-events" class="obs-list"></ul>
+    </section>
+  </main>
+
+  <script src="./app.js"></script>
+  <script src="./thread.js"></script>
+</body>
+</html>

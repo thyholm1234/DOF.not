@@ -1,0 +1,52 @@
+{
+"client": "alm-vestsjaelland",
+"count": 3,
+"generated": "2025-10-18T09:27:23.627380+02:00",
+"items": [
+{
+"obsid": "37859895",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Gniben, Sjællands Odde",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Michael Fink",
+"efternavn": "Jørgensen",
+"lon": "11,283414890323025",
+"lat": "56,00342546751074",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37859888",
+"art": "Bjergvipstjert",
+"antal": "2",
+"adf": "Trækkende",
+"lok": "Røsnæs spidsen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "10,884992284991812",
+"lat": "55,73969377218697",
+"tid_fra": "07:50",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37859896",
+"art": "Bjergirisk",
+"antal": "30",
+"adf": "Trækkende",
+"lok": "Røsnæs spidsen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "10,884992284991812",
+"lat": "55,73969377218697",
+"tid_fra": "07:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

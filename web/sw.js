@@ -27,7 +27,10 @@ self.addEventListener('activate', (e) => {
     const keys = await caches.keys();
     await Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)));
     try {
-      if (USER_ID) await syncPrefsFromServer(USER_ID);
+      if (USER_ID) {
+        await syncPrefsFromServer(USER_ID);
+        await syncSpeciesFromServer(USER_ID); // NYT: hent arts‑filtre
+      }
     } catch {}
     await self.clients.claim();
   })());
@@ -145,13 +148,31 @@ async function syncPrefsFromServer(userId) {
   } catch {}
 }
 
+// Hent arts‑overrides fra server (best effort; tolerér 404/410/empty)
+async function syncSpeciesFromServer(userId) {
+  if (!userId) return;
+  try {
+    const url = new URL('/api/prefs/user/species?user_id=' + encodeURIComponent(userId), SCOPE).toString();
+    const r = await fetch(url, { cache: 'no-cache' });
+    if (!r.ok) return; // server behøver ikke understøtte GET
+    const data = await r.json();
+    if (data && typeof data === 'object') {
+      // forventer { include:[], exclude:[], counts:{ key:{mode,value} } }
+      await idbPutSpecies(data);
+    }
+  } catch {}
+}
+
 self.addEventListener('message', (event) => {
   const msg = event.data ?? {};
   if (msg.type === 'SAVE_PREFS' && msg.prefs) {
     event.waitUntil(idbPutPrefs(msg.prefs));
   } else if (msg.type === 'SET_USER' && msg.user_id) {
     USER_ID = msg.user_id;
-    event.waitUntil(syncPrefsFromServer(USER_ID));
+    event.waitUntil((async () => {
+      await syncPrefsFromServer(USER_ID);
+      await syncSpeciesFromServer(USER_ID); // NYT
+    })());
   } else if (msg.type === 'SAVE_SPECIES_OVERRIDES' && msg.overrides) {
     event.waitUntil(idbPutSpecies(msg.overrides));
   } else if (msg.type === 'GET_SPECIES_OVERRIDES' && event.ports?.[0]) {
@@ -178,10 +199,15 @@ function normalizeSpeciesName(s) {
 
 function applyRegionCategoryFilter(items, prefs) {
   if (!items || !items.length) return [];
+  const catKey = (v) => String(v ?? '').toLowerCase();
   return items.filter((it) => {
-    const afd = (it.dof_afdeling ?? '').toString();
-    const cat = (it.kategori ?? '').toString().toLowerCase();
-    const sel = (prefs[afd] ?? 'none').toLowerCase();
+    // Afdeling-felt: prøv flere varianter
+    const afd = String(
+      it.dof_afdeling ?? it.afdeling ?? it.region_name ?? it.region ?? ''
+    );
+    // Kategori-felt: prøv flere varianter
+    const cat = catKey(it.kategori ?? it.cat ?? it.last_kategori);
+    const sel = String(prefs[afd] ?? 'none').toLowerCase();
     const allowed = expandPrefValueToCats(sel);
     return allowed.has(cat);
   });
@@ -189,16 +215,15 @@ function applyRegionCategoryFilter(items, prefs) {
 
 function applySpeciesOverrides(items, overrides) {
   if (!items || !items.length) return [];
-  const inc = new Set((overrides?.include || []).map(normalizeSpeciesName));
-  const exc = new Set((overrides?.exclude || []).map(normalizeSpeciesName));
+  const inc = new Set((overrides?.include || []).map(normArtKey));
+  const exc = new Set((overrides?.exclude || []).map(normArtKey));
   return items.filter((it) => {
-    const key = normalizeSpeciesName(it.art);
+    const key = normArtKey(it.art);
     if (exc.has(key)) return false;     // udeluk altid
-    if (inc.has(key)) return true;      // vis altid
+    if (inc.has(key)) return true;      // vis altid (back‑compat)
     return true;                        // ellers behold (styret af forrige filter)
   });
 }
-
 
 function parseAntalToNumber(val) {
   if (val == null) return null;
@@ -210,14 +235,14 @@ function parseAntalToNumber(val) {
 
 function applyPerSpeciesCount(items, countsObj) {
   if (!items || !items.length) return [];
-  const counts = countsObj && typeof countsObj === 'object' ? countsObj : {};
+  const counts = (countsObj && typeof countsObj === 'object') ? countsObj : {};
   return items.filter((it) => {
-    const key = normalizeSpeciesName(it.art);
+    const key = normArtKey(it.art);
     const cf  = counts[key];
-    if (!cf || cf.value == null) return true;       // intet filter for denne art
+    if (!cf || cf.value == null) return true;
     const a = parseAntalToNumber(it.antal);
-    if (!Number.isFinite(a)) return false;          // kan ikke vurderes -> bortfiltrer
-    return (cf.mode === 'eq') ? (a === cf.value)    : (a >= cf.value);
+    if (!Number.isFinite(a)) return false;
+    return (cf.mode === 'eq') ? (a === cf.value) : (a >= cf.value);
   });
 }
 
@@ -230,6 +255,46 @@ function applyPerSpeciesCount(items, countsObj) {
 self.addEventListener('push', (event) => {
   event.waitUntil(handlePush(event));
 });
+
+// Små helpers: læs prefs/overrides
+async function getUserPrefsSafe() {
+  try { return (await idbGetPrefs()) || {}; } catch { return {}; }
+}
+async function getSpeciesOverridesSafe() {
+  try { return (await idbGetSpecies()) || {}; } catch { return {}; }
+}
+
+// Aktive filtre?
+function hasAfdPrefs(prefs) {
+  if (!prefs || typeof prefs !== 'object') return false;
+  return Object.values(prefs).some(v => ['su','sub','alle'].includes(String(v).toLowerCase()));
+}
+function hasSpeciesFilters(ov) {
+  if (!ov || typeof ov !== 'object') return false;
+  const exc = Array.isArray(ov.exclude) && ov.exclude.length > 0;
+  const cnt = ov.counts && typeof ov.counts === 'object' && Object.keys(ov.counts).length > 0;
+  return !!(exc || cnt);
+}
+
+// Anvend kun relevante filtre
+function applyAllFilters(items, prefs, overrides) {
+  let out = Array.isArray(items) ? items.slice() : [];
+  try {
+    if (hasAfdPrefs(prefs) && typeof applyRegionCategoryFilter === 'function') {
+      out = applyRegionCategoryFilter(out, prefs);
+    }
+    if (hasSpeciesFilters(overrides)) {
+      if (typeof applySpeciesOverrides === 'function') {
+        out = applySpeciesOverrides(out, overrides || {});
+      }
+      if (typeof applyPerSpeciesCount === 'function') {
+        const counts = (overrides && overrides.counts) || {};
+        out = applyPerSpeciesCount(out, counts);
+      }
+    }
+  } catch (_) { /* ignore */ }
+  return out;
+}
 
 async function handlePush(event) {
   // 1) Parse payload forsigtigt
@@ -248,6 +313,17 @@ async function handlePush(event) {
         const items = Array.isArray(batch.items) ? batch.items : [];
 
         if (items.length > 0) {
+          const prefs = await getUserPrefsSafe();
+          const overrides = await getSpeciesOverridesSafe();
+          const wantFilter = hasAfdPrefs(prefs) || hasSpeciesFilters(overrides);
+
+          if (wantFilter) {
+            const filtered = applyAllFilters(items, prefs, overrides);
+            if (filtered.length === 0) return; // intet matcher → ingen notifikationer
+            // Mutér arrayet in-place, så eksisterende rendering bruger filtreret liste
+            items.splice(0, items.length, ...filtered);
+          }
+
           // Vis en notifikation pr. observation (begræns evt. til 5)
           const notifPromises = items.slice(0, 5).map((it) => {
             const antal = (it.antal ?? '').toString().trim();
@@ -332,4 +408,22 @@ function filterItemsByPrefs(items, prefs) {
     if (sel === 'su') return cat === 'su';
     return false;
   });
+}
+
+// Ensartet arts-normalisering (samme som i app.js)
+function normArtKey(s) {
+  let t = String(s ?? '').normalize('NFKD');
+  t = t
+    .replace(/\u00C6/g,'AE').replace(/\u00E6/g,'ae')
+    .replace(/\u00D8/g,'OE').replace(/\u00F8/g,'oe')
+    .replace(/\u00C5/g,'AA').replace(/\u00E5/g,'aa');
+  t = t.replace(/[\u0300-\u036f]/g, '')
+       .replace(/[\"'«»„”“’”“\[\]\{\}]/g, ' ')
+       .replace(/[.,;:]/g, ' ')
+       .replace(/[\u2010-\u2014\u2212]/g, '-')
+       .replace(/\u00A0/g, ' ')
+       .replace(/\s+/g, ' ')
+       .trim()
+       .toLowerCase();
+  return t;
 }

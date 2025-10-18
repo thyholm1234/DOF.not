@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T10:20:43.279396+02:00",
+"items": [
+{
+"obsid": "37860408",
+"art": "Lomvie",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Køge Lystbådehavn",
+"dof_afdeling": "DOF København",
+"fornavn": "Eigil",
+"efternavn": "Larsen",
+"lon": "12,201433181762697",
+"lat": "55,470674417687796",
+"tid_fra": "09:30",
+"tid_til": "10:05",
+"kategori": "bemaerk"
+}
+]
+}

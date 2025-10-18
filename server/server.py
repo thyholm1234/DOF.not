@@ -5,16 +5,16 @@ import json
 import logging
 import os
 import re
-import sqlite3
-import time
-import uuid
 import mimetypes
-from base64 import urlsafe_b64decode
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from threading import Lock
 from typing import Dict, List, Tuple, Iterable, Set
 from concurrent.futures import ThreadPoolExecutor, as_completed
+import sqlite3              # ← NYT
+import time                 # ← NYT
+import uuid                 # ← NYT
+from base64 import urlsafe_b64decode  # ← NYT
 
 from fastapi import FastAPI, HTTPException, Request, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
@@ -22,6 +22,7 @@ from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pywebpush import WebPushException, webpush
 from starlette.responses import RedirectResponse
+from zoneinfo import ZoneInfo
 
 mimetypes.add_type("application/manifest+json", ".webmanifest")
 
@@ -57,9 +58,22 @@ _latest_lock = Lock()
 # Logger
 logger = logging.getLogger("dofpush.server")
 if not logger.handlers:
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+    h = logging.StreamHandler()
+    h.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
+    logger.addHandler(h)
+    logger.setLevel(logging.INFO)
 
 app = FastAPI(title="DOF Web Push (lokal)", version="3.0")
+DK_TZ = ZoneInfo("Europe/Copenhagen")
+
+def _today_ymd_dk(reset_hour: int = 3) -> str:
+    now = datetime.now(DK_TZ)
+    if now.hour < reset_hour:
+        now = now - timedelta(hours=reset_hour)
+    return now.date().isoformat()
+
+def _obs_dir_for_date(date_ymd: str) -> Path:
+    return WEB_DIR / "obs" / date_ymd
 
 # ───────────── PREFS: udvidelser af valg -> effektive kategorier ─────────────
 # NB: 'alle' udvides her IKKE med 'bemaerk' for at bevare tidligere API-kontrakt,
@@ -855,5 +869,63 @@ def index():
     if not index_path.exists(): raise HTTPException(status_code=404, detail="index.html mangler i /web")
     return FileResponse(index_path)
 
+# ──────────────── NYT: OBS API (summary + thread) ────────────────
+def _read_json_robust(path: Path, attempts: int = 5, delay: float = 0.05):
+    last_err = None
+    for _ in range(attempts):
+        try:
+            return json.loads(path.read_text(encoding="utf-8"))
+        except Exception as e:
+            last_err = e
+            time.sleep(delay)
+    raise HTTPException(status_code=500, detail=f"Kunne ikke læse {path.name}: {last_err}")
+
+@app.get("/api/obs/summary")
+def api_obs_summary(date: str = Query("today")):
+    date_ymd = _today_ymd_dk() if (date or "").strip().lower() == "today" else (date or "").strip()
+    idx_path = _obs_dir_for_date(date_ymd) / "index.json"
+    if not idx_path.exists():
+        return JSONResponse(status_code=204, content=None)
+    data = _read_json_robust(idx_path)
+    if isinstance(data, dict):
+        data = data.get("items", [])
+    return JSONResponse(data)
+
+@app.get("/api/obs/thread/{date}/{thread_id}")
+def api_obs_thread(date: str, thread_id: str):
+    base = _obs_dir_for_date(date) / "threads" / thread_id
+    tpath = base / "thread.json"
+    if not tpath.exists():
+        raise HTTPException(status_code=404, detail="Tråd ikke fundet")
+    thread = _read_json_robust(tpath)
+
+    events = []
+    evdir = base / "events"
+    if evdir.exists():
+        for p in evdir.glob("*.json"):
+            try:
+                events.append(_read_json_robust(p))
+            except HTTPException:
+                continue
+
+    def _ts(e):
+        s = e.get("ts_obs") or e.get("ts_seen") or ""
+        try:
+            return datetime.fromisoformat(s)
+        except Exception:
+            return datetime.fromtimestamp(0, tz=timezone.utc)
+    events.sort(key=_ts, reverse=True)
+
+    return JSONResponse({"thread": thread, "events": events})
+
+@app.get("/obs/{thread_id}")
+def obs_one(thread_id: str):
+    return RedirectResponse(url=f"/thread.html?date=today&id={thread_id}")
+
+@app.get("/obs/{date}/{thread_id}")
+def obs_with_date(date: str, thread_id: str):
+    return RedirectResponse(url=f"/thread.html?date={date}&id={thread_id}")
+
+# Statisk web (index.html, thread.html, js, css)
 app.mount("/", StaticFiles(directory=WEB_DIR, html=True), name="web")
 

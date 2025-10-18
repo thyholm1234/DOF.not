@@ -1005,6 +1005,27 @@ function renderItem(item) {
   li.append(article);
   return li;
 }
+function renderSummaryItem(s) {
+  const li = el('li', 'obs-item');
+  const art = escapeHtml(s.artsnavn);
+  const lok = escapeHtml(s.lokalitet);
+  const dateParam = (s.first_ts_obs || s.last_ts_obs || '').slice(0,10) || 'today';
+
+  const a = document.createElement('a');
+  a.href = `./thread.html?date=${encodeURIComponent(dateParam)}&id=${encodeURIComponent(s.thread_id)}`;
+  a.setAttribute('aria-label', `${art} – ${lok}`);
+  a.className = 'title species sp-name';
+  a.innerHTML = `${art} <small class="obs-meta">(${lok})</small>`;
+  if (s.antal) {
+    const count = Number(s.antal);
+    const badge = el('span', 'badge obs-count', count > 0 ? count : '');
+    a.append(badge);
+  }
+
+  li.append(a);
+  return li;
+}
+
 
 /* ==== Controller + cache ==== */
 function ymdInTZ(d, tz) {

@@ -1,0 +1,22 @@
+{
+"client": "sub-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T09:06:25.929023+02:00",
+"items": [
+{
+"obsid": "37859710",
+"art": "Gransanger, Sibirisk (ssp. tristis)",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Kyndeløse Sydmark (Åhuse)",
+"dof_afdeling": "DOF København",
+"fornavn": "Casper",
+"efternavn": "Sylvester Jensen",
+"lon": "11,851840056024766",
+"lat": "55,704035016826055",
+"tid_fra": "08:56",
+"tid_til": "09:00",
+"kategori": "sub"
+}
+]
+}

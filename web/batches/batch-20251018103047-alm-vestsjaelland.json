@@ -1,0 +1,52 @@
+{
+"client": "alm-vestsjaelland",
+"count": 3,
+"generated": "2025-10-18T10:30:47.830767+02:00",
+"items": [
+{
+"obsid": "37859868",
+"art": "Allike",
+"antal": "1950",
+"adf": "Trækkende mod vest",
+"lok": "Røsnæs spidsen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "10,884992284991812",
+"lat": "55,73969377218697",
+"tid_fra": "07:50",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37859872",
+"art": "Blåmejse",
+"antal": "1730",
+"adf": "Trækkende mod vest",
+"lok": "Røsnæs spidsen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "10,884992284991812",
+"lat": "55,73969377218697",
+"tid_fra": "07:50",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860473",
+"art": "Sortstrubet Bynkefugl",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Flyndersø ved Korshage",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Tonny",
+"efternavn": "Papillon",
+"lon": "11,76002504746548",
+"lat": "55,969898343933835",
+"tid_fra": "10:29",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

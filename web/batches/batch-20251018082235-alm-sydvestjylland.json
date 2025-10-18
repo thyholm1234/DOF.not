@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T08:22:35.695495+02:00",
+"items": [
+{
+"obsid": "37859247",
+"art": "Ringdue",
+"antal": "250",
+"adf": "Trækkende mod sydøst",
+"lok": "Ho Plantage",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonas",
+"efternavn": "Fahrendorff",
+"lon": "8,215459785908944",
+"lat": "55,539072875789515",
+"tid_fra": "07:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

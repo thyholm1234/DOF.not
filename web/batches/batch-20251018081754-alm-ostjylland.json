@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T08:17:54.002688+02:00",
+"items": [
+{
+"obsid": "37859227",
+"art": "Fløjlsand",
+"antal": "27",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:55",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

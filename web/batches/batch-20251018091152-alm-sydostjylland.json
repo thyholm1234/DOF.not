@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-18T09:11:52.357126+02:00",
+"items": [
+{
+"obsid": "37859740",
+"art": "Bramgås",
+"antal": "140",
+"adf": "Trækkende mod sydvest",
+"lok": "Rosenvold",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Svend",
+"efternavn": "Dybkjær",
+"lon": "9,825895434818976",
+"lat": "55,67353451989942",
+"tid_fra": "09:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

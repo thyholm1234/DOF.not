@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T08:53:33.254316+02:00",
+"items": [
+{
+"obsid": "37859570",
+"art": "Silkehejre",
+"antal": "2",
+"adf": "Trækkende til/fra overnatning",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "8,559212227716845",
+"lat": "55,279651469401784",
+"tid_fra": "07:10",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

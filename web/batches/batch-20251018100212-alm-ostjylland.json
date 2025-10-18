@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-18T10:02:12.594645+02:00",
+"items": [
+{
+"obsid": "37859352",
+"art": "Alk",
+"antal": "15",
+"adf": "Trækkende mod øst",
+"lok": "Gjerrild Nordstrand øst, Knudshoved",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Jørgen Staarup",
+"efternavn": "Christensen",
+"lon": "10,82412470101604",
+"lat": "56,53158580574126",
+"tid_fra": "07:40",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860243",
+"art": "Blisgås",
+"antal": "24",
+"adf": "Trækkende mod sydvest",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "09:55",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

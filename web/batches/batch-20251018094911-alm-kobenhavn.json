@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T09:49:11.902679+02:00",
+"items": [
+{
+"obsid": "37860133",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Utterslev Mose Del II (Midtmosen)",
+"dof_afdeling": "DOF København",
+"fornavn": "Morten Rahbæk",
+"efternavn": "Boilesen",
+"lon": "12,511145",
+"lat": "55,718622",
+"tid_fra": "09:47",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

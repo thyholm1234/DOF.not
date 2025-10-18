@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-18T08:47:04.777401+02:00",
+"items": [
+{
+"obsid": "37859227",
+"art": "Fløjlsand",
+"antal": "161",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:55",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37859353",
+"art": "Rødstrubet Lom",
+"antal": "10",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:55",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37859505",
+"art": "Enkeltbekkasin",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Kalø slotshalvø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Morten",
+"efternavn": "Borup",
+"lon": "10,471696916713144",
+"lat": "56,274518999509695",
+"tid_fra": "08:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

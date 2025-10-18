@@ -1,0 +1,37 @@
+{
+"client": "alm-vestsjaelland",
+"count": 2,
+"generated": "2025-10-18T10:15:11.194049+02:00",
+"items": [
+{
+"obsid": "37859868",
+"art": "Allike",
+"antal": "1590",
+"adf": "Trækkende mod vest",
+"lok": "Røsnæs spidsen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Daniel",
+"efternavn": "Palm Eskildsen",
+"lon": "10,884992284991812",
+"lat": "55,73969377218697",
+"tid_fra": "07:50",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860336",
+"art": "Krikand",
+"antal": "340",
+"adf": "Rastende",
+"lok": "Hovvig, Odsherred",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Scheel",
+"lon": "11,714372187370765",
+"lat": "55,920093539597644",
+"tid_fra": "10:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-18T09:22:41.430396+02:00",
+"items": [
+{
+"obsid": "37859844",
+"art": "Havørn",
+"antal": "29",
+"adf": "Trækkende mod syd til/fra overnatning",
+"lok": "Sønder Sejerslev",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Harry",
+"efternavn": "Antonisen",
+"lon": "8,700889638254848",
+"lat": "54,995000574153295",
+"tid_fra": "07:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

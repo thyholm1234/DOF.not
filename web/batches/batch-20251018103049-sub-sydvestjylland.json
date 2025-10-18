@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T10:30:49.924303+02:00",
+"items": [
+{
+"obsid": "37860476",
+"art": "Rosenstær",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Nordby med havn (Fanø)",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Joakim",
+"efternavn": "Engel",
+"lon": "8,402948109321766",
+"lat": "55,44545413537361",
+"tid_fra": "10:28",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

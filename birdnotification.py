@@ -16,19 +16,25 @@ Denne version (L1-hybrid klar):
 - NYT: atomic writes for state- og batchfiler.
 - FIX: only_with_coords-masken brugte forkert operator—rettet til OR/AND.
 """
-
-import argparse
-import datetime as dt
-import json
 import sys
-import time
+import re
+import mimetypes
 import unicodedata
 import warnings
-import re
+
+import pandas as pd
+import yaml
+import argparse
+import datetime as dt
+import pandas as pd
+import json
+import os           # NYT
+import tempfile     # NYT
+import time         # NYT
 from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
-import pandas as pd
+
 import requests
 import yaml
 from zoneinfo import ZoneInfo
@@ -56,26 +62,346 @@ STATE_FILE = STATE_DIR / "dof_state.json"
 SU_LIST = DATA_DIR / "SU-arter.csv"
 SUB_LIST = DATA_DIR / "SUB-arter.csv"
 BATCH_DIR = Path("web") / "batches"
+OBS_BASE = Path("web") / "obs"
+REQUIRED_COLS = ["Artnavn", "Loknr", "Loknavn", "Antal", "Dato", "Obsid"]
 
-REQUIRED_COLS = [
-    "Artnavn", "Loknr", "Adfbeskrivelse", "Loknavn",
-    "Fornavn", "Efternavn", "Obsid",
-    "obs_laengdegrad", "obs_breddegrad",
-    "lok_laengdegrad", "lok_breddegrad",
-]
+mimetypes.add_type("application/manifest+json", ".webmanifest")
+
+def _ensure_dir(p: Path):
+    try:
+        Path(p).mkdir(parents=True, exist_ok=True)
+    except Exception:
+        pass
+
+def _atomic_write_text(path: Path, text: str, encoding: str = "utf-8"):
+    path = Path(path)
+    _ensure_dir(path.parent)
+    fd, tmp = tempfile.mkstemp(prefix=path.name, dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "w", encoding=encoding, newline="") as f:
+            f.write(text)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)
+    except Exception:
+        try: os.unlink(tmp)
+        except Exception: pass
+        raise
+
+def _atomic_write_json(path: Path, obj):
+    path = Path(path)
+    _ensure_dir(path.parent)
+    fd, tmp = tempfile.mkstemp(prefix=path.name, dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(obj, f, ensure_ascii=False, separators=(",", ":"), sort_keys=False)
+            f.flush()
+            os.fsync(f.fileno())
+        os.replace(tmp, path)
+    except Exception:
+        try: os.unlink(tmp)
+        except Exception: pass
+        raise
+
+def _slugify(s: str) -> str:
+    t = unicodedata.normalize("NFKD", str(s or "").lower())
+    t = t.replace("æ","ae").replace("ø","oe").replace("å","aa")
+    t = "".join(ch for ch in t if not unicodedata.combining(ch))
+    t = re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+    return t or "x"
+
+def _date_ymd_dk(now: dt.datetime | None = None, reset_hour: int = 3) -> str:
+    now = now or dt.datetime.now(DK_TZ)
+    if now.hour < reset_hour:
+        now = now - dt.timedelta(hours=reset_hour)
+    return now.date().isoformat()
+
+def _row_obsid(row) -> str:
+    for k in ("ObsID","ObsId","obsid","ID","id"):
+        v = row.get(k)
+        if pd.notna(v) and str(v).strip():
+            return str(v).strip()
+    # fallback: stabil “key” hvis intet ID (brug index+hash)
+    return f"row-{abs(hash((row.get('Artnavn',''), row.get('Loknr',''), row.get('Dato') or row.get('Dato-tid') or '')))%10_000_000}"
+
+def _kategori_from_row(row) -> str:
+    try:
+        val = art_kategori(row.get("Artnavn",""), row, row.get("_antal_num"))
+    except TypeError:
+        val = art_kategori(row.get("Artnavn",""), row)
+    if isinstance(val, (list, tuple)): val = val[0] if val else ""
+    if isinstance(val, dict): val = val.get("kategori") or val.get("cat") or val.get("type") or ""
+    return str(val or "").strip().lower()
+
+def _ensure_kategori(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    df["_antal_num"] = df["Antal"].apply(_parse_antal) if "Antal" in df.columns else None
+    if "kategori" not in df.columns or df["kategori"].dtype != object:
+        df["kategori"] = df.apply(_kategori_from_row, axis=1)
+    else:
+        # normalisér til ren str
+        df["kategori"] = df["kategori"].astype(str).str.lower()
+    return df
+
+def _build_event_from_row(row) -> dict:
+    ev = {
+        "event_type": "obs",
+        "obsid": _row_obsid(row),
+        "art": row.get("Artnavn"),
+        "lok": row.get("Lokalitet") or row.get("Loknavn"),
+        "loknr": row.get("Loknr"),
+        "region": row.get("Region"),
+        "region_slug": row.get("RegionSlug") or row.get("Region_Slug"),
+        "coords": row.get("Coords") or row.get("Koordinater"),
+        "antal_num": row.get("_antal_num"),
+        "antal_text": str(row.get("Antal")) if pd.notna(row.get("Antal")) else None,
+        "kategori": row.get("kategori"),
+        "adf": row.get("Adfærd") or row.get("Adfaerd") or row.get("Adf"),
+        "observer": row.get("ObsNavn") or row.get("Observatør") or row.get("Observator"),
+        "ts_obs": (row.get("Dato-tid") or row.get("DatoTid") or row.get("Dato") or "")[:19].replace(" ", "T"),
+        "ts_seen": dt.datetime.now(DK_TZ).isoformat(),
+    }
+    return {k: v for k, v in ev.items() if v not in (None, "", [])}
+
+def _thread_id_for(row: pd.Series) -> str:
+    return f"{_slugify(row.get('Artnavn',''))}-{str(row.get('Loknr','')).strip()}"
+
+def _write_event_if_new(base_dir: Path, thread_id: str, ev: dict) -> bool:
+    evdir = base_dir / "threads" / thread_id / "events"
+    _ensure_dir(evdir)
+    if not ev.get("obsid"):
+        # fallback: ts_seen som id
+        ev_id = f"e-{int(dt.datetime.now(DK_TZ).timestamp())}"
+    else:
+        ev_id = str(ev["obsid"]).strip()
+    path = evdir / f"{ev_id}.json"
+    if path.exists():
+        return False
+    _atomic_write_json(path, ev)
+    return True
+
+def _write_event_upsert(base_dir: Path, thread_id: str, ev: dict) -> bool:
+    evdir = base_dir / "threads" / thread_id / "events"
+    _ensure_dir(evdir)
+    ev_id = str(ev.get("obsid") or f"e-{int(dt.datetime.now(DK_TZ).timestamp())}")
+    path = evdir / f"{ev_id}.json"
+
+    old = None
+    if path.exists():
+        try:
+            old = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            old = None
+
+    if old is not None:
+        try:
+            if json.dumps(old, sort_keys=True, ensure_ascii=False) == json.dumps(ev, sort_keys=True, ensure_ascii=False):
+                return False  # ingen ændring
+        except Exception:
+            pass
+
+    _atomic_write_json(path, ev)
+    return True
+
+def _read_json_safe(p: Path) -> dict:
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+def _update_thread_rollup(day_dir: Path, thread_id: str, evs_for_thread: list[dict], date_ymd: str) -> dict:
+    tdir = day_dir / "threads" / thread_id
+    _ensure_dir(tdir)
+    tpath = tdir / "thread.json"
+    try:
+        before = json.loads(tpath.read_text(encoding="utf-8")) if tpath.exists() else {}
+    except Exception:
+        before = {}
+
+    evs = sorted(evs_for_thread, key=lambda e: e.get("ts_obs") or e.get("ts_seen") or "", reverse=True)
+    last = evs[0]
+    counts = [e.get("antal_num") for e in evs if isinstance(e.get("antal_num"), (int,float))]
+    max_num = max(counts) if counts else None
+    max_ev = None
+    if max_num is not None:
+        cand = [e for e in evs if e.get("antal_num") == max_num]
+        cand.sort(key=lambda e: e.get("ts_obs") or "", reverse=True)
+        max_ev = cand[0] if cand else None
+
+    def iso_min(*vals):
+        vals = [v for v in vals if v]
+        if not vals: return None
+        try: return min(dt.datetime.fromisoformat(v) for v in vals).isoformat()
+        except Exception: return vals[0]
+
+    def iso_max(*vals):
+        vals = [v for v in vals if v]
+        if not vals: return None
+        try: return max(dt.datetime.fromisoformat(v) for v in vals).isoformat()
+        except Exception: return vals[-1]
+
+    has_nonzero = any((isinstance(e.get("antal_num"), (int,float)) and e["antal_num"] > 0) for e in evs)
+    last_active = None
+    if has_nonzero:
+        pos = [e for e in evs if isinstance(e.get("antal_num"), (int,float)) and e["antal_num"] > 0]
+        pos.sort(key=lambda e: e.get("ts_obs") or "", reverse=True)  # FIX: tilføj key=
+        last_active = pos[0].get("ts_obs")
+
+    thread = {
+        "day": date_ymd,
+        "thread_id": thread_id,
+        "art": last.get("art"),
+        "lok": last.get("lok"),
+        "loknr": last.get("loknr"),
+        "region": last.get("region"),
+        "region_slug": last.get("region_slug"),
+        "coords": last.get("coords"),
+        "first_ts_obs": iso_min(before.get("first_ts_obs"), *(e.get("ts_obs") for e in evs)),
+        "last_ts_obs": iso_max(before.get("last_ts_obs"), *(e.get("ts_obs") for e in evs)),
+        "last_kategori": last.get("kategori"),
+        "last_antal_num": last.get("antal_num"),
+        "last_antal_text": last.get("antal_text"),
+        "max_antal_num": (
+            max(max_num, before.get("max_antal_num"))
+            if (isinstance(before.get("max_antal_num"), (int,float)) and max_num is not None)
+            else (max_num if max_num is not None else before.get("max_antal_num"))
+        ),
+        "max_antal_text": (max_ev or {}).get("antal_text") if max_ev else before.get("max_antal_text"),
+        "max_antal_ts_obs": (max_ev or {}).get("ts_obs") if max_ev else before.get("max_antal_ts_obs"),
+        "num_events": len(evs),
+        "has_nonzero_today": bool(has_nonzero),
+        "last_active_ts_obs": iso_max(before.get("last_active_ts_obs"), last_active),
+        "status": before.get("status", "active"),
+        "corrected_at": before.get("corrected_at"),
+        "corrected_once": before.get("corrected_once", False),
+    }
+    _atomic_write_json(tpath, thread)
+    return thread
+
+def _write_index_for_day(day_dir: Path, date_ymd: str) -> list[dict]:
+    threads_dir = day_dir / "threads"
+    items = []
+    if threads_dir.exists():
+        for t in threads_dir.iterdir():
+            if not t.is_dir(): continue
+            tpath = t / "thread.json"
+            if not tpath.exists(): continue
+            try:
+                obj = json.loads(tpath.read_text(encoding="utf-8"))
+                obj["day"] = date_ymd
+                items.append(obj)
+            except Exception:
+                continue
+    items.sort(key=lambda x: x.get("last_ts_obs") or "", reverse=True)
+    _atomic_write_json(day_dir / "index.json", items)
+    return items
+
+def _purge_old_obs(retain_days: int = 2):
+    base = OBS_BASE
+    if not base.exists():
+        return
+    today = _date_ymd_dk()
+    try:
+        dates = sorted([p.name for p in base.iterdir() if p.is_dir()])
+    except Exception:
+        return
+    # Behold i alt 'retain_days' inklusive today og i går
+    # Slet resten
+    keep = set()
+    try:
+        d = dt.date.fromisoformat(today)
+        for i in range(retain_days):
+            keep.add((d - dt.timedelta(days=i)).isoformat())
+    except Exception:
+        keep = {today}
+    for dname in dates:
+        if dname not in keep:
+            try:
+                for pp in (base / dname).rglob("*"):
+                    try:
+                        if pp.is_file():
+                            pp.unlink()
+                    except Exception:
+                        pass
+                for pp in sorted((base / dname).rglob("*"), reverse=True):
+                    try:
+                        if pp.is_dir():
+                            pp.rmdir()
+                    except Exception:
+                        pass
+                (base / dname).rmdir()
+            except Exception:
+                continue
+
+def _send_withdraw_push(thread: dict, server_url: str = "http://localhost:8000/api/publish"):
+    try:
+        url = server_url
+        title = f"Tilbagekaldt: {thread.get('art','')} – {thread.get('lok','')}"
+        last_pos = thread.get("last_active_ts_obs") or thread.get("last_ts_obs")
+        body = f"Dagens observation(er) rettet til 0 / fjernet. Sidst positivt: {last_pos}"
+        link = f"/thread.html?date={thread.get('first_ts_obs','')[:10]}&id={thread.get('thread_id','')}"
+        payload = {
+            "title": title, "body": body, "url": link,
+            "tag": f"withdraw-{thread.get('thread_id')}",
+            "urgency": "normal"
+        }
+        requests.post(url, json=payload, timeout=(3.05, 15))
+    except Exception:
+        pass
+
+def build_obs_storage_for_day(df: pd.DataFrame, date_ymd: str, *, categories: tuple[str,...]=("su","sub"), send_withdraw_push: bool = True):
+    if df.empty:
+        _ensure_dir(OBS_BASE / date_ymd)
+        _atomic_write_json((OBS_BASE / date_ymd / "index.json"), [])
+        return
+
+    day_dir = OBS_BASE / date_ymd
+    _ensure_dir(day_dir)
+
+    df = _ensure_kategori(df)
+    rows = df[df["kategori"].isin(categories)]  # skriv alle: brug rows = df
+
+    thread_events: dict[str, list[dict]] = {}
+    writes = 0
+    for _, r in rows.iterrows():
+        ev = _build_event_from_row(r)
+        tid = _thread_id_for(r)
+        if _write_event_upsert(day_dir, tid, ev):
+            writes += 1
+        thread_events.setdefault(tid, []).append(ev)
+
+    for tid, evs in thread_events.items():
+        _update_thread_rollup(day_dir, tid, evs, date_ymd)
+
+    # Markér withdrawn for tråde, der mangler i denne sync
+    present = set(thread_events.keys())
+    threads_dir = day_dir / "threads"
+    if threads_dir.exists():
+        for tdir in threads_dir.iterdir():
+            if not tdir.is_dir(): continue
+            tid = tdir.name
+            if tid in present: continue
+            tpath = tdir / "thread.json"
+            if not tpath.exists(): continue
+            try:
+                before = json.loads(tpath.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            if before.get("has_nonzero_today") and before.get("status") != "withdrawn":
+                before["has_nonzero_today"] = False
+                before["status"] = "withdrawn"
+                _atomic_write_json(tpath, before)
+
+    _write_index_for_day(day_dir, date_ymd)
+
+    # Debug tæller (valgfrit)
+    print(f"[obs] {date_ymd}: upserts={writes}, threads={len(thread_events)}")
 
 # ───────────────────────────────── Utilities ─────────────────────────────────
 def ensure_dirs():
     STATE_DIR.mkdir(parents=True, exist_ok=True)
     DL_DIR.mkdir(parents=True, exist_ok=True)
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-
-def _atomic_write_text(path: Path, text: str, encoding: str = "utf-8") -> None:
-    """Skriv atomisk: path.tmp -> replace(path)."""
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(text, encoding=encoding)
-    tmp.replace(path)
 
 def build_url(date_dd_mm_yyyy: str) -> str:
     try:
@@ -106,7 +432,7 @@ def _get_series(df: pd.DataFrame, col: str) -> pd.Series:
 def _inject_time_fallbacks(df: pd.DataFrame) -> pd.DataFrame:
     s_obsidfra = _get_series(df, "Obstidfra")
     s_turtidfra = _get_series(df, "Turtidfra")
-    s_obsidtil = _get_series(df, "Obstidtil")
+    s_obsidtil = _get_series(df, "Obsidtil")
     s_turtidtil = _get_series(df, "Turtidtil")
     df["Obstidfra"] = s_obsidfra.where(s_obsidfra != "", s_turtidfra)
     df["Obstidtil"] = s_obsidtil.where(s_obsidtil != "", s_turtidtil)
@@ -818,6 +1144,34 @@ def run_once(date_str: str, clients: List[dict], timestamp_mode: str) -> bool:
         except Exception as e:
             print(f"[Advarsel] Kunne ikke slette downloadet CSV: {csv_path.name} ({e})", file=sys.stderr)
 
+    # Når df er klar:
+    try:
+        date_ymd = dt.datetime.strptime(date_str.strip(), "%d-%m-%Y").date().isoformat()
+    except Exception:
+        date_ymd = dt.datetime.now(DK_TZ).date().isoformat()
+    try:
+        build_obs_storage_for_day(df, date_ymd=date_ymd, send_withdraw_push=True)
+    except Exception as e:
+        print(f"[Advarsel] Bygning af obs-lager fejlede: {e}", file=sys.stderr)
+
+    state = load_state()
+
+    # Bestem dagsmappe fra CLI-datoen
+    def _date_ymd_dk(now: dt.datetime | None = None, reset_hour: int = 3) -> str:
+        now = now or dt.datetime.now(DK_TZ)
+        if now.hour < reset_hour:
+            now = now - dt.timedelta(hours=reset_hour)
+        return now.date().isoformat()
+
+    def _cli_date_to_iso(date_str: Optional[str]) -> str:
+        s = (date_str or "").strip()
+        if s:
+            try:
+                return dt.datetime.strptime(s, "%d-%m-%Y").date().isoformat()
+            except Exception:
+                pass
+        return dt.datetime.now(DK_TZ).date().isoformat()
+
     state = load_state()
     initial = len(state) == 0
     if initial:
@@ -896,3 +1250,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

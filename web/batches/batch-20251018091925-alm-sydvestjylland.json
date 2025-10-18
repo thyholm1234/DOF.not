@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T09:19:25.422628+02:00",
+"items": [
+{
+"obsid": "37859811",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "August",
+"efternavn": "Horsten",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

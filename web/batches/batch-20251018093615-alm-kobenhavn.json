@@ -1,0 +1,52 @@
+{
+"client": "alm-kobenhavn",
+"count": 3,
+"generated": "2025-10-18T09:36:15.783679+02:00",
+"items": [
+{
+"obsid": "37860021",
+"art": "Bramgås",
+"antal": "2600",
+"adf": "Overflyvende",
+"lok": "Køge Sydstrand",
+"dof_afdeling": "DOF København",
+"fornavn": "Svend",
+"efternavn": "Aage Linderström",
+"lon": "12,19719557037395",
+"lat": "55,44781360699113",
+"tid_fra": "06:50",
+"tid_til": "08:20",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860023",
+"art": "Grågås",
+"antal": "600",
+"adf": "Overflyvende",
+"lok": "Køge Sydstrand",
+"dof_afdeling": "DOF København",
+"fornavn": "Svend",
+"efternavn": "Aage Linderström",
+"lon": "12,19719557037395",
+"lat": "55,44781360699113",
+"tid_fra": "06:50",
+"tid_til": "08:20",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860025",
+"art": "Stormmåge",
+"antal": "2300",
+"adf": "Rastende på overnatningsplads",
+"lok": "Køge Sydstrand",
+"dof_afdeling": "DOF København",
+"fornavn": "Svend",
+"efternavn": "Aage Linderström",
+"lon": "12,19719557037395",
+"lat": "55,44781360699113",
+"tid_fra": "06:50",
+"tid_til": "08:20",
+"kategori": "bemaerk"
+}
+]
+}

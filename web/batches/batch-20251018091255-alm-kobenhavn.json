@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T09:12:55.600997+02:00",
+"items": [
+{
+"obsid": "37859750",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Brønshøj",
+"dof_afdeling": "DOF København",
+"fornavn": "Cecilie",
+"efternavn": "Illemann",
+"lon": "12,512762546539308",
+"lat": "55,70662507892954",
+"tid_fra": "09:07",
+"tid_til": "09:10",
+"kategori": "bemaerk"
+}
+]
+}

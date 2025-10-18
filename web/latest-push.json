@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-17T23:21:09.953516+02:00",
+  "received_at": "2025-10-18T10:41:46.945798+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "3 Sølvhejre, Armhoved (Arm Hage)",
-      "body": "Mogens, Wedel-Heinen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37859000&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-ostjylland",
+      "title": "14 Blisgås, Søborg Sø",
+      "body": "Dan, Reichardt",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37860547&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-nordsjaelland",
       "renotify": true,
       "regions": [
-        "DOF Østjylland"
+        "DOF Nordsjælland"
       ],
       "categories": [
         "bemaerk"

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T09:50:17.501715+02:00",
+"items": [
+{
+"obsid": "37859934",
+"art": "Rødstrubet Lom",
+"antal": "5",
+"adf": "Trækkende mod vest",
+"lok": "Fyns Hoved",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Martin Søgaard",
+"efternavn": "Nielsen",
+"lon": "10,592253223588079",
+"lat": "55,61485104377306",
+"tid_fra": "07:35",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

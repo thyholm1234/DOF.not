@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T08:57:47.933945+02:00",
+"items": [
+{
+"obsid": "37859333",
+"art": "Sule",
+"antal": "7",
+"adf": "Trækkende",
+"lok": "Korshage",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Scheel",
+"lon": "11,776787179053605",
+"lat": "55,976041851982245",
+"tid_fra": "08:21",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

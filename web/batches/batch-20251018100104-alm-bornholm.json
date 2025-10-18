@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T10:01:04.855196+02:00",
+"items": [
+{
+"obsid": "37860224",
+"art": "Trane",
+"antal": "25",
+"adf": "Trækkende mod syd",
+"lok": "Sose Odde",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Ege",
+"efternavn": "Juul Nielsen",
+"lon": "14,82932547025268",
+"lat": "55,04475399406269",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}
