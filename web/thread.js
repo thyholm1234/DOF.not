@@ -90,6 +90,7 @@
   }
 
   // DOM helpers
+  
   function el(tag, cls, text) {
     const x = document.createElement(tag);
     if (cls) x.className = cls;
@@ -226,10 +227,22 @@
     top.append(left, right);
     article.appendChild(top);
 
-    // Titel: Kun artsnavn (farvet efter klassifikation) — antal droppet
+    // Titel: antal + artsnavn (samme layout som summary)
     const title = el('div','title');
     const katForArt = resolveKategori(ev.art, ev.kategori);
     const artCls = katForArt ? ` cat-${katForArt}` : '';
+
+    // Antal (brug antal_num hvis tilgængelig, ellers forsøg parse antal_text)
+    let antalStr = '';
+    if (typeof ev.antal_num === 'number' && Number.isFinite(ev.antal_num)) {
+      const i = Math.trunc(ev.antal_num);
+      antalStr = Math.abs(ev.antal_num - i) < 1e-9 ? String(i) : String(ev.antal_num);
+    } else if (ev.antal_text) {
+      const n = parseInt(String(ev.antal_text), 10);
+      if (Number.isFinite(n)) antalStr = String(n);
+    }
+    if (antalStr) title.appendChild(el('span', `count${artCls}`, antalStr));
+
     const artSpan = el('span', `art-name${artCls}`, ev.art || '');
     title.appendChild(artSpan);
     article.appendChild(title);
@@ -395,8 +408,9 @@
   // Forside: kontrolpanel
   function buildFrontControls() {
     if (!$frontControls) return;
-    if ($frontControls.childElementCount) { $frontControls.style.display = 'flex'; return; }
 
+    // byg altid for at sikre at alle elementer findes
+    $frontControls.innerHTML = '';
     $frontControls.style.display = 'flex';
     $frontControls.style.gap = '12px';
     $frontControls.style.alignItems = 'center';
@@ -425,7 +439,7 @@
     $frontSelLimit.value = String(frontState.limit);
     limitWrap.appendChild($frontSelLimit);
 
-    // Sortering (kun 2 muligheder)
+    // Sortering – altid aktiv uanset prefs-toggle
     const sortWrap = document.createElement('label');
     sortWrap.style.display = 'inline-flex'; sortWrap.style.alignItems = 'center'; sortWrap.style.gap = '6px';
     sortWrap.appendChild(document.createTextNode('Sortér'));
@@ -433,33 +447,27 @@
     [
       { value: 'date_desc', label: 'Nyeste' },
       { value: 'alpha_asc', label: 'Alfabetisk' },
-    ].forEach(s => { const o = document.createElement('option'); o.value = s.value; o.textContent = s.label; $frontSelSort.appendChild(o); });
+    ].forEach(s => { const o=document.createElement('option'); o.value=s.value; o.textContent=s.label; $frontSelSort.appendChild(o); });
     $frontSelSort.value = frontState.sortMode === 'alpha_asc' ? 'alpha_asc' : 'date_desc';
-    sortWrap.appendChild($frontSelSort);
+    sortWrap.appendChild($frontSelSort); // FIX: tilføj select til label
 
-    // helper: disable/enable sort-select
-    function applyPrefsToggle() {
-      $frontSelSort.disabled = $frontChkPrefs.checked;
-    }
-    applyPrefsToggle();
-
+    // Tilføj til panelet
     $frontControls.appendChild(prefsWrap);
     $frontControls.appendChild(hideWrap);
     $frontControls.appendChild(limitWrap);
     $frontControls.appendChild(sortWrap);
 
     // Events
+    $frontChkPrefs.addEventListener('change', () => {
+      frontState.usePrefs = $frontChkPrefs.checked;
+      try { localStorage.setItem(SORT_PREFS_KEY, frontState.usePrefs ? '1' : '0'); } catch {}
+      renderThreadSummaries();
+    });
     $frontChkHideZero.addEventListener('change', () => { frontState.hideZero = $frontChkHideZero.checked; renderThreadSummaries(); });
     $frontSelLimit.addEventListener('change', () => { frontState.limit = parseInt($frontSelLimit.value, 10) || 0; renderThreadSummaries(); });
     $frontSelSort.addEventListener('change', () => {
       frontState.sortMode = $frontSelSort.value;
       try { localStorage.setItem(SORT_MODE_KEY, frontState.sortMode); } catch {}
-      renderThreadSummaries();
-    });
-    $frontChkPrefs.addEventListener('change', () => {
-      frontState.usePrefs = $frontChkPrefs.checked;
-      try { localStorage.setItem(SORT_PREFS_KEY, frontState.usePrefs ? '1' : '0'); } catch {}
-      applyPrefsToggle();
       renderThreadSummaries();
     });
   }

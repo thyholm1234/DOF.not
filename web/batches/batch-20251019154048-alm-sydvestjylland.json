@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T15:40:48.125978+02:00",
+"items": [
+{
+"obsid": "37871808",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "11:28",
+"tid_til": "14:50",
+"kategori": "bemaerk"
+}
+]
+}

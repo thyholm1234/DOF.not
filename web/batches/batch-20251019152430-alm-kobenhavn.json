@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T15:24:30.744644+02:00",
+"items": [
+{
+"obsid": "37871698",
+"art": "Skovsneppe",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Brøndbyøster",
+"dof_afdeling": "DOF København",
+"fornavn": "Finn Kryger",
+"efternavn": "Nielsen",
+"lon": "12,43799130766113",
+"lat": "55,65989775987563",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

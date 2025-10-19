@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T15:35:24.372853+02:00",
+"items": [
+{
+"obsid": "37871764",
+"art": "Musvåge",
+"antal": "36",
+"adf": "Trækkende mod sydvest",
+"lok": "Solbjerg Enge & Solbjerg Engsø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Stig",
+"efternavn": "Borgstrøm",
+"lon": "12,254166325223855",
+"lat": "55,996449826773386",
+"tid_fra": "11:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

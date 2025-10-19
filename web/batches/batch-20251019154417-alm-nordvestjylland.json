@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-19T15:44:17.475699+02:00",
+"items": [
+{
+"obsid": "37871858",
+"art": "Havørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Kvols Hage",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Michael",
+"efternavn": "Winther",
+"lon": "9,303593067752155",
+"lat": "56,53094365886969",
+"tid_fra": "12:00",
+"tid_til": "12:45",
+"kategori": "bemaerk"
+}
+]
+}

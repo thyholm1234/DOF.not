@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-19T15:20:06.214157+02:00",
+  "received_at": "2025-10-19T15:48:36.308084+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "2 Hedelærke, Grenen, Skagen",
-      "body": "Henrik Hald, Nørgaard",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37871673&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-nordjylland",
+      "title": "443 Musvåge, Nyeng",
+      "body": "Bent, Jakobsen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37871888&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-sydvestjylland",
       "renotify": true,
       "regions": [
-        "DOF Nordjylland"
+        "DOF Sydvestjylland"
       ],
       "categories": [
         "bemaerk"

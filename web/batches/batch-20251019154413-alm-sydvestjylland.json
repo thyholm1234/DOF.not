@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T15:44:13.282564+02:00",
+"items": [
+{
+"obsid": "37871857",
+"art": "Lille Korsnæb",
+"antal": "59",
+"adf": "Trækkende mod øst",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "11:28",
+"tid_til": "14:50",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37871864",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Trækkende mod øst",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "14:43",
+"tid_til": "14:50",
+"kategori": "bemaerk"
+}
+]
+}

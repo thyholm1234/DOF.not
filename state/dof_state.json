@@ -1013,7 +1013,7 @@
   },
   "Bjergvipstjert\n563003": {
     "date": "2025-10-19",
-    "antal": 1.0
+    "antal": 3.0
   },
   "Bramgås\n319008": {
     "date": "2025-10-19",
@@ -2561,7 +2561,7 @@
   },
   "Grågås\n563003": {
     "date": "2025-10-19",
-    "antal": 28.0
+    "antal": 310.0
   },
   "Kortnæbbet Gås\n787965": {
     "date": "2025-10-19",
@@ -2625,7 +2625,7 @@
   },
   "Engpiber\n563003": {
     "date": "2025-10-19",
-    "antal": 13.0
+    "antal": 85.0
   },
   "Engpiber\n901721": {
     "date": "2025-10-19",
@@ -5257,7 +5257,7 @@
   },
   "Havørn\n663010": {
     "date": "2025-10-19",
-    "antal": 1.0
+    "antal": 2.0
   },
   "Lille Kobbersneppe\n773240": {
     "date": "2025-10-19",
@@ -6625,7 +6625,7 @@
   },
   "Bramgås\n327006": {
     "date": "2025-10-19",
-    "antal": 120.0
+    "antal": 1500.0
   },
   "Havørn\n337001": {
     "date": "2025-10-19",
@@ -12193,7 +12193,7 @@
   },
   "Knopsvane\n219006": {
     "date": "2025-10-19",
-    "antal": 1.0
+    "antal": 3.0
   },
   "Sortand\n847031": {
     "date": "2025-10-19",
@@ -12209,7 +12209,7 @@
   },
   "Troldand\n219006": {
     "date": "2025-10-19",
-    "antal": 1.0
+    "antal": 2.0
   },
   "Blåmejse\n903293": {
     "date": "2025-10-19",
@@ -12357,7 +12357,7 @@
   },
   "Fiskehejre\n663010": {
     "date": "2025-10-19",
-    "antal": 1.0
+    "antal": 3.0
   },
   "Hvinand\n189051": {
     "date": "2025-10-19",
@@ -12373,7 +12373,7 @@
   },
   "Krikand\n663010": {
     "date": "2025-10-19",
-    "antal": 15.0
+    "antal": 20.0
   },
   "Skarv\n663010": {
     "date": "2025-10-19",
@@ -12733,7 +12733,7 @@
   },
   "Krage, Gråkrage (ssp. cornix)\n663010": {
     "date": "2025-10-19",
-    "antal": 1.0
+    "antal": 5.0
   },
   "Tårnfalk\n902228": {
     "date": "2025-10-19",
@@ -12830,5 +12830,553 @@
   "Stormmåge\n773140": {
     "date": "2025-10-19",
     "antal": 8.0
+  },
+  "Stillits\n351103": {
+    "date": "2025-10-19",
+    "antal": 70.0
+  },
+  "Trane\n409917": {
+    "date": "2025-10-19",
+    "antal": 46.0
+  },
+  "Bjergirisk\n351103": {
+    "date": "2025-10-19",
+    "antal": 265.0
+  },
+  "Fjeldvåge\n351103": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Husskade\n351103": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Musvåge\n219083": {
+    "date": "2025-10-19",
+    "antal": 52.0
+  },
+  "Skovskade\n351103": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Sølvhejre\n219083": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Tårnfalk\n777095": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Krage, Gråkrage (ssp. cornix)\n351103": {
+    "date": "2025-10-19",
+    "antal": 30.0
+  },
+  "Musvåge\n351103": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Skovsneppe\n153006": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Solsort\n351103": {
+    "date": "2025-10-19",
+    "antal": 5.0
+  },
+  "Spurvehøg\n219083": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Spætmejse\n351103": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sølvhejre\n539380": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Tårnfalk\n351103": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Fasan\n663010": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Stor Kobbersneppe, Islandsk (ssp. islandica)\n183025": {
+    "date": "2025-10-19",
+    "antal": 6.0
+  },
+  "Sølvhejre\n183025": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Bramgås\n183025": {
+    "date": "2025-10-19",
+    "antal": 2000.0
+  },
+  "Canadagås\n101055": {
+    "date": "2025-10-19",
+    "antal": 14.0
+  },
+  "Dobbeltbekkasin\n183025": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Fuglekonge\n183025": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Sanglærke\n183025": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Stenpikker\n401210": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Krikand\n351103": {
+    "date": "2025-10-19",
+    "antal": 200.0
+  },
+  "Stor Flagspætte\n557116": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Vindrossel\n401210": {
+    "date": "2025-10-19",
+    "antal": 250.0
+  },
+  "Almindelig Ryle\n351103": {
+    "date": "2025-10-19",
+    "antal": 15.0
+  },
+  "Dværgryle\n351103": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Grågås\n351103": {
+    "date": "2025-10-19",
+    "antal": 225.0
+  },
+  "Krikand\n219006": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Stormmåge\n663010": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Storspove\n351103": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Bjergvipstjert\n605125": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Fiskehejre\n351103": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Hættemåge\n219006": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Pibeand\n351103": {
+    "date": "2025-10-19",
+    "antal": 1300.0
+  },
+  "Stær\n351103": {
+    "date": "2025-10-19",
+    "antal": 135.0
+  },
+  "Blisgås\n409015": {
+    "date": "2025-10-19",
+    "antal": 180.0
+  },
+  "Bramgås\n409015": {
+    "date": "2025-10-19",
+    "antal": 600.0
+  },
+  "Gråspurv\n669380": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Krage\n669380": {
+    "date": "2025-10-19",
+    "antal": 5.0
+  },
+  "Musvit\n669380": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Musvåge\n669380": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Tårnfalk\n557116": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvåge\n219160": {
+    "date": "2025-10-19",
+    "antal": 36.0
+  },
+  "Ringdrossel\n101176": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sjagger\n557116": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Skærpiber\n101055": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Stær\n901029": {
+    "date": "2025-10-19",
+    "antal": 350.0
+  },
+  "Krage, Gråkrage (ssp. cornix)\n837440": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvåge\n503940": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Tårnfalk\n837440": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Havørn\n609300": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvit\n397410": {
+    "date": "2025-10-19",
+    "antal": 5.0
+  },
+  "Tårnfalk\n609300": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Blåmejse\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Dobbeltbekkasin\n903784": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Duehøg\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Grønsisken\n555139": {
+    "date": "2025-10-19",
+    "antal": 4.0
+  },
+  "Gærdesmutte\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvit\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Rødhals\n609300": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Skarv\n555139": {
+    "date": "2025-10-19",
+    "antal": 5.0
+  },
+  "Spætmejse\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Sølvhejre\n903784": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Allike\n555139": {
+    "date": "2025-10-19",
+    "antal": 260.0
+  },
+  "Bogfinke\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Dobbeltbekkasin\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Fiskehejre\n555139": {
+    "date": "2025-10-19",
+    "antal": 4.0
+  },
+  "Fiskehejre\n609340": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Gransanger\n397410": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Hættemåge\n901029": {
+    "date": "2025-10-19",
+    "antal": 4.0
+  },
+  "Isfugl\n609340": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvåge\n727445": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sjagger\n555139": {
+    "date": "2025-10-19",
+    "antal": 249.0
+  },
+  "Skovsneppe\n403640": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Solsort\n397410": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Sortstrubet Bynkefugl\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Spurvehøg\n555139": {
+    "date": "2025-10-19",
+    "antal": 13.0
+  },
+  "Stillits\n555139": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Stor Flagspætte\n215205": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Stær\n555139": {
+    "date": "2025-10-19",
+    "antal": 70.0
+  },
+  "Bogfinke\n555139": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Fiskehejre\n609310": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Grågås\n555139": {
+    "date": "2025-10-19",
+    "antal": 9.0
+  },
+  "Grønirisk\n397410": {
+    "date": "2025-10-19",
+    "antal": 6.0
+  },
+  "Husskade\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Krage, Gråkrage (ssp. cornix)\n901029": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvåge\n397410": {
+    "date": "2025-10-19",
+    "antal": 4.0
+  },
+  "Ringdue\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Rød Glente\n215205": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sangdrossel\n215205": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Stor Tornskade\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Storspove\n901726": {
+    "date": "2025-10-19",
+    "antal": 27.0
+  },
+  "Sølvhejre\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sølvhejre\n609310": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Tornirisk\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Tårnfalk\n513925": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Vindrossel\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Blåmejse\n555139": {
+    "date": "2025-10-19",
+    "antal": 10.0
+  },
+  "Bramgås\n791441": {
+    "date": "2025-10-19",
+    "antal": 16.0
+  },
+  "Havørn\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Havørn\n791441": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Hjejle\n791441": {
+    "date": "2025-10-19",
+    "antal": 400.0
+  },
+  "Lille Korsnæb\n555139": {
+    "date": "2025-10-19",
+    "antal": 59.0
+  },
+  "Ravn\n397410": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Rosenstær\n563142": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Rød Glente\n555139": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Rødhals\n655020": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sangsvane\n791441": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Sortklire\n903784": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Stor Flagspætte\n397410": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Gærdesmutte\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Hvidklire\n903784": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Jernspurv\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Misteldrossel\n397410": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Rødhals\n397410": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Vibe\n903784": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Hjejle\n903784": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Ravn\n543400": {
+    "date": "2025-10-19",
+    "antal": 4.0
+  },
+  "Kortnæbbet Gås\n655196": {
+    "date": "2025-10-19",
+    "antal": 1350.0
+  },
+  "Almindelig Ryle\n903784": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Hvinand\n903784": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Musvåge\n555139": {
+    "date": "2025-10-19",
+    "antal": 443.0
+  },
+  "Rødhals\n669250": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Skeand\n903784": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Trane\n553559": {
+    "date": "2025-10-19",
+    "antal": 3.0
+  },
+  "Bomlærke\n901029": {
+    "date": "2025-10-19",
+    "antal": 7.0
+  },
+  "Krage, Gråkrage (ssp. cornix)\n513500": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Krage, Sortkrage (ssp. corone)\n901029": {
+    "date": "2025-10-19",
+    "antal": 1.0
+  },
+  "Stær\n331138": {
+    "date": "2025-10-19",
+    "antal": 200.0
+  },
+  "Gråand\n663010": {
+    "date": "2025-10-19",
+    "antal": 2.0
+  },
+  "Grågås\n409020": {
+    "date": "2025-10-19",
+    "antal": 300.0
+  },
+  "Solsort\n663010": {
+    "date": "2025-10-19",
+    "antal": 3.0
   }
 }
