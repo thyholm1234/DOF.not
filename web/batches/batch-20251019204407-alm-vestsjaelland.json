@@ -1,0 +1,52 @@
+{
+"client": "alm-vestsjaelland",
+"count": 3,
+"generated": "2025-10-19T20:44:07.732280+02:00",
+"items": [
+{
+"obsid": "37874315",
+"art": "Bramgås",
+"antal": "3000",
+"adf": "Rastende",
+"lok": "Omø agerland, syd",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,152884647571248",
+"lat": "55,15461714997204",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37874324",
+"art": "Fjeldvåge",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Omø agerland, syd",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,152884647571248",
+"lat": "55,15461714997204",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37874316",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Bakkendrup",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jan Lindgaard",
+"efternavn": "Rasmussen",
+"lon": "11,244013309478762",
+"lat": "55,5600247527891",
+"tid_fra": "11:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

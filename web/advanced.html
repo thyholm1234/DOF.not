@@ -35,16 +35,24 @@
       });
     }
   </script>
-
+  
 </head>
-<body>
-  <header class="topbar">
-    <nav><a href="./index.html">← Tilbage</a></nav>
-    <h1>Avanceret filtrering</h1>
-    <p>Vælg arts‑overrides: <strong>Default</strong> (følg region/kategori), <strong>Inkludér</strong> (vis altid), <strong>Udeluk</strong> (vis aldrig).</p>
+<body class="page-advanced">
+  <header class="wrap" style="display:flex;align-items:center;justify-content:space-between;">
+    <h1><a class="brand" href="/index.html" aria-label="Gå til forsiden">DOF.not</a></h1>
+    <div class="toolbar">
+      <button id="notify-toggle" aria-label="Notifikationer">
+        <span id="notify-icon">🔔</span>
+      </button>
+      <button id="theme-toggle" aria-label="Skift tema">
+        <span id="theme-icon">☀️</span>
+      </button>
+    </div>
   </header>
-
   <main>
+    <h3>Avanceret filtrering</h3>
+    <p>Vælg arts‑overrides: <strong>Default</strong> (følg region/kategori), <strong>Inkludér</strong> (vis altid), <strong>Udeluk</strong> (vis aldrig).</p>
+  
     <section class="controls">
       <!-- Søgning -->
       <input 

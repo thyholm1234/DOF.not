@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T19:57:01.590332+02:00",
+"items": [
+{
+"obsid": "37873996",
+"art": "Husrødstjert",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Rødvig By og Havn",
+"dof_afdeling": "DOF København",
+"fornavn": "Leif",
+"efternavn": "Frederiksen",
+"lon": "12,376120090484621",
+"lat": "55,2525116539652",
+"tid_fra": "12:34",
+"tid_til": "13:19",
+"kategori": "bemaerk"
+}
+]
+}

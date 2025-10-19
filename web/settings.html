@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOF.not</title>
+  <meta name="theme-color" content="#0b3d91" />
+  <link rel="manifest" href="./manifest.webmanifest">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="description" content="Web push-notifikationer med filtrering pr. DOF-lokalafdeling." />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- (valgfrit) iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152.png">
+
+  <!-- Inkluder CSS -->
+  <link rel="stylesheet" href="./style.css">
+
+  <!-- Registrering af Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered with scope:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+
+</head>
+<body>
+  <header class="wrap" style="display:flex;align-items:center;justify-content:space-between;">
+    <h1><a class="brand" href="/index.html" aria-label="Gå til forsiden">DOF.not</a></h1>
+    <div class="toolbar">
+    <button id="notify-toggle" aria-label="Notifikationer">
+      <span id="notify-icon">🔔</span>
+    </button>
+    <button id="theme-toggle" aria-label="Skift tema">
+      <span id="theme-icon">☀️</span>
+    </button>
+  </div>
+  </header>
+
+  <!-- START: Pak præferenceblokken ind i .wrap for korrekt padding -->
+  <section class="wrap">
+    <h3>Mine præferencer</h3>
+    <p class="sub">Her vælger du, hvilke observationer du ønsker notifikationer for. SUB indeholder SU osv.</p>
+    <p class="sub">Vælg præcis ét valg pr. lokalafdeling: Ingen, SU, SUB eller Bemærkelsesværdig– og klik <strong>Abonnér</strong>.</p>
+    <p><a href="./advanced.html">⚙️ Avanceret filtrering (arter)</a></p>
+ 
+    <section class="controls">
+      <button id="save" aria-live="polite"><span data-role="label">Abonnér</span></button>
+      <button id="unsubscribe" title="Afmeld push-abonnement på denne enhed" disabled>Afmeld</button>
+      <div id="status" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" style="margin-top:12px">
+      <div id="grid">Indlæser …</div>
+    </section>
+  </section>
+  <!-- SLUT: .wrap -->
+  <script src="./app.js"></script>
+  <script src="./thread.js"></script>
+
+</body>
+</html>

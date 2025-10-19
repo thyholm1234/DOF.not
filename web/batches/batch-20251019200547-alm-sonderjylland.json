@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-19T20:05:47.520953+02:00",
+"items": [
+{
+"obsid": "37874037",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ballum Forland",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Bo",
+"efternavn": "Levesen",
+"lon": "8,66832567346155",
+"lat": "55,12335241585416",
+"tid_fra": "17:10",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+}
+]
+}

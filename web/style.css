@@ -655,7 +655,15 @@ body { margin: 0; background: var(--bg); color: var(--fg);
 a { color: inherit; text-decoration: none; }
 .wrap { max-width: 860px; margin: 0 auto; padding: 0 1rem; }
 header.wrap { display:flex; align-items:center; justify-content:space-between; padding:1rem 1rem 0.5rem; }
-header h1 { font-size:1.1rem; margin:0; font-weight:700; }
+header h1 { margin: 0; line-height: 1; }
+header.wrap h1 .brand {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+header.wrap h1 .brand:focus-visible { outline: 2px solid var(--col-accent); outline-offset: 2px; }
 #theme-toggle { background:none; border:1px solid var(--line); border-radius:8px; cursor:pointer; font-size:1.1rem; padding:.35rem .6rem; }
 main.wrap { padding: 0 1rem 2rem; }
 .sub { color: var(--muted); font-size: 0.95rem; }
@@ -823,3 +831,266 @@ html[data-theme="dark"] .badge.event-count.warn { background:#3b2a0a; color:#fac
   align-items: baseline;
 }
 .title-right .badge.event-count { margin-left: 0; }  /* ingen ekstra margin når i højre side */
+
+/* Front-controls: toggle-knap */
+#front-controls .toggle {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg-elev);
+  color: inherit;
+  padding: 4px 10px;
+  height: 28px;
+  font-weight: 600;
+  cursor: pointer;
+}
+#front-controls .toggle:is(:hover, :focus-visible) {
+  outline: none;
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.12);
+}
+#front-controls .toggle.is-on {
+  background: #fff5f5;
+  border-color: var(--col-danger);
+  color: var(--col-danger);
+}
+:root[data-theme="dark"] #front-controls .toggle.is-on {
+  background: #2a0f10;
+  border-color: var(--col-danger);
+  color: #ffb4b4;
+}
+
+
+#front-controls.controls-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  background: var(--bg-elev);
+  border: 1px solid var(--col-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 0 0 12px 0;
+}
+
+/* To‑state knapper (grøn/rød) */
+#front-controls .twostate {
+  appearance: none;
+  border: 2px solid var(--col-ink);
+  border-radius: 8px;
+  background: var(--bg-input);
+  color: var(--col-ink);
+  height: 32px;
+  padding: 6px 12px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: all .15s ease-in-out;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+}
+#front-controls .twostate:is(:hover, :focus-visible) {
+  outline: none;
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.15);
+  background: var(--hover-elev);
+}
+/* Grøn ON (default) */
+#front-controls .twostate.is-on {
+  background: var(--col-success);
+  border-color: #268a38;
+  color: #fff;
+  box-shadow: 0 0 0 0 rgba(0,0,0,0);
+}
+/* Rød OFF */
+#front-controls .twostate.is-off {
+  background: #fff5f5;
+  border-color: var(--col-danger);
+  color: var(--col-danger);
+}
+/* Dark-tilpasning */
+:root[data-theme="dark"] #front-controls .twostate.is-off { background:#2a0f10; color:#ffb4b4; }
+
+#notify-toggle {
+  appearance: none;
+  border: 1px solid var(--col-border);
+  background: var(--bg-elev);
+  color: inherit;
+  border-radius: 8px;
+  padding: 4px 10px;
+  height: 28px;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+#notify-toggle:is(:hover, :focus-visible) {
+  outline: none;
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.12);
+}
+#notify-icon { font-size: 14px; }
+
+/* Valgfrit: lidt mellemrum mellem klokke og tema */
+#notify-toggle { margin-right: 6px; }
+
+header.wrap .toolbar {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 36px;
+}
+header.wrap .toolbar > button,
+header.wrap .toolbar > a {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* Fjern boks/border og gør emoji større */
+#notify-toggle,
+#theme-toggle {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 4px;           /* klik-område uden synlig boks */
+  margin: 0;
+  box-shadow: none;
+  border-radius: 0;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Ingen hover/focus-boks */
+#notify-toggle:is(:hover, :focus-visible),
+#theme-toggle:is(:hover, :focus-visible) {
+  outline: none;
+  box-shadow: none;
+  border: 0;
+}
+
+/* Større emoji */
+#notify-icon,
+#theme-icon {
+  font-size: 22px;        /* justér efter behov (fx 24px) */
+  line-height: 1;
+}
+
+/* Centrér indholdet i toolbar (horisontalt og vertikalt) */
+header.wrap .toolbar {
+  margin-left: auto;          /* placer toolbar til højre */
+  display: flex;
+  align-items: center;        /* vertikal centrering */
+  justify-content: center;    /* horisontal centrering af ikonerne i selve toolbar */
+  gap: 10px;
+  min-height: 32px;           /* stabil højde omkring ikonerne */
+}
+
+/* Ens klik-område for ikonerne */
+header.wrap .toolbar > button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;  /* centrér emoji i knappen */
+  justify-content: center;
+  width: 36px;          /* ens hitbox */
+  height: 36px;
+  cursor: pointer;
+}
+header.wrap .toolbar > button > span {
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+  transform: none;      /* fjern tidligere translateY */
+}
+
+/* FINAL overrides: centrér toolbar-ikoner lodret */
+header.wrap {
+  display: flex;
+  align-items: center; /* centrér titel + toolbar lodret */
+}
+header.wrap .toolbar {
+  margin-left: auto;
+  display: flex;
+  align-items: center;  /* centrér indhold lodret */
+  justify-content: center;
+  gap: 10px;
+  height: 36px;        /* fast toolbarhøjde */
+}
+header.wrap .toolbar > button {
+  all: unset;
+  display: inline-flex;
+  align-items: center;  /* centrér emoji i knappen */
+  justify-content: center;
+  width: 36px;          /* ens hitbox */
+  height: 36px;
+  cursor: pointer;
+}
+header.wrap .toolbar > button > span {
+  display: block;
+  font-size: 22px;
+  line-height: 1;
+  transform: none;      /* fjern tidligere translateY */
+}
+
+header.wrap h1 {
+  font-size: clamp(28px, 2.6vw + 8px, 44px);
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+section.controls #unsubscribe::before {
+  content: none !important;
+  display: none !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  background: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
+#settings-icon,
+#notify-icon,
+#theme-icon {
+  font-size: 22px;
+  line-height: 1;
+  display: block;
+}
+
+body.page-advanced main {
+  box-sizing: border-box;
+  padding-left:  calc(12px + env(safe-area-inset-left));
+  padding-right: calc(12px + env(safe-area-inset-right));
+  padding-top: 12px;
+  padding-bottom: 12px;
+  max-width: 1200px;     /* valgfrit */
+  margin-inline: auto;   /* centrer indhold */
+}
+
+
+
+/* Fallback hvis panelet ikke ligger i <main> */
+body.page-advanced > section.controls {
+  margin-left: 0;   /* reset hvis sat før */
+  margin-right: 0;
+}
+
+/* Sikr at kortet ikke “sprænger” containerens padding */
+body.page-advanced section.controls {
+  width: auto;          /* ikke 100% – respekter side-padding */
+  max-width: 100%;
+  box-sizing: border-box;
+}

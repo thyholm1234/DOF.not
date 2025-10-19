@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-19T20:09:06.637846+02:00",
+"items": [
+{
+"obsid": "37874055",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Husum Enge",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Bo",
+"efternavn": "Levesen",
+"lon": "8,722138352241448",
+"lat": "55,14044359692102",
+"tid_fra": "16:45",
+"tid_til": "16:55",
+"kategori": "bemaerk"
+}
+]
+}

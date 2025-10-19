@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T20:39:45.738358+02:00",
+"items": [
+{
+"obsid": "37874268",
+"art": "Krikand",
+"antal": "152",
+"adf": "Fouragerende",
+"lok": "Bispeenge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Gunhild",
+"efternavn": "Brink",
+"lon": "10,380097786701528",
+"lat": "55,42615657115073",
+"tid_fra": "16:00",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+}
+]
+}

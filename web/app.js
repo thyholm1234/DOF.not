@@ -3,10 +3,18 @@
 // 1) COMMON UTILS (fælles for hele appen)
 // ============================================================================
 
+// Notifikationer on/off-switch
+
+
+
 // Light/dark mode toggle med system default og localStorage
 const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const THEME_KEY = 'dofnot-theme';
+
+// NYT: Notifikations-toggle
+const notifyToggle = document.getElementById('notify-toggle');
+const notifyIcon = document.getElementById('notify-icon');
 
 (function initTheme() {
   const docEl = document.documentElement;
@@ -111,6 +119,44 @@ function getOrCreateDeviceId() {
 const OPT_OUT_KEY = 'dofnot-push-optout';
 const isOptedOut = () => { try { return localStorage.getItem(OPT_OUT_KEY) === '1'; } catch { return false; } };
 const setOptOut  = (v)   => { try { localStorage.setItem(OPT_OUT_KEY, v ? '1' : '0'); } catch {} };
+
+function initNotifyToggle() {
+  const notifyToggle = document.getElementById('notify-toggle');
+  const notifyIcon = document.getElementById('notify-icon');
+  if (!notifyToggle || !notifyIcon) return;
+
+  const OPT_OUT_KEY = 'dofnot-push-optout';
+  const isOptedOut = () => { try { return localStorage.getItem(OPT_OUT_KEY) === '1'; } catch { return false; } };
+  const setOptOut  = (v)   => { try { localStorage.setItem(OPT_OUT_KEY, v ? '1' : '0'); } catch {} };
+
+  const applyIcon = (off) => {
+    notifyIcon.textContent = off ? '🔕' : '🔔';
+    notifyToggle.title = off ? 'Forstyr ikke (tryk for at tillade)' : 'Notifikationer slået til (tryk for at slå fra)';
+    notifyToggle.setAttribute('aria-pressed', off ? 'true' : 'false');
+  };
+
+  applyIcon(isOptedOut());
+
+  notifyToggle.addEventListener('click', async () => {
+    const off = !isOptedOut();
+    setOptOut(off);
+    applyIcon(off);
+
+    try { await ensureSW(); await navigator.serviceWorker.ready; } catch {}
+    postToSW({ type: 'SET_OPT_OUT', opted_out: off });
+
+    try {
+      const uid = getOrCreateUserId();
+      const did = getOrCreateDeviceId();
+      await setServerOptOut(uid, did, off);
+    } catch {}
+
+    if (!off && supportsPush() && Notification.permission === 'granted') {
+      try { await ensurePushSubscription({ forcePrompt: false }); } catch {}
+    }
+  });
+}
+
 
 // Server-sync helpers
 async function getServerOptOut(userId, deviceId) {
@@ -1097,6 +1143,7 @@ if ($hideZero) $hideZero.addEventListener('change', () => { loadAndRender().catc
 // ============================================================================
 document.addEventListener('DOMContentLoaded', () => {
   // Preferences/Push modulet initialiseres altid (tåler at grid/save ikke findes)
+  initNotifyToggle();
   initPrefsAndPush().catch(console.error);
   // Observationer initialiseres kun hvis deres DOM-IDs findes
   if ($id('obs-list')) {
@@ -1351,7 +1398,7 @@ async function initAdvancedFilteringPage() {
     val.placeholder = 'Antal';
     val.inputMode = 'numeric';
     val.autocomplete = 'off';
-    val.style.width = '6.5rem';
+    // val.style.width = '6.5rem'; // fjern inline-bredde – styres via CSS
 
     // --- Two-state knap: Inkl. (grå baseline) ↔ Eksl. ---
     const btn = document.createElement('button');

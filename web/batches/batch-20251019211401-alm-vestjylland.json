@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T21:14:01.505723+02:00",
+"items": [
+{
+"obsid": "37869733",
+"art": "Musvåge",
+"antal": "32",
+"adf": "Trækkende mod sydvest",
+"lok": "Nørre Snede",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Morten",
+"efternavn": "D. D. Hansen",
+"lon": "9,391002353230023",
+"lat": "55,96407436557746",
+"tid_fra": "07:57",
+"tid_til": "13:30",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-19T21:02:59.406172+02:00",
+"items": [
+{
+"obsid": "37874397",
+"art": "Hjejle",
+"antal": "690",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "14:55",
+"tid_til": "18:25",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37874400",
+"art": "Spidsand",
+"antal": "160",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "14:55",
+"tid_til": "18:25",
+"kategori": "bemaerk"
+}
+]
+}

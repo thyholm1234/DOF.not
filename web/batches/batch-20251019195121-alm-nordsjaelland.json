@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T19:51:21.351278+02:00",
+"items": [
+{
+"obsid": "37873922",
+"art": "Hjejle",
+"antal": "1600",
+"adf": "Rastende",
+"lok": "Jægerspris Skydeterræn Øst",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Ulla Munch",
+"efternavn": "Hansen",
+"lon": "11,969283887350572",
+"lat": "55,886653581727614",
+"tid_fra": "11:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T22:02:13.009982+02:00",
+"items": [
+{
+"obsid": "37874535",
+"art": "Pibeand",
+"antal": "500",
+"adf": "Fouragerende",
+"lok": "Vejlen, Reersø",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jesper",
+"efternavn": "Johannes Madsen",
+"lon": "11,122836695268255",
+"lat": "55,52879921644734",
+"tid_fra": "15:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

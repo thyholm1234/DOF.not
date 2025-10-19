@@ -9,70 +9,76 @@
   const $frontControls = $('front-controls');
 
   // Forside-kontroller (for trådsammendrag)
-  let $frontChkHideZero, $frontSelLimit, $frontSelSort, $frontChkPrefs;
+  let $btnPrefs, $btnCat, $btnZero, $btnSort;
   const SORT_PREFS_KEY = 'dofnot-use-prefs-sort';
   const SORT_MODE_KEY = 'dofnot-sort-mode';
+  const ONLY_SU_KEY = 'dofnot-only-su';
+  const INCLUDE_ZERO_KEY = 'dofnot-include-zero';
+
+  // UI-state m. defaults (grøn = ON)
   const frontState = {
-    hideZero: true,
-    limit: 0,
-    // tænd/sluk for brugerpræferencer (default: til)
-    usePrefs: (localStorage.getItem(SORT_PREFS_KEY) ?? '1') === '1',
-    // kun to manuelle modes
-    sortMode: localStorage.getItem(SORT_MODE_KEY) || 'date_desc', // 'date_desc' | 'alpha_asc'
+    usePrefs: (localStorage.getItem(SORT_PREFS_KEY) ?? '1') === '1',         // Brugerpræferencer (ON)
+    onlySU: (localStorage.getItem(ONLY_SU_KEY) ?? '0') === '1',              // Kun SU (OFF = SU+SUB)
+    includeZero: (localStorage.getItem(INCLUDE_ZERO_KEY) ?? '1') === '1',    // Inkl. 0-obs (ON)
+    sortMode: localStorage.getItem(SORT_MODE_KEY) || 'date_desc',            // Nyeste
+    limit: 0
   };
 
-  // State
+  // --------- NYT: Global state + helpers der manglede ----------
   let userPrefs = {};
-  let threadEvents = [];
   let summaryItems = [];
+  let allowedCatsByRegion = new Map();
+  let speciesOverrides = null;
+  let threadEvents = [];
 
-  // Pref-baserede filtre (grundlæggende + avanceret)
-  let allowedCatsByRegion = new Map(); // Map('DOF København' -> Set<'su'|'sub'>)
-  let speciesOverrides = null;         // { include:[], exclude:[], counts:{ key:{mode,value} } }
-
-  // Utils
-  const isYMD = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
+  function parseRoute() {
+    const q = new URLSearchParams(location.search);
+    const date = q.get('date') || 'today';
+    const id = q.get('id') || '';
+    return { date, id };
+  }
+  function isYMD(s) {
+    return /^\d{4}-\d{2}-\d{2}$/.test(String(s || ''));
+  }
   function todayYMDLocal() {
     const d = new Date();
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 10);
   }
   function yesterdayYMDLocal() {
     const d = new Date();
-    d.setDate(d.getDate()-1);
-    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+    d.setDate(d.getDate() - 1);
+    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
+    return d.toISOString().slice(0, 10);
   }
   function fmtAge(iso) {
     if (!iso) return '';
+    const now = Date.now();
     const t = new Date(iso).getTime();
-    const s = (Date.now() - t)/1000;
-    if (s < 60) return 'for få sek. siden';
-    const m = Math.floor(s/60); if (m < 60) return `${m} min siden`;
-    const h = Math.floor(m/60); return `${h} t siden`;
-  }
-  function parseRoute() {
-    const qs = new URLSearchParams(location.search);
-    return { date: qs.get('date') || 'today', id: qs.get('id') || '' };
+    const diff = Math.max(0, now - t);
+    const min = Math.floor(diff / 60000);
+    if (min < 1) return 'nu';
+    if (min < 60) return `${min} min`;
+    const h = Math.floor(min / 60);
+    if (h === 1) return `${h} time`;
+    if (h < 24) return `${h} timer`;
+    const d = Math.floor(h / 24);
+    return `${d} d`;
   }
   async function fetchUserPrefs() {
-    // Brug global helper fra app.js, ellers fallback til localStorage
-    let userId = '';
     try {
-      userId = typeof getOrCreateUserId === 'function'
-        ? getOrCreateUserId()
+      // hvis app.js har en bruger-id helper, brug den
+      const uid = typeof window.getOrCreateUserId === 'function'
+        ? window.getOrCreateUserId()
         : (localStorage.getItem('dofnot-user-id') || '');
-    } catch {}
-    // Server-API med user_id (kræves af server.py)
-    if (userId) {
-      try {
-        const r = await fetch(`./api/prefs/user?user_id=${encodeURIComponent(userId)}`, { cache: 'no-cache' });
+      if (uid) {
+        const r = await fetch(`./api/prefs/user?user_id=${encodeURIComponent(uid)}`, { cache: 'no-store' });
         if (r.ok) {
           const data = await r.json();
-          // API returnerer { prefs: {...}, ts, source }
-          if (data && data.prefs && typeof data.prefs === 'object') return data.prefs;
+          return (data && data.prefs) ? data.prefs : (data || {});
         }
-      } catch {}
-    }
-    // Fallback til lokalt cachede prefs (samme format som server.prefs)
+      }
+    } catch {}
     try {
       const raw = localStorage.getItem('dofnot-prefs');
       if (raw) return JSON.parse(raw);
@@ -81,13 +87,13 @@
   }
   async function fetchSummary(dateParam) {
     try {
-      const r = await fetch(`./api/obs/summary?date=${encodeURIComponent(dateParam)}`, { cache: 'no-cache' });
-      if (r.status === 204) return [];
-      if (!r.ok) throw new Error(String(r.status));
+      const r = await fetch(`./api/obs/summary?date=${encodeURIComponent(dateParam)}`, { cache: 'no-store' });
+      if (!r.ok) return [];
       const arr = await r.json();
       return Array.isArray(arr) ? arr : [];
     } catch { return []; }
   }
+  // --------- slut: NYT ----------
 
   // DOM helpers
   
@@ -408,92 +414,127 @@
     return li;
   }
 
-  // Forside: kontrolpanel
+  // Byg to‑state kontrolkort
   function buildFrontControls() {
     if (!$frontControls) return;
-
-    // byg altid for at sikre at alle elementer findes
     $frontControls.innerHTML = '';
-    $frontControls.style.display = 'flex';
-    $frontControls.style.gap = '12px';
-    $frontControls.style.alignItems = 'center';
-    $frontControls.style.flexWrap = 'wrap';
+    $frontControls.classList.add('controls-card');
 
-    // Brug brugerpræferencer (tænd/sluk)
-    const prefsWrap = document.createElement('label');
-    prefsWrap.style.display = 'inline-flex'; prefsWrap.style.alignItems = 'center'; prefsWrap.style.gap = '6px';
-    $frontChkPrefs = document.createElement('input'); $frontChkPrefs.type = 'checkbox'; $frontChkPrefs.checked = frontState.usePrefs;
-    prefsWrap.appendChild($frontChkPrefs); prefsWrap.appendChild(document.createTextNode('Brug brugerpræferencer'));
+    // Brugerpræferencer: ON = “Brugerpræferencer” (grøn), OFF = “Alle obs” (rød)
+    $btnPrefs = document.createElement('button');
+    $btnPrefs.type = 'button'; $btnPrefs.className = 'twostate';
+    $frontControls.appendChild($btnPrefs);
 
-    // Skjul 0‑fund
-    const hideWrap = document.createElement('label');
-    hideWrap.style.display = 'inline-flex'; hideWrap.style.alignItems = 'center'; hideWrap.style.gap = '6px';
-    $frontChkHideZero = document.createElement('input'); $frontChkHideZero.type = 'checkbox'; $frontChkHideZero.checked = frontState.hideZero;
-    hideWrap.appendChild($frontChkHideZero); hideWrap.appendChild(document.createTextNode('Skjul 0‑fund'));
+    // Kategori: OFF = “SU+SUB” (grøn), ON = “SU” (rød)
+    $btnCat = document.createElement('button');
+    $btnCat.type = 'button'; $btnCat.className = 'twostate';
+    $frontControls.appendChild($btnCat);
 
-    // Limit
-    const limitWrap = document.createElement('label');
-    limitWrap.style.display = 'inline-flex'; limitWrap.style.alignItems = 'center'; limitWrap.style.gap = '6px';
-    limitWrap.appendChild(document.createTextNode('Vis'));
-    $frontSelLimit = document.createElement('select');
-    ['10','20','50','100','Alle'].forEach(opt => {
-      const o = document.createElement('option'); o.value = opt === 'Alle' ? '0' : opt; o.textContent = opt; $frontSelLimit.appendChild(o);
-    });
-    $frontSelLimit.value = String(frontState.limit);
-    limitWrap.appendChild($frontSelLimit);
+    // 0-obs: ON = “0-obs” (grøn = inkl.), OFF = “0-obs” (rød = skjul)
+    $btnZero = document.createElement('button');
+    $btnZero.type = 'button'; $btnZero.className = 'twostate';
+    $frontControls.appendChild($btnZero);
 
-    // Sortering – altid aktiv uanset prefs-toggle
-    const sortWrap = document.createElement('label');
-    sortWrap.style.display = 'inline-flex'; sortWrap.style.alignItems = 'center'; sortWrap.style.gap = '6px';
-    sortWrap.appendChild(document.createTextNode('Sortér'));
-    $frontSelSort = document.createElement('select');
-    [
-      { value: 'date_desc', label: 'Nyeste' },
-      { value: 'alpha_asc', label: 'Alfabetisk' },
-    ].forEach(s => { const o=document.createElement('option'); o.value=s.value; o.textContent=s.label; $frontSelSort.appendChild(o); });
-    $frontSelSort.value = frontState.sortMode === 'alpha_asc' ? 'alpha_asc' : 'date_desc';
-    sortWrap.appendChild($frontSelSort); // FIX: tilføj select til label
-
-    // Tilføj til panelet
-    $frontControls.appendChild(prefsWrap);
-    $frontControls.appendChild(hideWrap);
-    $frontControls.appendChild(limitWrap);
-    $frontControls.appendChild(sortWrap);
+    // Sortering: date_desc = “Nyeste” (grøn), alpha_asc = “Alfabetisk” (rød)
+    $btnSort = document.createElement('button');
+    $btnSort.type = 'button'; $btnSort.className = 'twostate';
+    $frontControls.appendChild($btnSort);
 
     // Events
-    $frontChkPrefs.addEventListener('change', () => {
-      frontState.usePrefs = $frontChkPrefs.checked;
+    $btnPrefs.addEventListener('click', () => {
+      frontState.usePrefs = !frontState.usePrefs;
       try { localStorage.setItem(SORT_PREFS_KEY, frontState.usePrefs ? '1' : '0'); } catch {}
-      renderThreadSummaries();
+      updateFrontButtons(); renderThreadSummaries();
     });
-    $frontChkHideZero.addEventListener('change', () => { frontState.hideZero = $frontChkHideZero.checked; renderThreadSummaries(); });
-    $frontSelLimit.addEventListener('change', () => { frontState.limit = parseInt($frontSelLimit.value, 10) || 0; renderThreadSummaries(); });
-    $frontSelSort.addEventListener('change', () => {
-      frontState.sortMode = $frontSelSort.value;
+    $btnCat.addEventListener('click', () => {
+      frontState.onlySU = !frontState.onlySU;
+      try { localStorage.setItem(ONLY_SU_KEY, frontState.onlySU ? '1' : '0'); } catch {}
+      updateFrontButtons(); renderThreadSummaries();
+    });
+    $btnZero.addEventListener('click', () => {
+      frontState.includeZero = !frontState.includeZero;
+      try { localStorage.setItem(INCLUDE_ZERO_KEY, frontState.includeZero ? '1' : '0'); } catch {}
+      updateFrontButtons(); renderThreadSummaries();
+    });
+    $btnSort.addEventListener('click', () => {
+      frontState.sortMode = frontState.sortMode === 'alpha_asc' ? 'date_desc' : 'alpha_asc';
       try { localStorage.setItem(SORT_MODE_KEY, frontState.sortMode); } catch {}
-      renderThreadSummaries();
+      updateFrontButtons(); renderThreadSummaries();
     });
+
+    updateFrontButtons();
   }
 
-  // Forside: render trådsammendrag
+  function updateFrontButtons() {
+    // Prefs
+    if (frontState.usePrefs) {
+      $btnPrefs.textContent = 'Bruger';
+      $btnPrefs.classList.add('is-on'); $btnPrefs.classList.remove('is-off');
+    } else {
+      $btnPrefs.textContent = 'Alle';
+      $btnPrefs.classList.add('is-off'); $btnPrefs.classList.remove('is-on');
+    }
+    // Kategori
+    if (frontState.onlySU) {
+      $btnCat.textContent = 'SU';
+      $btnCat.classList.add('is-off'); $btnCat.classList.remove('is-on');
+    } else {
+      $btnCat.textContent = 'SUB';
+      $btnCat.classList.add('is-on'); $btnCat.classList.remove('is-off');
+    }
+    // 0-obs
+    if (frontState.includeZero) {
+      $btnZero.textContent = '0-obs';
+      $btnZero.classList.add('is-on'); $btnZero.classList.remove('is-off');
+    } else {
+      $btnZero.textContent = '0-obs';
+      $btnZero.classList.add('is-off'); $btnZero.classList.remove('is-on');
+    }
+    // Sort
+    if (frontState.sortMode === 'date_desc') {
+      $btnSort.textContent = 'Nyeste';
+      $btnSort.classList.add('is-on'); $btnSort.classList.remove('is-off');
+    } else {
+      $btnSort.textContent = 'Alfabet';
+      $btnSort.classList.add('is-off'); $btnSort.classList.remove('is-on');
+    }
+    $frontControls.style.display = 'flex';
+  }
+
+  // Render summary med filtrering
   function renderThreadSummaries() {
+    if (!$st) return;
+
+    // FIX: brug lokal state, ikke window.summaryItems
     let base = summaryItems.slice();
 
-    // Baseline uden brugerfilter: vis kun SU + SUB
-    if (!frontState.usePrefs) {
+    if (frontState.usePrefs) {
+      const hasBasicPrefs = allowedCatsByRegion && allowedCatsByRegion.size > 0;
+
+      if (hasBasicPrefs) {
+        // Grundlæggende: region + kategori fra brugerens prefs
+        base = base.filter(matchesBasicPrefs);
+        // Kun SU override
+        if (frontState.onlySU) base = base.filter(s => getThreadCategory(s) === 'su');
+        // Avanceret: arts-exclude + antal
+        base = applyAdvancedFilters(base);
+      } else {
+        // Fallback når der ikke findes gyldige prefs: baseline SU+SUB eller SU-only
+        base = base.filter(s => {
+          const kat = getThreadCategory(s);
+          return frontState.onlySU ? (kat === 'su') : (kat === 'su' || kat === 'sub');
+        });
+      }
+    } else {
+      // Uden brugerfilter: baseline SU+SUB, evt. SU-only
       base = base.filter(s => {
         const kat = getThreadCategory(s);
-        return kat === 'su' || kat === 'sub';
+        return frontState.onlySU ? (kat === 'su') : (kat === 'su' || kat === 'sub');
       });
-    } else {
-      // Grundlæggende brugerfilter: region + kategori
-      base = base.filter(matchesBasicPrefs);
-      // Avanceret: arts-exclude + antal
-      base = applyAdvancedFilters(base);
     }
 
-    // Skjul 0-fund (hvis valgt)
-    if (frontState.hideZero) {
+    // 0-obs: skjul når includeZero = false
+    if (!frontState.includeZero) {
       base = base.filter(s => {
         const v = typeof s.max_antal_num === 'number' ? s.max_antal_num
                 : (typeof s.last_antal_num === 'number' ? s.last_antal_num : null);
@@ -501,20 +542,26 @@
       });
     }
 
-    // Sortér (manuel to-state)
+    // Sorter
     const sorted = sortThreads(base, frontState.sortMode);
-
-    // Limit
     const arr = frontState.limit > 0 ? sorted.slice(0, frontState.limit) : sorted;
 
     $st.innerHTML = '';
-    if (!arr.length) { $st.textContent = frontState.usePrefs ? 'Ingen tråde matcher dine præferencer.' : 'Ingen tråde at vise.'; return; }
+    if (!arr.length) { $st.textContent = 'Ingen tråde at vise.'; return; }
 
-    const tYMD = todayYMDLocal();
+    const tYMD = (todayYMDLocal() || new Date().toISOString().slice(0,10));
     const ul = document.createElement('ul'); ul.className = 'obs-list';
-    for (const s of arr) ul.appendChild(renderThreadSummary(s, tYMD));
+
+    // FIX: kald lokal renderer, ikke window.renderThreadSummary
+    for (const s of arr) {
+      const li = renderThreadSummary(s, tYMD);
+      if (li) ul.appendChild(li);
+    }
     $st.appendChild(ul);
   }
+
+  window.buildFrontControls = buildFrontControls;
+  window.renderThreadSummaries = renderThreadSummaries;
 
   // Helpers til prefs-filtrering
   function normalizeKey(s) { return String(s || '').trim().toLowerCase(); }
@@ -528,10 +575,11 @@
          : (typeof s.last_antal_num === 'number') ? s.last_antal_num
          : 0;
   }
+
   function getThreadCategory(s) {
-    const katRaw = s.last_kategori || '';
-    const kat = resolveKategori(s.art, katRaw) || katRaw || '';
-    return normalizeKey(kat);
+    const katRaw = s?.last_kategori || '';
+    const kat = resolveKategori(s?.art, katRaw) || katRaw || '';
+    return String(kat).trim().toLowerCase();
   }
 
   // Udvid prefs-værdi til tilladte kategorier (samme semantik som app.js)

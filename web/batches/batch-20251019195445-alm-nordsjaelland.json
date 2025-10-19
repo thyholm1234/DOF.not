@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T19:54:45.137743+02:00",
+"items": [
+{
+"obsid": "37873982",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nordskoven",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Ulla Munch",
+"efternavn": "Hansen",
+"lon": "11,980388493958014",
+"lat": "55,90871668271663",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

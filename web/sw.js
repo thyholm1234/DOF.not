@@ -5,7 +5,8 @@ const SCOPE = self.registration ? self.registration.scope : self.location.href;
 const toURL = (p) => new URL(p, SCOPE).toString();
 
 /* ───────────── CACHE ───────────── */
-const CACHE_NAME = 'dofnot-static-v2';
+// Bump cache + DB-version for at trigge opgradering
+const CACHE_NAME = 'dofnot-static-v3';
 const PRECACHE = [
   'index.html',
   'app.js',
@@ -85,25 +86,76 @@ self.addEventListener('fetch', (event) => {
 
 /* ───────────── IndexedDB til præferencer ───────────── */
 const DB_NAME = 'dofnot-db';
-const DB_VER  = 3;
+const DB_VER  = 4;                 // bump (tidl. 3)
 const STORE_PREFS = 'prefs';
 const STORE_SPECIES = 'species';
+const STORE_SETTINGS = 'settings';
+
+// Opret alle nødvendige stores
+function ensureStores(db) {
+  if (!db.objectStoreNames.contains(STORE_PREFS)) {
+    db.createObjectStore(STORE_PREFS, { keyPath: 'id' });
+  }
+  if (!db.objectStoreNames.contains(STORE_SPECIES)) {
+    db.createObjectStore(STORE_SPECIES, { keyPath: 'id' });
+  }
+  if (!db.objectStoreNames.contains(STORE_SETTINGS)) {
+    db.createObjectStore(STORE_SETTINGS, { keyPath: 'id' });
+  }
+}
 
 function idbOpen() {
   return new Promise((resolve, reject) => {
     const req = indexedDB.open(DB_NAME, DB_VER);
     req.onupgradeneeded = () => {
       const db = req.result;
-      if (!db.objectStoreNames.contains(STORE_PREFS)) {
-        db.createObjectStore(STORE_PREFS, { keyPath: 'id' });
-      }
-      if (!db.objectStoreNames.contains(STORE_SPECIES)) {
-        db.createObjectStore(STORE_SPECIES, { keyPath: 'id' });
-      }
+      ensureStores(db);
     };
-    req.onsuccess = () => resolve(req.result);
+    req.onsuccess = () => {
+      const db = req.result;
+      const hasAll =
+        db.objectStoreNames.contains(STORE_PREFS) &&
+        db.objectStoreNames.contains(STORE_SPECIES) &&
+        db.objectStoreNames.contains(STORE_SETTINGS);
+
+      if (hasAll) { resolve(db); return; }
+
+      // Manglende store i eksisterende DB → lav en migrations-opgradering
+      const newVer = db.version + 1;
+      db.close();
+      const req2 = indexedDB.open(DB_NAME, newVer);
+      req2.onupgradeneeded = () => ensureStores(req2.result);
+      req2.onsuccess = () => resolve(req2.result);
+      req2.onerror   = () => reject(req2.error);
+    };
+    req.onerror = () => reject(req.error);
+  });
+}
+
+/* Settings (opt-out/DND) */
+async function idbPutSettings(settings) {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_SETTINGS, 'readwrite');
+    tx.objectStore(STORE_SETTINGS).put({ id: 'settings', ...settings, ts: Date.now() });
+    tx.oncomplete = () => resolve(true);
+    tx.onerror = () => reject(tx.error);
+  });
+}
+async function idbGetSettings() {
+  const db = await idbOpen();
+  return new Promise((resolve, reject) => {
+    const tx = db.transaction(STORE_SETTINGS, 'readonly');
+    const req = tx.objectStore(STORE_SETTINGS).get('settings');
+    req.onsuccess = () => resolve(req.result || null);
     req.onerror   = () => reject(req.error);
   });
+}
+async function isOptedOutSW() {
+  try {
+    const s = await idbGetSettings();
+    return !!(s && s.opted_out);
+  } catch { return false; }
 }
 
 async function idbPutPrefs(prefs) {
@@ -186,7 +238,7 @@ self.addEventListener('message', (event) => {
     USER_ID = msg.user_id;
     event.waitUntil((async () => {
       await syncPrefsFromServer(USER_ID);
-      await syncSpeciesFromServer(USER_ID); // NYT
+      await syncSpeciesFromServer(USER_ID);
     })());
   } else if (msg.type === 'SAVE_SPECIES_OVERRIDES' && msg.overrides) {
     event.waitUntil(idbPutSpecies(msg.overrides));
@@ -195,6 +247,8 @@ self.addEventListener('message', (event) => {
       const ov = await idbGetSpecies();
       event.ports[0].postMessage({ overrides: ov });
     })());
+  } else if (msg.type === 'SET_OPT_OUT') { // NYT
+    event.waitUntil(idbPutSettings({ opted_out: !!msg.opted_out }));
   }
 });
 
@@ -268,7 +322,13 @@ function applyPerSpeciesCount(items, countsObj) {
 // --- PUSH: vis ALTID en synlig notifikation på iOS ---
 // (krav i Safari – ellers kan permission blive trukket tilbage)  [Apple doc]
 self.addEventListener('push', (event) => {
-  event.waitUntil(handlePush(event));
+  event.waitUntil((async () => {
+    // DND: vis intet hvis slået fra lokalt
+    if (await isOptedOutSW()) return;
+
+    // Fortsæt med eksisterende push-flow
+    await handlePush(event);
+  })());
 });
 
 // Små helpers: læs prefs/overrides
