@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T22:21:05.004942+02:00",
+"items": [
+{
+"obsid": "37866466",
+"art": "Dværgfalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Værnengene",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Henning",
+"efternavn": "Larsen",
+"lon": "8,238629133716955",
+"lat": "55,85446228956158",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -891,32 +891,11 @@ def api_obs_summary(date: str = Query("today")):
         data = data.get("items", [])
     return JSONResponse(data)
 
-@app.get("/api/obs/thread/{date}/{thread_id}")
-def api_obs_thread(date: str, thread_id: str):
-    base = _obs_dir_for_date(date) / "threads" / thread_id
-    tpath = base / "thread.json"
-    if not tpath.exists():
-        raise HTTPException(status_code=404, detail="Tråd ikke fundet")
-    thread = _read_json_robust(tpath)
-
-    events = []
-    evdir = base / "events"
-    if evdir.exists():
-        for p in evdir.glob("*.json"):
-            try:
-                events.append(_read_json_robust(p))
-            except HTTPException:
-                continue
-
-    def _ts(e):
-        s = e.get("ts_obs") or e.get("ts_seen") or ""
-        try:
-            return datetime.fromisoformat(s)
-        except Exception:
-            return datetime.fromtimestamp(0, tz=timezone.utc)
-    events.sort(key=_ts, reverse=True)
-
-    return JSONResponse({"thread": thread, "events": events})
+@app.get("/api/obs/thread/{date_ymd}/{thread_id}")
+def get_thread(date_ymd: str, thread_id: str):
+    safe_date = date_ymd.replace("..", "").split("/")[0]
+    safe_id = thread_id.replace("..", "")
+    return RedirectResponse(url=f"/obs/{safe_date}/threads/{safe_id}/thread.json")
 
 @app.get("/obs/{thread_id}")
 def obs_one(thread_id: str):

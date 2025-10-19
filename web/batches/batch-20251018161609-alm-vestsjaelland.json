@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T16:16:09.297693+02:00",
+"items": [
+{
+"obsid": "37863637",
+"art": "Trane",
+"antal": "20",
+"adf": "Overflyvende",
+"lok": "Gierslev Råmose",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Martin",
+"efternavn": "Bro",
+"lon": "11,331997147647964",
+"lat": "55,50217350173014",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

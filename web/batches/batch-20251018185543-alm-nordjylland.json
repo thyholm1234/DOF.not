@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-18T18:55:43.260868+02:00",
+"items": [
+{
+"obsid": "37859736",
+"art": "Lomvie/Alk",
+"antal": "198",
+"adf": "Trækkende mod nord",
+"lok": "Nørre Lyngby Strand",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Christian",
+"efternavn": "Terp",
+"lon": "9,743081296758865",
+"lat": "57,41206058383872",
+"tid_fra": "08:00",
+"tid_til": "10:04",
+"kategori": "bemaerk"
+}
+]
+}

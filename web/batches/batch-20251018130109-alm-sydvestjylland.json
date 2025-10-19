@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T13:01:09.894105+02:00",
+"items": [
+{
+"obsid": "37861893",
+"art": "Enkeltbekkasin",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Grønningen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Marian",
+"efternavn": "Bjerrum",
+"lon": "8,15749950706959",
+"lat": "55,53919518504661",
+"tid_fra": "12:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

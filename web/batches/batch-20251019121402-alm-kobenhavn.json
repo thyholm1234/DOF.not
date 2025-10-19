@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T12:14:02.434327+02:00",
+"items": [
+{
+"obsid": "37869744",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ganløse Ore",
+"dof_afdeling": "DOF København",
+"fornavn": "Ditte",
+"efternavn": "Kjærø",
+"lon": "12,314369470090544",
+"lat": "55,804610971155455",
+"tid_fra": "11:03",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

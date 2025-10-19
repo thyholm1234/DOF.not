@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T14:39:45.318091+02:00",
+"items": [
+{
+"obsid": "37862857",
+"art": "Vandstær",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Brede til Helsingørmotorvej",
+"dof_afdeling": "DOF København",
+"fornavn": "Anders",
+"efternavn": "Børjesson",
+"lon": "12,515602187646596",
+"lat": "55,80195875412636",
+"tid_fra": "14:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

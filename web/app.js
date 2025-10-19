@@ -8,38 +8,38 @@ const themeToggle = document.getElementById('theme-toggle');
 const themeIcon = document.getElementById('theme-icon');
 const THEME_KEY = 'dofnot-theme';
 
-function setTheme(theme) {
-  const root = document.documentElement;
-  if (theme === 'light' || theme === 'dark') {
-    root.setAttribute('data-theme', theme);
+(function initTheme() {
+  const docEl = document.documentElement;
+  const mql = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+  function systemTheme() { return mql && mql.matches ? 'dark' : 'light'; }
+
+  function applyTheme(theme, {persist=true} = {}) {
+    const t = theme === 'system' ? systemTheme() : theme;
+    docEl.dataset.theme = t;
+    docEl.style.colorScheme = t;
+    if (persist) localStorage.setItem(THEME_KEY, theme);
+    if (themeIcon) themeIcon.textContent = t === 'dark' ? '🌒' : '☀️';
   }
-  updateThemeIcon();
-}
 
-function updateThemeIcon() {
-  // Guard: elementet kan mangle på nogle sider (fx advanced.html), så undgå fejl
-  if (!themeIcon) return;
-  const theme = document.documentElement.getAttribute('data-theme');
-  themeIcon.textContent = theme === 'dark' ? '🌙' : '🌞';
-}
+  // initial
+  const saved = localStorage.getItem(THEME_KEY) || 'system';
+  applyTheme(saved, {persist:false});
 
-themeToggle?.addEventListener('click', () => {
-  const root = document.documentElement;
-  const current = root.getAttribute('data-theme');
-  const next = current === 'dark' ? 'light' : 'dark';
-  setTheme(next);
-  localStorage.setItem(THEME_KEY, next);
-});
+  // re-apply when system changes (if in system mode)
+  if (mql && mql.addEventListener) {
+    mql.addEventListener('change', () => {
+      const cur = localStorage.getItem(THEME_KEY) || 'system';
+      if (cur === 'system') applyTheme('system', {persist:false});
+    });
+  }
 
-// Init theme on load
-(function() {
-  const saved = localStorage.getItem(THEME_KEY);
-  if (saved === 'light' || saved === 'dark') {
-    setTheme(saved);
-  } else {
-    // Default: dark mode
-    setTheme('dark');
-    localStorage.setItem(THEME_KEY, 'dark');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const cur = document.documentElement.dataset.theme || systemTheme();
+      // toggle explicitly between light/dark and persist that choice
+      applyTheme(cur === 'dark' ? 'light' : 'dark');
+    });
   }
 })();
 
@@ -60,7 +60,6 @@ function setDiag(msg, color = '#f2a900', ttlMs = 0) {
 }
 (function setupDiagnostics() {
   const stamp = new Date().toISOString();
-  setDiag(`app.js loaded @ ${stamp}`);
   window.addEventListener('error', (e) =>
     setDiag(`JS-fejl: ${e.message}`, '#d32f2f')
   );

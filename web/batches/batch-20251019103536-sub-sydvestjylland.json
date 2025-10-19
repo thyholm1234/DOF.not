@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T10:35:36.743906+02:00",
+"items": [
+{
+"obsid": "37868719",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Trækforsøgende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "8,565889",
+"lat": "55,269894",
+"tid_fra": "10:34",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-18T16:01:28.707321+02:00",
+"items": [
+{
+"obsid": "37863537",
+"art": "Dværgfalk",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Apholmen, Frederikshavn",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Lars",
+"efternavn": "H. Mortensen",
+"lon": "10,52418400000254",
+"lat": "57,46749819999849",
+"tid_fra": "16:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

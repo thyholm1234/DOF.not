@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T13:29:34.439848+02:00",
+"items": [
+{
+"obsid": "37870329",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Ringfenner",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Erik",
+"efternavn": "Thomsen",
+"lon": "9,813007275203256",
+"lat": "57,17931708740155",
+"tid_fra": "10:00",
+"tid_til": "10:55",
+"kategori": "bemaerk"
+}
+]
+}

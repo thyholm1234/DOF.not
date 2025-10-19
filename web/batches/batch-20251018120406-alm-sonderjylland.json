@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-18T12:04:06.808807+02:00",
+"items": [
+{
+"obsid": "37860957",
+"art": "Musvåge",
+"antal": "232",
+"adf": "Trækkende",
+"lok": "Sønderskoven, Sønderborg",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Kjeld",
+"efternavn": "Jensen",
+"lon": "9,833701435239997",
+"lat": "54,90571702610228",
+"tid_fra": "11:12",
+"tid_til": "11:54",
+"kategori": "bemaerk"
+}
+]
+}

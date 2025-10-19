@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-18T16:30:44.675206+02:00",
+"items": [
+{
+"obsid": "37863753",
+"art": "Skærpiber",
+"antal": "5",
+"adf": "Fouragerende",
+"lok": "Skagen Havn",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Jonas Morsing",
+"efternavn": "Thomasen",
+"lon": "10,592071447664642",
+"lat": "57,717433917792675",
+"tid_fra": "16:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

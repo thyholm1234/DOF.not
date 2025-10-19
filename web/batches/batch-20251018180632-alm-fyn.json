@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T18:06:32.908821+02:00",
+"items": [
+{
+"obsid": "37864663",
+"art": "Huldue",
+"antal": "6",
+"adf": "Trækkende mod sydvest",
+"lok": "Faaborg",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Per Damgaard",
+"efternavn": "Poulsen",
+"lon": "10,240679254606176",
+"lat": "55,09766902732164",
+"tid_fra": "08:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

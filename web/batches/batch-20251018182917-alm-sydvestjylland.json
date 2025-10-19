@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T18:29:17.152971+02:00",
+"items": [
+{
+"obsid": "37865027",
+"art": "Stær",
+"antal": "14000",
+"adf": "Rastende",
+"lok": "Ribe Østerå",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Timme",
+"efternavn": "Nyegaard",
+"lon": "8,790738019951984",
+"lat": "55,3208662377948",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

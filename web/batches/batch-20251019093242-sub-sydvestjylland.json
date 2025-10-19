@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T09:32:42.952807+02:00",
+"items": [
+{
+"obsid": "37868164",
+"art": "Stor Korsnæb",
+"antal": "2",
+"adf": "Trækkende mod sydøst",
+"lok": "Hønen, Sønderho",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Søren Brinch",
+"efternavn": "Pedersen",
+"lon": "8,471278340800508",
+"lat": "55,344478539553364",
+"tid_fra": "09:32",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

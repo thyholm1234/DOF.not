@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-18T20:38:34.648456+02:00",
+"items": [
+{
+"obsid": "37866148",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Randers Fjord Mellerup Vore - Råby Odde",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,247136765953718",
+"lat": "56,561327505761085",
+"tid_fra": "11:25",
+"tid_til": "12:20",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37866151",
+"art": "Skægmejse",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Randers Fjord Mellerup Vore - Råby Odde",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,247136765953718",
+"lat": "56,561327505761085",
+"tid_fra": "11:25",
+"tid_til": "12:20",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T19:42:02.300333+02:00",
+"items": [
+{
+"obsid": "37865354",
+"art": "Bramgås",
+"antal": "185",
+"adf": "Trækkende mod øst",
+"lok": "Sose Odde-Arnager incl havn",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Hans",
+"efternavn": "Okkels Birk",
+"lon": "14,80642058506069",
+"lat": "55,04792592515744",
+"tid_fra": "11:50",
+"tid_til": "13:22",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T17:41:50.342826+02:00",
+"items": [
+{
+"obsid": "37864480",
+"art": "Musvåge",
+"antal": "1521",
+"adf": "Trækkende",
+"lok": "Storebælt ud for Teglværkskoven/Nyborg N",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,828172399999998",
+"lat": "55,33350730000001",
+"tid_fra": "09:45",
+"tid_til": "15:20",
+"kategori": "bemaerk"
+}
+]
+}

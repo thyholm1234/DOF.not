@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-19T12:23:03.301157+02:00",
+"items": [
+{
+"obsid": "37869819",
+"art": "Vandrikse",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Vallensgårdsmose",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Morten",
+"efternavn": "Lilleskov Christensen",
+"lon": "14,889690818637435",
+"lat": "55,09873812752505",
+"tid_fra": "10:05",
+"tid_til": "10:45",
+"kategori": "bemaerk"
+}
+]
+}

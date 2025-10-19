@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T18:15:28.498080+02:00",
+"items": [
+{
+"obsid": "37864752",
+"art": "Troldand",
+"antal": "1200",
+"adf": "Rastende",
+"lok": "Kongensbro Råstofgrave",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Søren",
+"efternavn": "Dalsgaard",
+"lon": "9,655130175552488",
+"lat": "56,30814535988289",
+"tid_fra": "18:09",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

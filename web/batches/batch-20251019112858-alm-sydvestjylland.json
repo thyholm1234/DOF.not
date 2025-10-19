@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T11:28:58.890999+02:00",
+"items": [
+{
+"obsid": "37869375",
+"art": "Lille Korsnæb",
+"antal": "15",
+"adf": "Trækkende mod sydøst",
+"lok": "Blåvand By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Benjamin Bechgaard",
+"efternavn": "Lisse",
+"lon": "8,134625783382733",
+"lat": "55,55624581413815",
+"tid_fra": "07:45",
+"tid_til": "10:20",
+"kategori": "bemaerk"
+}
+]
+}

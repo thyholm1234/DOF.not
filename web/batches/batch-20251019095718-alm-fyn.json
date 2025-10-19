@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T09:57:18.517590+02:00",
+"items": [
+{
+"obsid": "37868383",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Brændegård Sø",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Gunnar",
+"efternavn": "Jørgensen",
+"lon": "10,381017661552466",
+"lat": "55,126836981128946",
+"tid_fra": "09:05",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

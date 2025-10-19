@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-18T16:55:27.561386+02:00",
+"items": [
+{
+"obsid": "37864080",
+"art": "Bramgås",
+"antal": "820",
+"adf": "Trækkende mod sydvest",
+"lok": "Skansebakken",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Per",
+"efternavn": "Ekberg",
+"lon": "12,337238432313955",
+"lat": "55,93525313453108",
+"tid_fra": "09:00",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864092",
+"art": "Allike",
+"antal": "870",
+"adf": "Trækkende mod sydvest",
+"lok": "Skansebakken",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Per",
+"efternavn": "Ekberg",
+"lon": "12,337238432313955",
+"lat": "55,93525313453108",
+"tid_fra": "09:00",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+}
+]
+}

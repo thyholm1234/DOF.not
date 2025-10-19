@@ -1,0 +1,52 @@
+{
+"client": "alm-sydvestjylland",
+"count": 3,
+"generated": "2025-10-19T12:18:36.934810+02:00",
+"items": [
+{
+"obsid": "37869773",
+"art": "Musvåge",
+"antal": "47",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Henrik",
+"efternavn": "Böhmer",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:00",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37869780",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Henrik",
+"efternavn": "Böhmer",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:00",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37869775",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Vester Vedsted Enge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Svend Erik",
+"efternavn": "Thuesen",
+"lon": "8,670801128631497",
+"lat": "55,282717057641406",
+"tid_fra": "12:16",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

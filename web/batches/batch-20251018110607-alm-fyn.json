@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T11:06:07.316327+02:00",
+"items": [
+{
+"obsid": "37860822",
+"art": "Havørn",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Sønder Nærå",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Per",
+"efternavn": "Rasmussen",
+"lon": "10,488092267509252",
+"lat": "55,30874707665933",
+"tid_fra": "11:05",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

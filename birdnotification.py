@@ -26,18 +26,19 @@ import pandas as pd
 import yaml
 import argparse
 import datetime as dt
-import pandas as pd
+from zoneinfo import ZoneInfo
+DK_TZ = ZoneInfo("Europe/Copenhagen")
+
 import json
+from pathlib import Path
 import os           # NYT
 import tempfile     # NYT
 import time         # NYT
-from pathlib import Path
 from typing import Dict, List, Tuple, Optional
 
 
 import requests
 import yaml
-from zoneinfo import ZoneInfo
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ───────────────────────────────── Konstanter og stier ─────────────────────────────────
@@ -103,6 +104,57 @@ def _atomic_write_json(path: Path, obj):
         except Exception: pass
         raise
 
+def _safe_str(v):
+    return "" if v is None else str(v)
+
+def _event_obs_ts(ev: dict) -> str:
+    return ev.get("ts_obs") or ev.get("ts_seen") or ""
+
+def _load_prev_thread_payload(tpath: Path) -> dict:
+    if not tpath.exists():
+        return {}
+    try:
+        return json.loads(tpath.read_text(encoding="utf-8")) or {}
+    except Exception:
+        return {}
+
+def _prev_obs_state(prev_payload: dict) -> dict:
+    # Version 2+ har 'obs_state'; normalisér nøgler til rene tal
+    st = prev_payload.get("obs_state")
+    if isinstance(st, dict):
+        return { _canon_obsid(k): v for (k, v) in st.items() }
+    st = {}
+    evs = prev_payload.get("events") if isinstance(prev_payload, dict) else None
+    if isinstance(evs, list):
+        for ev in evs:
+            try:
+                oid = _canon_obsid(ev.get("obsid"))
+                ts = _event_obs_ts(ev)
+                an = ev.get("antal_num")
+                if oid and ts:
+                    st[oid] = {
+                        "first_seen_ts": ev.get("ts_thread_first") or ts,
+                        "last_update_ts": ev.get("ts_thread_last_update") or ts,
+                        "last_antal_num": an if isinstance(an, (int, float)) else None,
+                    }
+            except Exception:
+                pass
+    return st
+
+def _atomic_write_json_pretty(path: Path, obj):
+    path = Path(path); _ensure_dir(path.parent)
+    fd, tmp = tempfile.mkstemp(prefix=path.name, dir=str(path.parent))
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            json.dump(obj, f, ensure_ascii=False, indent=2)
+            f.write("\n")
+            f.flush(); os.fsync(f.fileno())
+        os.replace(tmp, path)
+    except Exception:
+        try: os.unlink(tmp)
+        except Exception: pass
+        raise
+
 def _slugify(s: str) -> str:
     t = unicodedata.normalize("NFKD", str(s or "").lower())
     t = t.replace("æ","ae").replace("ø","oe").replace("å","aa")
@@ -116,13 +168,22 @@ def _date_ymd_dk(now: dt.datetime | None = None, reset_hour: int = 3) -> str:
         now = now - dt.timedelta(hours=reset_hour)
     return now.date().isoformat()
 
+def _canon_obsid(s) -> str:
+    """Returnér kun cifre fra et obsid-felt (fx 'obs-37859710' -> '37859710')."""
+    m = re.search(r"\d+", str(s or ""))
+    return m.group(0) if m else (str(s or "").strip())
+
 def _row_obsid(row) -> str:
-    for k in ("ObsID","ObsId","obsid","ID","id"):
+    # Forsøg at finde ObsID i kendte kolonner og returnér kun tal
+    for k in ("ObsID", "ObsId", "Obsid", "obsid", "ID", "id"):
         v = row.get(k)
-        if pd.notna(v) and str(v).strip():
-            return str(v).strip()
-    # fallback: stabil “key” hvis intet ID (brug index+hash)
-    return f"row-{abs(hash((row.get('Artnavn',''), row.get('Loknr',''), row.get('Dato') or row.get('Dato-tid') or '')))%10_000_000}"
+        if pd.notna(v):
+            s = str(v).strip()
+            if s:
+                return _canon_obsid(s)
+    # Fallback: stabilt numerisk hash (kun tal)
+    key = (row.get("Artnavn",""), row.get("Loknr",""), row.get("Dato") or row.get("Dato-tid") or "")
+    return str(abs(hash(key)) % 10_000_000)
 
 def _kategori_from_row(row) -> str:
     try:
@@ -143,26 +204,256 @@ def _ensure_kategori(df: pd.DataFrame) -> pd.DataFrame:
         df["kategori"] = df["kategori"].astype(str).str.lower()
     return df
 
+def _parse_date_any(s: str) -> dt.date | None:
+    s = (s or "").strip()
+    if not s:
+        return None
+    for fmt in ("%Y-%m-%d", "%d-%m-%Y"):
+        try:
+            return dt.datetime.strptime(s, fmt).date()
+        except ValueError:
+            continue
+    # fx "2025-10-18 08:32"
+    for fmt in ("%Y-%m-%d %H:%M", "%d-%m-%Y %H:%M", "%Y-%m-%dT%H:%M", "%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S"):
+        try:
+            return dt.datetime.strptime(s, fmt).date()
+        except ValueError:
+            continue
+    return None
+
+def _parse_time_any(s: str) -> dt.time | None:
+    s = (s or "").strip()
+    if not s:
+        return None
+    for fmt in ("%H:%M:%S", "%H:%M"):
+        try:
+            return dt.datetime.strptime(s, fmt).time()
+        except ValueError:
+            continue
+    # tolerér "HH.MM"
+    m = re.match(r"^(\d{1,2})[.:](\d{2})$", s)
+    if m:
+        try:
+            return dt.time(int(m.group(1)), int(m.group(2)))
+        except Exception:
+            return None
+    return None
+
+def _row_ts_obs_iso(row) -> str:
+    # 1) Hvis der findes en egentlig datetime-kolonne, brug den
+    dt_raw = (row.get("Dato-tid") or row.get("DatoTid") or "").strip()
+    if dt_raw:
+        for fmt in ("%Y-%m-%d %H:%M", "%d-%m-%Y %H:%M", "%Y-%m-%dT%H:%M",
+                    "%Y-%m-%d %H:%M:%S", "%Y-%m-%dT%H:%M:%S"):
+            try:
+                dt_obj = dt.datetime.strptime(dt_raw, fmt).replace(tzinfo=DK_TZ)
+                return dt_obj.isoformat()
+            except ValueError:
+                continue
+        # fallback: hvis kun dato i feltet
+        d = _parse_date_any(dt_raw)
+        if d:
+            return dt.datetime.combine(d, dt.time(0, 0, 0), tzinfo=DK_TZ).isoformat()
+
+    # 2) Kombinér Dato + tid (Obstidfra/Turtidfra; fallback til til-tid)
+    d = _parse_date_any(row.get("Dato", ""))
+    t = (_parse_time_any(row.get("Obstidfra", "")) or
+         _parse_time_any(row.get("Turtidfra", "")) or
+         _parse_time_any(row.get("Obstidtil", "")) or
+         _parse_time_any(row.get("Turtidtil", "")))
+    if d and t:
+        return dt.datetime.combine(d, t, tzinfo=DK_TZ).isoformat()
+    if d:
+        # som sidste udvej, behold dato (kan vises som 00:00 hvis tid mangler)
+        return dt.datetime.combine(d, dt.time(0, 0, 0), tzinfo=DK_TZ).isoformat()
+    return ""
+
+# Stop skrivning af enkeltfiler i events/
+def _write_event_upsert(day_dir, thread_id, ev):
+    return False
+
+# Byg ét event-objekt (inkl. rå kolonner)
 def _build_event_from_row(row) -> dict:
+    try:
+        raw = row.to_dict()
+    except Exception:
+        raw = {}
+
+    # DOF-lokalafdeling
+    region_name = (row.get("DOF_afdeling") or row.get("Region") or row.get("region") or "") or None
+
+    # Observatør (fornavn + efternavn → fallback)
+    fn = (row.get("Fornavn") or "").strip()
+    en = (row.get("Efternavn") or "").strip()
+    observer = " ".join([x for x in (fn, en) if x]).strip() or \
+               (row.get("ObsNavn") or row.get("Observatør") or row.get("Observator") or "")
+
+    # Adfærd
+    adf = (row.get("Adfbeskrivelse") or row.get("Adfærd") or row.get("Adfaerd") or row.get("Adf") or "").strip()
+
+    # Noter
+    turnoter = (row.get("Turnoter") or row.get("TurNoter") or "").strip()
+    fuglnoter = (row.get("Fuglnoter") or row.get("Fuglenoter") or "").strip()
+
     ev = {
         "event_type": "obs",
-        "obsid": _row_obsid(row),
+        "obsid": _canon_obsid(_row_obsid(row)),
         "art": row.get("Artnavn"),
         "lok": row.get("Lokalitet") or row.get("Loknavn"),
         "loknr": row.get("Loknr"),
-        "region": row.get("Region"),
-        "region_slug": row.get("RegionSlug") or row.get("Region_Slug"),
+        "region": region_name,
         "coords": row.get("Coords") or row.get("Koordinater"),
         "antal_num": row.get("_antal_num"),
-        "antal_text": str(row.get("Antal")) if pd.notna(row.get("Antal")) else None,
+        "antal_text": (str(row.get("Antal")) if getattr(pd, "notna", lambda x: x is not None)(row.get("Antal")) else None),
         "kategori": row.get("kategori"),
-        "adf": row.get("Adfærd") or row.get("Adfaerd") or row.get("Adf"),
-        "observer": row.get("ObsNavn") or row.get("Observatør") or row.get("Observator"),
-        "ts_obs": (row.get("Dato-tid") or row.get("DatoTid") or row.get("Dato") or "")[:19].replace(" ", "T"),
+        "adf": adf,
+        "observer": observer.strip() or None,
+        "ts_obs": _row_ts_obs_iso(row),
         "ts_seen": dt.datetime.now(DK_TZ).isoformat(),
+        # NYT: noter som top-level felter
+        "turnoter": turnoter if turnoter else None,
+        "fuglnoter": fuglnoter if fuglnoter else None,
+        "raw": raw,
     }
     return {k: v for k, v in ev.items() if v not in (None, "", [])}
 
+# Skriv thread.json med alle observationer for art × lokalitet
+def _update_thread_rollup(day_dir: Path, thread_id: str, evs_for_thread: list[dict], date_ymd: str) -> dict:
+    """Byg trådsammenfatning og skriv thread.json med ALLE events samt obs_state."""
+    tdir = Path(day_dir) / "threads" / thread_id
+    _ensure_dir(tdir)
+    tpath = tdir / "thread.json"
+
+    events = [e for e in (evs_for_thread or []) if isinstance(e, dict)]
+    if not events:
+        payload = {
+            "version": 2,
+            "thread": {
+                "day": date_ymd,
+                "thread_id": thread_id,
+                "status": "withdrawn",
+                "num_events": 0,
+                "has_nonzero_today": False,
+            },
+            "events": [],
+            "stats": {"num_events": 0},
+            "obs_state": {},
+        }
+        _atomic_write_json(tpath, payload)
+        return payload["thread"]
+
+    events_desc = sorted(events, key=lambda e: _event_obs_ts(e), reverse=True)
+    events_asc = list(reversed(events_desc))
+
+    prev_payload = _load_prev_thread_payload(tpath)
+    prev_state = _prev_obs_state(prev_payload)
+
+    new_state: dict[str, dict] = {}
+    for ev in events_desc:
+        oid = _canon_obsid(ev.get("obsid"))
+        if not oid:
+            continue
+        ev["obsid"] = oid  # SIKR: events i filen har rene tal
+        obs_ts = _event_obs_ts(ev)
+        curr_antal = ev.get("antal_num")
+        prev = prev_state.get(oid) or {}
+        prev_first = prev.get("first_seen_ts") or obs_ts
+        prev_last_upd = prev.get("last_update_ts") or obs_ts
+        prev_antal = prev.get("last_antal_num")
+        changed = (prev_antal is not None) and (curr_antal != prev_antal)
+        last_update_ts = obs_ts if changed else prev_last_upd
+        ts_display = last_update_ts if changed else prev_first
+        ev["ts_thread_first"] = prev_first
+        ev["ts_thread_last_update"] = last_update_ts
+        ev["ts_thread_display"] = ts_display
+        ev["thread_count_changed"] = bool(changed)
+        new_state[oid] = {
+            "first_seen_ts": prev_first,
+            "last_update_ts": last_update_ts,
+            "last_antal_num": curr_antal if isinstance(curr_antal, (int, float)) else None,
+        }
+
+    def _ts_display(e): return e.get("ts_thread_display") or _event_obs_ts(e)
+    first_ts_obs = _ts_display(min(events_desc, key=_ts_display))
+    last_ts_obs = _ts_display(max(events_desc, key=_ts_display))
+
+    active_by_display = [e for e in events_desc if isinstance(e.get("antal_num"), (int, float)) and (e.get("antal_num") or 0) > 0]
+    last_active_ts_obs = max(active_by_display, key=_ts_display).get("ts_thread_display") if active_by_display else None
+    has_nonzero_today = bool(active_by_display)
+
+    max_antal_num = None
+    for e in events_desc:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)) and (max_antal_num is None or v > max_antal_num):
+            max_antal_num = v
+
+    last_antal_num = None
+    for e in events_desc:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)):
+            last_antal_num = v
+            break
+
+    last_kategori = None
+    for e in events_desc:
+        k = e.get("kategori")
+        if k:
+            last_kategori = str(k).lower()
+            break
+
+    def pick(key: str):
+        for e in events_desc:
+            v = e.get(key)
+            if v not in (None, "", []):
+                return v
+        return None
+
+    last_event = events_desc[0]
+
+    thread = {
+        "day": date_ymd,
+        "thread_id": thread_id,
+        "art": pick("art"),
+        "lok": pick("lok"),
+        "loknr": pick("loknr"),
+        "region": pick("region"),
+        "region_slug": pick("region_slug"),
+        "coords": pick("coords"),
+        "first_ts_obs": first_ts_obs,
+        "last_ts_obs": last_ts_obs,
+        "last_active_ts_obs": last_active_ts_obs,
+        "last_kategori": last_kategori,
+        "status": "active",
+        "max_antal_num": max_antal_num,
+        "last_antal_num": last_antal_num,
+        "num_events": len(events_desc),
+        "has_nonzero_today": has_nonzero_today,
+        "last_adf": last_event.get("adf"),
+        "last_observer": last_event.get("observer"),
+        "last_obsid": _canon_obsid(last_event.get("obsid")),  # SIKR: tal
+    }
+
+    max_item = None
+    for e in events_desc:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)) and (max_item is None or v > (max_item.get("antal_num") or float("-inf"))):
+            max_item = e
+    stats = {
+        "num_events": len(events_desc),
+        "max_antal_num": (max_item or {}).get("antal_num"),
+        "max_antal_ts_obs": (max_item or {}).get("ts_obs"),
+    }
+
+    payload = {
+        "version": 2,
+        "thread": thread,
+        "events": events_desc,
+        "stats": stats,
+        "obs_state": new_state,
+    }
+
+    _atomic_write_json(tpath, payload)
+    return thread
 def _thread_id_for(row: pd.Series) -> str:
     return f"{_slugify(row.get('Artnavn',''))}-{str(row.get('Loknr','')).strip()}"
 
@@ -180,11 +471,210 @@ def _write_event_if_new(base_dir: Path, thread_id: str, ev: dict) -> bool:
     _atomic_write_json(path, ev)
     return True
 
-def _write_event_upsert(base_dir: Path, thread_id: str, ev: dict) -> bool:
-    evdir = base_dir / "threads" / thread_id / "events"
-    _ensure_dir(evdir)
-    ev_id = str(ev.get("obsid") or f"e-{int(dt.datetime.now(DK_TZ).timestamp())}")
-    path = evdir / f"{ev_id}.json"
+# DEPRECATED: skriv ikke længere enkeltfiler under threads/<id>/events/
+def _write_event_upsert(day_dir, thread_id, ev):
+    return False
+
+def _read_json_safe(p: Path) -> dict:
+    try:
+        return json.loads(p.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+
+def _json_equal(a, b) -> bool:
+    try:
+        return json.dumps(a, sort_keys=True, ensure_ascii=False) == json.dumps(b, sort_keys=True, ensure_ascii=False)
+    except Exception:
+        return False
+
+# NYT: map tråd -> index-item (samme felter som observations-/trådlister bruger)
+def _index_item_from_thread(thread: dict) -> dict:
+    return {
+        "day": thread.get("day"),
+        "thread_id": thread.get("thread_id"),
+        "art": thread.get("art"),
+        "lok": thread.get("lok"),
+        "loknr": thread.get("loknr"),
+        "region": thread.get("region"),
+        "region_slug": thread.get("region_slug"),
+        "coords": thread.get("coords"),
+        "status": thread.get("status"),
+        "last_kategori": thread.get("last_kategori") or thread.get("kategori"),
+        "first_ts_obs": thread.get("first_ts_obs"),
+        "last_ts_obs": thread.get("last_ts_obs"),
+        "last_active_ts_obs": thread.get("last_active_ts_obs"),
+        "max_antal_num": thread.get("max_antal_num"),
+        "last_antal_num": thread.get("last_antal_num"),
+        "event_count": thread.get("num_events"),
+        "last_adf": thread.get("last_adf"),
+        "last_observer": thread.get("last_observer"),
+        "last_obsid": thread.get("last_obsid"),  # SIKR: tal
+    }
+
+# Byg trådsammenfatning og skriv thread.json med ALLE events.
+def _update_thread_rollup(day_dir: Path, thread_id: str, evs_for_thread: list[dict], date_ymd: str) -> dict:
+    tdir = Path(day_dir) / "threads" / thread_id
+    _ensure_dir(tdir)
+    tpath = tdir / "thread.json"
+
+    def ts(e: dict) -> str:
+        return e.get("ts_obs") or e.get("ts_seen") or ""
+
+    events = [e for e in (evs_for_thread or []) if isinstance(e, dict)]
+    if not events:
+        payload = {"version": 2, "thread": {
+            "day": date_ymd, "thread_id": thread_id, "status": "withdrawn",
+            "num_events": 0, "has_nonzero_today": False
+        }, "events": [], "stats": {"num_events": 0}}
+        _atomic_write_json(tpath, payload)
+        return payload["thread"]
+
+    # Sorteringer
+    events_desc = sorted(events, key=lambda e: ts(e), reverse=True)
+    events_asc = list(reversed(events_desc))
+
+    # Første/sidste tidspunkter
+    first_ts_obs = events_asc[0].get("ts_obs") or events_asc[0].get("ts_seen")
+    last_ts_obs = events_desc[0].get("ts_obs") or events_desc[0].get("ts_seen")
+
+    # Sidste aktive (antal > 0)
+    pos = [e for e in events_desc if isinstance(e.get("antal_num"), (int, float)) and (e.get("antal_num") or 0) > 0]
+    last_active_ts_obs = pos[0].get("ts_obs") if pos else None
+    has_nonzero_today = bool(pos)
+
+    # Max og sidste antal
+    max_antal_num = None
+    for e in events:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)) and (max_antal_num is None or v > max_antal_num):
+            max_antal_num = v
+
+    last_antal_num = None
+    for e in events_desc:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)):
+            last_antal_num = v
+            break
+
+    # Sidste kategori
+    last_kategori = None
+    for e in events_desc:
+        k = e.get("kategori")
+        if k:
+            last_kategori = str(k).lower()
+            break
+
+    # Hjælpere til at løfte fælles felter fra seneste ikke-tomme
+    def pick(key: str):
+        for e in events_desc:
+            v = e.get(key)
+            if v not in (None, "", []):
+                return v
+        return None
+
+    last_event = events_desc[0]
+
+    thread = {
+        "day": date_ymd,
+        "thread_id": thread_id,
+        "art": pick("art"),
+        "lok": pick("lok"),
+        "loknr": pick("loknr"),
+        "region": pick("region"),
+        "coords": pick("coords"),
+        "first_ts_obs": first_ts_obs,
+        "last_ts_obs": last_ts_obs,
+        "last_active_ts_obs": last_active_ts_obs,
+        "last_kategori": last_kategori,
+        "status": "active",
+        "max_antal_num": max_antal_num,
+        "last_antal_num": last_antal_num,
+        "num_events": len(events),
+        "has_nonzero_today": has_nonzero_today,
+        "last_adf": last_event.get("adf"),
+        "last_observer": last_event.get("observer"),
+    }
+
+    # Stats til reference
+    max_item = None
+    for e in events_desc:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)) and (max_item is None or v > (max_item.get("antal_num") or float("-inf"))):
+            max_item = e
+    stats = {
+        "num_events": len(events_desc),
+        "max_antal_num": (max_item or {}).get("antal_num"),
+        "max_antal_ts_obs": (max_item or {}).get("ts_obs"),
+    }
+
+    # NYT: thread.json indeholder både sammendrag og ALLE events
+    payload = {
+        "version": 2,
+        "thread": thread,
+        "events": events_desc,  # alle observationer for art × lokalitet (den dag)
+        "stats": stats,
+    }
+
+    _atomic_write_json(tpath, payload)
+    return thread
+
+def _write_events_all(day_dir: Path, thread_id: str, thread: dict, evs_for_thread: list[dict], date_ymd: str) -> bool:
+    """
+    Skriv samlet fil med alle events for tråden:
+    web/obs/<YYYY-MM-DD>/threads/<thread_id>/events.all.json
+    Returnerer True hvis filen blev skrevet/ændret.
+    """
+    path = Path(day_dir) / "threads" / thread_id / "events.all.json"
+    _ensure_dir(path.parent)
+
+    # Pak relevante event-felter og sorter nyeste først
+    events = []
+    for ev in evs_for_thread:
+        if ev.get("event_type") != "obs":
+            continue
+        events.append({
+            "obsid": ev.get("obsid"),
+            "ts_obs": ev.get("ts_obs") or ev.get("ts_seen"),
+            "antal_num": ev.get("antal_num"),
+            "antal_text": ev.get("antal_text"),
+            "kategori": ev.get("kategori"),
+            "adf": ev.get("adf"),
+            "observer": ev.get("observer"),
+        })
+    events.sort(key=lambda e: e.get("ts_obs") or "", reverse=True)
+
+    # Stats
+    max_item = None
+    for e in events:
+        v = e.get("antal_num")
+        if isinstance(v, (int, float)):
+            if (max_item is None) or (v > (max_item.get("antal_num") or float("-inf"))):
+                max_item = e
+    stats = {
+        "num_events": len(events),
+        "max_antal_num": (max_item or {}).get("antal_num"),
+        "max_antal_ts_obs": (max_item or {}).get("ts_obs"),
+    }
+
+    # Tråd-metadata (subset)
+    payload = {
+        "version": 1,
+        "thread": {
+            "day": date_ymd,
+            "thread_id": thread_id,
+            "art": thread.get("art"),
+            "lok": thread.get("lok"),
+            "loknr": thread.get("loknr"),
+            "region": thread.get("region"),
+            "region_slug": thread.get("region_slug"),  # NYT
+            "coords": thread.get("coords"),
+            "first_ts_obs": thread.get("first_ts_obs"),
+            "last_ts_obs": thread.get("last_ts_obs"),
+            "status": thread.get("status"),
+        },
+        "events": events,
+        "stats": stats,
+    }
 
     old = None
     if path.exists():
@@ -193,108 +683,34 @@ def _write_event_upsert(base_dir: Path, thread_id: str, ev: dict) -> bool:
         except Exception:
             old = None
 
-    if old is not None:
-        try:
-            if json.dumps(old, sort_keys=True, ensure_ascii=False) == json.dumps(ev, sort_keys=True, ensure_ascii=False):
-                return False  # ingen ændring
-        except Exception:
-            pass
+    if old is None or not _json_equal(old, payload):
+        _atomic_write_json(path, payload)
+        return True
+    return False
 
-    _atomic_write_json(path, ev)
-    return True
-
-def _read_json_safe(p: Path) -> dict:
-    try:
-        return json.loads(p.read_text(encoding="utf-8"))
-    except Exception:
-        return {}
-
-def _update_thread_rollup(day_dir: Path, thread_id: str, evs_for_thread: list[dict], date_ymd: str) -> dict:
-    tdir = day_dir / "threads" / thread_id
-    _ensure_dir(tdir)
-    tpath = tdir / "thread.json"
-    try:
-        before = json.loads(tpath.read_text(encoding="utf-8")) if tpath.exists() else {}
-    except Exception:
-        before = {}
-
-    evs = sorted(evs_for_thread, key=lambda e: e.get("ts_obs") or e.get("ts_seen") or "", reverse=True)
-    last = evs[0]
-    counts = [e.get("antal_num") for e in evs if isinstance(e.get("antal_num"), (int,float))]
-    max_num = max(counts) if counts else None
-    max_ev = None
-    if max_num is not None:
-        cand = [e for e in evs if e.get("antal_num") == max_num]
-        cand.sort(key=lambda e: e.get("ts_obs") or "", reverse=True)
-        max_ev = cand[0] if cand else None
-
-    def iso_min(*vals):
-        vals = [v for v in vals if v]
-        if not vals: return None
-        try: return min(dt.datetime.fromisoformat(v) for v in vals).isoformat()
-        except Exception: return vals[0]
-
-    def iso_max(*vals):
-        vals = [v for v in vals if v]
-        if not vals: return None
-        try: return max(dt.datetime.fromisoformat(v) for v in vals).isoformat()
-        except Exception: return vals[-1]
-
-    has_nonzero = any((isinstance(e.get("antal_num"), (int,float)) and e["antal_num"] > 0) for e in evs)
-    last_active = None
-    if has_nonzero:
-        pos = [e for e in evs if isinstance(e.get("antal_num"), (int,float)) and e["antal_num"] > 0]
-        pos.sort(key=lambda e: e.get("ts_obs") or "", reverse=True)  # FIX: tilføj key=
-        last_active = pos[0].get("ts_obs")
-
-    thread = {
-        "day": date_ymd,
-        "thread_id": thread_id,
-        "art": last.get("art"),
-        "lok": last.get("lok"),
-        "loknr": last.get("loknr"),
-        "region": last.get("region"),
-        "region_slug": last.get("region_slug"),
-        "coords": last.get("coords"),
-        "first_ts_obs": iso_min(before.get("first_ts_obs"), *(e.get("ts_obs") for e in evs)),
-        "last_ts_obs": iso_max(before.get("last_ts_obs"), *(e.get("ts_obs") for e in evs)),
-        "last_kategori": last.get("kategori"),
-        "last_antal_num": last.get("antal_num"),
-        "last_antal_text": last.get("antal_text"),
-        "max_antal_num": (
-            max(max_num, before.get("max_antal_num"))
-            if (isinstance(before.get("max_antal_num"), (int,float)) and max_num is not None)
-            else (max_num if max_num is not None else before.get("max_antal_num"))
-        ),
-        "max_antal_text": (max_ev or {}).get("antal_text") if max_ev else before.get("max_antal_text"),
-        "max_antal_ts_obs": (max_ev or {}).get("ts_obs") if max_ev else before.get("max_antal_ts_obs"),
-        "num_events": len(evs),
-        "has_nonzero_today": bool(has_nonzero),
-        "last_active_ts_obs": iso_max(before.get("last_active_ts_obs"), last_active),
-        "status": before.get("status", "active"),
-        "corrected_at": before.get("corrected_at"),
-        "corrected_once": before.get("corrected_once", False),
-    }
-    _atomic_write_json(tpath, thread)
-    return thread
-
-def _write_index_for_day(day_dir: Path, date_ymd: str) -> list[dict]:
-    threads_dir = day_dir / "threads"
+def _write_index_for_day(day_dir: Path, threads: list[dict], date_ymd: str) -> bool:
+    """
+    Skriv web/obs/<date>/index.json som pæn, multilinjers JSON.
+    """
     items = []
-    if threads_dir.exists():
-        for t in threads_dir.iterdir():
-            if not t.is_dir(): continue
-            tpath = t / "thread.json"
-            if not tpath.exists(): continue
-            try:
-                obj = json.loads(tpath.read_text(encoding="utf-8"))
-                obj["day"] = date_ymd
-                items.append(obj)
-            except Exception:
-                continue
+    for t in (threads or []):
+        if not t: continue
+        item = _index_item_from_thread(t)
+        items.append(item)
+
+    # Nyeste først
     items.sort(key=lambda x: x.get("last_ts_obs") or "", reverse=True)
-    _atomic_write_json(day_dir / "index.json", items)
-    return items
+
+    path = Path(day_dir) / "index.json"
+    old = None
+    if path.exists():
+        try: old = json.loads(path.read_text(encoding="utf-8"))
+        except Exception: old = None
+
+    if old is None or not _json_equal(old, items):
+        _atomic_write_json_pretty(path, items)
+        return True
+    return False
 
 def _purge_old_obs(retain_days: int = 2):
     base = OBS_BASE
@@ -359,19 +775,19 @@ def build_obs_storage_for_day(df: pd.DataFrame, date_ymd: str, *, categories: tu
     _ensure_dir(day_dir)
 
     df = _ensure_kategori(df)
-    rows = df[df["kategori"].isin(categories)]  # skriv alle: brug rows = df
+    rows = df[df["kategori"].isin(categories)]
 
     thread_events: dict[str, list[dict]] = {}
-    writes = 0
+
     for _, r in rows.iterrows():
         ev = _build_event_from_row(r)
-        tid = _thread_id_for(r)
-        if _write_event_upsert(day_dir, tid, ev):
-            writes += 1
+        tid = _thread_id_for(r)  # art × lokalitet
         thread_events.setdefault(tid, []).append(ev)
 
+    threads_out: list[dict] = []
     for tid, evs in thread_events.items():
-        _update_thread_rollup(day_dir, tid, evs, date_ymd)
+        thread = _update_thread_rollup(day_dir, tid, evs, date_ymd)
+        threads_out.append(thread)
 
     # Markér withdrawn for tråde, der mangler i denne sync
     present = set(thread_events.keys())
@@ -392,10 +808,11 @@ def build_obs_storage_for_day(df: pd.DataFrame, date_ymd: str, *, categories: tu
                 before["status"] = "withdrawn"
                 _atomic_write_json(tpath, before)
 
-    _write_index_for_day(day_dir, date_ymd)
+    # Skriv dagsindex (med alle nødvendige felter til thread.js liste)
+    _write_index_for_day(day_dir, threads_out, date_ymd)
 
-    # Debug tæller (valgfrit)
-    print(f"[obs] {date_ymd}: upserts={writes}, threads={len(thread_events)}")
+    # Debug: antal tråde (fjern 'writes' som ikke længere bruges)
+    print(f"[obs] {date_ymd}: threads={len(thread_events)}")
 
 # ───────────────────────────────── Utilities ─────────────────────────────────
 def ensure_dirs():

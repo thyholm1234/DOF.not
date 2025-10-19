@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-18T14:47:48.441041+02:00",
+"items": [
+{
+"obsid": "37862944",
+"art": "Halemejse",
+"antal": "12",
+"adf": "Overflyvende",
+"lok": "Brinkhus",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "John",
+"efternavn": "David",
+"lon": "10,315818800002887",
+"lat": "57,45266170000238",
+"tid_fra": "09:00",
+"tid_til": "12:30",
+"kategori": "bemaerk"
+}
+]
+}

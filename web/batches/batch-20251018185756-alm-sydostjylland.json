@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-18T18:57:56.196277+02:00",
+"items": [
+{
+"obsid": "37865147",
+"art": "Trane",
+"antal": "18",
+"adf": "Overflyvende",
+"lok": "Dollerup Sø",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Lars",
+"efternavn": "Kristensen",
+"lon": "9,271706083498952",
+"lat": "55,477295680421975",
+"tid_fra": "15:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

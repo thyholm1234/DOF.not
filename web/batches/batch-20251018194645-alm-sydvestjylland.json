@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T19:46:45.556251+02:00",
+"items": [
+{
+"obsid": "37865395",
+"art": "Halemejse",
+"antal": "15",
+"adf": "Trækkende mod øst",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "07:40",
+"tid_til": "10:50",
+"kategori": "bemaerk"
+}
+]
+}

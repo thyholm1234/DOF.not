@@ -1,0 +1,82 @@
+{
+"client": "alm-nordvestjylland",
+"count": 5,
+"generated": "2025-10-18T11:07:22.116720+02:00",
+"items": [
+{
+"obsid": "37860858",
+"art": "Toppet Skallesluger",
+"antal": "1170",
+"adf": "Fouragerende",
+"lok": "Sønder Lem Vig, fjorden ud for",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,756777389597094",
+"lat": "56,55615241932054",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860830",
+"art": "Blisgås",
+"antal": "49",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860833",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860836",
+"art": "Troldand",
+"antal": "217",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860863",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

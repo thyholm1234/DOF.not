@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T17:06:42.247098+02:00",
+"items": [
+{
+"obsid": "37864165",
+"art": "Skarv",
+"antal": "1100",
+"adf": "Rastende på overnatningsplads",
+"lok": "Storedal, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Pedersen",
+"lon": "12,452647",
+"lat": "55,322967",
+"tid_fra": "17:05",
+"tid_til": "16:31",
+"kategori": "bemaerk"
+}
+]
+}

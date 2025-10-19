@@ -1,0 +1,52 @@
+{
+"client": "alm-sydvestjylland",
+"count": 3,
+"generated": "2025-10-19T09:23:08.659492+02:00",
+"items": [
+{
+"obsid": "37867720",
+"art": "Bjergvipstjert",
+"antal": "3",
+"adf": "Trækkende mod sydøst",
+"lok": "Skallingen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonas",
+"efternavn": "Pedersen",
+"lon": "8,26347385965211",
+"lat": "55,5087732506494",
+"tid_fra": "08:20",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37868083",
+"art": "Lille Korsnæb",
+"antal": "25",
+"adf": "Trækforsøgende",
+"lok": "Skallingen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonas",
+"efternavn": "Pedersen",
+"lon": "8,26347385965211",
+"lat": "55,5087732506494",
+"tid_fra": "08:20",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37868084",
+"art": "Blå Kærhøg",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Hønen, Sønderho",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Søren Brinch",
+"efternavn": "Pedersen",
+"lon": "8,471278340800508",
+"lat": "55,344478539553364",
+"tid_fra": "09:22",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

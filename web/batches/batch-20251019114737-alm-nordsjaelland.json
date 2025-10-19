@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T11:47:37.750701+02:00",
+"items": [
+{
+"obsid": "37869590",
+"art": "Halemejse",
+"antal": "43",
+"adf": "Trækkende mod sydvest",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,875967906240932",
+"lat": "55,98048737722473",
+"tid_fra": "07:30",
+"tid_til": "11:25",
+"kategori": "bemaerk"
+}
+]
+}

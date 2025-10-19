@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-19T09:37:57.790084+02:00",
+"items": [
+{
+"obsid": "37867479",
+"art": "Bramgås",
+"antal": "160",
+"adf": "Trækkende mod øst",
+"lok": "Hassensør",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Inger",
+"efternavn": "Klit",
+"lon": "10,711299733396064",
+"lat": "56,14249590922208",
+"tid_fra": "07:52",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

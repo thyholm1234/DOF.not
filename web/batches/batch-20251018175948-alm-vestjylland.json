@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T17:59:48.295550+02:00",
+"items": [
+{
+"obsid": "37864616",
+"art": "Trane",
+"antal": "18",
+"adf": "Overflyvende",
+"lok": "Nørlund Plantage",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Bo",
+"efternavn": "Fabech",
+"lon": "9,207257351755079",
+"lat": "56,05029856167164",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

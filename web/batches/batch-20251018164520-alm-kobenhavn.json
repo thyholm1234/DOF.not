@@ -1,0 +1,52 @@
+{
+"client": "alm-kobenhavn",
+"count": 3,
+"generated": "2025-10-18T16:45:20.061932+02:00",
+"items": [
+{
+"obsid": "37861196",
+"art": "Musvåge",
+"antal": "285",
+"adf": "Trækkende",
+"lok": "Søndersø (Furesø kommune)",
+"dof_afdeling": "DOF København",
+"fornavn": "Allan",
+"efternavn": "Haagensen",
+"lon": "12,352740004050254",
+"lat": "55,77429537082176",
+"tid_fra": "10:00",
+"tid_til": "16:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863947",
+"art": "Ravn",
+"antal": "8",
+"adf": "Rastende",
+"lok": "Søndersø (Furesø kommune)",
+"dof_afdeling": "DOF København",
+"fornavn": "Allan",
+"efternavn": "Haagensen",
+"lon": "12,352740004050254",
+"lat": "55,77429537082176",
+"tid_fra": "10:00",
+"tid_til": "16:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863956",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Søndersø (Furesø kommune)",
+"dof_afdeling": "DOF København",
+"fornavn": "Allan",
+"efternavn": "Haagensen",
+"lon": "12,352740004050254",
+"lat": "55,77429537082176",
+"tid_fra": "10:00",
+"tid_til": "16:00",
+"kategori": "bemaerk"
+}
+]
+}

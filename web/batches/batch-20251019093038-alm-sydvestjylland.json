@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T09:30:38.369050+02:00",
+"items": [
+{
+"obsid": "37867300",
+"art": "Solsort",
+"antal": "89",
+"adf": "Trækkende mod sydøst",
+"lok": "Hønen, Sønderho",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Søren Brinch",
+"efternavn": "Pedersen",
+"lon": "8,471278340800508",
+"lat": "55,344478539553364",
+"tid_fra": "08:20",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867539",
+"art": "Grønsisken",
+"antal": "90",
+"adf": "Trækkende mod sydøst",
+"lok": "Hønen, Sønderho",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Søren Brinch",
+"efternavn": "Pedersen",
+"lon": "8,471278340800508",
+"lat": "55,344478539553364",
+"tid_fra": "08:42",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

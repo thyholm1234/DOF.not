@@ -1,0 +1,37 @@
+{
+"client": "alm-fyn",
+"count": 2,
+"generated": "2025-10-18T16:34:03.203058+02:00",
+"items": [
+{
+"obsid": "37863799",
+"art": "Musvåge",
+"antal": "1439",
+"adf": "Trækkende mod sydvest",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Kurt",
+"efternavn": "Kaack Hansen",
+"lon": "10,851616859436037",
+"lat": "55,29099314622242",
+"tid_fra": "12:55",
+"tid_til": "14:15",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863807",
+"art": "Sortgrå Ryle",
+"antal": "3",
+"adf": "Fouragerende",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Kurt",
+"efternavn": "Kaack Hansen",
+"lon": "10,849797197639509",
+"lat": "55,29564339923891",
+"tid_fra": "12:55",
+"tid_til": "14:15",
+"kategori": "bemaerk"
+}
+]
+}

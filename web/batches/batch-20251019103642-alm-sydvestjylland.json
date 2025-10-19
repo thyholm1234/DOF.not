@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T10:36:42.596428+02:00",
+"items": [
+{
+"obsid": "37868735",
+"art": "Hedelærke",
+"antal": "1",
+"adf": "Trækkende mod sydøst",
+"lok": "Blåvand By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Thor Vincent",
+"efternavn": "Hansen",
+"lon": "8,134625783382733",
+"lat": "55,55624581413815",
+"tid_fra": "09:05",
+"tid_til": "09:35",
+"kategori": "bemaerk"
+}
+]
+}

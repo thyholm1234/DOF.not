@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T14:14:17.050974+02:00",
+"items": [
+{
+"obsid": "37862574",
+"art": "Halemejse",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Årgab vest",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Ole",
+"efternavn": "Amstrup",
+"lon": "8,140384799997268",
+"lat": "55,9692737000008",
+"tid_fra": "14:05",
+"tid_til": "14:30",
+"kategori": "bemaerk"
+}
+]
+}

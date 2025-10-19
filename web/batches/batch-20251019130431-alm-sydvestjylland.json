@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T13:04:31.155481+02:00",
+"items": [
+{
+"obsid": "37870119",
+"art": "Sølvhejre",
+"antal": "15",
+"adf": "Rastende",
+"lok": "Mandø Ebbevej",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Lars Maltha",
+"efternavn": "Rasmussen",
+"lon": "8,639464600013358",
+"lat": "55,30035056781077",
+"tid_fra": "08:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

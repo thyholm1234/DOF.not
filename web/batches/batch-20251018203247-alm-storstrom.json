@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-18T20:32:47.422971+02:00",
+"items": [
+{
+"obsid": "37866109",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Enge ved Lindersvold",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "12,098223119974138",
+"lat": "55,18455250246648",
+"tid_fra": "09:35",
+"tid_til": "09:55",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37866108",
+"art": "Havørn",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Noret ved Roneklint",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Boeg",
+"lon": "12,11610920000272",
+"lat": "55,127472600001255",
+"tid_fra": "11:45",
+"tid_til": "18:15",
+"kategori": "bemaerk"
+}
+]
+}

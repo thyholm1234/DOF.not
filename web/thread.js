@@ -6,96 +6,53 @@
   const $title = $('thread-title');
   const $sub = $('thread-sub');
   const $list = $('thread-events');
+  const $frontControls = $('front-controls');
 
+  // Forside-kontroller (for trådsammendrag)
+  let $frontChkHideZero, $frontSelLimit, $frontSelSort, $frontChkPrefs;
+  const SORT_PREFS_KEY = 'dofnot-use-prefs-sort';
+  const SORT_MODE_KEY = 'dofnot-sort-mode';
+  const frontState = {
+    hideZero: true,
+    limit: 0,
+    // tænd/sluk for brugerpræferencer (default: til)
+    usePrefs: (localStorage.getItem(SORT_PREFS_KEY) ?? '1') === '1',
+    // kun to manuelle modes
+    sortMode: localStorage.getItem(SORT_MODE_KEY) || 'date_desc', // 'date_desc' | 'alpha_asc'
+  };
+
+  // State
+  let userPrefs = {};
+  let threadEvents = [];
+  let summaryItems = [];
+
+  // Utils
+  const isYMD = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
   function todayYMDLocal() {
     const d = new Date();
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
   function yesterdayYMDLocal() {
     const d = new Date();
-    d.setDate(d.getDate() - 1);
-    const y = d.getFullYear();
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${y}-${m}-${day}`;
+    d.setDate(d.getDate()-1);
+    return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-  const isYMD = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
-
+  function fmtAge(iso) {
+    if (!iso) return '';
+    const t = new Date(iso).getTime();
+    const s = (Date.now() - t)/1000;
+    if (s < 60) return 'for få sek. siden';
+    const m = Math.floor(s/60); if (m < 60) return `${m} min siden`;
+    const h = Math.floor(m/60); return `${h} t siden`;
+  }
   function parseRoute() {
     const qs = new URLSearchParams(location.search);
-    let date = qs.get('date') || '';
-    let id = qs.get('id') || '';
-    if (!date) date = 'today';
-    return { date, id };
+    return { date: qs.get('date') || 'today', id: qs.get('id') || '' };
   }
-
   async function fetchUserPrefs() {
-    try {
-      const r = await fetch('./api/prefs/user', { cache: 'no-cache' });
-      if (!r.ok) return {};
-      const p = await r.json();
-      return p || {};
-    } catch {
-      return {};
-    }
+    try { const r = await fetch('./api/prefs/user',{cache:'no-cache'}); return r.ok ? (await r.json()||{}) : {}; }
+    catch { return {}; }
   }
-
-  function normArr(v, f = (x) => x) {
-    if (v == null) return [];
-    if (Array.isArray(v)) return v.map((x) => f(String(x)));
-    return String(v).split(',').map((s) => f(s.trim())).filter(Boolean);
-  }
-
-  function parseCoords(c) {
-    if (!c) return null;
-    if (Array.isArray(c) && c.length >= 2) return [Number(c[0]), Number(c[1])];
-    if (typeof c === 'string') {
-      const m = c.trim().split(/[,; ]+/).map(Number).filter((v) => !Number.isNaN(v));
-      if (m.length >= 2) {
-        const a = Math.abs(m[0]), b = Math.abs(m[1]);
-        if (a > 54 && a < 58 && b > 7 && b < 16) return [m[1], m[0]];
-        return [m[0], m[1]];
-      }
-    }
-    return null;
-  }
-
-  function inBBox(pt, bbox) {
-    if (!pt || !bbox || bbox.length < 4) return true;
-    const [lon, lat] = pt;
-    const [minLon, minLat, maxLon, maxLat] = bbox.map(Number);
-    return lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat;
-  }
-
-  function applyPrefs(items, prefs) {
-    const p = prefs || {};
-    const cats = normArr(p.categories, (s) => s.toLowerCase());
-    const regs = normArr(p.regions, (s) => s.toLowerCase());
-    const species = normArr(p.species, (s) => s.toLowerCase());
-    const onlyCoords = Boolean(p.only_with_coords);
-    const bbox = Array.isArray(p.bbox) ? p.bbox : null;
-    const minCount = (typeof p.min_count === 'number') ? p.min_count : (p.min_count ? Number(p.min_count) : null);
-
-    return items.filter((s) => {
-      if (cats.length && !cats.includes(String(s.last_kategori || '').toLowerCase())) return false;
-      const rname = String(s.region || '').toLowerCase();
-      const rslug = String(s.region_slug || '').toLowerCase();
-      if (regs.length && !(regs.includes(rslug) || regs.includes(rname))) return false;
-      const art = String(s.art || '').toLowerCase();
-      if (species.length && !species.includes(art)) return false;
-      const pt = parseCoords(s.coords);
-      if (onlyCoords && !pt) return false;
-      if (bbox && !inBBox(pt, bbox)) return false;
-      const c = (typeof s.max_antal_num === 'number') ? s.max_antal_num
-        : (typeof s.last_antal_num === 'number' ? s.last_antal_num : null);
-      if (minCount != null && !(c != null && c >= minCount)) return false;
-      return true;
-    });
-  }
-
   async function fetchSummary(dateParam) {
     try {
       const r = await fetch(`./api/obs/summary?date=${encodeURIComponent(dateParam)}`, { cache: 'no-cache' });
@@ -103,139 +60,416 @@
       if (!r.ok) throw new Error(String(r.status));
       const arr = await r.json();
       return Array.isArray(arr) ? arr : [];
-    } catch {
-      return [];
+    } catch { return []; }
+  }
+
+  // DOM helpers
+  function el(tag, cls, text) {
+    const x = document.createElement(tag);
+    if (cls) x.className = cls;
+    if (text != null) x.textContent = text;
+    return x;
+  }
+  function catClass(kat) { return `badge cat-${String(kat||'').toLowerCase()}`; }
+  const dofUrl = (obsid) => `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(obsid)}&summering=tur&obs=obs`;
+
+  // Sortering
+  function evTime(ev) { return ev.ts_thread_display || ev.ts_obs || ev.ts_seen || ''; }
+  function evTimeMs(ev) { const t = evTime(ev); return t ? new Date(t).getTime() : 0; }
+  function evCount(ev) {
+    if (typeof ev.antal_num === 'number') return ev.antal_num;
+    const n = parseInt(String(ev.antal_text || ''), 10);
+    return Number.isFinite(n) ? n : NaN;
+  }
+  function sortModeFromPrefs(prefs) {
+    const v = (prefs && (prefs.thread_sort || prefs.sort || prefs.event_sort)) || 'date_desc';
+    switch (String(v).toLowerCase()) {
+      case 'date_asc': return 'date_desc'; // vi understøtter kun faldende
+      case 'alpha': case 'alpha_asc': return 'alpha_asc';
+      case 'count_desc': return 'date_desc';
+      case 'count_asc': return 'date_desc';
+      case 'date_desc':
+      default: return 'date_desc';
     }
   }
-
-  function fmtAge(iso) {
-    if (!iso) return '';
-    const t = new Date(iso);
-    const diff = (Date.now() - t.getTime()) / 1000;
-    if (diff < 60) return 'for få sek. siden';
-    const m = Math.floor(diff / 60);
-    if (m < 60) return `for ${m} min siden`;
-    const h = Math.floor(m / 60);
-    return `for ${h} t siden`;
+  function sortEvents(arr, mode) {
+    const m = mode === 'prefs' ? sortModeFromPrefs(userPrefs) : mode;
+    const a = [...arr];
+    if (m === 'alpha_asc') {
+      a.sort((x,y) => String(x.art||'').localeCompare(String(y.art||''), 'da', {sensitivity:'base'}));
+    } else if (m === 'date_asc') {
+      a.sort((x,y) => evTimeMs(x) - evTimeMs(y));
+    } else if (m === 'count_desc') a.sort((x,y) => (evCount(y) || -Infinity) - (evCount(x) || -Infinity) || (evTimeMs(y) - evTimeMs(x)));
+    else if (m === 'count_asc') a.sort((x,y) => (evCount(x) || Infinity) - (evCount(y) || Infinity) || (evTimeMs(y) - evTimeMs(x)));
+    else a.sort((x,y) => evTimeMs(y) - evTimeMs(x));
+    return a;
+  }
+  // Tråd-sammendrag sortering
+  function sortThreads(arr, mode) {
+    const m = mode === 'prefs' ? sortModeFromPrefs(userPrefs) : mode;
+    const a = [...arr];
+    const lastMs = (s) => s && s.last_ts_obs ? new Date(s.last_ts_obs).getTime() : 0;
+    if (m === 'alpha_asc') {
+      a.sort((x,y) => String(x.art||'').localeCompare(String(y.art||''), 'da', {sensitivity:'base'}));
+    } else {
+      // default: nyeste først
+      a.sort((x,y) => lastMs(y) - lastMs(x));
+    }
+    return a;
   }
 
+  // Klassifikation af arter (fra CSV)
+  let klassMap = null; // Map(lowercased navn -> 'alm'|'sub'|'su')
+  function normName(s) {
+    return String(s || '').trim().toLowerCase().replace(/\s+/g,' ');
+  }
+  function stripBrackets(s) {
+    // fjern evt. omsluttende [ ... ]
+    const m = String(s || '').trim();
+    return m.startsWith('[') && m.endsWith(']') ? m.slice(1, -1).trim() : m;
+  }
+  async function ensureKlassMap() {
+    if (klassMap) return klassMap;
+    klassMap = new Map();
+    try {
+      const r = await fetch('./data/arter_filter_klassificeret.csv', { cache: 'no-cache' });
+      if (!r.ok) return klassMap;
+      const text = await r.text();
+      const lines = text.split(/\r?\n/);
+      // forventet header: artsid;artsnavn;klassifikation
+      for (let i = 1; i < lines.length; i++) {
+        const line = lines[i];
+        if (!line || !line.includes(';')) continue;
+        const parts = line.split(';');
+        if (parts.length < 3) continue;
+        const artsnavn = parts[1]?.trim();
+        const klass = parts[2]?.trim();
+        if (!artsnavn || !klass) continue;
+        const k = klass.toLowerCase(); // 'alm' | 'sub' | 'su'
+        const key1 = normName(artsnavn);
+        const key2 = normName(stripBrackets(artsnavn));
+        if (!klassMap.has(key1)) klassMap.set(key1, k);
+        if (!klassMap.has(key2)) klassMap.set(key2, k);
+      }
+    } catch {
+      // ignorer – bruger fallback
+    }
+    return klassMap;
+  }
+  function artKategoriFromMap(artName) {
+    if (!klassMap) return undefined;
+    const k1 = klassMap.get(normName(artName));
+    if (k1) return k1;
+    const k2 = klassMap.get(normName(stripBrackets(artName)));
+    return k2;
+  }
+  function resolveKategori(artName, fallbackKategori) {
+    // Prøv CSV, ellers eksisterende felt, normaliser til 'alm'|'sub'|'su'|'bemaerk'
+    const csvK = artKategoriFromMap(artName);
+    if (csvK) return csvK;
+    const fb = String(fallbackKategori || '').toLowerCase();
+    if (fb === 'alm' || fb === 'sub' || fb === 'su' || fb === 'bemaerk') return fb;
+    // også hvis fallback er 'almindelig' mv.
+    if (fb.startsWith('alm')) return 'alm';
+    if (fb.startsWith('sub')) return 'sub';
+    if (fb === 'su') return 'su';
+    return undefined;
+  }
+
+  // Render: event som card
   function renderEvent(ev) {
-    const li = document.createElement('li');
-    li.className = 'obs-item';
-    const header = document.createElement('header');
-    const h3 = document.createElement('h3');
-    const antal = ev.antal_text || (ev.antal_num != null ? String(ev.antal_num) : '');
-    h3.className = 'title species sp-name';
-    h3.textContent = `${antal ? antal + ' ' : ''}${ev.art || ''}`.trim();
-    header.appendChild(h3);
-    const meta = document.createElement('div'); meta.className = 'meta';
-    if (ev.adf) { const s = document.createElement('span'); s.textContent = ev.adf; meta.appendChild(s); }
-    if (ev.observer) { const s = document.createElement('span'); s.textContent = ev.observer; meta.appendChild(s); }
-    const by = document.createElement('footer'); by.className = 'byline';
-    const tm = document.createElement('time'); tm.textContent = (ev.ts_obs || ev.ts_seen || '').replace('T', ' ').slice(0, 16);
-    by.appendChild(tm);
-    const article = document.createElement('article');
-    article.append(header, meta, by);
-    li.appendChild(article);
+    const li = document.createElement('li'); li.className = 'obs-item';
+    const article = el('article');
+    // Toplinje venstre/højre
+    const top = el('div','card-top');
+    const left = el('div','left');
+    const kat = ev.kategori || ev.cat || '';
+    if (kat) left.appendChild(el('span', catClass(kat), String(kat).toUpperCase()));
+    if (ev.region) left.appendChild(el('span','badge region', ev.region));
+    const right = el('div','right');
+    const tIso = ev.ts_thread_display || ev.ts_obs || ev.ts_seen || '';
+    const t = tIso ? tIso.replace('T',' ').slice(0,16) : '';
+    if (t) right.appendChild(el('span','badge region', t));
+    top.append(left, right);
+    article.appendChild(top);
+
+    // Titel: Kun artsnavn (farvet efter klassifikation) — antal droppet
+    const title = el('div','title');
+    const katForArt = resolveKategori(ev.art, ev.kategori);
+    const artCls = katForArt ? ` cat-${katForArt}` : '';
+    const artSpan = el('span', `art-name${artCls}`, ev.art || '');
+    title.appendChild(artSpan);
+    article.appendChild(title);
+
+    // Info
+    const info = el('div','info');
+    if (ev.adf) info.appendChild(el('span','', ev.adf));
+    if (ev.lok) info.appendChild(el('span','', ev.lok));
+    if (ev.observer) info.appendChild(el('span','', ev.observer));
+    article.appendChild(info);
+
+    // Kommentarspor: Turnote/Obsnote
+    const notes = [];
+    const tn = ev.turnoter || (ev.raw && (ev.raw.Turnoter || ev.raw.TurNoter));
+    const fn = ev.fuglnoter || (ev.raw && (ev.raw.Fuglnoter || ev.raw.Fuglenoter));
+    function pushNotes(txt, typeLabel) {
+      if (!txt) return;
+      String(txt).split(/\r?\n/).map(s => s.trim()).filter(Boolean)
+        .forEach(line => notes.push({ type: typeLabel, text: line }));
+    }
+    pushNotes(tn, 'Turnote');
+    pushNotes(fn, 'Obsnote');
+
+    if (notes.length) {
+      const hr = document.createElement('hr');
+      hr.style.border = '0';
+      hr.style.borderTop = '1px solid var(--line)';
+      hr.style.margin = '8px 0 10px';
+      article.appendChild(hr);
+
+      const thread = document.createElement('div');
+      thread.className = 'comments';
+      notes.forEach(n => {
+        const row = document.createElement('div'); row.className = 'comment'; row.style.display='flex'; row.style.gap='8px';
+        const pill = document.createElement('span'); pill.textContent = n.type; pill.className = 'badge';
+        pill.style.background = '#eef2ff'; pill.style.color = '#1e3a8a'; pill.style.fontSize = '11px';
+        const txt = document.createElement('div'); txt.className = 'comment-text'; txt.textContent = n.text;
+        row.appendChild(pill); row.appendChild(txt); thread.appendChild(row);
+      });
+      article.appendChild(thread);
+    }
+
+    // Link
+    if (ev.obsid) {
+      const a = document.createElement('a');
+      a.href = `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(ev.obsid)}&summering=tur&obs=obs`;
+      a.style.display = 'block';
+      a.appendChild(article);
+      li.appendChild(a);
+    } else {
+      li.appendChild(article);
+    }
+
     return li;
   }
 
-  async function suggestThreads(pickDate) {
-    const prefs = await fetchUserPrefs();
+  // Render: thread summary item
+  function renderThreadSummary(s, fallbackDay) {
+    const li = document.createElement('li'); li.className = 'obs-item';
+    const article = el('article');
 
+    const top = el('div','card-top');
+    const left = el('div','left');
+    const katRaw = s.last_kategori || '';
+    const katResolvedForBadge = resolveKategori(s.art, katRaw);
+    const katForBadge = katResolvedForBadge || katRaw;
+    if (katForBadge) left.appendChild(el('span', catClass(katForBadge), String(katForBadge).toUpperCase()));
+    if (s.region) left.appendChild(el('span','badge region', s.region));
+    const right = el('div','right');
+    const last = s.status === 'withdrawn' ? (s.last_active_ts_obs || s.last_ts_obs) : s.last_ts_obs;
+    if (last) right.appendChild(el('span','badge region', `${fmtAge(last)}`));
+    top.append(left, right);
+    article.appendChild(top);
+
+    // Titel: antal + artsnavn + event_count-badge
+    const antal = (s.max_antal_num != null ? String(s.max_antal_num)
+                  : (s.last_antal_num != null ? String(s.last_antal_num) : ''));
+    const title = el('div','title');
+    const katForArt = resolveKategori(s.art, s.last_kategori);
+    const artCls = katForArt ? ` cat-${katForArt}` : '';
+    if (antal) title.appendChild(el('span', `count${artCls}`, antal));
+    const artSpan = el('span', `art-name${artCls}`, s.art || '');
+    title.appendChild(artSpan);
+
+    // event_count badge efter artsnavn
+    const ec = (typeof s.event_count === 'number') ? s.event_count
+              : (typeof s.num_events === 'number') ? s.num_events : 0;
+    if (ec > 0) {
+      const cls = 'badge event-count' + (ec >= 2 ? ' warn' : '');
+      title.appendChild(el('span', cls, `${ec} obs`));
+    }
+    article.appendChild(title);
+
+    const info = el('div','info');
+    if (s.last_adf) info.appendChild(el('span','', s.last_adf));
+    if (s.lok) info.appendChild(el('span','', s.lok));
+    if (s.last_observer) info.appendChild(el('span','', s.last_observer));
+    article.appendChild(info);
+
+    const d = s.day || (s.first_ts_obs || s.last_ts_obs || '').slice(0,10) || fallbackDay || todayYMDLocal();
+    const fallbackHref = `./thread.html?date=${encodeURIComponent(d)}&id=${encodeURIComponent(s.thread_id)}`;
+    const a = document.createElement('a'); a.style.display = 'block';
+
+    // Behold linking-logikken med count kun her (ingen badge)
+    const count = Number.isFinite(s.event_count) ? s.event_count
+                 : (typeof s.event_count === 'number' ? s.event_count : (s.event_count || 0));
+    if (count === 1) {
+      if (s.last_obsid) {
+        a.href = dofUrl(s.last_obsid);
+      } else {
+        a.href = fallbackHref;
+        a.addEventListener('click', async (e) => {
+          try {
+            e.preventDefault();
+            const r = await fetch(`./api/obs/thread/${encodeURIComponent(d)}/${encodeURIComponent(s.thread_id)}`, { cache:'no-cache' });
+            if (r.ok) {
+              const data = await r.json();
+              const first = (data.events || []).find(ev => ev && ev.obsid);
+              if (first && first.obsid) { location.href = dofUrl(first.obsid); return; }
+            }
+          } catch {}
+          location.href = fallbackHref;
+        });
+      }
+    } else {
+      a.href = fallbackHref;
+    }
+
+    a.appendChild(article);
+    li.appendChild(a);
+    return li;
+  }
+
+  // Forside: kontrolpanel
+  function buildFrontControls() {
+    if (!$frontControls) return;
+    if ($frontControls.childElementCount) { $frontControls.style.display = 'flex'; return; }
+
+    $frontControls.style.display = 'flex';
+    $frontControls.style.gap = '12px';
+    $frontControls.style.alignItems = 'center';
+    $frontControls.style.flexWrap = 'wrap';
+
+    // Brug brugerpræferencer (tænd/sluk)
+    const prefsWrap = document.createElement('label');
+    prefsWrap.style.display = 'inline-flex'; prefsWrap.style.alignItems = 'center'; prefsWrap.style.gap = '6px';
+    $frontChkPrefs = document.createElement('input'); $frontChkPrefs.type = 'checkbox'; $frontChkPrefs.checked = frontState.usePrefs;
+    prefsWrap.appendChild($frontChkPrefs); prefsWrap.appendChild(document.createTextNode('Brug brugerpræferencer'));
+
+    // Skjul 0‑fund
+    const hideWrap = document.createElement('label');
+    hideWrap.style.display = 'inline-flex'; hideWrap.style.alignItems = 'center'; hideWrap.style.gap = '6px';
+    $frontChkHideZero = document.createElement('input'); $frontChkHideZero.type = 'checkbox'; $frontChkHideZero.checked = frontState.hideZero;
+    hideWrap.appendChild($frontChkHideZero); hideWrap.appendChild(document.createTextNode('Skjul 0‑fund'));
+
+    // Limit
+    const limitWrap = document.createElement('label');
+    limitWrap.style.display = 'inline-flex'; limitWrap.style.alignItems = 'center'; limitWrap.style.gap = '6px';
+    limitWrap.appendChild(document.createTextNode('Vis'));
+    $frontSelLimit = document.createElement('select');
+    ['10','20','50','100','Alle'].forEach(opt => {
+      const o = document.createElement('option'); o.value = opt === 'Alle' ? '0' : opt; o.textContent = opt; $frontSelLimit.appendChild(o);
+    });
+    $frontSelLimit.value = String(frontState.limit);
+    limitWrap.appendChild($frontSelLimit);
+
+    // Sortering (kun 2 muligheder)
+    const sortWrap = document.createElement('label');
+    sortWrap.style.display = 'inline-flex'; sortWrap.style.alignItems = 'center'; sortWrap.style.gap = '6px';
+    sortWrap.appendChild(document.createTextNode('Sortér'));
+    $frontSelSort = document.createElement('select');
+    [
+      { value: 'date_desc', label: 'Nyeste' },
+      { value: 'alpha_asc', label: 'Alfabetisk' },
+    ].forEach(s => { const o = document.createElement('option'); o.value = s.value; o.textContent = s.label; $frontSelSort.appendChild(o); });
+    $frontSelSort.value = frontState.sortMode === 'alpha_asc' ? 'alpha_asc' : 'date_desc';
+    sortWrap.appendChild($frontSelSort);
+
+    // helper: disable/enable sort-select
+    function applyPrefsToggle() {
+      $frontSelSort.disabled = $frontChkPrefs.checked;
+    }
+    applyPrefsToggle();
+
+    $frontControls.appendChild(prefsWrap);
+    $frontControls.appendChild(hideWrap);
+    $frontControls.appendChild(limitWrap);
+    $frontControls.appendChild(sortWrap);
+
+    // Events
+    $frontChkHideZero.addEventListener('change', () => { frontState.hideZero = $frontChkHideZero.checked; renderThreadSummaries(); });
+    $frontSelLimit.addEventListener('change', () => { frontState.limit = parseInt($frontSelLimit.value, 10) || 0; renderThreadSummaries(); });
+    $frontSelSort.addEventListener('change', () => {
+      frontState.sortMode = $frontSelSort.value;
+      try { localStorage.setItem(SORT_MODE_KEY, frontState.sortMode); } catch {}
+      renderThreadSummaries();
+    });
+    $frontChkPrefs.addEventListener('change', () => {
+      frontState.usePrefs = $frontChkPrefs.checked;
+      try { localStorage.setItem(SORT_PREFS_KEY, frontState.usePrefs ? '1' : '0'); } catch {}
+      applyPrefsToggle();
+      renderThreadSummaries();
+    });
+  }
+
+  // Forside: render trådsammendrag
+  function renderThreadSummaries() {
+    // Filter: skjul 0‑fund (max_antal_num <= 0)
+    const arr0 = frontState.hideZero
+      ? summaryItems.filter(s => {
+          const v = typeof s.max_antal_num === 'number' ? s.max_antal_num
+                  : (typeof s.last_antal_num === 'number' ? s.last_antal_num : null);
+          return v == null ? true : v > 0;
+        })
+      : summaryItems.slice();
+
+    const mode = frontState.usePrefs ? 'prefs' : frontState.sortMode;
+    const arr1 = sortThreads(arr0, mode);
+    const arr2 = frontState.limit > 0 ? arr1.slice(0, frontState.limit) : arr1;
+
+    $st.innerHTML = '';
+    if (!arr2.length) { $st.textContent = 'Ingen tråde at vise.'; return; }
+
+    const tYMD = todayYMDLocal();
+    const ul = document.createElement('ul'); ul.className = 'obs-list';
+    for (const s of arr2) ul.appendChild(renderThreadSummary(s, tYMD));
+    $st.appendChild(ul);
+  }
+
+  // Forside
+  async function suggestThreads(pickDate) {
+    userPrefs = await fetchUserPrefs();
     const candidates = [];
     if (pickDate) candidates.push(pickDate);
-    const tYMD = todayYMDLocal();
-    const yYMD = yesterdayYMDLocal();
+    const tYMD = todayYMDLocal(), yYMD = yesterdayYMDLocal();
     if (!pickDate || pickDate === 'today') candidates.push(tYMD, 'today', yYMD);
 
     let items = [];
     const seen = new Set();
     for (const d of candidates) {
       const arr = await fetchSummary(d);
-      for (const s of arr) {
-        if (seen.has(s.thread_id)) continue;
-        seen.add(s.thread_id);
-        items.push(s);
-      }
+      for (const s of arr) { if (seen.has(s.thread_id)) continue; seen.add(s.thread_id); items.push(s); }
       if (items.length) break;
     }
+    if (!items.length) { if ($frontControls) $frontControls.style.display = 'none'; $st.innerHTML = `Ingen tråde for ${pickDate || 'today'}.`; return; }
 
-    items = applyPrefs(items, prefs);
-
-    if (!items.length) {
-      const label = pickDate || 'today';
-      $st.innerHTML = `Ingen tråde matcher dine præferencer for ${label}.`;
-      return;
-    }
-
-    items.sort((a, b) => (new Date(b.last_ts_obs || 0)) - (new Date(a.last_ts_obs || 0)));
-
-    const ul = document.createElement('ul');
-    ul.className = 'obs-list';
-    for (const s of items.slice(0, 100)) {
-      const li = document.createElement('li');
-      li.className = 'obs-item';
-
-      // 1) Link-linje
-      const a = document.createElement('a');
-      const d = s.day || (s.first_ts_obs || s.last_ts_obs || '').slice(0, 10) || tYMD;
-      a.href = `./thread.html?date=${encodeURIComponent(d)}&id=${encodeURIComponent(s.thread_id)}`;
-      a.textContent = `${s.art || ''} — ${s.lok || ''}`;
-      li.appendChild(a);
-
-      // 2) Kategori-linje (fx SUB)
-      const catLine = document.createElement('div');
-      catLine.className = 'list-cat-line';
-      const cat = (s.last_kategori || '').toUpperCase();
-      if (cat) {
-        const badge = document.createElement('span');
-        badge.className = `badge cat-${(s.last_kategori||'').toLowerCase()}`;
-        badge.textContent = cat;
-        catLine.appendChild(badge);
-      }
-      li.appendChild(catLine);
-
-      // 3) Sidst set-linje
-      const last = s.status === 'withdrawn' ? (s.last_active_ts_obs || s.last_ts_obs) : s.last_ts_obs;
-      const timeLine = document.createElement('div');
-      timeLine.className = 'list-time-line';
-      if (last) {
-        const span = document.createElement('span');
-        span.textContent = `sidst set ${fmtAge(last)}`;
-        timeLine.appendChild(span);
-      }
-      li.appendChild(timeLine);
-
-      ul.appendChild(li);
-    }
-    $st.innerHTML = 'Vælg en tråd:';
-    $st.appendChild(ul);
+    summaryItems = items;
+    buildFrontControls();
+    renderThreadSummaries();
   }
 
-  async function loadThread(date, id) {
+  // Trådvisning
+   async function loadThread(date, id) {
+    if ($frontControls) $frontControls.style.display = 'none';
     $st.textContent = 'Henter tråd…';
     const tryDates = isYMD(date) ? [date] : [date, todayYMDLocal()];
     let data = null, usedDate = date;
     for (const d of tryDates) {
-      const r = await fetch(`./api/obs/thread/${encodeURIComponent(d)}/${encodeURIComponent(id)}`, { cache: 'no-cache' });
+      const r = await fetch(`./api/obs/thread/${encodeURIComponent(d)}/${encodeURIComponent(id)}`, { cache:'no-cache' });
       if (!r.ok) { usedDate = d; continue; }
       data = await r.json(); usedDate = d; break;
     }
-    if (!data) { $panel.style.display = 'none'; await suggestThreads(date); return; }
+    if (!data) { $panel.style.display='none'; await suggestThreads(date); return; }
+
+    try { userPrefs = await fetchUserPrefs(); } catch { userPrefs = {}; }
 
     const t = data.thread || {};
     const events = Array.isArray(data.events) ? data.events : [];
+    threadEvents = events.slice();
 
-    try {
-      localStorage.setItem('last-thread-id', t.thread_id || id);
-      localStorage.setItem('last-thread-date', usedDate);
-    } catch {}
-
+    try { localStorage.setItem('last-thread-id', t.thread_id || id); localStorage.setItem('last-thread-date', usedDate); } catch {}
     if (!isYMD(date) && isYMD(usedDate)) {
-      const u = new URL(location.href);
-      u.searchParams.set('date', usedDate);
-      history.replaceState(null, '', u.toString());
+      const u = new URL(location.href); u.searchParams.set('date', usedDate); history.replaceState(null,'',u.toString());
     }
 
     $title.textContent = `${t.art || ''} — ${t.lok || ''}`.trim();
@@ -244,19 +478,26 @@
     $sub.textContent = [t.region || '', badge, t.status === 'withdrawn' ? 'Tilbagekaldt' : '', last ? `sidst set ${fmtAge(last)}` : '']
       .filter(Boolean).join(' • ');
 
+    // Sortér events efter prefs-toggle eller manuel tilstand
+    const usePrefs = (localStorage.getItem(SORT_PREFS_KEY) ?? '1') === '1';
+    const manualMode = localStorage.getItem(SORT_MODE_KEY) || 'date_desc';
+    const sorted = sortEvents(threadEvents, usePrefs ? 'prefs' : manualMode);
+
     $list.innerHTML = '';
-    for (const ev of events) {
+    for (const ev of sorted) {
       if (ev.event_type === 'correction') continue;
       $list.appendChild(renderEvent(ev));
     }
 
-    $panel.style.display = '';
-    $st.textContent = '';
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    const { date, id } = parseRoute();
-    if (id) loadThread(date, id).catch(() => { $st.textContent = 'Fejl ved indlæsning.'; });
-    else suggestThreads(date).catch(() => { $st.textContent = 'Fejl ved indlæsning.'; });
-  });
-})();
+      $panel.style.display = '';
+      $st.textContent = '';
+    }
+  
+    // Initialize based on route
+    const route = parseRoute();
+    if (route.id) {
+      loadThread(route.date, route.id);
+    } else {
+      suggestThreads(route.date === 'today' ? undefined : route.date);
+    }
+  })();

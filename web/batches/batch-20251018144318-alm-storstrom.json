@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T14:43:18.234426+02:00",
+"items": [
+{
+"obsid": "37862899",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Gedser",
+"efternavn": "Fuglestation",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:15",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

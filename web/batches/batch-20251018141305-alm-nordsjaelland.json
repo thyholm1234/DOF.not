@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-18T14:13:05.570282+02:00",
+"items": [
+{
+"obsid": "37862557",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Lille Lyngby Mose",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Christian",
+"efternavn": "Glahder",
+"lon": "12,16640761064132",
+"lat": "55,95667850011449",
+"tid_fra": "10:25",
+"tid_til": "12:10",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37861130",
+"art": "Sumpmejse",
+"antal": "10",
+"adf": "Rastende",
+"lok": "Store Dyrehave",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Peter",
+"efternavn": "Hartoft-Jacobsen",
+"lon": "12,357680945519766",
+"lat": "55,916656833158584",
+"tid_fra": "11:05",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

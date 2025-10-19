@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T20:12:05.163285+02:00",
+"items": [
+{
+"obsid": "37865773",
+"art": "Bjergvipstjert",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Tim Hesselballe",
+"efternavn": "Hansen",
+"lon": "8,559212227716845",
+"lat": "55,279651469401784",
+"tid_fra": "07:30",
+"tid_til": "18:18",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T13:26:15.776393+02:00",
+"items": [
+{
+"obsid": "37870304",
+"art": "Husrødstjert",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Knudshoved Odde øst for Knudskov",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John Stokholm",
+"efternavn": "Jensen",
+"lon": "11,789527415967315",
+"lat": "55,046299203067534",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

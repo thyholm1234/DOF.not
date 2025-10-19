@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-19T08:08:56.821292+02:00",
+"items": [
+{
+"obsid": "37866925",
+"art": "Ederfugl",
+"antal": "1429",
+"adf": "Trækkende",
+"lok": "Hassensør",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Klaus",
+"efternavn": "Sørensen",
+"lon": "10,711299733396064",
+"lat": "56,14249590922208",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

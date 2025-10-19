@@ -1,0 +1,22 @@
+{
+"client": "sub-storstrom",
+"count": 1,
+"generated": "2025-10-18T15:31:36.790133+02:00",
+"items": [
+{
+"obsid": "37863219",
+"art": "Nøddekrige",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Klaus",
+"efternavn": "K. Nielsen",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

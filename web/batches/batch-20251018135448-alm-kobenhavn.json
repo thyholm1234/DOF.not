@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T13:54:48.896520+02:00",
+"items": [
+{
+"obsid": "37862336",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Ålebækken Ruinpark",
+"dof_afdeling": "DOF København",
+"fornavn": "Anders",
+"efternavn": "Børjesson",
+"lon": "12,497591972351076",
+"lat": "55,799652755591666",
+"tid_fra": "13:53",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

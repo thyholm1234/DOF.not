@@ -1,0 +1,22 @@
+{
+"client": "su-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T16:09:29.126919+02:00",
+"items": [
+{
+"obsid": "37859855",
+"art": "Tajgapiber",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Nyeng",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonas",
+"efternavn": "Fahrendorff",
+"lon": "8,25991905340767",
+"lat": "55,53366977396547",
+"tid_fra": "09:20",
+"tid_til": "",
+"kategori": "su"
+}
+]
+}

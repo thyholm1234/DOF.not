@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T14:37:20.708613+02:00",
+"items": [
+{
+"obsid": "37862819",
+"art": "Fiskeørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Herning",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Valdemar",
+"efternavn": "Juul",
+"lon": "8,96234225796768",
+"lat": "56,14220107304274",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

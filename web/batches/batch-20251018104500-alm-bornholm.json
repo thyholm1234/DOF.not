@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T10:45:00.711098+02:00",
+"items": [
+{
+"obsid": "37860567",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ølene",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Steen E.",
+"efternavn": "Jensen",
+"lon": "15,007815685238015",
+"lat": "55,099511151397905",
+"tid_fra": "10:05",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

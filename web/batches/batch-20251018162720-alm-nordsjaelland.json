@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T16:27:20.153139+02:00",
+"items": [
+{
+"obsid": "37863727",
+"art": "Sortgrå Ryle",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Kattegat ml. Rågeleje og Tisvildeleje",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Niels",
+"efternavn": "Jessen",
+"lon": "12,114089699999639",
+"lat": "56,08966100000211",
+"tid_fra": "10:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

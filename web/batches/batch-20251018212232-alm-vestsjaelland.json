@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T21:22:32.786305+02:00",
+"items": [
+{
+"obsid": "37866321",
+"art": "Blisgås",
+"antal": "50",
+"adf": "Trækkende mod nordvest",
+"lok": "Rørvig By",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Lasse",
+"efternavn": "Braae",
+"lon": "11,754425311415819",
+"lat": "55,944362868452345",
+"tid_fra": "16:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

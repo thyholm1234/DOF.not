@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T14:02:42.442983+02:00",
+"items": [
+{
+"obsid": "37862195",
+"art": "Havørn",
+"antal": "3",
+"adf": "Overflyvende",
+"lok": "Tarup Vandmølle (Vindinge Å)",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Per",
+"efternavn": "Rasmussen",
+"lon": "10,527980344806059",
+"lat": "55,31515665782103",
+"tid_fra": "13:10",
+"tid_til": "13:43",
+"kategori": "bemaerk"
+}
+]
+}

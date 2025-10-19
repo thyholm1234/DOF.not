@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-19T09:53:00.307352+02:00",
+"items": [
+{
+"obsid": "37867319",
+"art": "Blisgås",
+"antal": "8",
+"adf": "Overflyvende",
+"lok": "Søborg Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Dan",
+"efternavn": "Reichardt",
+"lon": "12,32170161878679",
+"lat": "56,07541858359863",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37868340",
+"art": "Dobbeltbekkasin",
+"antal": "21",
+"adf": "Rastende",
+"lok": "Søborg Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Dan",
+"efternavn": "Reichardt",
+"lon": "12,32170161878679",
+"lat": "56,07541858359863",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

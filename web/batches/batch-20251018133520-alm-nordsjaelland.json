@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T13:35:20.362941+02:00",
+"items": [
+{
+"obsid": "37862183",
+"art": "Sule",
+"antal": "7",
+"adf": "Trækkende mod nord",
+"lok": "Nivå Bugt og strandenge",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Janus",
+"efternavn": "Neumann",
+"lon": "12,526959924651951",
+"lat": "55,928375566955395",
+"tid_fra": "12:30",
+"tid_til": "14:00",
+"kategori": "bemaerk"
+}
+]
+}

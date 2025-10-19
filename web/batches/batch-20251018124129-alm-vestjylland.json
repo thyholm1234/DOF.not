@@ -1,0 +1,37 @@
+{
+"client": "alm-vestjylland",
+"count": 2,
+"generated": "2025-10-18T12:41:29.137500+02:00",
+"items": [
+{
+"obsid": "37861728",
+"art": "Havørn",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Geddal Enge",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,76048563508994",
+"lat": "56,54599599526534",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37861734",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Geddal Enge",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,76048563508994",
+"lat": "56,54599599526534",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

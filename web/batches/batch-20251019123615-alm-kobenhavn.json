@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T12:36:15.091290+02:00",
+"items": [
+{
+"obsid": "37869936",
+"art": "Dværgfalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nordhavnstippen/Stubben",
+"dof_afdeling": "DOF København",
+"fornavn": "Juan Bosco",
+"efternavn": "Darimont",
+"lon": "12,624682322126647",
+"lat": "55,72074004836267",
+"tid_fra": "11:18",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

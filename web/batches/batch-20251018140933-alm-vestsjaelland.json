@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T14:09:33.350751+02:00",
+"items": [
+{
+"obsid": "37862243",
+"art": "Ravn",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Sorø Sønderskov, syd for Næstvedvej",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Henrik",
+"efternavn": "Gerner Baark",
+"lon": "11,595207551062764",
+"lat": "55,39977620444773",
+"tid_fra": "13:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

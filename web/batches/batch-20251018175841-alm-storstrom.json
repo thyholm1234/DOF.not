@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-18T17:58:41.551239+02:00",
+"items": [
+{
+"obsid": "37864607",
+"art": "Rød Glente",
+"antal": "8",
+"adf": "Trækkende",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:25",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864612",
+"art": "Blå Kærhøg",
+"antal": "8",
+"adf": "Trækkende",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:25",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+}
+]
+}

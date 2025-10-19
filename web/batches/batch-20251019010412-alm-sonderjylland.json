@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-19T01:04:12.143768+02:00",
+"items": [
+{
+"obsid": "37866689",
+"art": "Havørn",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Hasberg Sø, tyske del.",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Ib",
+"efternavn": "Birkblad",
+"lon": "8,85526498911693",
+"lat": "54,89345596649281",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37866691",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Hasberg Sø, tyske del.",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Ib",
+"efternavn": "Birkblad",
+"lon": "8,85526498911693",
+"lat": "54,89345596649281",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

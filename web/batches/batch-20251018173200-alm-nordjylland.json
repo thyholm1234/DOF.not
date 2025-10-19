@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-18T17:32:00.355778+02:00",
+"items": [
+{
+"obsid": "37864385",
+"art": "Lomvie",
+"antal": "25",
+"adf": "Trækkende mod sydøst",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:52",
+"tid_til": "09:52",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863271",
+"art": "Rød Glente",
+"antal": "10",
+"adf": "Fouragerende",
+"lok": "Boldrup",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Søren",
+"efternavn": "Ulrich Thomsen",
+"lon": "9,642645617139854",
+"lat": "56,681401580677374",
+"tid_fra": "11:13",
+"tid_til": "17:25",
+"kategori": "bemaerk"
+}
+]
+}

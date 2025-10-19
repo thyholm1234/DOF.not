@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T11:03:29.932286+02:00",
+"items": [
+{
+"obsid": "37869013",
+"art": "Pibesvane",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Nørrevang, Rørvig",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Scheel",
+"lon": "11,76491103158312",
+"lat": "55,958771742226276",
+"tid_fra": "11:02",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T15:36:13.953545+02:00",
+"items": [
+{
+"obsid": "37862964",
+"art": "Rødstrubet Lom",
+"antal": "36",
+"adf": "Rastende",
+"lok": "Havet sydvest for Skallingen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kristoffer",
+"efternavn": "Hansen",
+"lon": "8,22770561986206",
+"lat": "55,49793141686723",
+"tid_fra": "14:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,52 @@
+{
+"client": "alm-nordjylland",
+"count": 3,
+"generated": "2025-10-18T17:22:01.792230+02:00",
+"items": [
+{
+"obsid": "37864272",
+"art": "Sortstrubet Lom",
+"antal": "3",
+"adf": "Trækkende mod sydøst",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "07:52",
+"tid_til": "08:52",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864277",
+"art": "Kjove sp.",
+"antal": "1",
+"adf": "Trækkende mod sydøst",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:23",
+"tid_til": "08:52",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864263",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Skindsækken, Nordmandshage",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Sørn",
+"efternavn": "Nordhald",
+"lon": "10,34117724446216",
+"lat": "56,99114422055546",
+"tid_fra": "17:17",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

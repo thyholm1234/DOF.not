@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T15:52:20.550281+02:00",
+"items": [
+{
+"obsid": "37863461",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Blåvand By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Alfred Godsk",
+"efternavn": "Geckler",
+"lon": "8,134625783382733",
+"lat": "55,55624581413815",
+"tid_fra": "15:00",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

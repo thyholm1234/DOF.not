@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T16:05:58.678310+02:00",
+"items": [
+{
+"obsid": "37863572",
+"art": "Fjeldvåge",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Storedal, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Pedersen",
+"lon": "12,441364851119909",
+"lat": "55,31096965184187",
+"tid_fra": "16:05",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

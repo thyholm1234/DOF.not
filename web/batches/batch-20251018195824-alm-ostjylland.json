@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T19:58:24.097039+02:00",
+"items": [
+{
+"obsid": "37865553",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Fussingø Skov",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Terje",
+"efternavn": "Seidenfaden",
+"lon": "9,829055819074178",
+"lat": "56,47331207058653",
+"tid_fra": "10:30",
+"tid_til": "14:40",
+"kategori": "bemaerk"
+}
+]
+}

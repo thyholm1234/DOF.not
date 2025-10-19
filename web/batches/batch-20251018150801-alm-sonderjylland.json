@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-18T15:08:01.712209+02:00",
+"items": [
+{
+"obsid": "37862017",
+"art": "Musvåge",
+"antal": "1180",
+"adf": "Trækkende mod vest",
+"lok": "Gammelgård, Midtals",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Anders",
+"efternavn": "Otto Nielsen",
+"lon": "9,93763798340016",
+"lat": "54,9564286998889",
+"tid_fra": "13:14",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863064",
+"art": "Trane",
+"antal": "28",
+"adf": "Trækkende",
+"lok": "Gammelgård, Midtals",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Anders",
+"efternavn": "Otto Nielsen",
+"lon": "9,93763798340016",
+"lat": "54,9564286998889",
+"tid_fra": "13:14",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

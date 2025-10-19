@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-18T19:29:44.603614+02:00",
+"items": [
+{
+"obsid": "37865227",
+"art": "Sølvhejre",
+"antal": "12",
+"adf": "Fouragerende",
+"lok": "Saltvandssøen",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Niels",
+"efternavn": "Bomholt Jensen",
+"lon": "8,649339875467515",
+"lat": "54,92138896288262",
+"tid_fra": "12:10",
+"tid_til": "14:35",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37865228",
+"art": "Havørn",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Saltvandssøen",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Niels",
+"efternavn": "Bomholt Jensen",
+"lon": "8,649339875467515",
+"lat": "54,92138896288262",
+"tid_fra": "12:10",
+"tid_til": "14:35",
+"kategori": "bemaerk"
+}
+]
+}

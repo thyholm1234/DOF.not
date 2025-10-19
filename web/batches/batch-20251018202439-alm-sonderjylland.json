@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-18T20:24:39.346888+02:00",
+"items": [
+{
+"obsid": "37865994",
+"art": "Havørn",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Ballum Enge",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Niels",
+"efternavn": "Bomholt Jensen",
+"lon": "8,687758029687624",
+"lat": "55,10546457895839",
+"tid_fra": "09:10",
+"tid_til": "10:30",
+"kategori": "bemaerk"
+}
+]
+}

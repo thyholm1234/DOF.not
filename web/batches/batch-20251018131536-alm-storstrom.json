@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T13:15:36.290855+02:00",
+"items": [
+{
+"obsid": "37862023",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Nyord Enge",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Jette",
+"efternavn": "Reeh",
+"lon": "12,217344351912962",
+"lat": "55,048768178692846",
+"tid_fra": "13:14",
+"tid_til": "13:15",
+"kategori": "bemaerk"
+}
+]
+}

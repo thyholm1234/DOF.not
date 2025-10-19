@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-18T14:06:07.808343+02:00",
+"items": [
+{
+"obsid": "37862455",
+"art": "Rødtoppet Fuglekonge",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ho By og sommerhusområde",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Markus",
+"efternavn": "Clément",
+"lon": "8,233362436294557",
+"lat": "55,54780571390921",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37862112",
+"art": "Musvåge",
+"antal": "38",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Henrik",
+"efternavn": "Böhmer",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

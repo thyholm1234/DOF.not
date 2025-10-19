@@ -1,0 +1,52 @@
+{
+"client": "alm-fyn",
+"count": 3,
+"generated": "2025-10-18T11:12:56.034578+02:00",
+"items": [
+{
+"obsid": "37860947",
+"art": "Grønspætte",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Vejlen - Tåsinge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Morten",
+"efternavn": "Kristiansen",
+"lon": "10,542828757292483",
+"lat": "54,99528203977863",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860949",
+"art": "Sølvhejre",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Vejlen - Tåsinge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Morten",
+"efternavn": "Kristiansen",
+"lon": "10,542828757292483",
+"lat": "54,99528203977863",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860945",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tarup Vandmølle (Vindinge Å)",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Per",
+"efternavn": "Rasmussen",
+"lon": "10,527980344806059",
+"lat": "55,31515665782103",
+"tid_fra": "09:44",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

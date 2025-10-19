@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T16:43:03.351230+02:00",
+"items": [
+{
+"obsid": "37863929",
+"art": "Fjeldvåge",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Store Åmose SV for Skellingsted",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Kurt E.",
+"efternavn": "Nielsen",
+"lon": "11,461873054504395",
+"lat": "55,57863578072483",
+"tid_fra": "14:45",
+"tid_til": "15:10",
+"kategori": "bemaerk"
+}
+]
+}

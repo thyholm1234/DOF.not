@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T13:25:09.225367+02:00",
+"items": [
+{
+"obsid": "37862099",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Storedam og Donse Overdrev",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Mogens",
+"efternavn": "Bryndum",
+"lon": "12,400236199997144",
+"lat": "55,89420270000153",
+"tid_fra": "12:37",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

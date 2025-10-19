@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T08:49:40.289046+02:00",
+"items": [
+{
+"obsid": "37867591",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Storedal, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Pedersen",
+"lon": "12,441364851119909",
+"lat": "55,31096965184187",
+"tid_fra": "08:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "sub-vestjylland",
+"count": 1,
+"generated": "2025-10-18T13:40:04.805770+02:00",
+"items": [
+{
+"obsid": "37862219",
+"art": "Rødhalset Gås",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Værnengene",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Jonna",
+"efternavn": "Forsom",
+"lon": "8,238629133716955",
+"lat": "55,85446228956158",
+"tid_fra": "11:11",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

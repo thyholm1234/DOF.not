@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T23:26:14.002907+02:00",
+"items": [
+{
+"obsid": "37866552",
+"art": "Sølvhejre",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Hestholm Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Knud",
+"efternavn": "Christensen",
+"lon": "8,447310791557081",
+"lat": "55,92336187434876",
+"tid_fra": "14:20",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

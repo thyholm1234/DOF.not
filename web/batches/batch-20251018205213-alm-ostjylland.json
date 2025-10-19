@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T20:52:13.010056+02:00",
+"items": [
+{
+"obsid": "37866238",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Dronningborg Bredning",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,095166215026895",
+"lat": "56,46508650747417",
+"tid_fra": "14:25",
+"tid_til": "15:15",
+"kategori": "bemaerk"
+}
+]
+}

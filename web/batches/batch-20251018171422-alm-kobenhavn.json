@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-18T17:14:22.989762+02:00",
+"items": [
+{
+"obsid": "37864221",
+"art": "Knarand",
+"antal": "16",
+"adf": "Rastende",
+"lok": "Præstesø - vest for Søndersø",
+"dof_afdeling": "DOF København",
+"fornavn": "Jarl R.",
+"efternavn": "Andersen",
+"lon": "12,334855168266836",
+"lat": "55,77966440604946",
+"tid_fra": "15:00",
+"tid_til": "16:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864227",
+"art": "Tyrkerdue",
+"antal": "13",
+"adf": "Rastende",
+"lok": "Koklapperne, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Søren",
+"efternavn": "Leth-Nissen",
+"lon": "12,562359385895608",
+"lat": "55,60732662860232",
+"tid_fra": "16:41",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

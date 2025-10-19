@@ -1,0 +1,22 @@
+{
+"client": "sub-fyn",
+"count": 1,
+"generated": "2025-10-18T15:37:30.260779+02:00",
+"items": [
+{
+"obsid": "37863309",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Trækkende mod vest",
+"lok": "Blanke Fed og Aulby Mølleå ved udløbet",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Michael",
+"efternavn": "Brunhøj Hansen",
+"lon": "9,86378353166477",
+"lat": "55,51204690493162",
+"tid_fra": "13:42",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

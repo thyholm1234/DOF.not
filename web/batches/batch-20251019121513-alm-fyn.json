@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T12:15:13.191290+02:00",
+"items": [
+{
+"obsid": "37869747",
+"art": "Trane",
+"antal": "10",
+"adf": "Rastende",
+"lok": "Monnet - Tåsinge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Bo",
+"efternavn": "Gregersen",
+"lon": "10,570000509471084",
+"lat": "54,95048164065972",
+"tid_fra": "10:00",
+"tid_til": "11:50",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T16:54:21.310740+02:00",
+"items": [
+{
+"obsid": "37864068",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Tempelkrog",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Torkil Werner",
+"efternavn": "Jørgensen",
+"lon": "11,795325244870241",
+"lat": "55,666876502256656",
+"tid_fra": "11:30",
+"tid_til": "13:15",
+"kategori": "bemaerk"
+}
+]
+}

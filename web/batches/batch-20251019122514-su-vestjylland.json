@@ -1,0 +1,22 @@
+{
+"client": "su-vestjylland",
+"count": 1,
+"generated": "2025-10-19T12:25:14.421520+02:00",
+"items": [
+{
+"obsid": "37869836",
+"art": "Blå Glente",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Jersild",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Leo Lund",
+"efternavn": "Mathiasen",
+"lon": "8,7689732",
+"lat": "56,2515752",
+"tid_fra": "12:10",
+"tid_til": "12:20",
+"kategori": "su"
+}
+]
+}

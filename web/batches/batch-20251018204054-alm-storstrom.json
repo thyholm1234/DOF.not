@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T20:40:54.222551+02:00",
+"items": [
+{
+"obsid": "37866154",
+"art": "Bramgås",
+"antal": "18050",
+"adf": "Trækkende mod sydvest",
+"lok": "Noret ved Roneklint",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Henrik",
+"efternavn": "Boeg",
+"lon": "12,11610920000272",
+"lat": "55,127472600001255",
+"tid_fra": "11:45",
+"tid_til": "18:15",
+"kategori": "bemaerk"
+}
+]
+}

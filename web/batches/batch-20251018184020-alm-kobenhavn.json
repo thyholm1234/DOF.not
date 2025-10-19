@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T18:40:20.892512+02:00",
+"items": [
+{
+"obsid": "37865094",
+"art": "Musvåge",
+"antal": "589",
+"adf": "Trækkende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:15",
+"tid_til": "17:15",
+"kategori": "bemaerk"
+}
+]
+}

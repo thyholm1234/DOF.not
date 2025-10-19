@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T09:17:45.817768+02:00",
+"items": [
+{
+"obsid": "37867995",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Strids Mølle",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Nilsson",
+"lon": "11,359744380337645",
+"lat": "55,63871592459668",
+"tid_fra": "09:17",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

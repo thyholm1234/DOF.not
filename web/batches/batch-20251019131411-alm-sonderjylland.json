@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-19T13:14:11.914893+02:00",
+"items": [
+{
+"obsid": "37870187",
+"art": "Enkeltbekkasin",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Broager Vig",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Bjarne",
+"efternavn": "Nielsen",
+"lon": "9,653087854385378",
+"lat": "54,88180374961824",
+"tid_fra": "10:55",
+"tid_til": "11:25",
+"kategori": "bemaerk"
+}
+]
+}

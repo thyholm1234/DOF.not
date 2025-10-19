@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T13:21:56.385210+02:00",
+"items": [
+{
+"obsid": "37870279",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Ølsemagle Revle",
+"dof_afdeling": "DOF København",
+"fornavn": "David B.",
+"efternavn": "Collinge",
+"lon": "12,211303710937502",
+"lat": "55,50710383454381",
+"tid_fra": "13:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

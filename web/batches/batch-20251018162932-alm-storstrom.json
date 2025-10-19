@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T16:29:32.314744+02:00",
+"items": [
+{
+"obsid": "37863747",
+"art": "Grågås",
+"antal": "550",
+"adf": "Rastende",
+"lok": "Rødbyhavn Strand øst",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,374712469278661",
+"lat": "54,64060817020979",
+"tid_fra": "16:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

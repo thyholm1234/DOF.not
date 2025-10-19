@@ -1,0 +1,22 @@
+{
+"client": "sub-ostjylland",
+"count": 1,
+"generated": "2025-10-18T14:44:29.931515+02:00",
+"items": [
+{
+"obsid": "37862915",
+"art": "Nøddekrige",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Vrads Sande",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Hans",
+"efternavn": "Knakkergaard",
+"lon": "9,447298049926758",
+"lat": "56,050255856845695",
+"tid_fra": "14:43",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

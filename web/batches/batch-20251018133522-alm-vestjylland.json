@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T13:35:22.465572+02:00",
+"items": [
+{
+"obsid": "37862184",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Thorsminde Havn",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Kristian Skjerning",
+"efternavn": "Kyed",
+"lon": "8,123644777349655",
+"lat": "56,36800010814821",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

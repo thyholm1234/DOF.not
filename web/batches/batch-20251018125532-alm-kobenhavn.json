@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T12:55:32.381633+02:00",
+"items": [
+{
+"obsid": "37861827",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Smør- og Fedtmosen",
+"dof_afdeling": "DOF København",
+"fornavn": "Jens",
+"efternavn": "Mortensen",
+"lon": "12,438034617156761",
+"lat": "55,75368467828335",
+"tid_fra": "11:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

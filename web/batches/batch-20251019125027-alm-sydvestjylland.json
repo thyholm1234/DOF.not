@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T12:50:27.716553+02:00",
+"items": [
+{
+"obsid": "37869773",
+"art": "Musvåge",
+"antal": "59",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Henrik",
+"efternavn": "Böhmer",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T16:49:48.914071+02:00",
+"items": [
+{
+"obsid": "37864005",
+"art": "Blisgås",
+"antal": "80",
+"adf": "Fouragerende",
+"lok": "Søgårde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Svend",
+"efternavn": "Erik Jessen",
+"lon": "11,519391535677817",
+"lat": "54,7375270410368",
+"tid_fra": "13:55",
+"tid_til": "14:10",
+"kategori": "bemaerk"
+}
+]
+}

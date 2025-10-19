@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T09:59:29.739268+02:00",
+"items": [
+{
+"obsid": "37868347",
+"art": "Stenvender",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Barholme",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Claus",
+"efternavn": "Lindskov Møller",
+"lon": "11,889209971844139",
+"lat": "54,712609120241666",
+"tid_fra": "09:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

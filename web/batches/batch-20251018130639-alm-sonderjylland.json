@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-18T13:06:39.504200+02:00",
+"items": [
+{
+"obsid": "37861945",
+"art": "Vindrossel",
+"antal": "100",
+"adf": "Rastende",
+"lok": "Sønderstrand Rømø",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Ole Zoltan",
+"efternavn": "Gøller",
+"lon": "8,512981808009329",
+"lat": "55,076741803340866",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37860957",
+"art": "Musvåge",
+"antal": "759",
+"adf": "Trækkende",
+"lok": "Sønderskoven, Sønderborg",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Kjeld",
+"efternavn": "Jensen",
+"lon": "9,833701435239997",
+"lat": "54,90571702610228",
+"tid_fra": "11:12",
+"tid_til": "11:54",
+"kategori": "bemaerk"
+}
+]
+}

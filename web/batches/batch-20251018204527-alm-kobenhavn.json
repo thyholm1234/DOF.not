@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-18T20:45:27.318337+02:00",
+"items": [
+{
+"obsid": "37866190",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "15:25",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37866188",
+"art": "Sortgrå Ryle",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,528405189514162",
+"lat": "55,57665862608811",
+"tid_fra": "16:57",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+}
+]
+}

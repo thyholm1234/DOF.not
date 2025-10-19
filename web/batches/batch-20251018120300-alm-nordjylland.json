@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-18T12:03:00.530136+02:00",
+"items": [
+{
+"obsid": "37861361",
+"art": "Gravand",
+"antal": "100",
+"adf": "Rastende",
+"lok": "Bygholm Vejle",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Vilhelm",
+"efternavn": "Paulsen",
+"lon": "9,088019063325879",
+"lat": "57,04858827441424",
+"tid_fra": "11:54",
+"tid_til": "11:59",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37861367",
+"art": "Bramgås",
+"antal": "100",
+"adf": "Rastende",
+"lok": "Bygholm Vejle",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Vilhelm",
+"efternavn": "Paulsen",
+"lon": "9,088019063325879",
+"lat": "57,04858827441424",
+"tid_fra": "11:54",
+"tid_til": "11:59",
+"kategori": "bemaerk"
+}
+]
+}

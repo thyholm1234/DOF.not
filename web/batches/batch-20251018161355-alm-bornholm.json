@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T16:13:55.084664+02:00",
+"items": [
+{
+"obsid": "37863626",
+"art": "Blisgås",
+"antal": "32",
+"adf": "Trækkende mod vest",
+"lok": "Sorthat",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Joshua",
+"efternavn": "Haahr",
+"lon": "14,725000161615199",
+"lat": "55,14539209878134",
+"tid_fra": "16:12",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

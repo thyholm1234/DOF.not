@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T12:41:44.251575+02:00",
+"items": [
+{
+"obsid": "37869971",
+"art": "Trane",
+"antal": "76",
+"adf": "Rastende",
+"lok": "Gl. Hviding Enge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Svend Erik",
+"efternavn": "Thuesen",
+"lon": "8,682557196743865",
+"lat": "55,24972435765923",
+"tid_fra": "12:40",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37869975",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Gl. Hviding Enge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Svend Erik",
+"efternavn": "Thuesen",
+"lon": "8,682557196743865",
+"lat": "55,24972435765923",
+"tid_fra": "12:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

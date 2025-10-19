@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-19T13:01:17.157550+02:00",
+"items": [
+{
+"obsid": "37870099",
+"art": "Husrødstjert",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Ålebugt",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,94278542616731",
+"lat": "56,42764721173077",
+"tid_fra": "12:57",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T09:48:40.238837+02:00",
+"items": [
+{
+"obsid": "37868290",
+"art": "Grønsisken",
+"antal": "50",
+"adf": "Rastende",
+"lok": "Gosmer",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Søren",
+"efternavn": "Jepsen",
+"lon": "8,465859200004038",
+"lat": "56,27725139999774",
+"tid_fra": "09:41",
+"tid_til": "09:46",
+"kategori": "bemaerk"
+}
+]
+}

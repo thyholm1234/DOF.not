@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T20:08:42.928113+02:00",
+"items": [
+{
+"obsid": "37865721",
+"art": "Fuglekongesanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Kent",
+"efternavn": "Olsen",
+"lon": "8,557418",
+"lat": "55,271157",
+"tid_fra": "18:00",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

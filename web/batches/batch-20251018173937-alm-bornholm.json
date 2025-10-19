@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T17:39:37.577218+02:00",
+"items": [
+{
+"obsid": "37864450",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Mæby",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Hans",
+"efternavn": "Okkels Birk",
+"lon": "14,798245200130212",
+"lat": "55,15597050414004",
+"tid_fra": "07:41",
+"tid_til": "07:42",
+"kategori": "bemaerk"
+}
+]
+}

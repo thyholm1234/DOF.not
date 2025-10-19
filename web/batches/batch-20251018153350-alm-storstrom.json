@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T15:33:50.223929+02:00",
+"items": [
+{
+"obsid": "37863236",
+"art": "Havørn",
+"antal": "4",
+"adf": "Overflyvende",
+"lok": "Karrebæksminde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Birgit",
+"efternavn": "Nygaard",
+"lon": "11,643603386643589",
+"lat": "55,185617790349085",
+"tid_fra": "15:28",
+"tid_til": "15:30",
+"kategori": "bemaerk"
+}
+]
+}

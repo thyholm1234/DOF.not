@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T13:04:21.595140+02:00",
+"items": [
+{
+"obsid": "37861912",
+"art": "Krage",
+"antal": "100",
+"adf": "Overflyvende",
+"lok": "Skallingen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Benjamin Bechgaard",
+"efternavn": "Lisse",
+"lon": "8,26347385965211",
+"lat": "55,5087732506494",
+"tid_fra": "08:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

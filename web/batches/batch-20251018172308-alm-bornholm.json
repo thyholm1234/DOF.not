@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T17:23:08.190701+02:00",
+"items": [
+{
+"obsid": "37864293",
+"art": "Bramgås",
+"antal": "450",
+"adf": "Trækkende mod syd",
+"lok": "Østermarie",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Morten",
+"efternavn": "Lilleskov Christensen",
+"lon": "15,011868883799963",
+"lat": "55,1390207060781",
+"tid_fra": "10:30",
+"tid_til": "15:50",
+"kategori": "bemaerk"
+}
+]
+}

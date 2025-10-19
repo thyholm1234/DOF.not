@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T10:55:56.450158+02:00",
+"items": [
+{
+"obsid": "37868929",
+"art": "Halemejse",
+"antal": "10",
+"adf": "Fouragerende",
+"lok": "Møltrup Herregård",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Verner",
+"efternavn": "Jensen",
+"lon": "8,77566",
+"lat": "56,17665",
+"tid_fra": "10:35",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

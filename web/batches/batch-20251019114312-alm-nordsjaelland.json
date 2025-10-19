@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-19T11:43:12.220330+02:00",
+"items": [
+{
+"obsid": "37869538",
+"art": "Musvåge",
+"antal": "35",
+"adf": "Trækkende",
+"lok": "Ålsgårde",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Mikkel",
+"efternavn": "Kure Jakobsen",
+"lon": "12,538995341077705",
+"lat": "56,07744793004403",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37869535",
+"art": "Havørn",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Ålsgårde",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Mikkel",
+"efternavn": "Kure Jakobsen",
+"lon": "12,538995341077705",
+"lat": "56,07744793004403",
+"tid_fra": "11:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

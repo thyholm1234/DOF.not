@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T12:15:12.464503+02:00",
+"items": [
+{
+"obsid": "37861456",
+"art": "Lille Flagspætte",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Hovvig, Odsherred",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Michael",
+"efternavn": "Sørensen",
+"lon": "11,714372187370765",
+"lat": "55,920093539597644",
+"tid_fra": "12:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

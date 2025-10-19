@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-18T18:29:15.033947+02:00",
+"items": [
+{
+"obsid": "37865031",
+"art": "Rød Glente",
+"antal": "11",
+"adf": "Trækkende mod sydvest",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:15",
+"tid_til": "17:15",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37865041",
+"art": "Skovskade",
+"antal": "12",
+"adf": "Rastende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:15",
+"tid_til": "17:15",
+"kategori": "bemaerk"
+}
+]
+}

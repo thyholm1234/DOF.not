@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-18T19:35:21.650633+02:00",
+"items": [
+{
+"obsid": "37865265",
+"art": "Isfugl",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Saltvandssøen",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Niels",
+"efternavn": "Bomholt Jensen",
+"lon": "8,649339875467515",
+"lat": "54,92138896288262",
+"tid_fra": "12:10",
+"tid_til": "14:35",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37865272",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Saltvandssøen",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Niels",
+"efternavn": "Bomholt Jensen",
+"lon": "8,649339875467515",
+"lat": "54,92138896288262",
+"tid_fra": "12:10",
+"tid_til": "14:35",
+"kategori": "bemaerk"
+}
+]
+}

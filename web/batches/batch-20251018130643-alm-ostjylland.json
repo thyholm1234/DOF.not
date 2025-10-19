@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T13:06:43.681608+02:00",
+"items": [
+{
+"obsid": "37861745",
+"art": "Spidsand",
+"antal": "15",
+"adf": "Rastende",
+"lok": "Egå Engsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Johnny Krämer",
+"efternavn": "Christensen",
+"lon": "10,22448653998671",
+"lat": "56,21593075244746",
+"tid_fra": "12:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

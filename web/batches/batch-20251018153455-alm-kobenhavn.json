@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T15:34:55.797773+02:00",
+"items": [
+{
+"obsid": "37863238",
+"art": "Ravn",
+"antal": "5",
+"adf": "Rastende",
+"lok": "Jægersborg Dyrehave",
+"dof_afdeling": "DOF København",
+"fornavn": "Anne",
+"efternavn": "Lumholdt",
+"lon": "12,573369138017776",
+"lat": "55,78836193890919",
+"tid_fra": "12:30",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

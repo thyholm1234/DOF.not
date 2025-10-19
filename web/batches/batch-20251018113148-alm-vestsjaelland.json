@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T11:31:48.720925+02:00",
+"items": [
+{
+"obsid": "37861141",
+"art": "Skægmejse",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Reersø Havn",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ole",
+"efternavn": "Busch",
+"lon": "11,11908298392784",
+"lat": "55,517175773319025",
+"tid_fra": "11:29",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T12:58:05.095937+02:00",
+"items": [
+{
+"obsid": "37870079",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Broby Vesterskov",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Henrik",
+"efternavn": "Gerner Baark",
+"lon": "11,592468323624201",
+"lat": "55,381343743649325",
+"tid_fra": "12:52",
+"tid_til": "12:57",
+"kategori": "bemaerk"
+}
+]
+}

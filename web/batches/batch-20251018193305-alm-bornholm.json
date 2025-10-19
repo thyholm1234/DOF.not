@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T19:33:05.534438+02:00",
+"items": [
+{
+"obsid": "37865242",
+"art": "Fuglekonge",
+"antal": "40",
+"adf": "Fouragerende",
+"lok": "Sose Odde-Arnager incl havn",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Hans",
+"efternavn": "Okkels Birk",
+"lon": "14,80642058506069",
+"lat": "55,04792592515744",
+"tid_fra": "11:50",
+"tid_til": "13:22",
+"kategori": "bemaerk"
+}
+]
+}

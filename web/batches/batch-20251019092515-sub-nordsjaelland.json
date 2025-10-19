@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T09:25:15.337784+02:00",
+"items": [
+{
+"obsid": "37868104",
+"art": "Storpiber",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Tisvildeleje",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Jakob",
+"efternavn": "Dall",
+"lon": "12,069631929633168",
+"lat": "56,05888311402572",
+"tid_fra": "08:32",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

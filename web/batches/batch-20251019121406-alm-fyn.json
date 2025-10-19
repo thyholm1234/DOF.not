@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T12:14:06.649606+02:00",
+"items": [
+{
+"obsid": "37869741",
+"art": "Sølvhejre",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Vejlen - Tåsinge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Bo",
+"efternavn": "Gregersen",
+"lon": "10,542828757292483",
+"lat": "54,99528203977863",
+"tid_fra": "12:05",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

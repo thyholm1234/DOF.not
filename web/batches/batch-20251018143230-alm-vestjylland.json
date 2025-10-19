@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-18T14:32:30.076080+02:00",
+"items": [
+{
+"obsid": "37862751",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Holter",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Bjarne",
+"efternavn": "Holm",
+"lon": "8,39128680554873",
+"lat": "55,93248736564075",
+"tid_fra": "14:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

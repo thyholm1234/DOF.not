@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T22:32:06.655399+02:00",
+"items": [
+{
+"obsid": "37866471",
+"art": "Grønspætte",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Klelund Dyrehave Nord",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Henning Bach",
+"efternavn": "Christensen",
+"lon": "8,902318838669004",
+"lat": "55,60414723649754",
+"tid_fra": "15:15",
+"tid_til": "17:30",
+"kategori": "bemaerk"
+}
+]
+}

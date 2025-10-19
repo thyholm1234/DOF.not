@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T15:47:34.120817+02:00",
+"items": [
+{
+"obsid": "37863407",
+"art": "Fiskeørn",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Skansebakken",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Viggo",
+"efternavn": "Larsen",
+"lon": "12,337238432313955",
+"lat": "55,93525313453108",
+"tid_fra": "13:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

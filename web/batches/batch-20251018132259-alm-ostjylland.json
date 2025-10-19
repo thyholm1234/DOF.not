@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T13:22:59.645485+02:00",
+"items": [
+{
+"obsid": "37862082",
+"art": "Sortstrubet Bynkefugl",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Svinekilderne",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Stig",
+"efternavn": "Englund",
+"lon": "10,526898887853463",
+"lat": "55,96196368113189",
+"tid_fra": "10:30",
+"tid_til": "11:05",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T15:01:15.932465+02:00",
+"items": [
+{
+"obsid": "37863034",
+"art": "Husrødstjert",
+"antal": "5",
+"adf": "Fouragerende",
+"lok": "Bagenkop Havn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Claus",
+"efternavn": "Dalskov",
+"lon": "10,670646876014874",
+"lat": "54,75184059601961",
+"tid_fra": "10:35",
+"tid_til": "10:50",
+"kategori": "bemaerk"
+}
+]
+}

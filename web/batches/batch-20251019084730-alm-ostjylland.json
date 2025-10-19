@@ -1,0 +1,67 @@
+{
+"client": "alm-ostjylland",
+"count": 4,
+"generated": "2025-10-19T08:47:30.118916+02:00",
+"items": [
+{
+"obsid": "37867073",
+"art": "Stillits",
+"antal": "114",
+"adf": "Trækkende mod vest",
+"lok": "Hassensør",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Inger",
+"efternavn": "Klit",
+"lon": "10,711299733396064",
+"lat": "56,14249590922208",
+"tid_fra": "07:52",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867069",
+"art": "Sule",
+"antal": "18",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:57",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867111",
+"art": "Sortand",
+"antal": "514",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:57",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867144",
+"art": "Tejst",
+"antal": "2",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:57",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

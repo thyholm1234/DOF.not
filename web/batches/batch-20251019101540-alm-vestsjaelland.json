@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T10:15:40.384049+02:00",
+"items": [
+{
+"obsid": "37868571",
+"art": "Bjergvipstjert",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Skansehage",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Anders",
+"efternavn": "Wiig Nielsen",
+"lon": "11,788206705642715",
+"lat": "55,95538806935818",
+"tid_fra": "10:02",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

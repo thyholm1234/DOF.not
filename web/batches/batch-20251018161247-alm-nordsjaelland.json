@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-18T16:12:47.045352+02:00",
+"items": [
+{
+"obsid": "37863618",
+"art": "Bramgås",
+"antal": "1580",
+"adf": "Trækkende mod nordvest",
+"lok": "Helsingør nord",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Steen",
+"efternavn": "Søgaard",
+"lon": "12,586543169218867",
+"lat": "56,03514480017256",
+"tid_fra": "11:05",
+"tid_til": "13:10",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863624",
+"art": "Trane",
+"antal": "63",
+"adf": "Trækkende mod sydvest",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,875967906240932",
+"lat": "55,98048737722473",
+"tid_fra": "14:43",
+"tid_til": "15:55",
+"kategori": "bemaerk"
+}
+]
+}

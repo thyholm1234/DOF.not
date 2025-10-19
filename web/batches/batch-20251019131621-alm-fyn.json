@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T13:16:21.650642+02:00",
+"items": [
+{
+"obsid": "37870200",
+"art": "Ravn",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Snarup Have",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Niels",
+"efternavn": "Bomholt Jensen",
+"lon": "10,439487812912827",
+"lat": "55,153808369569475",
+"tid_fra": "10:50",
+"tid_til": "12:05",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T20:27:00.528419+02:00",
+"items": [
+{
+"obsid": "37866046",
+"art": "Bramgås",
+"antal": "1350",
+"adf": "Rastende",
+"lok": "Keldsnor",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Søren",
+"efternavn": "Bøgelund",
+"lon": "10,708896592888768",
+"lat": "54,727422597594455",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

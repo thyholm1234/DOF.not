@@ -1,0 +1,37 @@
+{
+"client": "sub-sydvestjylland",
+"count": 2,
+"generated": "2025-10-18T13:45:44.217652+02:00",
+"items": [
+{
+"obsid": "37862249",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Tipmose & Heden ved Lysbjerge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "John",
+"efternavn": "Steffensen",
+"lon": "8,246516674279196",
+"lat": "55,53440580714792",
+"tid_fra": "08:30",
+"tid_til": "12:30",
+"kategori": "sub"
+},
+{
+"obsid": "37862257",
+"art": "Hvidbrynet Løvsanger",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tipmose & Heden ved Lysbjerge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "John",
+"efternavn": "Steffensen",
+"lon": "8,246516674279196",
+"lat": "55,53440580714792",
+"tid_fra": "08:30",
+"tid_til": "12:30",
+"kategori": "sub"
+}
+]
+}

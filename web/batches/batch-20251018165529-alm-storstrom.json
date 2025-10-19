@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-18T16:55:29.633602+02:00",
+"items": [
+{
+"obsid": "37864077",
+"art": "Rød Glente",
+"antal": "12",
+"adf": "Trækkende mod syd",
+"lok": "Enge øst for Hasselø Plantage",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Claus",
+"efternavn": "Lindskov Møller",
+"lon": "11,891739627684217",
+"lat": "54,73209985843923",
+"tid_fra": "16:00",
+"tid_til": "16:45",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864086",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Enge øst for Hasselø Plantage",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Claus",
+"efternavn": "Lindskov Møller",
+"lon": "11,891739627684217",
+"lat": "54,73209985843923",
+"tid_fra": "16:00",
+"tid_til": "16:45",
+"kategori": "bemaerk"
+}
+]
+}

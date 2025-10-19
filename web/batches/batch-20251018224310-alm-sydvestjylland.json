@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T22:43:10.006930+02:00",
+"items": [
+{
+"obsid": "37866486",
+"art": "Natugle",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tistrup",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Åge Gejl",
+"efternavn": "Hansen",
+"lon": "8,600387515220458",
+"lat": "55,71302414583445",
+"tid_fra": "22:41",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T11:54:16.047343+02:00",
+"items": [
+{
+"obsid": "37869634",
+"art": "Bramgås",
+"antal": "2000",
+"adf": "Rastende",
+"lok": "Tissø, Enge i syd",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Karsten",
+"efternavn": "Nilsson",
+"lon": "11,28476595651034",
+"lat": "55,55632710755424",
+"tid_fra": "11:19",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

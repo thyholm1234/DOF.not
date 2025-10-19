@@ -640,101 +640,170 @@ section.controls #adv-save::before {
   body { margin: 0; }
 }
 
-/* === Observationer – kort-look + kompakt mobil (udbygning) === */
+/* ===== Thread page base (light/dark + layout/badges) ===== */
+:root {
+  --bg:#ffffff; --fg:#0f172a; --muted:#6b7280; --line:#e5e7eb; --accent:#0b3d91;
+  --badge-bg:#e6f2ff; --badge-fg:#003366;
+}
+html[data-theme="dark"] {
+  --bg:#0b1220; --fg:#e5e7eb; --muted:#9ca3af; --line:#1f2937; --accent:#6ca0ff;
+  --badge-bg:#1f2a44; --badge-fg:#cfe0ff;
+}
+html, body { height: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial; }
+a { color: inherit; text-decoration: none; }
+.wrap { max-width: 860px; margin: 0 auto; padding: 0 1rem; }
+header.wrap { display:flex; align-items:center; justify-content:space-between; padding:1rem 1rem 0.5rem; }
+header h1 { font-size:1.1rem; margin:0; font-weight:700; }
+#theme-toggle { background:none; border:1px solid var(--line); border-radius:8px; cursor:pointer; font-size:1.1rem; padding:.35rem .6rem; }
+main.wrap { padding: 0 1rem 2rem; }
+.sub { color: var(--muted); font-size: 0.95rem; }
 
-/* 1 kolonne, fuld bredde i wrap */
-.obs-list {
+/* Forside-kontrolpanel */
+#front-controls { display:none; margin: 4px 0 10px; gap:12px; align-items:center; flex-wrap:wrap; }
+#front-controls label { display:inline-flex; align-items:center; gap:6px; }
+
+/* Kort/obs-liste styles */
+.obs-list { list-style:none; margin:.5rem 0 0; padding:0; display:grid; gap:12px; }
+.obs-item article { background: transparent; border:1px solid var(--line); border-radius:10px; padding:12px;
+  transition: border-color .15s ease, box-shadow .15s ease; }
+.obs-item article:hover { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(11,61,145,.08); }
+.card-top { display:flex; align-items:center; gap:8px; }
+.card-top .left { display:flex; gap:6px; align-items:center; }
+.card-top .right { margin-left:auto; text-align:right; color:var(--muted); font-size:.95em; display:flex; gap:8px; align-items:baseline; }
+
+.badge { display:inline-block; padding: 2px 8px; border-radius:999px; font-weight:700; font-size:12px; line-height:1.2; border:1px solid var(--line); }
+.badge.region { background: var(--badge-bg); color: var(--badge-fg); }
+.badge.cat-su  { background:#991b1b; color:#fff; border-color:#7f1d1d; }
+.badge.cat-sub { background:#1e3a8a; color:#fff; border-color:#1e3a8a; }
+.badge.cat-alm { background:#065f46; color:#fff; border-color:#065f46; }
+.badge.cat-bemaerk { background:#92400e; color:#fff; border-color:#92400e; }
+
+.title { margin:.35rem 0 0; font-weight:700; }
+.count { font-weight:700; margin-right:.35rem; }
+.info { color:var(--muted); margin-top:6px; font-size: .95rem; display:flex; flex-wrap:wrap; gap:8px; }
+.info > * + *::before { content:"•"; opacity:.55; margin:0 6px 0 2px; }
+
+hr { border:0; border-top:1px solid var(--line); }
+
+/* Kommentarspor */
+.comments .comment { display:flex; gap:8px; align-items:flex-start; margin:4px 0; }
+.comments .comment .badge { font-size:11px; background:#eef2ff; color:#1e3a8a; }
+html[data-theme="dark"] .comments .comment .badge { background:#1f2a44; color:#cfe0ff; }
+
+/* ===== Thread UI (scoped, ingen globale konflikter) ===== */
+/* Fjernet tomt ruleset: .thread-ui { } */
+
+/* Liste og kort */
+.thread-ui .obs-list {
+  list-style: none;
+  margin: .5rem 0 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: 1fr;
-  width: 100%;
+  gap: 12px;
+}
+.thread-ui .obs-item article {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 12px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.thread-ui .obs-item article:hover,
+.thread-ui .obs-item a:focus-visible article {
+  border-color: var(--col-accent);
+  box-shadow: 0 0 0 3px rgba(31,111,235,.08);
+}
+@media (prefers-reduced-motion: reduce) {
+  .thread-ui .obs-item article { transition: none; }
 }
 
-/* Card */
-.obs-item article {
-  box-sizing: border-box;
-  width: 100%;
-  overflow: hidden; /* rundede hjørner på evt. indhold */
+/* Toplinje og badges */
+.thread-ui .card-top { display:flex; align-items:center; gap:8px; }
+.thread-ui .card-top .left { display:flex; gap:6px; align-items:center; }
+.thread-ui .card-top .right {
+  margin-left:auto; text-align:right; color: var(--text-muted);
+  font-size:.95em; display:flex; gap:8px; align-items:baseline;
+}
+.thread-ui .badge {
+  display:inline-block; padding: 2px 8px; border-radius:999px;
+  font-weight:700; font-size:12px; line-height:1.2; border:1px solid var(--card-border);
+}
+.thread-ui .badge.region { background: var(--badge-region-bg); color: var(--badge-region-fg); }
+.thread-ui .badge.cat-su  { background: var(--col-su); color:#fff; border-color: var(--col-su); }
+.thread-ui .badge.cat-sub { background: var(--col-sub); color:#fff; border-color: var(--col-sub); }
+.thread-ui .badge.cat-alm { background: var(--col-alm); color:#fff; border-color: var(--col-alm); }
+.thread-ui .badge.cat-bemaerk { background: var(--col-bemaerk); color:#fff; border-color: var(--col-bemaerk); }
+
+/* Titel/metadata */
+.thread-ui .title { margin:.35rem 0 0; font-weight:700; }
+.thread-ui .count { font-weight:700; margin-right:.35rem; }
+.thread-ui .info {
+  color: var(--text-muted); margin-top:6px; font-size:.95rem;
+  display:flex; flex-wrap:wrap; gap:8px;
+}
+.thread-ui .info > * + *::before { content:"•"; opacity:.55; margin:0 6px 0 2px; }
+.thread-ui hr { border:0; border-top:1px solid var(--card-border); }
+
+/* Kommentarspor */
+.thread-ui .comments .comment { display:flex; gap:8px; align-items:flex-start; margin:4px 0; }
+.thread-ui .comments .comment .badge { font-size:11px; background:#eef2ff; color:#1e3a8a; }
+/* Dark-mode variant (rettet syntaksfejl og fjernet stray quote) */
+:root[data-theme="dark"] .thread-ui .comments .comment .badge { background:#1f2a44; color:#cfe0ff; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .thread-ui .comments .comment .badge { background:#1f2a44; color:#cfe0ff; }
 }
 
-/* Badge-styles (kategori/region/kilde) */
-.obs-item .badges { display:flex; gap:6px; align-items:center; margin-bottom:6px; }
-.obs-item .badge {
-  display:inline-block; border-radius:999px;
-  background: var(--badge-bg); color: var(--badge-fg);
-  font-weight: 600; font-size: 12px; line-height: 1.2;
-  padding: 2px 8px;
-}
-.obs-item .badge.region { background: var(--badge-region-bg); color: var(--badge-region-fg); }
-.obs-item .badge.src    { background: var(--badge-src-bg);    color: var(--badge-src-fg); }
-
-/* Kategori + Lokalafdeling med stort begyndelsesbogstav */
-.obs-item .category, .obs-item .region { text-transform: capitalize; }
-
-/* Antal + art – hver sin linje */
-.obs-item .count { font-weight: 700; margin: 0 0 2px 0; display: block; }
-.obs-item .species { display: block; }
-
-/* Saml meta + byline til én linje der ombrydes */
-.obs-item .info {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 6px;
-  margin-top: 6px;
-  color: var(--text-meta);
-  font-size: 13px;
+/* Fokus synlighed for tastaturbrugere */
+.thread-ui a:focus-visible {
+  outline: 2px solid var(--col-accent);
+  outline-offset: 2px;
+  border-radius: 10px;
 }
 
-/* Fjern egne layouts fra meta/byline og “løft” deres børn op i .info */
-.obs-item .meta,
-.obs-item .byline {
-  display: contents; /* børn bliver direkte flex-items i .info */
+/* ===== Artsnavn-farver (globalt – matcher avanceret filtrering) ===== */
+.art-name { color: inherit; }
+.art-name.cat-su { color: var(--col-su); font-weight:700; }     /* SU */
+.art-name.cat-sub { color: var(--col-sub); font-weight:700; }   /* SUB */
+.art-name.cat-alm { color: var(--col-alm); font-weight:700; opacity:.92; } /* Alm */
+.art-name.cat-bemaerk { color:#92400e; font-weight:700; }       /* Bemærk */
+
+/* Badges for kategori – match avanceret filtrering (outline for god kontrast i light/dark) */
+.badge.cat-su  { color: white;  border-color: var(--col-su);  background: var(--col-su); }
+.badge.cat-sub { color: white; border-color: var(--col-sub); background: var(--col-sub); }
+.badge.cat-alm { color: white; border-color: var(--col-alm); background: var(--col-alm); }
+.badge.cat-bemaerk { color:#92400e; border-color:#92400e; background: transparent; }
+
+/* Artsnavn + antal har samme farve (tilføjes via .title.cat-*) */
+.title.cat-su  .count { color: var(--col-su);  }
+.title.cat-sub .count { color: var(--col-sub); }
+.title.cat-alm .count { color: var(--col-alm); }
+.title.cat-bemaerk .count { color:#92400e; }
+
+/* (valgfrit) gør art-navnet fed, så det matcher visuel vægt fra filtrering */
+.title.cat-su  .art-name,
+.title.cat-sub .art-name,
+.title.cat-alm .art-name,
+.title.cat-bemaerk .art-name { font-weight: 700; }
+
+.count.cat-su  { color: var(--col-su); }
+.count.cat-sub { color: var(--col-sub); }
+.count.cat-alm { color: var(--col-alm); }
+.count.cat-bemaerk { color: #92400e; }
+
+.badge.event-count {
+  margin-left: 8px;
+  background: var(--badge-bg);
+  color: var(--badge-fg);
+}
+.badge.event-count.warn {
+  background: #fff4e5;         /* orange tone ved >= 2 */
+  color: #9a3412;
+  border-color: #f59e0b;
 }
 
-/* Slå gamle bullets fra meta/byline fra */
-.obs-item .meta > * + *::before,
-.obs-item .byline > * + *::before {
-  content: none !important;
-}
+/* Dark-mode justeringer (valgfrit) */
+html[data-theme="dark"] .badge.event-count { background: var(--badge-bg); color: var(--badge-fg); }
+html[data-theme="dark"] .badge.event-count.warn { background:#3b2a0a; color:#facc15; border-color:#a16207; }
 
-/* === OBS: Nulstil tidligere "bullet-efter" på .info === */
-.obs-item .info > *:not(:last-child)::after { content: none !important; }
-
-/* Desktop/Tablet ≥641px: to linjer med bullets */
-@media (min-width: 641px) {
-  .obs-item .info { margin-top: 6px; }
-  .obs-item .meta,
-  .obs-item .byline {
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: baseline;
-    gap: 8px;
-    color: var(--text-meta);
-    font-size: 13px;
-  }
-  .obs-item .meta > * + *::before,
-  .obs-item .byline > * + *::before {
-    content: "•";
-    opacity: .55;
-    margin: 0 6px 0 2px;
-  }
-}
-
-/* Mobil ≤640px: ét item pr. linje – “lokation + kort” holdes sammen */
-@media (max-width: 640px) {
-  .obs-item .info {
-    display: grid;
-    grid-auto-flow: row;
-    row-gap: 4px;
-  }
-  /* Flad struktur: børn i .meta/.byline bliver rækker i .info */
-  .obs-item .meta, .obs-item .byline { display: contents; }
-
-  /* Ingen bullets på mobil */
-  .obs-item .meta > * + *::before,
-  .obs-item .byline > * + *::before { content: none !important; }
-
-  /* Lokation + kort-link i samme linje (samlet i .place) */
-  .obs-item .place { display: inline; }
-  .obs-item .place .map-link { margin-left: 6px; white-space: nowrap; }
-}

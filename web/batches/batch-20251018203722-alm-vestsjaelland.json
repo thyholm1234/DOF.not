@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T20:37:22.627705+02:00",
+"items": [
+{
+"obsid": "37866140",
+"art": "Musvåge",
+"antal": "842",
+"adf": "Trækkende mod vest",
+"lok": "Stigsnæs Skov",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Michael",
+"efternavn": "Ludvig Delpierre",
+"lon": "11,239200531999815",
+"lat": "55,2164574892066",
+"tid_fra": "09:30",
+"tid_til": "15:30",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,82 @@
+{
+"client": "alm-ostjylland",
+"count": 5,
+"generated": "2025-10-18T18:24:42.557129+02:00",
+"items": [
+{
+"obsid": "37864948",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Grenå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Anders",
+"efternavn": "Rasmussen",
+"lon": "10,933063536493831",
+"lat": "56,41119237703228",
+"tid_fra": "16:00",
+"tid_til": "17:45",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864950",
+"art": "Sortgrå Ryle",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Grenå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Anders",
+"efternavn": "Rasmussen",
+"lon": "10,933063536493831",
+"lat": "56,41119237703228",
+"tid_fra": "16:00",
+"tid_til": "17:45",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864955",
+"art": "Husrødstjert",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Grenå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Anders",
+"efternavn": "Rasmussen",
+"lon": "10,933063536493831",
+"lat": "56,41119237703228",
+"tid_fra": "16:00",
+"tid_til": "17:45",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864959",
+"art": "Skærpiber",
+"antal": "11",
+"adf": "Rastende",
+"lok": "Grenå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Anders",
+"efternavn": "Rasmussen",
+"lon": "10,933063536493831",
+"lat": "56,41119237703228",
+"tid_fra": "16:00",
+"tid_til": "17:45",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864962",
+"art": "Kaspisk Måge",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Grenå Havn",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Anders",
+"efternavn": "Rasmussen",
+"lon": "10,933063536493831",
+"lat": "56,41119237703228",
+"tid_fra": "16:00",
+"tid_til": "17:45",
+"kategori": "bemaerk"
+}
+]
+}

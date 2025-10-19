@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-19T13:15:16.797502+02:00",
+"items": [
+{
+"obsid": "37870190",
+"art": "Musvåge",
+"antal": "21",
+"adf": "Trækkende",
+"lok": "Vangså Hede",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,469517721302491",
+"lat": "56,999231500999",
+"tid_fra": "12:50",
+"tid_til": "12:55",
+"kategori": "bemaerk"
+}
+]
+}

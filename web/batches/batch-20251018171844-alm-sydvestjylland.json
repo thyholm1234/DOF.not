@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-18T17:18:44.510080+02:00",
+"items": [
+{
+"obsid": "37864250",
+"art": "Halemejse",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Sejstrup (Bramming)",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Klaus Bertram",
+"efternavn": "Fries",
+"lon": "8,7404016990059",
+"lat": "55,437316861208785",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864249",
+"art": "Trane",
+"antal": "35",
+"adf": "Trækkende mod nord",
+"lok": "Sejstrup (Bramming)",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Klaus Bertram",
+"efternavn": "Fries",
+"lon": "8,7404016990059",
+"lat": "55,437316861208785",
+"tid_fra": "15:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

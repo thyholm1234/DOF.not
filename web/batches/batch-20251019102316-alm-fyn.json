@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T10:23:16.121516+02:00",
+"items": [
+{
+"obsid": "37868614",
+"art": "Toppet Skallesluger",
+"antal": "56",
+"adf": "Fouragerende",
+"lok": "Lumby Middelgrund",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Peter",
+"efternavn": "Lillesø",
+"lon": "10,507657042055738",
+"lat": "55,473345666643496",
+"tid_fra": "10:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

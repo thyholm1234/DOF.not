@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-18T19:16:34.919849+02:00",
+"items": [
+{
+"obsid": "37865190",
+"art": "Skægmejse",
+"antal": "13",
+"adf": "Fanget og ringmærket",
+"lok": "Tømmerby Fjord",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jan",
+"efternavn": "Salmonsen",
+"lon": "8,962331553651739",
+"lat": "57,05339270847139",
+"tid_fra": "07:00",
+"tid_til": "14:30",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T11:16:38.482271+02:00",
+"items": [
+{
+"obsid": "37869210",
+"art": "Havørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Harboøre Tange Nord",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Henrik",
+"efternavn": "Rähr",
+"lon": "8,199332100000516",
+"lat": "56,67569650000178",
+"tid_fra": "11:07",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

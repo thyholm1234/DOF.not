@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T11:20:16.650818+02:00",
+"items": [
+{
+"obsid": "37861004",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Tølløse",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Ivo",
+"efternavn": "Petersen",
+"lon": "11,76598507461591",
+"lat": "55,61180041150834",
+"tid_fra": "11:18",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

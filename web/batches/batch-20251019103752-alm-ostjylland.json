@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-19T10:37:52.568721+02:00",
+"items": [
+{
+"obsid": "37868758",
+"art": "Knarand",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Kongensbro Råstofgrave",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Søren",
+"efternavn": "Dalsgaard",
+"lon": "9,655130175552488",
+"lat": "56,30814535988289",
+"tid_fra": "10:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

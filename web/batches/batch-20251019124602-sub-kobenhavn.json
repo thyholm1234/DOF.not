@@ -1,0 +1,22 @@
+{
+"client": "sub-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T12:46:02.854949+02:00",
+"items": [
+{
+"obsid": "37869989",
+"art": "Sort Glente",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Storedal, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Pedersen",
+"lon": "12,441364851119909",
+"lat": "55,31096965184187",
+"tid_fra": "12:41",
+"tid_til": "10:15",
+"kategori": "sub"
+}
+]
+}

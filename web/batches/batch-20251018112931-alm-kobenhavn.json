@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T11:29:31.942841+02:00",
+"items": [
+{
+"obsid": "37861123",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Ganløse Ore",
+"dof_afdeling": "DOF København",
+"fornavn": "Anders",
+"efternavn": "Børjesson",
+"lon": "12,305932044982912",
+"lat": "55,80583961262213",
+"tid_fra": "10:53",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T20:13:14.715738+02:00",
+"items": [
+{
+"obsid": "37865800",
+"art": "Hvid Vipstjert, Sortrygget Vipstjert (ssp. yarrellii)",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Mandø",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Tim Hesselballe",
+"efternavn": "Hansen",
+"lon": "8,538211584091188",
+"lat": "55,276511954130186",
+"tid_fra": "07:30",
+"tid_til": "18:18",
+"kategori": "sub"
+}
+]
+}

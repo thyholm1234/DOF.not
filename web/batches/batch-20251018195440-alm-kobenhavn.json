@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T19:54:40.202130+02:00",
+"items": [
+{
+"obsid": "37865492",
+"art": "Musvåge",
+"antal": "656",
+"adf": "Trækkende mod sydvest",
+"lok": "Højerup, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,44159781410613",
+"lat": "55,28110051456065",
+"tid_fra": "08:25",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+}
+]
+}

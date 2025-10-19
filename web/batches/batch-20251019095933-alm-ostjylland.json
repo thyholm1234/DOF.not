@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-19T09:59:33.919564+02:00",
+"items": [
+{
+"obsid": "37867506",
+"art": "Sølvhejre",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Årslev Engsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Søren",
+"efternavn": "Skriver",
+"lon": "10,073848047174176",
+"lat": "56,142752364175976",
+"tid_fra": "08:39",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37868413",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "09:57",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

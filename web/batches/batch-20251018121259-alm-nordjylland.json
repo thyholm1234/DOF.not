@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-18T12:12:59.791565+02:00",
+"items": [
+{
+"obsid": "37861438",
+"art": "Bjerglærke",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Jonas Morsing",
+"efternavn": "Thomasen",
+"lon": "10,637555122375488",
+"lat": "57,7483966324539",
+"tid_fra": "08:00",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

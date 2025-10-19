@@ -1,0 +1,37 @@
+{
+"client": "alm-nordvestjylland",
+"count": 2,
+"generated": "2025-10-18T15:14:57.470716+02:00",
+"items": [
+{
+"obsid": "37863123",
+"art": "Skærpiber",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Agger Tange, havsiden",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,21652339120534",
+"lat": "56,74663689042774",
+"tid_fra": "15:10",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863127",
+"art": "Sortgrå Ryle",
+"antal": "6",
+"adf": "Fouragerende",
+"lok": "Agger Tange, havsiden",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,21652339120534",
+"lat": "56,74663689042774",
+"tid_fra": "15:10",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

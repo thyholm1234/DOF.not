@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T20:47:44.550596+02:00",
+"items": [
+{
+"obsid": "37866204",
+"art": "Halemejse",
+"antal": "20",
+"adf": "Rastende",
+"lok": "Albæk Enge/Fællederne RdsFj.",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "10,214715600013735",
+"lat": "56,482022489817794",
+"tid_fra": "13:05",
+"tid_til": "14:15",
+"kategori": "bemaerk"
+}
+]
+}

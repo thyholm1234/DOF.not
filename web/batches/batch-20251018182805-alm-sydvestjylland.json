@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-18T18:28:05.931805+02:00",
+"items": [
+{
+"obsid": "37865020",
+"art": "Husskade",
+"antal": "20",
+"adf": "Rastende",
+"lok": "Ribe Østerå",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Timme",
+"efternavn": "Nyegaard",
+"lon": "8,790738019951984",
+"lat": "55,3208662377948",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37865007",
+"art": "Ringdrossel",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Nicki",
+"efternavn": "Justenborg",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "14:25",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

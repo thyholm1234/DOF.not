@@ -1,0 +1,52 @@
+{
+"client": "alm-ostjylland",
+"count": 3,
+"generated": "2025-10-19T08:52:57.740238+02:00",
+"items": [
+{
+"obsid": "37866925",
+"art": "Ederfugl",
+"antal": "1595",
+"adf": "Trækkende",
+"lok": "Hassensør",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Klaus",
+"efternavn": "Sørensen",
+"lon": "10,711299733396064",
+"lat": "56,14249590922208",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867073",
+"art": "Stillits",
+"antal": "117",
+"adf": "Trækkende mod vest",
+"lok": "Hassensør",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Inger",
+"efternavn": "Klit",
+"lon": "10,711299733396064",
+"lat": "56,14249590922208",
+"tid_fra": "07:52",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867656",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Årslev Engsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Søren",
+"efternavn": "Skriver",
+"lon": "10,073848047174176",
+"lat": "56,142752364175976",
+"tid_fra": "08:52",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

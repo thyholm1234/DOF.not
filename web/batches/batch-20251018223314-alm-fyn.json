@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T22:33:14.442903+02:00",
+"items": [
+{
+"obsid": "37866475",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Vejlen - Tåsinge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Pierre",
+"efternavn": "Bentzen",
+"lon": "10,542828757292483",
+"lat": "54,99528203977863",
+"tid_fra": "16:00",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+}
+]
+}

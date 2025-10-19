@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T19:44:18.722760+02:00",
+"items": [
+{
+"obsid": "37865368",
+"art": "Allike",
+"antal": "1500",
+"adf": "Trækkende til/fra overnatning",
+"lok": "Albertslund",
+"dof_afdeling": "DOF København",
+"fornavn": "Troels",
+"efternavn": "M. Krogh",
+"lon": "12,36041811002554",
+"lat": "55,66808915741018",
+"tid_fra": "17:50",
+"tid_til": "18:00",
+"kategori": "bemaerk"
+}
+]
+}

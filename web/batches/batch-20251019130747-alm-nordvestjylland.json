@@ -1,0 +1,52 @@
+{
+"client": "alm-nordvestjylland",
+"count": 3,
+"generated": "2025-10-19T13:07:47.416242+02:00",
+"items": [
+{
+"obsid": "37870155",
+"art": "Ravn",
+"antal": "5",
+"adf": "Overflyvende",
+"lok": "Nystrup Plantage",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,507893750240077",
+"lat": "57,01244329615099",
+"tid_fra": "11:10",
+"tid_til": "12:40",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870161",
+"art": "Fuglekonge",
+"antal": "85",
+"adf": "Fouragerende",
+"lok": "Nystrup Plantage",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,507893750240077",
+"lat": "57,01244329615099",
+"tid_fra": "11:10",
+"tid_til": "12:40",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870163",
+"art": "Sortmejse",
+"antal": "39",
+"adf": "Fouragerende",
+"lok": "Nystrup Plantage",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,507893750240077",
+"lat": "57,01244329615099",
+"tid_fra": "11:10",
+"tid_til": "12:40",
+"kategori": "bemaerk"
+}
+]
+}

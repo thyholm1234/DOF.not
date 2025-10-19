@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T13:42:19.009037+02:00",
+"items": [
+{
+"obsid": "37862203",
+"art": "Knortegås, Mørkbuget (ssp. bernicla)",
+"antal": "510",
+"adf": "Rastende",
+"lok": "Marstal Bugt ud for Ristinge",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Torben",
+"efternavn": "Johannesen",
+"lon": "10,611753155201992",
+"lat": "54,81216128008339",
+"tid_fra": "13:36",
+"tid_til": "13:44",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-18T16:36:19.691822+02:00",
+"items": [
+{
+"obsid": "37863853",
+"art": "Musvåge",
+"antal": "100",
+"adf": "Rastende, derefter trækkende mod sydvest",
+"lok": "Flodholm",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Kurt E.",
+"efternavn": "Nielsen",
+"lon": "11,345229148864746",
+"lat": "55,634343293673076",
+"tid_fra": "10:30",
+"tid_til": "12:30",
+"kategori": "bemaerk"
+}
+]
+}

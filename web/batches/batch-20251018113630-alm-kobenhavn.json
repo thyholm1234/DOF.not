@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T11:36:30.002430+02:00",
+"items": [
+{
+"obsid": "37861154",
+"art": "Mandarinand",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Brede til Helsingørmotorvej",
+"dof_afdeling": "DOF København",
+"fornavn": "Søren",
+"efternavn": "Nielsen",
+"lon": "12,50042133809362",
+"lat": "55,79942918087224",
+"tid_fra": "11:32",
+"tid_til": "11:35",
+"kategori": "bemaerk"
+}
+]
+}

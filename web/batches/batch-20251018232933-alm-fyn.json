@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T23:29:33.520958+02:00",
+"items": [
+{
+"obsid": "37866566",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Holckenhavn Fjord",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Leif",
+"efternavn": "Sørensen",
+"lon": "10,767825036372061",
+"lat": "55,2966193056734",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

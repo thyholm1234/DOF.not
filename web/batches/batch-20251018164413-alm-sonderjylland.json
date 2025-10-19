@@ -1,0 +1,22 @@
+{
+"client": "alm-sonderjylland",
+"count": 1,
+"generated": "2025-10-18T16:44:13.779241+02:00",
+"items": [
+{
+"obsid": "37863937",
+"art": "Sølvhejre",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Saltvandssøen",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Leif Nørgaard",
+"efternavn": "Schmidt",
+"lon": "8,649339875467515",
+"lat": "54,92138896288262",
+"tid_fra": "10:20",
+"tid_til": "12:30",
+"kategori": "bemaerk"
+}
+]
+}

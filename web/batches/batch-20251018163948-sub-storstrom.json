@@ -1,0 +1,22 @@
+{
+"client": "sub-storstrom",
+"count": 1,
+"generated": "2025-10-18T16:39:48.698460+02:00",
+"items": [
+{
+"obsid": "37863899",
+"art": "Steppehøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Sjælstofte",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Svend",
+"efternavn": "Erik Jessen",
+"lon": "11,487442851205257",
+"lat": "54,6557084864281",
+"tid_fra": "11:45",
+"tid_til": "11:47",
+"kategori": "sub"
+}
+]
+}

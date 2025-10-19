@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T10:54:48.371523+02:00",
+"items": [
+{
+"obsid": "37868928",
+"art": "Trane",
+"antal": "9",
+"adf": "Trækkende mod syd",
+"lok": "Møltrup Herregård",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Verner",
+"efternavn": "Jensen",
+"lon": "8,775763",
+"lat": "56,177125",
+"tid_fra": "10:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

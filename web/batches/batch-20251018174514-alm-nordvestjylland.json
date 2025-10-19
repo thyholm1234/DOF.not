@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-18T17:45:14.202429+02:00",
+"items": [
+{
+"obsid": "37864502",
+"art": "Knarand",
+"antal": "33",
+"adf": "Rastende",
+"lok": "Agger Tange, småsøer i sydende",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,244768881331046",
+"lat": "56,71442075030782",
+"tid_fra": "16:10",
+"tid_til": "16:40",
+"kategori": "bemaerk"
+}
+]
+}

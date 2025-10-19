@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-18T17:12:07.991364+02:00",
+"items": [
+{
+"obsid": "37864206",
+"art": "Sortstrubet Bynkefugl",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Højen Fyr, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Peter",
+"efternavn": "Thomasen",
+"lon": "10,559875827881799",
+"lat": "57,74134621680932",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864209",
+"art": "Sortstrubet Bynkefugl",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Nordstrand, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Peter",
+"efternavn": "Thomasen",
+"lon": "10,603972328548657",
+"lat": "57,75165524452214",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

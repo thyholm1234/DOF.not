@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-18T20:06:21.774939+02:00",
+"items": [
+{
+"obsid": "37865656",
+"art": "Hedelærke",
+"antal": "5",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Blåvand",
+"efternavn": "Fuglestation",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "09:30",
+"tid_til": "10:00",
+"kategori": "bemaerk"
+}
+]
+}

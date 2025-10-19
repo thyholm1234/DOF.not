@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T15:19:22.101578+02:00",
+"items": [
+{
+"obsid": "37863159",
+"art": "Musvåge",
+"antal": "95",
+"adf": "Trækkende mod sydvest",
+"lok": "Rødvig By og Havn",
+"dof_afdeling": "DOF København",
+"fornavn": "Thomas",
+"efternavn": "Varto Nielsen",
+"lon": "12,371492195472886",
+"lat": "55,25651550987408",
+"tid_fra": "14:35",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

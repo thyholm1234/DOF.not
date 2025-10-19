@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T08:28:15.941358+02:00",
+"items": [
+{
+"obsid": "37867380",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Trækkende mod sydøst",
+"lok": "Skallingen",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jonas",
+"efternavn": "Pedersen",
+"lon": "8,26347385965211",
+"lat": "55,5087732506494",
+"tid_fra": "08:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

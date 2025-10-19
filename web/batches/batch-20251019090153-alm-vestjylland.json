@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T09:01:53.441056+02:00",
+"items": [
+{
+"obsid": "37867810",
+"art": "Trane",
+"antal": "9",
+"adf": "Rastende",
+"lok": "Lindtorp / Lindtorp Mose",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Sten",
+"efternavn": "Nielsen",
+"lon": "8,444336147258053",
+"lat": "56,400338283773294",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

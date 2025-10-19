@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-18T14:18:54.617985+02:00",
+"items": [
+{
+"obsid": "37862655",
+"art": "Gås sp.",
+"antal": "500",
+"adf": "Rastende",
+"lok": "Sønder Lem Vig",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Sebastian",
+"efternavn": "Dreisig",
+"lon": "8,78940889633607",
+"lat": "56,564530185281114",
+"tid_fra": "13:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

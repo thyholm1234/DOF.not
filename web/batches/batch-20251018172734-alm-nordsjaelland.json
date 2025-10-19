@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T17:27:34.237762+02:00",
+"items": [
+{
+"obsid": "37864351",
+"art": "Pibesvane",
+"antal": "28",
+"adf": "Rastende",
+"lok": "Nivå Bugt og strandenge",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Jørgen",
+"efternavn": "Eng Jensen",
+"lon": "12,526959924651951",
+"lat": "55,928375566955395",
+"tid_fra": "11:05",
+"tid_til": "11:50",
+"kategori": "bemaerk"
+}
+]
+}

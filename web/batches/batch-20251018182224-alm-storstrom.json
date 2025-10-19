@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T18:22:24.424964+02:00",
+"items": [
+{
+"obsid": "37864909",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sortsø Gab SØ for Farøbroen",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "René",
+"efternavn": "Christensen",
+"lon": "11,984020193300283",
+"lat": "54,93847647757141",
+"tid_fra": "18:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

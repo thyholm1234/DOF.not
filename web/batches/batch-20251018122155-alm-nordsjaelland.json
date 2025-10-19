@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T12:21:55.169146+02:00",
+"items": [
+{
+"obsid": "37861552",
+"art": "Fløjlsand",
+"antal": "5",
+"adf": "Trækkende mod sydvest",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,875967906240932",
+"lat": "55,98048737722473",
+"tid_fra": "07:25",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

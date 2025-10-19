@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T20:05:12.265182+02:00",
+"items": [
+{
+"obsid": "37865660",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bølling Sø og områder omkr. søen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bent",
+"efternavn": "Jensen",
+"lon": "9,380047559607192",
+"lat": "56,15851952029622",
+"tid_fra": "08:50",
+"tid_til": "12:10",
+"kategori": "bemaerk"
+}
+]
+}

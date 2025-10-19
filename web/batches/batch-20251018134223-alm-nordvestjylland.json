@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-18T13:42:23.190121+02:00",
+"items": [
+{
+"obsid": "37862229",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Agger Tange, store nordlige lagune",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens Kristian",
+"efternavn": "Kjærgård",
+"lon": "8,245214754579715",
+"lat": "56,75577764176637",
+"tid_fra": "13:30",
+"tid_til": "13:40",
+"kategori": "bemaerk"
+}
+]
+}

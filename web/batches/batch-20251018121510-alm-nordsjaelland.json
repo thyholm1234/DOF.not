@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T12:15:10.407621+02:00",
+"items": [
+{
+"obsid": "37861455",
+"art": "Bjergvipstjert",
+"antal": "2",
+"adf": "Trækkende mod sydvest til rast",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,8857479095459",
+"lat": "55,98330666887322",
+"tid_fra": "09:16",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

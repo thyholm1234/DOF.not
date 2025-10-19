@@ -1,0 +1,37 @@
+{
+"client": "alm-bornholm",
+"count": 2,
+"generated": "2025-10-18T16:19:35.716321+02:00",
+"items": [
+{
+"obsid": "37863664",
+"art": "Bramgås",
+"antal": "60",
+"adf": "Trækkende mod syd",
+"lok": "Dueodde",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Jesper",
+"efternavn": "Møller",
+"lon": "15,076475719033839",
+"lat": "54,989781690310934",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863663",
+"art": "Trane",
+"antal": "65",
+"adf": "Trækkende mod syd",
+"lok": "Rønne",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Evy",
+"efternavn": "Nielsen",
+"lon": "14,708856358683038",
+"lat": "55,1003992880305",
+"tid_fra": "16:13",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

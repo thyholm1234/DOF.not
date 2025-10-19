@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T15:16:03.107274+02:00",
+"items": [
+{
+"obsid": "37863138",
+"art": "Skægmejse",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Nørre Grimmelstrup Grusgrav",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Jeppe Bøgh",
+"efternavn": "Andersen",
+"lon": "11,842008893555361",
+"lat": "54,91608435123703",
+"tid_fra": "13:00",
+"tid_til": "15:09",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T17:16:33.715773+02:00",
+"items": [
+{
+"obsid": "37864243",
+"art": "Agerhøne",
+"antal": "12",
+"adf": "Rastende",
+"lok": "Storedal, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Pedersen",
+"lon": "12,443835",
+"lat": "55,315912",
+"tid_fra": "17:15",
+"tid_til": "16:31",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,67 @@
+{
+"client": "alm-ostjylland",
+"count": 4,
+"generated": "2025-10-19T08:15:27.664698+02:00",
+"items": [
+{
+"obsid": "37866925",
+"art": "Ederfugl",
+"antal": "1536",
+"adf": "Trækkende",
+"lok": "Hassensør",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Klaus",
+"efternavn": "Sørensen",
+"lon": "10,711299733396064",
+"lat": "56,14249590922208",
+"tid_fra": "07:25",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867065",
+"art": "Fløjlsand",
+"antal": "82",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:55",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867069",
+"art": "Sule",
+"antal": "6",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:55",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37867111",
+"art": "Sortand",
+"antal": "130",
+"adf": "Trækkende mod nord",
+"lok": "Fornæs",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Bjarne",
+"efternavn": "Hove-Jensen",
+"lon": "10,961453714060768",
+"lat": "56,442495444105234",
+"tid_fra": "07:55",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

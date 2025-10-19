@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T09:22:03.241305+02:00",
+"items": [
+{
+"obsid": "37868053",
+"art": "Sølvhejre",
+"antal": "2",
+"adf": "Fouragerende",
+"lok": "Gamst Sø, Enge Plantage/Egekrat",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jesper",
+"efternavn": "Leegaard",
+"lon": "9,202198040074919",
+"lat": "55,4784523493376",
+"tid_fra": "07:30",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37868048",
+"art": "Stær",
+"antal": "10000",
+"adf": "Rastende på overnatningsplads",
+"lok": "Gamst Sø, Enge Plantage/Egekrat",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Jesper",
+"efternavn": "Leegaard",
+"lon": "9,202198040074919",
+"lat": "55,4784523493376",
+"tid_fra": "07:50",
+"tid_til": "08:00",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-18T20:32:49.508325+02:00",
+"items": [
+{
+"obsid": "37866112",
+"art": "Skovhornugle",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Gulstav Østerskov",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Hans",
+"efternavn": "Rytter",
+"lon": "10,694534",
+"lat": "54,725907",
+"tid_fra": "06:45",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

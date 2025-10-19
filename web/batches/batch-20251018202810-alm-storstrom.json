@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T20:28:10.090814+02:00",
+"items": [
+{
+"obsid": "37866053",
+"art": "Krikand",
+"antal": "335",
+"adf": "Fouragerende",
+"lok": "Sivet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "12,101462253970348",
+"lat": "55,1820819704748",
+"tid_fra": "09:00",
+"tid_til": "09:55",
+"kategori": "bemaerk"
+}
+]
+}

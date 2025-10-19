@@ -1,0 +1,67 @@
+{
+"client": "alm-nordsjaelland",
+"count": 4,
+"generated": "2025-10-18T15:12:27.359348+02:00",
+"items": [
+{
+"obsid": "37863103",
+"art": "Husrødstjert",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Helsingør lystbådehavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Bjarne",
+"efternavn": "Steenberg",
+"lon": "12,615693362951482",
+"lat": "56,042870954334404",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863107",
+"art": "Sule",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Helsingør lystbådehavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Bjarne",
+"efternavn": "Steenberg",
+"lon": "12,615693362951482",
+"lat": "56,042870954334404",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863112",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Helsingør lystbådehavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Bjarne",
+"efternavn": "Steenberg",
+"lon": "12,615693362951482",
+"lat": "56,042870954334404",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37863108",
+"art": "Spætmejse",
+"antal": "10",
+"adf": "Rastende",
+"lok": "Melby Overdrev",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Karina",
+"efternavn": "Bødker",
+"lon": "11,994982919295596",
+"lat": "56,021073747893126",
+"tid_fra": "13:09",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

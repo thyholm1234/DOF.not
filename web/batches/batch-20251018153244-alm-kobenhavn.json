@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T15:32:44.594425+02:00",
+"items": [
+{
+"obsid": "37863224",
+"art": "Rød Glente",
+"antal": "5",
+"adf": "Trækkende mod sydvest",
+"lok": "Storedal, Stevns",
+"dof_afdeling": "DOF København",
+"fornavn": "Jan",
+"efternavn": "Pedersen",
+"lon": "12,441364851119909",
+"lat": "55,31096965184187",
+"tid_fra": "15:31",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

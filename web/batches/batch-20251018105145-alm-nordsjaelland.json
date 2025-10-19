@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T10:51:45.855421+02:00",
+"items": [
+{
+"obsid": "37860578",
+"art": "Musvåge",
+"antal": "37",
+"adf": "Trækkende mod sydvest",
+"lok": "Fredensborg By",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Thomas",
+"efternavn": "Qvist",
+"lon": "12,406323368516974",
+"lat": "55,97310005250142",
+"tid_fra": "10:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

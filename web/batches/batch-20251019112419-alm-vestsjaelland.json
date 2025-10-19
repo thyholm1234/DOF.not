@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T11:24:19.500755+02:00",
+"items": [
+{
+"obsid": "37869295",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Tamosen",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jens Poulsen",
+"efternavn": "Schmidt",
+"lon": "11,577907376125708",
+"lat": "55,37788535726034",
+"tid_fra": "10:40",
+"tid_til": "11:23",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-18T20:40:50.023543+02:00",
+"items": [
+{
+"obsid": "37866158",
+"art": "Stor Kobbersneppe, Islandsk (ssp. islandica)",
+"antal": "7",
+"adf": "Rastende",
+"lok": "Klydesøområdet, Kalvebod Fælled",
+"dof_afdeling": "DOF København",
+"fornavn": "Karsten",
+"efternavn": "Busk Laursen",
+"lon": "12,533182105467406",
+"lat": "55,58410004559812",
+"tid_fra": "15:25",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+}
+]
+}

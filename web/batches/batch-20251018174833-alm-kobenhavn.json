@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-18T17:48:33.952113+02:00",
+"items": [
+{
+"obsid": "37864524",
+"art": "Blå Kærhøg",
+"antal": "4",
+"adf": "Trækkende",
+"lok": "Sydvestpynten, del 3 af Kongelundsstranden",
+"dof_afdeling": "DOF København",
+"fornavn": "Steffen",
+"efternavn": "S. Nielsen",
+"lon": "12,559800983966436",
+"lat": "55,56111981929746",
+"tid_fra": "07:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37864525",
+"art": "Havørn",
+"antal": "3",
+"adf": "Overflyvende",
+"lok": "Sydvestpynten, del 3 af Kongelundsstranden",
+"dof_afdeling": "DOF København",
+"fornavn": "Steffen",
+"efternavn": "S. Nielsen",
+"lon": "12,559800983966436",
+"lat": "55,56111981929746",
+"tid_fra": "07:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

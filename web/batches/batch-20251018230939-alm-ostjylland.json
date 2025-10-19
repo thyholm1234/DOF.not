@@ -1,0 +1,22 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-18T23:09:39.673288+02:00",
+"items": [
+{
+"obsid": "37866518",
+"art": "Havørn",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Vissing Engsø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Torben",
+"efternavn": "Hvid",
+"lon": "10,007211275155354",
+"lat": "56,34781470848603",
+"tid_fra": "16:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

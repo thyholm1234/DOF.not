@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-18T19:54:42.298459+02:00",
+"items": [
+{
+"obsid": "37865491",
+"art": "Stillits",
+"antal": "30",
+"adf": "Trækkende mod vest",
+"lok": "Hyllekrog",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Preben",
+"efternavn": "Berg",
+"lon": "11,500045417719017",
+"lat": "54,59638373065738",
+"tid_fra": "07:25",
+"tid_til": "15:05",
+"kategori": "bemaerk"
+}
+]
+}

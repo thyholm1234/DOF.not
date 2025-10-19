@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-18T13:02:18.678960+02:00",
+"items": [
+{
+"obsid": "37860957",
+"art": "Musvåge",
+"antal": "609",
+"adf": "Trækkende",
+"lok": "Sønderskoven, Sønderborg",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Kjeld",
+"efternavn": "Jensen",
+"lon": "9,833701435239997",
+"lat": "54,90571702610228",
+"tid_fra": "11:12",
+"tid_til": "11:54",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37861897",
+"art": "Agerhøne",
+"antal": "25",
+"adf": "Rastende",
+"lok": "Juvre Enge, Rømø",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Ole Zoltan",
+"efternavn": "Gøller",
+"lon": "8,567081947680144",
+"lat": "55,18094017908638",
+"tid_fra": "11:55",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

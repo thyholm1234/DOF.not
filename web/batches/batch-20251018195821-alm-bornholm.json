@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-18T19:58:22.000320+02:00",
+"items": [
+{
+"obsid": "37865560",
+"art": "Trane",
+"antal": "380",
+"adf": "Trækkende mod syd",
+"lok": "Nørrekås",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Morten",
+"efternavn": "Schwennesen",
+"lon": "14,693881608545784",
+"lat": "55,10723546401534",
+"tid_fra": "15:35",
+"tid_til": "15:45",
+"kategori": "bemaerk"
+}
+]
+}

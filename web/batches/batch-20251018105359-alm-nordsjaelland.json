@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T10:53:59.879802+02:00",
+"items": [
+{
+"obsid": "37860646",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Bøgeholm Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Dorte",
+"efternavn": "Andersen",
+"lon": "12,532604937897359",
+"lat": "56,061020930417214",
+"tid_fra": "10:45",
+"tid_til": "10:53",
+"kategori": "bemaerk"
+}
+]
+}

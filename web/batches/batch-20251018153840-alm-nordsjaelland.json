@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-18T15:38:40.102826+02:00",
+"items": [
+{
+"obsid": "37863353",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Kronprins Frederiks Bro",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Jakob",
+"efternavn": "Dall",
+"lon": "12,03892410879568",
+"lat": "55,84294495594372",
+"tid_fra": "15:38",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

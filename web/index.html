@@ -45,11 +45,11 @@
 
   <!-- START: Pak præferenceblokken ind i .wrap for korrekt padding -->
   <section class="wrap">
-    <h2>Mine præferencer</h2>
+    <h3>Mine præferencer</h3>
     <p class="sub">Her vælger du, hvilke observationer du ønsker notifikationer for. SUB indeholder SU osv.</p>
     <p class="sub">Vælg præcis ét valg pr. lokalafdeling: Ingen, SU, SUB eller Bemærkelsesværdig– og klik <strong>Abonnér</strong>.</p>
     <p><a href="./advanced.html">⚙️ Avanceret filtrering (arter)</a></p>
-
+ 
     <section class="controls">
       <button id="save" aria-live="polite"><span data-role="label">Abonnér</span></button>
       <button id="unsubscribe" title="Afmeld push-abonnement på denne enhed" disabled>Afmeld</button>
@@ -63,28 +63,21 @@
   <!-- SLUT: .wrap -->
 
   <main class="wrap">
-    <h2>Dagens observationer</h2>
+    <h3>Dagens observationer</h3>
     <p class="sub">Her vises de nyeste observationer, som svarer til dine præferencer. Bemærkelsesværdige vises ikke</p>
-  <div class="toolbar">
-    <label class="row" title="Skjul linjer med 0 fund">
-      <input type="checkbox" id="toggle-hide-zero" checked>
-      Skjul 0‑fund
-    </label>
 
-    <label class="row" for="limit-select" title="Hvor mange observationer skal vises (fra i dag)">
-      Vis:
-      <select id="limit-select">
-        <option value="5">5</option>
-        <option value="10" selected>10</option>
-        <option value="all">Alle</option>
-      </select>
-    </label>
-  </div>
+    <!-- Forside-kontroller (bruges når ingen tråd er valgt) -->
+    <div id="front-controls"></div>
+    <div id="thread-status" class="sub"></div>
 
-  <div id="obs-status" role="status" aria-live="polite"></div>
-  <ul id="obs-list" class="obs-list"></ul>
+    <section class="panel" id="thread-panel" style="display:none">
+      <h2 id="thread-title"></h2>
+      <p class="sub" id="thread-sub"></p>
+      <ul id="thread-events" class="obs-list"></ul>
+    </section>
 
   <script src="./app.js"></script>
+  <script src="./thread.js"></script>
 
 </body>
 </html>

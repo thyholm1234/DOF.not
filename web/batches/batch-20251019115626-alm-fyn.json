@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T11:56:26.782992+02:00",
+"items": [
+{
+"obsid": "37869651",
+"art": "Stenvender",
+"antal": "8",
+"adf": "Overflyvende",
+"lok": "Kongshøj Å ved udløb",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Peter Pelle",
+"efternavn": "Clausen",
+"lon": "10,809833199997996",
+"lat": "55,21462939999836",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}
