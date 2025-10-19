@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-19T17:45:21.105044+02:00",
+"items": [
+{
+"obsid": "37872814",
+"art": "Tårnfalk",
+"antal": "7",
+"adf": "Rastende",
+"lok": "Favrholm Voldgrav",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Anette",
+"efternavn": "Kjærø",
+"lon": "12,284660303302717",
+"lat": "55,91134534738339",
+"tid_fra": "10:00",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37872825",
+"art": "Rød Glente",
+"antal": "4",
+"adf": "Trækkende mod sydvest",
+"lok": "Favrholm Voldgrav",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Anette",
+"efternavn": "Kjærø",
+"lon": "12,284660303302717",
+"lat": "55,91134534738339",
+"tid_fra": "10:00",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T18:36:38.659644+02:00",
+"items": [
+{
+"obsid": "37873313",
+"art": "Rød Glente",
+"antal": "3",
+"adf": "Trækkende mod sydvest",
+"lok": "Grønholt",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Henrik",
+"efternavn": "Boeg",
+"lon": "12,389046968972785",
+"lat": "55,94461721176208",
+"tid_fra": "09:30",
+"tid_til": "13:30",
+"kategori": "bemaerk"
+}
+]
+}

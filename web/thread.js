@@ -317,23 +317,26 @@
     top.append(left, right);
     article.appendChild(top);
 
-    // Titel: antal + artsnavn + event_count-badge
-    const antal = (s.max_antal_num != null ? String(s.max_antal_num)
-                  : (s.last_antal_num != null ? String(s.last_antal_num) : ''));
+    // Titel-linje: venstre (antal + art) | højre (event_count)
     const title = el('div','title');
+    const titleLeft = el('div','title-left');
     const katForArt = resolveKategori(s.art, s.last_kategori);
     const artCls = katForArt ? ` cat-${katForArt}` : '';
-    if (antal) title.appendChild(el('span', `count${artCls}`, antal));
-    const artSpan = el('span', `art-name${artCls}`, s.art || '');
-    title.appendChild(artSpan);
 
-    // event_count badge efter artsnavn
+    const antal = (s.max_antal_num != null ? String(s.max_antal_num)
+                  : (s.last_antal_num != null ? String(s.last_antal_num) : ''));
+    if (antal) titleLeft.appendChild(el('span', `count${artCls}`, antal));
+    titleLeft.appendChild(el('span', `art-name${artCls}`, s.art || ''));
+
+    const titleRight = el('div','title-right');
     const ec = (typeof s.event_count === 'number') ? s.event_count
               : (typeof s.num_events === 'number') ? s.num_events : 0;
     if (ec > 0) {
       const cls = 'badge event-count' + (ec >= 2 ? ' warn' : '');
-      title.appendChild(el('span', cls, `${ec} obs`));
+      titleRight.appendChild(el('span', cls, `${ec} obs`));
     }
+
+    title.append(titleLeft, titleRight);
     article.appendChild(title);
 
     const info = el('div','info');

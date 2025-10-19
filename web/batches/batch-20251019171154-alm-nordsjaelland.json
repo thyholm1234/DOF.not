@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T17:11:54.705337+02:00",
+"items": [
+{
+"obsid": "37872594",
+"art": "Havørn",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Strødam reservatet",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Alex",
+"efternavn": "Rosendal",
+"lon": "12,261928796506256",
+"lat": "55,95892574092762",
+"tid_fra": "09:45",
+"tid_til": "11:30",
+"kategori": "bemaerk"
+}
+]
+}

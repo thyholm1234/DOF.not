@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T18:04:13.705411+02:00",
+"items": [
+{
+"obsid": "37873016",
+"art": "Rød Glente",
+"antal": "6",
+"adf": "Trækkende mod sydvest",
+"lok": "Bøgeskov Havn",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,415629593847484",
+"lat": "55,369252882323536",
+"tid_fra": "11:22",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

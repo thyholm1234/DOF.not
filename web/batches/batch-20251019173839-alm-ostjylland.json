@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-19T17:38:39.337299+02:00",
+"items": [
+{
+"obsid": "37872743",
+"art": "Skægmejse",
+"antal": "21",
+"adf": "Rastende",
+"lok": "Hornbæk Enge, v. Gudenåen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "9,983290340418359",
+"lat": "56,45630141524799",
+"tid_fra": "09:55",
+"tid_til": "14:55",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37872745",
+"art": "Bramgås",
+"antal": "120",
+"adf": "Overflyvende",
+"lok": "Hornbæk Enge, v. Gudenåen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "9,983290340418359",
+"lat": "56,45630141524799",
+"tid_fra": "09:55",
+"tid_til": "14:55",
+"kategori": "bemaerk"
+}
+]
+}

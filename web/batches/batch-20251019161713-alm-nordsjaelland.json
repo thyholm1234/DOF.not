@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-19T16:17:13.244220+02:00",
+"items": [
+{
+"obsid": "37872146",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Skansebakken",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Per",
+"efternavn": "Ekberg",
+"lon": "12,337238432313955",
+"lat": "55,93525313453108",
+"tid_fra": "10:00",
+"tid_til": "15:50",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37872148",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Melby Overdrev",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Freya",
+"efternavn": "Mørup-Petersen",
+"lon": "11,994982919295596",
+"lat": "56,021073747893126",
+"tid_fra": "16:16",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

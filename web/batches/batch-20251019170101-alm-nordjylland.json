@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T17:01:01.653764+02:00",
+"items": [
+{
+"obsid": "37872545",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Onsild Ådal",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Carsten",
+"efternavn": "Svejstrup Sørensen",
+"lon": "9,752585484029183",
+"lat": "56,61934173126281",
+"tid_fra": "13:40",
+"tid_til": "14:12",
+"kategori": "bemaerk"
+}
+]
+}

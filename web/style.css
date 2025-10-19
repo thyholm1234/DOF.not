@@ -807,3 +807,19 @@ html[data-theme="dark"] .comments .comment .badge { background:#1f2a44; color:#c
 html[data-theme="dark"] .badge.event-count { background: var(--badge-bg); color: var(--badge-fg); }
 html[data-theme="dark"] .badge.event-count.warn { background:#3b2a0a; color:#facc15; border-color:#a16207; }
 
+.title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.title-left {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0px;
+}
+.title-right {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: baseline;
+}
+.title-right .badge.event-count { margin-left: 0; }  /* ingen ekstra margin når i højre side */

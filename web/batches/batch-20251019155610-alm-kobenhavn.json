@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-19T15:56:10.637737+02:00",
+"items": [
+{
+"obsid": "37871924",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Lejre St.",
+"dof_afdeling": "DOF København",
+"fornavn": "Søren Peter",
+"efternavn": "Pinnerup",
+"lon": "11,96818399403128",
+"lat": "55,60231023206696",
+"tid_fra": "15:30",
+"tid_til": "15:32",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37871927",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Trækkende mod sydvest",
+"lok": "Øm, Lejre",
+"dof_afdeling": "DOF København",
+"fornavn": "Søren Peter",
+"efternavn": "Pinnerup",
+"lon": "12,014301899679669",
+"lat": "55,59851332682382",
+"tid_fra": "15:50",
+"tid_til": "15:55",
+"kategori": "bemaerk"
+}
+]
+}

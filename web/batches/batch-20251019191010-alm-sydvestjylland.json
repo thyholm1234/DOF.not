@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T19:10:10.831796+02:00",
+"items": [
+{
+"obsid": "37873624",
+"art": "Bogfinke/Kvækerfinke",
+"antal": "1310",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Blåvand",
+"efternavn": "Fuglestation",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:30",
+"tid_til": "09:00",
+"kategori": "bemaerk"
+}
+]
+}

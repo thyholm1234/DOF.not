@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T18:22:12.295488+02:00",
+"items": [
+{
+"obsid": "37873193",
+"art": "Havørn",
+"antal": "4",
+"adf": "Rastende",
+"lok": "Borreby Mose",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,282021170877362",
+"lat": "55,22970617872048",
+"tid_fra": "10:30",
+"tid_til": "11:35",
+"kategori": "bemaerk"
+}
+]
+}

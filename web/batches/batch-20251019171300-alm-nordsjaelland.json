@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T17:13:00.885259+02:00",
+"items": [
+{
+"obsid": "37872596",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Strødamområdet og Strødam Engsø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Alex",
+"efternavn": "Rosendal",
+"lon": "12,264675378537506",
+"lat": "55,95902183462945",
+"tid_fra": "09:45",
+"tid_til": "11:30",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,67 @@
+{
+"client": "alm-ostjylland",
+"count": 4,
+"generated": "2025-10-19T17:39:47.660898+02:00",
+"items": [
+{
+"obsid": "37872749",
+"art": "Sølvhejre",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Hornbæk Enge, v. Gudenåen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "9,983290340418359",
+"lat": "56,45630141524799",
+"tid_fra": "09:55",
+"tid_til": "14:55",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37872752",
+"art": "Spidsand",
+"antal": "24",
+"adf": "Rastende",
+"lok": "Hornbæk Enge, v. Gudenåen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "9,983290340418359",
+"lat": "56,45630141524799",
+"tid_fra": "09:55",
+"tid_til": "14:55",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37872759",
+"art": "Skeand",
+"antal": "30",
+"adf": "Rastende",
+"lok": "Hornbæk Enge, v. Gudenåen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "9,983290340418359",
+"lat": "56,45630141524799",
+"tid_fra": "09:55",
+"tid_til": "14:55",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37872760",
+"art": "Lille Lappedykker",
+"antal": "15",
+"adf": "Rastende",
+"lok": "Hornbæk Enge, v. Gudenåen",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Lars",
+"efternavn": "Tom-Petersen",
+"lon": "9,983290340418359",
+"lat": "56,45630141524799",
+"tid_fra": "09:55",
+"tid_til": "14:55",
+"kategori": "bemaerk"
+}
+]
+}

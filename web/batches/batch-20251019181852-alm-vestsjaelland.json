@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T18:18:52.404025+02:00",
+"items": [
+{
+"obsid": "37873158",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Skælskør Nor",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Orla",
+"efternavn": "Jakobsen",
+"lon": "11,29087963141501",
+"lat": "55,255434523832605",
+"tid_fra": "12:10",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

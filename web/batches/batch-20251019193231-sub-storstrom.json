@@ -1,0 +1,22 @@
+{
+"client": "sub-storstrom",
+"count": 1,
+"generated": "2025-10-19T19:32:31.970284+02:00",
+"items": [
+{
+"obsid": "37873785",
+"art": "Gulirisk",
+"antal": "2",
+"adf": "Trækkende mod syd",
+"lok": "Gedser Odde",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Gedser",
+"efternavn": "Fuglestation",
+"lon": "11,969709268392675",
+"lat": "54,55956721635184",
+"tid_fra": "07:17",
+"tid_til": "12:17",
+"kategori": "sub"
+}
+]
+}

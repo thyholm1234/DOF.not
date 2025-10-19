@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T16:05:01.924934+02:00",
+"items": [
+{
+"obsid": "37872002",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Nedermose, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,5739030832774",
+"lat": "57,74430623547674",
+"tid_fra": "13:00",
+"tid_til": "14:00",
+"kategori": "bemaerk"
+}
+]
+}

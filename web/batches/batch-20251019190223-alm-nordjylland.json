@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T19:02:23.228608+02:00",
+"items": [
+{
+"obsid": "37873541",
+"art": "Havørn",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Juelstrup Sø",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Terje",
+"efternavn": "Seidenfaden",
+"lon": "9,808309328576042",
+"lat": "56,89517370172794",
+"tid_fra": "09:20",
+"tid_til": "10:50",
+"kategori": "bemaerk"
+}
+]
+}

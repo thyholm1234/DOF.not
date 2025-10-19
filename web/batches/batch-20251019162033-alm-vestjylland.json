@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T16:20:33.105209+02:00",
+"items": [
+{
+"obsid": "37872197",
+"art": "Trane",
+"antal": "2",
+"adf": "Overflyvende",
+"lok": "Stoubæk Krat",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Leif",
+"efternavn": "Novrup",
+"lon": "8,85464928503392",
+"lat": "56,30789667023174",
+"tid_fra": "16:19",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

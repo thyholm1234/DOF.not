@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T18:30:03.144178+02:00",
+"items": [
+{
+"obsid": "37873246",
+"art": "Musvit",
+"antal": "50",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37873247",
+"art": "Blåmejse",
+"antal": "50",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Bent",
+"efternavn": "Jakobsen",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

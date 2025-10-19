@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T19:11:21.810015+02:00",
+"items": [
+{
+"obsid": "37873631",
+"art": "Lille Korsnæb",
+"antal": "12",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Blåvand",
+"efternavn": "Fuglestation",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "09:00",
+"tid_til": "09:30",
+"kategori": "bemaerk"
+}
+]
+}

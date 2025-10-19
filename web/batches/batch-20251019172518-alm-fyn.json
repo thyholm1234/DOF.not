@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T17:25:18.558277+02:00",
+"items": [
+{
+"obsid": "37872639",
+"art": "Musvåge",
+"antal": "142",
+"adf": "Trækkende til/fra overnatning",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,850200653076174",
+"lat": "55,29817678958197",
+"tid_fra": "09:50",
+"tid_til": "12:00",
+"kategori": "bemaerk"
+}
+]
+}

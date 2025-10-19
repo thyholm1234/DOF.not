@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T18:15:28.650822+02:00",
+"items": [
+{
+"obsid": "37873112",
+"art": "Grønspætte",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Brønderslev",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Steen",
+"efternavn": "Nysted",
+"lon": "9,943617169931258",
+"lat": "57,27258707368301",
+"tid_fra": "08:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

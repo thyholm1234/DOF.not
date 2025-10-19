@@ -1,0 +1,22 @@
+{
+"client": "sub-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T16:11:37.466651+02:00",
+"items": [
+{
+"obsid": "37872082",
+"art": "Stor Korsnæb",
+"antal": "5",
+"adf": "Overflyvende",
+"lok": "Melby Overdrev",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Freya",
+"efternavn": "Mørup-Petersen",
+"lon": "11,994982919295596",
+"lat": "56,021073747893126",
+"tid_fra": "16:10",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

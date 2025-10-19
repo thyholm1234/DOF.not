@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T19:40:16.263652+02:00",
+"items": [
+{
+"obsid": "37873823",
+"art": "Sortstrubet Bynkefugl",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Flyndersø ved Korshage",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Anders",
+"efternavn": "Wiig Nielsen",
+"lon": "11,76002504746548",
+"lat": "55,969898343933835",
+"tid_fra": "13:06",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

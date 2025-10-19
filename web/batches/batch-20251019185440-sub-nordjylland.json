@@ -1,0 +1,22 @@
+{
+"client": "sub-nordjylland",
+"count": 1,
+"generated": "2025-10-19T18:54:40.329599+02:00",
+"items": [
+{
+"obsid": "37873487",
+"art": "Bjergpiber",
+"antal": "3",
+"adf": "Rastende",
+"lok": "Gravlev Sø",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Terje",
+"efternavn": "Seidenfaden",
+"lon": "9,825884191998203",
+"lat": "56,844557633497054",
+"tid_fra": "07:15",
+"tid_til": "09:10",
+"kategori": "sub"
+}
+]
+}

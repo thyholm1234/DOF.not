@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T17:55:14.024503+02:00",
+"items": [
+{
+"obsid": "37872938",
+"art": "Blisgås",
+"antal": "75",
+"adf": "Overflyvende",
+"lok": "Veksø Mose",
+"dof_afdeling": "DOF København",
+"fornavn": "Gert",
+"efternavn": "Østerbye",
+"lon": "12,248292166778283",
+"lat": "55,743999098938076",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

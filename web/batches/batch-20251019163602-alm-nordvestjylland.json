@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-19T16:36:02.733714+02:00",
+"items": [
+{
+"obsid": "37872381",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Draget ved Skibstedfjord",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Pia",
+"efternavn": "Christiansen",
+"lon": "8,414368349379824",
+"lat": "56,670212663690364",
+"tid_fra": "15:30",
+"tid_til": "15:35",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T18:04:15.796099+02:00",
+"items": [
+{
+"obsid": "37873021",
+"art": "Storspove",
+"antal": "88",
+"adf": "Fouragerende",
+"lok": "Sandager på Lolland",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Lars",
+"efternavn": "Munk",
+"lon": "11,592069222292102",
+"lat": "54,66565599524869",
+"tid_fra": "18:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T18:05:22.191793+02:00",
+"items": [
+{
+"obsid": "37873023",
+"art": "Bramgås",
+"antal": "3000",
+"adf": "Rastende",
+"lok": "Sandager på Lolland",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Lars",
+"efternavn": "Munk",
+"lon": "11,592539156670574",
+"lat": "54,66936190222543",
+"tid_fra": "16:30",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T17:28:37.100392+02:00",
+"items": [
+{
+"obsid": "37872654",
+"art": "Grønspætte",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Knudshoved Færgehavn",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Jørn",
+"efternavn": "Knudsen",
+"lon": "10,838265895581573",
+"lat": "55,29625150555472",
+"tid_fra": "09:50",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T19:11:19.690252+02:00",
+"items": [
+{
+"obsid": "37873628",
+"art": "Troldand",
+"antal": "1500",
+"adf": "Rastende",
+"lok": "Stege Sukkerfabriks jordbassiner",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Thomas B.",
+"efternavn": "Olsen",
+"lon": "12,26520881716521",
+"lat": "54,980949103376474",
+"tid_fra": "19:09",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

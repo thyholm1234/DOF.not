@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T19:03:30.038934+02:00",
+"items": [
+{
+"obsid": "37873554",
+"art": "Sortgrå Ryle",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Blåvand",
+"efternavn": "Fuglestation",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:00",
+"tid_til": "08:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37873561",
+"art": "Havlit",
+"antal": "1",
+"adf": "Trækkende mod syd",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Blåvand",
+"efternavn": "Fuglestation",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "08:00",
+"tid_til": "08:30",
+"kategori": "bemaerk"
+}
+]
+}

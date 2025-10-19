@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T16:19:27.155979+02:00",
+"items": [
+{
+"obsid": "37872179",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Næsby Strand (Lolland)",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Svend",
+"efternavn": "Erik Jessen",
+"lon": "11,064148054783848",
+"lat": "54,75172708859664",
+"tid_fra": "11:47",
+"tid_til": "12:12",
+"kategori": "bemaerk"
+}
+]
+}

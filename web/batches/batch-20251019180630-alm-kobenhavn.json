@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T18:06:30.729438+02:00",
+"items": [
+{
+"obsid": "37873028",
+"art": "Kaspisk Måge",
+"antal": "6",
+"adf": "Rastende",
+"lok": "Bøgeskov Havn",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,415629593847484",
+"lat": "55,369252882323536",
+"tid_fra": "08:10",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-kobenhavn",
+"count": 2,
+"generated": "2025-10-19T18:13:13.575959+02:00",
+"items": [
+{
+"obsid": "37873086",
+"art": "Sule",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Sydvestpynten, del 3 af Kongelundsstranden",
+"dof_afdeling": "DOF København",
+"fornavn": "Steffen",
+"efternavn": "S. Nielsen",
+"lon": "12,559800983966436",
+"lat": "55,56111981929746",
+"tid_fra": "07:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37873084",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bøgeskov Havn",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,415629593847484",
+"lat": "55,369252882323536",
+"tid_fra": "08:10",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

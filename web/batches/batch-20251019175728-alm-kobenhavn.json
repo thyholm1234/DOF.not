@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T17:57:28.905349+02:00",
+"items": [
+{
+"obsid": "37872959",
+"art": "Dværgfalk",
+"antal": "2",
+"adf": "Trækkende mod sydvest",
+"lok": "Bøgeskov Havn",
+"dof_afdeling": "DOF København",
+"fornavn": "Tim",
+"efternavn": "Andersen",
+"lon": "12,415629593847484",
+"lat": "55,369252882323536",
+"tid_fra": "09:29",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

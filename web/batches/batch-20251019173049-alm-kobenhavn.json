@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T17:30:49.469851+02:00",
+"items": [
+{
+"obsid": "37872675",
+"art": "Knarand",
+"antal": "20",
+"adf": "Rastende",
+"lok": "Utterslev Mose Del I (Vestmosen)",
+"dof_afdeling": "DOF København",
+"fornavn": "Jørgen",
+"efternavn": "Eng Jensen",
+"lon": "12,494200162870682",
+"lat": "55,71350940418469",
+"tid_fra": "10:25",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

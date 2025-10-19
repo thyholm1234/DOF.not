@@ -1,0 +1,37 @@
+{
+"client": "alm-vestsjaelland",
+"count": 2,
+"generated": "2025-10-19T19:27:59.900666+02:00",
+"items": [
+{
+"obsid": "37873733",
+"art": "Pibeand",
+"antal": "388",
+"adf": "Rastende",
+"lok": "Sprogø",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,963839119274407",
+"lat": "55,33228530952553",
+"tid_fra": "12:55",
+"tid_til": "14:50",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37873735",
+"art": "Krikand",
+"antal": "107",
+"adf": "Rastende",
+"lok": "Sprogø",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,963839119274407",
+"lat": "55,33228530952553",
+"tid_fra": "12:55",
+"tid_til": "14:50",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-nordvestjylland",
+"count": 2,
+"generated": "2025-10-19T19:12:28.584376+02:00",
+"items": [
+{
+"obsid": "37873643",
+"art": "Blå Kærhøg",
+"antal": "7",
+"adf": "Rastende på overnatningsplads",
+"lok": "Selbjerg Vejle",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens",
+"efternavn": "Frimer Andersen",
+"lon": "9,04947523718704",
+"lat": "57,068390883654274",
+"tid_fra": "18:00",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37873651",
+"art": "Rørhøg",
+"antal": "5",
+"adf": "Rastende på overnatningsplads",
+"lok": "Selbjerg Vejle",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens",
+"efternavn": "Frimer Andersen",
+"lon": "9,04947523718704",
+"lat": "57,068390883654274",
+"tid_fra": "18:00",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+}
+]
+}

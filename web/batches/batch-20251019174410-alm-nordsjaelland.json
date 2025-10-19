@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T17:44:10.632789+02:00",
+"items": [
+{
+"obsid": "37872803",
+"art": "Blisgås",
+"antal": "42",
+"adf": "Rastende",
+"lok": "Favrholm Voldgrav",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Anette",
+"efternavn": "Kjærø",
+"lon": "12,284660303302717",
+"lat": "55,91134534738339",
+"tid_fra": "10:00",
+"tid_til": "13:00",
+"kategori": "bemaerk"
+}
+]
+}

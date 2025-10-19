@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-19T15:48:36.308084+02:00",
+  "received_at": "2025-10-19T19:40:18.330005+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "443 Musvåge, Nyeng",
-      "body": "Bent, Jakobsen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37871888&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-sydvestjylland",
+      "title": "2 Sortstrubet Bynkefugl, Flyndersø ved Korshage",
+      "body": "Anders, Wiig Nielsen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37873823&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-vestsjaelland",
       "renotify": true,
       "regions": [
-        "DOF Sydvestjylland"
+        "DOF Vestsjælland"
       ],
       "categories": [
         "bemaerk"

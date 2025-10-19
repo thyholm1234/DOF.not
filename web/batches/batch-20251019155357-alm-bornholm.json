@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-19T15:53:57.016172+02:00",
+"items": [
+{
+"obsid": "37871912",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Bastemose",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Poul",
+"efternavn": "Mogensen",
+"lon": "14,942942487484974",
+"lat": "55,125602866181595",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

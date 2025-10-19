@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-19T19:16:59.921452+02:00",
+"items": [
+{
+"obsid": "37873684",
+"art": "Sølvhejre",
+"antal": "15",
+"adf": "Trækkende til/fra overnatning",
+"lok": "Selbjerg Vejle",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Jens",
+"efternavn": "Frimer Andersen",
+"lon": "9,04947523718704",
+"lat": "57,068390883654274",
+"tid_fra": "18:00",
+"tid_til": "18:30",
+"kategori": "bemaerk"
+}
+]
+}

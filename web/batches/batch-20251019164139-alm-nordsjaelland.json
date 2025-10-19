@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T16:41:39.247471+02:00",
+"items": [
+{
+"obsid": "37872444",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Søborg Sø",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Peter",
+"efternavn": "Houlberg",
+"lon": "12,32170161878679",
+"lat": "56,07541858359863",
+"tid_fra": "11:30",
+"tid_til": "15:00",
+"kategori": "bemaerk"
+}
+]
+}

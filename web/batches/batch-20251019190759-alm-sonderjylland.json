@@ -1,0 +1,37 @@
+{
+"client": "alm-sonderjylland",
+"count": 2,
+"generated": "2025-10-19T19:07:59.350276+02:00",
+"items": [
+{
+"obsid": "37873599",
+"art": "Sølvhejre",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Torup Made, Midtals",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Kaj",
+"efternavn": "Abildgaard",
+"lon": "9,926484500832535",
+"lat": "54,95388669833926",
+"tid_fra": "14:45",
+"tid_til": "15:15",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37873600",
+"art": "Havørn",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Torup Made, Midtals",
+"dof_afdeling": "DOF Sønderjylland",
+"fornavn": "Kaj",
+"efternavn": "Abildgaard",
+"lon": "9,926484500832535",
+"lat": "54,95388669833926",
+"tid_fra": "14:45",
+"tid_til": "15:15",
+"kategori": "bemaerk"
+}
+]
+}

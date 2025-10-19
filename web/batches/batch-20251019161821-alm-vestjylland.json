@@ -1,0 +1,22 @@
+{
+"client": "alm-vestjylland",
+"count": 1,
+"generated": "2025-10-19T16:18:21.247664+02:00",
+"items": [
+{
+"obsid": "37872167",
+"art": "Bramgås",
+"antal": "2500",
+"adf": "Rastende",
+"lok": "Værnengene",
+"dof_afdeling": "DOF Vestjylland",
+"fornavn": "Bjarne",
+"efternavn": "Holm",
+"lon": "8,238629133716955",
+"lat": "55,85446228956158",
+"tid_fra": "15:15",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

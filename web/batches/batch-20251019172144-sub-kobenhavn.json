@@ -1,0 +1,22 @@
+{
+"client": "sub-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T17:21:44.283001+02:00",
+"items": [
+{
+"obsid": "37872627",
+"art": "Stor Korsnæb",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Charlottenlund (Gentofte)",
+"dof_afdeling": "DOF København",
+"fornavn": "Alex",
+"efternavn": "Rosendal",
+"lon": "12,571777581906646",
+"lat": "55,74626509195944",
+"tid_fra": "08:52",
+"tid_til": "08:55",
+"kategori": "sub"
+}
+]
+}
