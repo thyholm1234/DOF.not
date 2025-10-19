@@ -1,0 +1,23 @@
+{
+"client": "alm-ostjylland",
+"count": 1,
+"generated": "2025-10-20T01:48:53.391248+02:00",
+"items": [
+{
+"obsid": "37874396",
+"loknr": "905448",
+"art": "Sangdrossel",
+"antal": "53",
+"adf": "Trækkende",
+"lok": "Gellerupparken Toveshøj",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Christian",
+"efternavn": "Vemmelund Helligsø",
+"lon": "10,136546771449865",
+"lat": "56,158903617777895",
+"tid_fra": "01:40",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

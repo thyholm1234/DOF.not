@@ -1264,6 +1264,7 @@ def _write_digest_file(cid: str, rows_c: pd.DataFrame) -> Tuple[str, List[dict],
 
         items.append({
             "obsid": r.get("Obsid",""),
+            "loknr": r.get("Loknr",""),          # ← NYT: send loknr med
             "art": r.get("Artnavn",""),
             "antal": r.get("Antal",""),
             "adf": r.get("Adfbeskrivelse",""),

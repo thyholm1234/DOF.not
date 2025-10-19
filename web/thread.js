@@ -159,6 +159,29 @@
       .trim();
   }
 
+  // Ensret badge-kolonnebredde i et comments‑afsnit (deaktiver lokal override)
+  function normalizeCommentLayout(commentsEl) {
+    // no-op: vi bruger kun global måling
+  }
+
+  // Global måling – fælles start for indholdskolonnen
+  function updateGlobalCommentBadgeWidth() {
+    try {
+      const pills = document.querySelectorAll('.comment > .badge');
+      let max = 0;
+      pills.forEach(p => { const w = p.offsetWidth || 0; if (w > max) max = w; });
+      if (max > 0) document.documentElement.style.setProperty('--comment-badge-w', (Math.ceil(max) + 6) + 'px');
+    } catch {}
+  }
+
+  // Mål efter layout (næste frame + fallback)
+  function scheduleBadgeWidthMeasure() {
+    requestAnimationFrame(() => {
+      updateGlobalCommentBadgeWidth();
+      setTimeout(updateGlobalCommentBadgeWidth, 0);
+    });
+  }
+
   // Klassifikation af arter (fra CSV)
   let klassMap = null; // Map(lowercased navn -> 'alm'|'sub'|'su')
   function normName(s) {
@@ -282,13 +305,23 @@
       const thread = document.createElement('div');
       thread.className = 'comments';
       notes.forEach(n => {
-        const row = document.createElement('div'); row.className = 'comment'; row.style.display='flex'; row.style.gap='8px';
+        const row = document.createElement('div'); 
+        row.className = 'comment';
+        // fjern inline flex-styles – CSS grid styrer layoutet
         const pill = document.createElement('span'); pill.textContent = n.type; pill.className = 'badge';
         pill.style.background = '#eef2ff'; pill.style.color = '#1e3a8a'; pill.style.fontSize = '11px';
         const txt = document.createElement('div'); txt.className = 'comment-text'; txt.textContent = n.text;
         row.appendChild(pill); row.appendChild(txt); thread.appendChild(row);
       });
       article.appendChild(thread);
+      // Ensret kolonnebredde
+      // normalizeCommentLayout(thread);    // ← fjernet lokal override
+      scheduleBadgeWidthMeasure();          // ← globalt mål
+    }
+
+    // Billeder under noter (kun hvis obsid findes). Async – tilføjes når de er hentet.
+    if (ev.obsid) {
+      renderObsImagesSection(article, ev.obsid);
     }
 
     // Link
@@ -351,7 +384,7 @@
     if (s.last_observer) info.appendChild(el('span','', s.last_observer));
     article.appendChild(info);
 
-    // Kommentarspor fra index.json (når kun 1 obs → felter findes)
+    // Kommentarspor fra index.json
     const notes = [];
     function pushNotes(txt, label) {
       const one = normalizeNoteText(txt);
@@ -361,7 +394,8 @@
     pushNotes(s.turnoter, 'Turnote');
     pushNotes(s.fuglnoter, 'Obsnote');
 
-    if (notes.length) {
+    // Kun vis noter i summary når der er >1 obs i tråden
+    if (notes.length && ec > 1) {
       const hr = document.createElement('hr');
       hr.style.border = '0';
       hr.style.borderTop = '1px solid var(--line)';
@@ -371,7 +405,8 @@
       const thread = document.createElement('div');
       thread.className = 'comments';
       notes.forEach(n => {
-        const row = document.createElement('div'); row.className = 'comment'; row.style.display='flex'; row.style.gap='8px';
+        const row = document.createElement('div'); 
+        row.className = 'comment';
         const pill = document.createElement('span'); pill.textContent = n.type; pill.className = 'badge';
         pill.style.background = '#eef2ff'; pill.style.color = '#1e3a8a'; pill.style.fontSize = '11px';
         const txt = document.createElement('div'); txt.className = 'comment-text'; txt.textContent = n.text;
@@ -384,30 +419,8 @@
     const fallbackHref = `./thread.html?date=${encodeURIComponent(d)}&id=${encodeURIComponent(s.thread_id)}`;
     const a = document.createElement('a'); a.style.display = 'block';
 
-    // Behold linking-logikken med count kun her (ingen badge)
-    const count = Number.isFinite(s.event_count) ? s.event_count
-                 : (typeof s.event_count === 'number' ? s.event_count : (s.event_count || 0));
-    if (count === 1) {
-      if (s.last_obsid) {
-        a.href = dofUrl(s.last_obsid);
-      } else {
-        a.href = fallbackHref;
-        a.addEventListener('click', async (e) => {
-          try {
-            e.preventDefault();
-            const r = await fetch(`./api/obs/thread/${encodeURIComponent(d)}/${encodeURIComponent(s.thread_id)}`, { cache:'no-cache' });
-            if (r.ok) {
-              const data = await r.json();
-              const first = (data.events || []).find(ev => ev && ev.obsid);
-              if (first && first.obsid) { location.href = dofUrl(first.obsid); return; }
-            }
-          } catch {}
-          location.href = fallbackHref;
-        });
-      }
-    } else {
-      a.href = fallbackHref;
-    }
+    // Åbn altid tråden – også når der kun er 1 obs
+    a.href = fallbackHref;
 
     a.appendChild(article);
     li.appendChild(a);
@@ -743,7 +756,115 @@
       $st.textContent = '';
     }
   
-    // Initialize based on route
+    // Hent billeder fra serverens scraper-endpoint
+async function fetchObsImages(obsid) {
+  try {
+    const r = await fetch(`/api/obs/images?obsid=${encodeURIComponent(obsid)}`, { cache: 'no-store' });
+    if (!r.ok) return [];
+    const data = await r.json();
+    return Array.isArray(data.images) ? data.images : [];
+  } catch {
+    return [];
+  }
+}
+
+// Indsæt billeder som "kommentar-rækker" i note-kolonnen
+async function renderObsImagesSection(cardEl, obsid) {
+  if (!obsid || !cardEl) return;
+
+  const imgs = await fetchObsImages(obsid);
+  if (!imgs.length) return;
+
+  // Find eksisterende kommentar-område, eller opret et nyt med HR
+  let comments = cardEl.querySelector('.comments');
+  if (!comments) {
+    const hr = document.createElement('hr');
+    hr.style.border = '0';
+    hr.style.borderTop = '1px solid var(--line)';
+    hr.style.margin = '8px 0 10px';
+    cardEl.appendChild(hr);
+
+    comments = document.createElement('div');
+    comments.className = 'comments';
+    cardEl.appendChild(comments);
+  }
+
+  // Tilføj én række pr. billede: badge "Pic#N" + billedet som indhold
+  imgs.forEach((full, idx) => {
+    const row = document.createElement('div');
+    row.className = 'comment'; // CSS grid styrer kolonner
+
+    const pill = document.createElement('span');
+    pill.textContent = `Pic#${idx + 1}`;
+    pill.className = 'badge';
+    pill.style.background = '#eef2ff';
+    pill.style.color = '#1e3a8a';
+    pill.style.fontSize = '11px';
+
+    const media = document.createElement('div');
+    media.className = 'comment-media';
+
+    const box = document.createElement('div');
+    box.className = 'img-box';
+    box.title = 'Åbn billede';
+    box.setAttribute('role', 'button');
+    box.tabIndex = 0;
+
+    const img = document.createElement('img');
+    img.src = full;
+    img.loading = 'lazy';
+    img.alt = `Pic#${idx + 1}`;
+
+    const open = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      window.open(full, '_blank', 'noopener');
+    };
+    box.addEventListener('click', open);
+    box.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') open(e);
+    });
+
+    box.appendChild(img);
+    media.appendChild(box);
+    row.appendChild(pill);
+    row.appendChild(media);
+    comments.appendChild(row);
+  });
+
+  // Ensret efter billeder er tilføjet
+  // normalizeCommentLayout(comments);     // ← fjernet lokal override
+  scheduleBadgeWidthMeasure();             // ← globalt mål
+}
+
+// Minimal styling til kommentar-layout m. fælles badge-kolonne (global)
+const style = document.createElement('style');
+style.textContent = `
+  .comments { --badge-w: var(--comment-badge-w, 72px); }
+  .comment {
+    display: grid;
+    grid-template-columns: var(--badge-w) 1fr;
+    column-gap: 8px;
+    align-items: flex-start;
+  }
+  .comment > .badge {
+    justify-self: end;
+    white-space: nowrap;
+  }
+  .comment > .comment-text,
+  .comment > .comment-media {
+    min-width: 0;
+    margin: 0;             /* ← nulstil margin */
+    padding: 0;            /* ← nulstil padding */
+  }
+
+  .comment-media { display: block; }
+  .comment-media .img-box { display: inline-block; position: relative; cursor: zoom-in; margin: 0; padding: 0; }
+  .comment-media img { max-height: 110px; border-radius: 4px; display: block; margin: 0; }
+`;
+document.head.appendChild(style);
+
+// Initialize based on route
     const route = parseRoute();
     if (route.id) {
       loadThread(route.date, route.id);

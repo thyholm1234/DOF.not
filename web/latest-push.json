@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-19T22:09:55.592465+02:00",
+  "received_at": "2025-10-20T01:48:55.457901+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "15 Rød Glente, Løgtved",
-      "body": "Jesper, Johannes Madsen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37874542&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-vestsjaelland",
+      "title": "53 Sangdrossel, Gellerupparken Toveshøj",
+      "body": "Christian, Vemmelund Helligsø",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37874396&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [
-        "DOF Vestsjælland"
+        "DOF Østjylland"
       ],
       "categories": [
         "bemaerk"

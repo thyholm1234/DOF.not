@@ -1,0 +1,22 @@
+{
+"client": "sub-ostjylland",
+"count": 1,
+"generated": "2025-10-20T01:18:04.766854+02:00",
+"items": [
+{
+"obsid": "37874727",
+"art": "Kongeørn",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Gellerupparken Toveshøj",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Christian",
+"efternavn": "Vemmelund Helligsø",
+"lon": "10,136546771449865",
+"lat": "56,158903617777895",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "sub"
+}
+]
+}

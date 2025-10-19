@@ -1094,3 +1094,20 @@ body.page-advanced section.controls {
   max-width: 100%;
   box-sizing: border-box;
 }
+
+/* Billeder under noter */
+.obs-item .pics { display: flex; flex-direction: column; gap: 6px; }
+.obs-item .pics .pic-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.obs-item .pics .badge { font-size: 11px; background: #eef2ff; color: #1e3a8a; }
+.obs-item .pics img {
+  display: block;
+  max-width: min(240px, 60vw);
+  height: auto;
+  max-height: 140px;
+  border-radius: 6px;
+  border: 1px solid var(--card-border);
+}

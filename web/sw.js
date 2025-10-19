@@ -395,7 +395,6 @@ async function handlePush(event) {
           if (wantFilter) {
             const filtered = applyAllFilters(items, prefs, overrides);
             if (filtered.length === 0) return; // intet matcher → ingen notifikationer
-            // Mutér arrayet in-place, så eksisterende rendering bruger filtreret liste
             items.splice(0, items.length, ...filtered);
           }
 
@@ -410,13 +409,22 @@ async function handlePush(event) {
             const title = [[antal, art].filter(Boolean).join(' '), lok].filter(Boolean).join(', ') || fbTitle;
             const body  = [adf, navn].filter(Boolean).join(', ') || fbBody;
 
-            const url = it.obsid
-              ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(it.obsid)}&summering=tur&obs=obs`
-              : fbUrl;
+            const cat = String(it.kategori ?? it.cat ?? it.last_kategori ?? '').toLowerCase();
 
-            const tag = it.obsid
-              ? `obs-${it.obsid}`
-              : `obs-${crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)}`;
+            // Foretræk intern tråd for su/sub, men behold DOFbasen for bemærk/andet
+            let url;
+            if ((cat === 'su' || cat === 'sub') && it.ymd && it.thread_id) {
+              // Brug loknr-baseret thread_id fra serveren
+              url = new URL(`https://dofnot.chfotofilm.dk/thread.html?date=${encodeURIComponent(it.ymd)}&id=${encodeURIComponent(it.thread_id)}`, SCOPE).toString();
+            } else {
+              url = it.obsid
+                ? `https://dofbasen.dk/popobs.php?obsid=${encodeURIComponent(it.obsid)}&summering=tur&obs=obs`
+                : fbUrl;
+            }
+
+            const tag = it.thread_id
+              ? `thr-${it.thread_id}`
+              : (it.obsid ? `obs-${it.obsid}` : `obs-${crypto.randomUUID?.() ?? Math.random().toString(36).slice(2)}`);
 
             return self.registration.showNotification(title, {
               body,
@@ -433,7 +441,6 @@ async function handlePush(event) {
       }
     }
   } catch (e) {
-    // Netværksfejl o.l. — vi falder tilbage nedenfor
     console.warn('[SW] batch fetch/parse failed:', e);
   }
 
@@ -453,18 +460,46 @@ async function handlePush(event) {
 
 // --- ÉN fælles notificationclick-handler (fjern dubletter) ---
 self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
-  const rawUrl = (event.notification.data && event.notification.data.url) || '/';
+  event.notification?.close();
+
+  const rawUrl = event.notification?.data?.url || '/';
+  const target = new URL(rawUrl, SCOPE).toString();
 
   event.waitUntil((async () => {
-    const base = (self.registration && self.registration.scope) || self.location.href;
-    const targetUrl = new URL(rawUrl, base).href;
+    try {
+      const all = await clients.matchAll({ type: 'window', includeUncontrolled: true });
 
-    const all = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
-    const client = all.find((c) => c.url === targetUrl);
+      // 1) Hvis en fane allerede er præcis på target → fokusér den
+      for (const c of all) {
+        if (c.url === target && 'focus' in c) {
+          return c.focus();
+        }
+      }
 
-    if (client) { await client.focus(); return; }
-    await self.clients.openWindow(targetUrl);
+      // 2) Fokusér første fane på samme origin og forsøg at navigere
+      for (const c of all) {
+        try {
+          if (new URL(c.url).origin === self.location.origin) {
+            await (c.focus?.());
+            if ('navigate' in c) {
+              try { return await c.navigate(target); } catch {}
+            }
+            break; // prøv ny fane hvis navigate ikke findes/fejler
+          }
+        } catch {}
+      }
+
+      // 3) Åbn ny fane/vinge
+      try {
+        return await clients.openWindow(target);
+      } catch (e) {
+        // 4) Sikkerhedsnet: åbn forsiden
+        return clients.openWindow(toURL('/'));
+      }
+    } catch (e) {
+      // sidste sikkerhedsnet
+      return clients.openWindow(toURL('/'));
+    }
   })());
 });
 

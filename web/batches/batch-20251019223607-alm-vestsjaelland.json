@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T22:36:07.308427+02:00",
+"items": [
+{
+"obsid": "37874561",
+"art": "Stor Tornskade",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Svenstrup Overdrev",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Peter",
+"efternavn": "Engelschmidt",
+"lon": "11,089553474594142",
+"lat": "55,734572184972414",
+"tid_fra": "16:00",
+"tid_til": "17:00",
+"kategori": "bemaerk"
+}
+]
+}

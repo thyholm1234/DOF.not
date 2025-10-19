@@ -15,6 +15,9 @@ import sqlite3              # ← NYT
 import time                 # ← NYT
 import uuid                 # ← NYT
 from base64 import urlsafe_b64decode  # ← NYT
+import html  # NEW
+import urllib.request  # NEW
+from urllib.parse import urljoin, urlparse, parse_qs  # NEW
 
 from fastapi import FastAPI, HTTPException, Request, Query, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
@@ -23,6 +26,7 @@ from fastapi.staticfiles import StaticFiles
 from pywebpush import WebPushException, webpush
 from starlette.responses import RedirectResponse
 from zoneinfo import ZoneInfo
+import unicodedata
 
 mimetypes.add_type("application/manifest+json", ".webmanifest")
 
@@ -115,6 +119,98 @@ def _merge_push_headers(payload: dict, default_urgency: str = "high") -> dict:
     # Bevar urgency fra payload HVIS den er sat, ellers brug "high"
     headers.setdefault("Urgency", str(payload.get("urgency", default_urgency)))
     return headers
+
+# ─────────────── HTML fetch + image URL extraction (DOFbasen) ───────────────
+_IMG_URL_RE = re.compile(
+    r"""(?:"|')(?P<u>(?:https?:)?//dofbasen\.dk/image_proxy\.php\?[^"']+|/image_proxy\.php\?[^"']+)["']""",
+    re.IGNORECASE,
+)
+
+def _fetch_html(url: str, timeout: float = 10.0) -> str:
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (DOF.not server) AppleWebKit/537.36 Chrome/119 Safari/537.36",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        raw = resp.read()
+        ctype = resp.headers.get("Content-Type", "")
+
+    # Try charset from header, then meta, then fallbacks
+    m = re.search(r"charset=([\w\-]+)", ctype, re.I)
+    enc = m.group(1) if m else None
+    if not enc:
+        m2 = re.search(rb"<meta[^>]+charset=['\"]?([\w\-]+)", raw, re.I)
+        enc = (m2.group(1).decode("ascii", "ignore") if m2 else None)
+    for candidate in [enc, "windows-1252", "iso-8859-1", "utf-8"]:
+        try:
+            return raw.decode(candidate or "utf-8", errors="strict")
+        except Exception:
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+def _image_proxy_to_service_url(u: str, base: str = "https://dofbasen.dk") -> str | None:
+    """
+    Map image_proxy.php?… → https://service.dofbasen.dk/media/image/o/<filename>.jpg
+    Handles HTML entities (&amp;) and stray %3B in query delimiters.
+    """
+    if not u:
+        return None
+    s = html.unescape(str(u))
+    # Fix cases like ?mode=o&amp%3Bpic=... (remove encoded ';' after & or ?)
+    s = re.sub(r'([?&])%3B', r'\1', s, flags=re.IGNORECASE)
+    absu = urljoin(base, s)
+    pu = urlparse(absu)
+    if not pu.path.lower().endswith("/image_proxy.php"):
+        return None
+    qs = parse_qs(pu.query, keep_blank_values=True)
+    # keys may be like 'pic' or weirdly prefixed; normalize
+    pic = None
+    for k, vals in qs.items():
+        kk = k.lower().lstrip(' ;')
+        if kk == "pic" and vals:
+            pic = vals[0]
+            break
+    if not pic:
+        return None
+    filename = str(pic).split("/")[-1]
+    if not filename:
+        return None
+    return f"https://service.dofbasen.dk/media/image/o/{filename}"
+
+def _extract_service_image_urls(html_text: str) -> list[str]:
+    seen = set()
+    out: list[str] = []
+    for m in _IMG_URL_RE.finditer(html_text or ""):
+        raw_u = m.group("u")
+        svc = _image_proxy_to_service_url(raw_u)
+        if not svc:
+            continue
+        key = svc.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append(svc)
+    return out
+
+@app.get("/api/obs/images")
+def api_obs_images(
+    obsid: str = Query(..., min_length=3, description="DOFbasen observation id"),
+    url: str | None = Query(None, description="Optional override URL")
+):
+    """
+    Returnér alle fuld-størrelse billed-URL'er som:
+    https://service.dofbasen.dk/media/image/o/<filnavn>.jpg
+    """
+    src = url or f"https://dofbasen.dk/popobs.php?obsid={obsid}&summering=tur&obs=obs"
+    try:
+        html_page = _fetch_html(src, timeout=10.0)
+    except Exception as e:
+        raise HTTPException(status_code=502, detail=f"Kunne ikke hente kilde: {e}")
+    images = _extract_service_image_urls(html_page)
+    return {"obsid": obsid, "source": src, "count": len(images), "images": images}
 
 # ───────────────────────────────── DB-hjælpere ──────────────────────────────
 def ensure_db() -> None:
@@ -297,6 +393,39 @@ def _ensure_user(con, user_id: str):
 def _safe_lower(s: str) -> str:
     return str(s or "").strip().lower()
 
+def _slugify_art(s: str) -> str:
+    t = str(s or "").strip()
+    if not t:
+        return "obs"
+    # Dansk mapping før diakrit-rens
+    t = (t
+         .replace("Æ","AE").replace("æ","ae")
+         .replace("Ø","OE").replace("ø","oe")
+         .replace("Å","AA").replace("å","aa"))
+    # Fjern diakritiske tegn
+    t = unicodedata.normalize("NFKD", t)
+    t = "".join(ch for ch in t if not unicodedata.combining(ch))
+    # Tillad kun [a-z0-9] og bind med '-'
+    t = re.sub(r"[^A-Za-z0-9]+", "-", t)
+    t = re.sub(r"-{2,}", "-", t).strip("-").lower()
+    return t or "obs"
+
+# NEW: udled YYYY-MM-DD fra batch-filnavn (fallback til 'today' i DK)
+_YMD_RE = re.compile(r"(\d{4}-\d{2}-\d{2})")
+_YMD_COMPACT_RE = re.compile(r"(\d{8})")  # fx 20251020
+
+def _ymd_from_batch_path(path: Path) -> str:
+    name = path.name
+    m = _YMD_RE.search(name)
+    if m:
+        return m.group(1)
+    m2 = _YMD_COMPACT_RE.search(name)
+    if m2:
+        s = m2.group(1)
+        return f"{s[0:4]}-{s[4:6]}-{s[6:8]}"
+    # fallback: dagens dato i DK-tz
+    return _today_ymd_dk()
+
 # ────────────────────── Server-side filter helpers (L1) ──────────────────────
 def _load_all_user_prefs() -> dict[str, dict[str, Set[str]]]:
     """
@@ -431,6 +560,45 @@ def serve_sw():
         path, media_type="application/javascript",
         headers={"Cache-Control": "no-cache"}
     )
+
+# NEW: Server batches som JSON og berig items med ymd + thread_id
+@app.get("/batches/{relpath:path}")
+def serve_batch_enriched(relpath: str):
+    base = (WEB_DIR / "batches").resolve()
+    p = (base / relpath).resolve()
+    if not str(p).startswith(str(base)):
+        raise HTTPException(status_code=403, detail="Ugyldig sti")
+    if not p.exists() or not p.is_file():
+        raise HTTPException(status_code=404, detail="Batch-fil ikke fundet")
+    try:
+        raw = p.read_text(encoding="utf-8")
+        obj = json.loads(raw)
+    except Exception:
+        # Fallback: servér rå fil hvis ikke gyldig JSON
+        return FileResponse(p, media_type="application/json", headers={"Cache-Control": "no-cache"})
+    if isinstance(obj, dict) and isinstance(obj.get("items"), list):
+        ymd = _ymd_from_batch_path(p)
+        out_items = []
+        for it in obj.get("items", []):
+            try:
+                art = str(it.get("art","") or "").strip()
+                loknr = str(it.get("loknr","") or "").strip()     # ← NYT: brug loknr
+                obsid = str(it.get("obsid","") or "").strip()
+                slug = _slugify_art(art)
+                if loknr:
+                    thread_id = f"{slug}-{loknr}"
+                elif obsid:
+                    thread_id = f"{slug}-{obsid}"  # fallback hvis ældre batches mangler loknr
+                else:
+                    thread_id = slug
+                it["ymd"] = it.get("ymd") or ymd
+                it["thread_id"] = it.get("thread_id") or thread_id
+            except Exception:
+                # robust over for skæve records
+                it.setdefault("ymd", ymd)
+            out_items.append(it)
+        obj["items"] = out_items
+    return JSONResponse(obj, headers={"Cache-Control": "no-cache"})
 
 @app.get("/service-worker.js")
 def serve_sw_alias_hyphen():
