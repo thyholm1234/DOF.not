@@ -1,0 +1,22 @@
+{
+"client": "sub-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T13:56:55.345437+02:00",
+"items": [
+{
+"obsid": "37870656",
+"art": "Fuglekongesanger",
+"antal": "1",
+"adf": "Fanget og ringmærket",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Gustav",
+"efternavn": "Juel",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "12:15",
+"tid_til": "12:35",
+"kategori": "sub"
+}
+]
+}

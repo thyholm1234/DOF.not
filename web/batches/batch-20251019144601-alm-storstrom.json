@@ -1,0 +1,22 @@
+{
+"client": "alm-storstrom",
+"count": 1,
+"generated": "2025-10-19T14:46:01.522750+02:00",
+"items": [
+{
+"obsid": "37871344",
+"art": "Bramgås",
+"antal": "20000",
+"adf": "Rastende",
+"lok": "Feddet",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "John",
+"efternavn": "Faldborg",
+"lon": "12,098519298934665",
+"lat": "55,15450132768393",
+"tid_fra": "07:45",
+"tid_til": "13:30",
+"kategori": "bemaerk"
+}
+]
+}

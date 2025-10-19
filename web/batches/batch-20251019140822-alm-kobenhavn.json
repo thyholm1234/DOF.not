@@ -1,0 +1,52 @@
+{
+"client": "alm-kobenhavn",
+"count": 3,
+"generated": "2025-10-19T14:08:22.405822+02:00",
+"items": [
+{
+"obsid": "37870903",
+"art": "Duehøg",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Veksø",
+"dof_afdeling": "DOF København",
+"fornavn": "Gert",
+"efternavn": "Østerbye",
+"lon": "12,240728582602681",
+"lat": "55,75363595119856",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870900",
+"art": "Misteldrossel",
+"antal": "5",
+"adf": "Trækkende",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "07:25",
+"tid_til": "11:45",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870914",
+"art": "Ringdue",
+"antal": "700",
+"adf": "Trækkende mod nordvest",
+"lok": "Kongelundsområdet (alle lok.nr. 155031-155055)",
+"dof_afdeling": "DOF København",
+"fornavn": "Stig",
+"efternavn": "Kjærgaard Rasmussen",
+"lon": "12,567581616062647",
+"lat": "55,56836979977541",
+"tid_fra": "07:40",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

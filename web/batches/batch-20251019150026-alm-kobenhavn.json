@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T15:00:26.711746+02:00",
+"items": [
+{
+"obsid": "37871511",
+"art": "Dværgfalk",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Kofoeds Enge, del 1 af Kongelundsstranden",
+"dof_afdeling": "DOF København",
+"fornavn": "Rasmus",
+"efternavn": "Turin",
+"lon": "12,575151395541473",
+"lat": "55,55542956811044",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-nordsjaelland",
+"count": 2,
+"generated": "2025-10-19T15:10:18.347700+02:00",
+"items": [
+{
+"obsid": "37869538",
+"art": "Musvåge",
+"antal": "52",
+"adf": "Trækkende",
+"lok": "Ålsgårde",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Mikkel",
+"efternavn": "Kure Jakobsen",
+"lon": "12,538995341077705",
+"lat": "56,07744793004403",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37871614",
+"art": "Rød Glente",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Ålsgårde",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Mikkel",
+"efternavn": "Kure Jakobsen",
+"lon": "12,538995341077705",
+"lat": "56,07744793004403",
+"tid_fra": "",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

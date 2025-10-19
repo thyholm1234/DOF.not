@@ -1,0 +1,22 @@
+{
+"client": "sub-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T14:50:35.729553+02:00",
+"items": [
+{
+"obsid": "37871401",
+"art": "Topskarv",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Sprogø",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Jacob",
+"efternavn": "Sterup",
+"lon": "10,969719886779787",
+"lat": "55,33786915250318",
+"tid_fra": "12:55",
+"tid_til": "14:50",
+"kategori": "sub"
+}
+]
+}

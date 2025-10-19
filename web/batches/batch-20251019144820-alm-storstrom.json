@@ -1,0 +1,37 @@
+{
+"client": "alm-storstrom",
+"count": 2,
+"generated": "2025-10-19T14:48:20.657363+02:00",
+"items": [
+{
+"obsid": "37871364",
+"art": "Vandstær",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Hovby Eng",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Torben",
+"efternavn": "Sebro",
+"lon": "12,10841250000082",
+"lat": "55,243574600001466",
+"tid_fra": "10:00",
+"tid_til": "",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37871367",
+"art": "Bjergvipstjert",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Hovby Eng",
+"dof_afdeling": "DOF Storstrøm",
+"fornavn": "Torben",
+"efternavn": "Sebro",
+"lon": "12,10841250000082",
+"lat": "55,243574600001466",
+"tid_fra": "10:00",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

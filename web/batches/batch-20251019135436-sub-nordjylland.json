@@ -1,0 +1,22 @@
+{
+"client": "sub-nordjylland",
+"count": 1,
+"generated": "2025-10-19T13:54:36.640152+02:00",
+"items": [
+{
+"obsid": "37870630",
+"art": "Lunde",
+"antal": "1",
+"adf": "Trækkende mod nordvest",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "10:14",
+"tid_til": "11:05",
+"kategori": "sub"
+}
+]
+}

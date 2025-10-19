@@ -1,0 +1,22 @@
+{
+"client": "alm-bornholm",
+"count": 1,
+"generated": "2025-10-19T14:47:13.126586+02:00",
+"items": [
+{
+"obsid": "37871354",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Fouragerende",
+"lok": "Dueodde",
+"dof_afdeling": "DOF Bornholm",
+"fornavn": "Jesper",
+"efternavn": "Møller",
+"lon": "15,076475719033839",
+"lat": "54,989781690310934",
+"tid_fra": "14:46",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T14:01:30.372694+02:00",
+"items": [
+{
+"obsid": "37870749",
+"art": "Vandrefalk",
+"antal": "1",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Gustav",
+"efternavn": "Juel",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "07:50",
+"tid_til": "12:35",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870767",
+"art": "Spurvehøg",
+"antal": "20",
+"adf": "Trækkende",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Gustav",
+"efternavn": "Juel",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "07:50",
+"tid_til": "12:35",
+"kategori": "bemaerk"
+}
+]
+}

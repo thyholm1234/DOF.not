@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T15:12:29.490031+02:00",
+"items": [
+{
+"obsid": "37871622",
+"art": "Blå Kærhøg",
+"antal": "1",
+"adf": "Overflyvende",
+"lok": "Lestrup",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Pia",
+"efternavn": "Rosendahl",
+"lon": "11,670682202568086",
+"lat": "55,857705307719726",
+"tid_fra": "15:11",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

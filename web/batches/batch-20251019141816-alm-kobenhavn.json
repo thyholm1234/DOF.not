@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T14:18:16.925525+02:00",
+"items": [
+{
+"obsid": "37871051",
+"art": "Hjejle",
+"antal": "3000",
+"adf": "Overflyvende",
+"lok": "Staunings Ø",
+"dof_afdeling": "DOF København",
+"fornavn": "David B.",
+"efternavn": "Collinge",
+"lon": "12,220362111153309",
+"lat": "55,51819786874782",
+"tid_fra": "14:03",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

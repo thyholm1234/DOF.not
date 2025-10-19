@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T14:32:15.242468+02:00",
+"items": [
+{
+"obsid": "37871167",
+"art": "Blå Kærhøg",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Omø Mose",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,143726900230822",
+"lat": "55,15905906588907",
+"tid_fra": "09:00",
+"tid_til": "09:30",
+"kategori": "bemaerk"
+}
+]
+}

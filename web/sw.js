@@ -41,12 +41,13 @@ self.addEventListener('fetch', (event) => {
   const req = event.request;
   if (req.method !== 'GET') return;
 
+  const url = new URL(req.url);
+
   // Navigationer: net -> cache(index.html) -> offline fallback
   if (req.mode === 'navigate') {
     event.respondWith((async () => {
-      try {
-        return await fetch(req);
-      } catch {
+      try { return await fetch(req); }
+      catch {
         const cache = await caches.open(CACHE_NAME);
         const offlineUrl = toURL('index.html');
         const cached = await cache.match(offlineUrl);
@@ -56,7 +57,21 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Statiske assets: stale-while-revalidate
+  // Network-first for kode og data (JS/CSS/API/obs-json)
+  const isCode = url.pathname.endsWith('.js') || url.pathname.endsWith('.css');
+  const isData = url.pathname.startsWith('/api/') || url.pathname.includes('/obs/');
+  if (isCode || isData) {
+    event.respondWith((async () => {
+      try { return await fetch(req, { cache: 'no-store' }); }
+      catch {
+        const cache = await caches.open(CACHE_NAME);
+        return cache.match(req);
+      }
+    })());
+    return;
+  }
+
+  // Default: stale-while-revalidate for øvrige assets (billeder m.m.)
   event.respondWith((async () => {
     const cache = await caches.open(CACHE_NAME);
     const cached = await cache.match(req);

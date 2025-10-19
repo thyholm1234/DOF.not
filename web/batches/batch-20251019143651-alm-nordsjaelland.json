@@ -1,0 +1,22 @@
+{
+"client": "alm-nordsjaelland",
+"count": 1,
+"generated": "2025-10-19T14:36:51.029503+02:00",
+"items": [
+{
+"obsid": "37871228",
+"art": "Rød Glente",
+"antal": "2",
+"adf": "Trækkende mod sydvest",
+"lok": "Kikhavn",
+"dof_afdeling": "DOF Nordsjælland",
+"fornavn": "Michael",
+"efternavn": "Trasborg",
+"lon": "11,875967906240932",
+"lat": "55,98048737722473",
+"tid_fra": "12:20",
+"tid_til": "14:15",
+"kategori": "bemaerk"
+}
+]
+}

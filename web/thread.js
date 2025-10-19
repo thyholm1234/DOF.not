@@ -26,6 +26,10 @@
   let threadEvents = [];
   let summaryItems = [];
 
+  // Pref-baserede filtre (grundlæggende + avanceret)
+  let allowedCatsByRegion = new Map(); // Map('DOF København' -> Set<'su'|'sub'>)
+  let speciesOverrides = null;         // { include:[], exclude:[], counts:{ key:{mode,value} } }
+
   // Utils
   const isYMD = (s) => /^\d{4}-\d{2}-\d{2}$/.test(s || '');
   function todayYMDLocal() {
@@ -50,8 +54,30 @@
     return { date: qs.get('date') || 'today', id: qs.get('id') || '' };
   }
   async function fetchUserPrefs() {
-    try { const r = await fetch('./api/prefs/user',{cache:'no-cache'}); return r.ok ? (await r.json()||{}) : {}; }
-    catch { return {}; }
+    // Brug global helper fra app.js, ellers fallback til localStorage
+    let userId = '';
+    try {
+      userId = typeof getOrCreateUserId === 'function'
+        ? getOrCreateUserId()
+        : (localStorage.getItem('dofnot-user-id') || '');
+    } catch {}
+    // Server-API med user_id (kræves af server.py)
+    if (userId) {
+      try {
+        const r = await fetch(`./api/prefs/user?user_id=${encodeURIComponent(userId)}`, { cache: 'no-cache' });
+        if (r.ok) {
+          const data = await r.json();
+          // API returnerer { prefs: {...}, ts, source }
+          if (data && data.prefs && typeof data.prefs === 'object') return data.prefs;
+        }
+      } catch {}
+    }
+    // Fallback til lokalt cachede prefs (samme format som server.prefs)
+    try {
+      const raw = localStorage.getItem('dofnot-prefs');
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return {};
   }
   async function fetchSummary(dateParam) {
     try {
@@ -144,7 +170,6 @@
       if (!r.ok) return klassMap;
       const text = await r.text();
       const lines = text.split(/\r?\n/);
-      // forventet header: artsid;artsnavn;klassifikation
       for (let i = 1; i < lines.length; i++) {
         const line = lines[i];
         if (!line || !line.includes(';')) continue;
@@ -441,31 +466,160 @@
 
   // Forside: render trådsammendrag
   function renderThreadSummaries() {
-    // Filter: skjul 0‑fund (max_antal_num <= 0)
-    const arr0 = frontState.hideZero
-      ? summaryItems.filter(s => {
-          const v = typeof s.max_antal_num === 'number' ? s.max_antal_num
-                  : (typeof s.last_antal_num === 'number' ? s.last_antal_num : null);
-          return v == null ? true : v > 0;
-        })
-      : summaryItems.slice();
+    let base = summaryItems.slice();
 
-    const mode = frontState.usePrefs ? 'prefs' : frontState.sortMode;
-    const arr1 = sortThreads(arr0, mode);
-    const arr2 = frontState.limit > 0 ? arr1.slice(0, frontState.limit) : arr1;
+    // Baseline uden brugerfilter: vis kun SU + SUB
+    if (!frontState.usePrefs) {
+      base = base.filter(s => {
+        const kat = getThreadCategory(s);
+        return kat === 'su' || kat === 'sub';
+      });
+    } else {
+      // Grundlæggende brugerfilter: region + kategori
+      base = base.filter(matchesBasicPrefs);
+      // Avanceret: arts-exclude + antal
+      base = applyAdvancedFilters(base);
+    }
+
+    // Skjul 0-fund (hvis valgt)
+    if (frontState.hideZero) {
+      base = base.filter(s => {
+        const v = typeof s.max_antal_num === 'number' ? s.max_antal_num
+                : (typeof s.last_antal_num === 'number' ? s.last_antal_num : null);
+        return v == null ? true : v > 0;
+      });
+    }
+
+    // Sortér (manuel to-state)
+    const sorted = sortThreads(base, frontState.sortMode);
+
+    // Limit
+    const arr = frontState.limit > 0 ? sorted.slice(0, frontState.limit) : sorted;
 
     $st.innerHTML = '';
-    if (!arr2.length) { $st.textContent = 'Ingen tråde at vise.'; return; }
+    if (!arr.length) { $st.textContent = frontState.usePrefs ? 'Ingen tråde matcher dine præferencer.' : 'Ingen tråde at vise.'; return; }
 
     const tYMD = todayYMDLocal();
     const ul = document.createElement('ul'); ul.className = 'obs-list';
-    for (const s of arr2) ul.appendChild(renderThreadSummary(s, tYMD));
+    for (const s of arr) ul.appendChild(renderThreadSummary(s, tYMD));
     $st.appendChild(ul);
+  }
+
+  // Helpers til prefs-filtrering
+  function normalizeKey(s) { return String(s || '').trim().toLowerCase(); }
+  function toSet(v) {
+    const arr = Array.isArray(v) ? v : (v != null ? [v] : []);
+    const set = new Set(); arr.forEach(x => { const k = normalizeKey(x); if (k) set.add(k); });
+    return set;
+  }
+  function getThreadCount(s) {
+    return (typeof s.max_antal_num === 'number') ? s.max_antal_num
+         : (typeof s.last_antal_num === 'number') ? s.last_antal_num
+         : 0;
+  }
+  function getThreadCategory(s) {
+    const katRaw = s.last_kategori || '';
+    const kat = resolveKategori(s.art, katRaw) || katRaw || '';
+    return normalizeKey(kat);
+  }
+
+  // Udvid prefs-værdi til tilladte kategorier (samme semantik som app.js)
+  function expandPrefValueToAllowedCats(val) {
+    const v = String(val ?? '').toLowerCase();
+    if (v === 'su')   return new Set(['su']);
+    if (v === 'sub')  return new Set(['su','sub']);
+    if (v === 'alle') return new Set(['su','sub']); // bemærkelsesværdige = SUB
+    return new Set(); // 'none'
+  }
+
+  // Byg grundlæggende filter pr. lokalafdeling
+  function buildAllowedCatsByRegion(prefs) {
+    const map = new Map();
+    for (const [afd, sel] of Object.entries(prefs || {})) {
+      const allow = expandPrefValueToAllowedCats(sel);
+      if (allow.size > 0) map.set(String(afd), allow);
+    }
+    return map;
+  }
+
+  // Hent arts-overrides fra SW (fallback: localStorage)
+  async function loadSpeciesOverrides() {
+    // Forsøg via SW
+    try {
+      await navigator.serviceWorker?.ready;
+      const ch = new MessageChannel();
+      const resP = new Promise((resolve) => {
+        ch.port1.onmessage = (e) => resolve(e.data?.overrides || null);
+      });
+      navigator.serviceWorker?.controller?.postMessage({ type: 'GET_SPECIES_OVERRIDES' }, [ch.port2]);
+      const swRes = await Promise.race([resP, new Promise(r => setTimeout(() => r(null), 800))]);
+      if (swRes) return swRes;
+    } catch {}
+    // Fallback localStorage
+    try {
+      const raw = localStorage.getItem('dofnot-species-overrides');
+      if (raw) return JSON.parse(raw);
+    } catch {}
+    return { include: [], exclude: [], counts: {} };
+  }
+
+  // Avanceret: arts-exclude + per-art antal
+  function normArtKey(s) {
+    // samme som i app.js
+    let t = String(s ?? '').normalize('NFKD');
+    t = t
+      .replace(/\u00C6/g,'AE').replace(/\u00E6/g,'ae')
+      .replace(/\u00D8/g,'OE').replace(/\u00F8/g,'oe')
+      .replace(/\u00C5/g,'AA').replace(/\u00E5/g,'aa');
+    t = t.replace(/[\u0300-\u036f]/g, '')
+         .replace(/[\"'«»„”“’”“\[\]\{\}]/g, ' ')
+         .replace(/[.,;:]/g, ' ')
+         .replace(/[\u2010-\u2014\u2212]/g, '-')
+         .replace(/\u00A0/g, ' ')
+         .replace(/\s+/g, ' ')
+         .trim()
+         .toLowerCase();
+    return t;
+  }
+  function applyAdvancedFilters(list) {
+    const ov = speciesOverrides || { include: [], exclude: [], counts: {} };
+    const exc = new Set((ov.exclude || []).map(normArtKey));
+    // include ignoreres (samme som i app.js-laget)
+    const counts = (ov.counts && typeof ov.counts === 'object') ? ov.counts : {};
+
+    return list.filter((s) => {
+      const key = normArtKey(s.art || '');
+      if (exc.has(key)) return false;
+
+      const cf = counts[key];
+      if (!cf || cf.value == null) return true;
+
+      const n = (typeof s.max_antal_num === 'number') ? s.max_antal_num
+              : (typeof s.last_antal_num === 'number') ? s.last_antal_num
+              : null;
+      if (!Number.isFinite(n)) return false;
+      const mode = (cf.mode === 'eq') ? 'eq' : 'gte';
+      return mode === 'eq' ? (n === Math.floor(cf.value)) : (n >= Math.floor(cf.value));
+    });
+  }
+
+  // Match grundlæggende prefs (region + kategori)
+  function matchesBasicPrefs(s) {
+    // Når brugerfilter er ON: kræv at region er valgt i prefs
+    if (!allowedCatsByRegion || allowedCatsByRegion.size === 0) return false;
+    const allow = allowedCatsByRegion.get(String(s.region || ''));
+    if (!allow || allow.size === 0) return false;
+    const kat = getThreadCategory(s);
+    return allow.has(kat);
   }
 
   // Forside
   async function suggestThreads(pickDate) {
     userPrefs = await fetchUserPrefs();
+    await ensureKlassMap();                 // kategoriopslag (SU/SUB/ALM)
+    allowedCatsByRegion = buildAllowedCatsByRegion(userPrefs);
+    speciesOverrides = await loadSpeciesOverrides();
+
     const candidates = [];
     if (pickDate) candidates.push(pickDate);
     const tYMD = todayYMDLocal(), yYMD = yesterdayYMDLocal();

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T13:58:06.894625+02:00",
+"items": [
+{
+"obsid": "37870692",
+"art": "Ravn",
+"antal": "15",
+"adf": "Syngende",
+"lok": "Store Brøndum",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Pia",
+"efternavn": "Brandt Andersen",
+"lon": "10,012782770188078",
+"lat": "56,84601169128831",
+"tid_fra": "13:50",
+"tid_til": "14:00",
+"kategori": "bemaerk"
+}
+]
+}

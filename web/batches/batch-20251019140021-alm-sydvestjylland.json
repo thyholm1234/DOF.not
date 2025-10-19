@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T14:00:21.117104+02:00",
+"items": [
+{
+"obsid": "37870737",
+"art": "Bjergvipstjert",
+"antal": "4",
+"adf": "Trækkende mod syd",
+"lok": "Blåvands Huk",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Gustav",
+"efternavn": "Juel",
+"lon": "8,07631625491881",
+"lat": "55,55865343827767",
+"tid_fra": "07:50",
+"tid_til": "12:35",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T15:20:04.137421+02:00",
+"items": [
+{
+"obsid": "37871673",
+"art": "Hedelærke",
+"antal": "2",
+"adf": "Trækkende mod sydvest",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Henrik Hald",
+"efternavn": "Nørgaard",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:00",
+"tid_til": "11:00",
+"kategori": "bemaerk"
+}
+]
+}

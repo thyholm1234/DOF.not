@@ -1,0 +1,37 @@
+{
+"client": "alm-ostjylland",
+"count": 2,
+"generated": "2025-10-19T13:59:14.050521+02:00",
+"items": [
+{
+"obsid": "37870700",
+"art": "Sortstrubet Bynkefugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Hevring Strand og sandø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Henning",
+"efternavn": "Lykke Larsen",
+"lon": "10,4040082982168",
+"lat": "56,53722047449042",
+"tid_fra": "07:30",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870711",
+"art": "Toppet Lappedykker",
+"antal": "30",
+"adf": "Rastende",
+"lok": "Hevring Strand og sandø",
+"dof_afdeling": "DOF Østjylland",
+"fornavn": "Henning",
+"efternavn": "Lykke Larsen",
+"lon": "10,4040082982168",
+"lat": "56,53722047449042",
+"tid_fra": "07:30",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

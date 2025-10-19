@@ -1,0 +1,22 @@
+{
+"client": "alm-nordvestjylland",
+"count": 1,
+"generated": "2025-10-19T15:20:02.038864+02:00",
+"items": [
+{
+"obsid": "37871669",
+"art": "Isfugl",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Legind Sø",
+"dof_afdeling": "DOF Nordvestjylland",
+"fornavn": "Gerner",
+"efternavn": "Majlandt",
+"lon": "8,827741111697387",
+"lat": "56,76580360949268",
+"tid_fra": "14:30",
+"tid_til": "15:20",
+"kategori": "bemaerk"
+}
+]
+}

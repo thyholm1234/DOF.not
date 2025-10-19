@@ -1,0 +1,22 @@
+{
+"client": "alm-fyn",
+"count": 1,
+"generated": "2025-10-19T14:25:47.623958+02:00",
+"items": [
+{
+"obsid": "37868063",
+"art": "Sølvhejre",
+"antal": "13",
+"adf": "Rastende",
+"lok": "Brændegård Sø",
+"dof_afdeling": "DOF Fyn",
+"fornavn": "Gunnar",
+"efternavn": "Jørgensen",
+"lon": "10,381017661552466",
+"lat": "55,126836981128946",
+"tid_fra": "09:05",
+"tid_til": "12:15",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T13:46:51.389137+02:00",
+"items": [
+{
+"obsid": "37870522",
+"art": "Ride",
+"antal": "6",
+"adf": "Trækkende mod sydøst",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "09:05",
+"tid_til": "10:05",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-vestsjaelland",
+"count": 1,
+"generated": "2025-10-19T14:34:38.285207+02:00",
+"items": [
+{
+"obsid": "37871209",
+"art": "Allike",
+"antal": "800",
+"adf": "Trækkende mod sydvest",
+"lok": "Omø Mose",
+"dof_afdeling": "DOF Vestsjælland",
+"fornavn": "Poul Erik",
+"efternavn": "Hansen",
+"lon": "11,143726900230822",
+"lat": "55,15905906588907",
+"tid_fra": "09:00",
+"tid_til": "09:30",
+"kategori": "bemaerk"
+}
+]
+}

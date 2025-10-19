@@ -1,0 +1,22 @@
+{
+"client": "alm-sydostjylland",
+"count": 1,
+"generated": "2025-10-19T14:39:10.384993+02:00",
+"items": [
+{
+"obsid": "37871260",
+"art": "Knortegås",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Rosenvold",
+"dof_afdeling": "DOF Sydøstjylland",
+"fornavn": "Peder Nygaard",
+"efternavn": "Nielsen",
+"lon": "9,825895434818976",
+"lat": "55,67353451989942",
+"tid_fra": "08:00",
+"tid_til": "12:09",
+"kategori": "bemaerk"
+}
+]
+}

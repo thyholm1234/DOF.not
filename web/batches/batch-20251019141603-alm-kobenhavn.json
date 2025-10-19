@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T14:16:03.853587+02:00",
+"items": [
+{
+"obsid": "37871029",
+"art": "Bjergvipstjert",
+"antal": "1",
+"adf": "Trækkende mod sydvest",
+"lok": "Vestskoven vest for Motorring 4",
+"dof_afdeling": "DOF København",
+"fornavn": "Peter",
+"efternavn": "Staarup Christensen",
+"lon": "12,341259434183582",
+"lat": "55,69608148252749",
+"tid_fra": "08:54",
+"tid_til": "11:45",
+"kategori": "bemaerk"
+}
+]
+}
