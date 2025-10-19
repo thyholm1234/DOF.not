@@ -509,6 +509,9 @@ def _index_item_from_thread(thread: dict) -> dict:
         "last_adf": thread.get("last_adf"),
         "last_observer": thread.get("last_observer"),
         "last_obsid": thread.get("last_obsid"),  # SIKR: tal
+        # NYT: noter medtages i index når kun 1 obs findes
+        "turnoter": thread.get("turnoter"),
+        "fuglnoter": thread.get("fuglnoter"),
     }
 
 # Byg trådsammenfatning og skriv thread.json med ALLE events.
@@ -594,6 +597,16 @@ def _update_thread_rollup(day_dir: Path, thread_id: str, evs_for_thread: list[di
         "last_adf": last_event.get("adf"),
         "last_observer": last_event.get("observer"),
     }
+
+    # NYT: Hvis kun én observation i tråden, medtag noter i thread
+    if len(events_desc) == 1:
+        only = events_desc[0]
+        tnote = (only.get("turnoter") or "").strip()
+        fnote = (only.get("fuglnoter") or "").strip()
+        if tnote:
+            thread["turnoter"] = tnote
+        if fnote:
+            thread["fuglnoter"] = fnote
 
     # Stats til reference
     max_item = None

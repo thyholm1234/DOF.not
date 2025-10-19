@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T13:42:18.853205+02:00",
+"items": [
+{
+"obsid": "37870438",
+"art": "Lomvie",
+"antal": "17",
+"adf": "Trækkende mod sydøst",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:05",
+"tid_til": "09:05",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,0 +1,22 @@
+{
+"client": "alm-kobenhavn",
+"count": 1,
+"generated": "2025-10-19T13:36:51.955915+02:00",
+"items": [
+{
+"obsid": "37870412",
+"art": "Vibe",
+"antal": "257",
+"adf": "Rastende",
+"lok": "Ølsemagle Revle",
+"dof_afdeling": "DOF København",
+"fornavn": "David B.",
+"efternavn": "Collinge",
+"lon": "12,205474444032394",
+"lat": "55,49910376241715",
+"tid_fra": "13:20",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}

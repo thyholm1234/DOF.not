@@ -1,6 +1,52 @@
 [
   {
     "day": "2025-10-19",
+    "thread_id": "roedhalset-gas-655020",
+    "art": "Rødhalset Gås",
+    "lok": "Værnengene",
+    "loknr": "655020",
+    "region": "DOF Vestjylland",
+    "region_slug": null,
+    "coords": null,
+    "status": "active",
+    "last_kategori": "sub",
+    "first_ts_obs": "2025-10-19T00:00:00+02:00",
+    "last_ts_obs": "2025-10-19T13:38:00+02:00",
+    "last_active_ts_obs": "2025-10-19T13:38:00+02:00",
+    "max_antal_num": 1.0,
+    "last_antal_num": 1.0,
+    "event_count": 2,
+    "last_adf": "Rastende",
+    "last_observer": "Ole Amstrup",
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": null
+  },
+  {
+    "day": "2025-10-19",
+    "thread_id": "gransanger-sibirisk-ssp-tristis-571601",
+    "art": "Gransanger, Sibirisk (ssp. tristis)",
+    "lok": "Mandø",
+    "loknr": "571601",
+    "region": "DOF Sydvestjylland",
+    "region_slug": null,
+    "coords": null,
+    "status": "active",
+    "last_kategori": "sub",
+    "first_ts_obs": "2025-10-19T13:15:00+02:00",
+    "last_ts_obs": "2025-10-19T13:15:00+02:00",
+    "last_active_ts_obs": "2025-10-19T13:15:00+02:00",
+    "max_antal_num": 1.0,
+    "last_antal_num": 1.0,
+    "event_count": 1,
+    "last_adf": "Rastende",
+    "last_observer": "Kent Olsen",
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": "Kold grå-beige gransanger med sort næb og ben, citrongul underside på fødder, intet gult i dragten andet end fortil på undervinger, undervinger i øvrigt hvide, rosa kind, mørk tøjle, hvidlig øjenbrynsstribe, brun på isse og ryg."
+  },
+  {
+    "day": "2025-10-19",
     "thread_id": "kongeoern-101222",
     "art": "Kongeørn",
     "lok": "Nordhavnstippen/Stubben",
@@ -18,7 +64,9 @@
     "event_count": 1,
     "last_adf": "Overflyvende",
     "last_observer": "Juan Bosco Darimont",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": "1st winter"
   },
   {
     "day": "2025-10-19",
@@ -39,7 +87,9 @@
     "event_count": 2,
     "last_adf": "Rastende",
     "last_observer": "Ole C. Olesen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -60,7 +110,9 @@
     "event_count": 1,
     "last_adf": "Trækkende mod sydvest",
     "last_observer": "Jan Pedersen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": "Strø obs derefter",
+    "fuglnoter": "set i fineste lys, helt møek underside særligt uden lyse vingeformet, knapt kile i halen. 3-400m afstand, kredsede længe over skovrejsningen og forsvandt i retning af store heddinge"
   },
   {
     "day": "2025-10-19",
@@ -81,7 +133,9 @@
     "event_count": 1,
     "last_adf": "Rastende",
     "last_observer": "Martin Pedersen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": "Set da en rørhøg kom forbi og fik alt på vingerne.  Og lidt efter igen da rørhøgen kom tilbage. Her så jeg kun 1 som satte sig så den var mulig at se i ca 3 minutter.\nSet igen kl 12: 52 sammen flot i luften."
   },
   {
     "day": "2025-10-19",
@@ -102,7 +156,9 @@
     "event_count": 2,
     "last_adf": "Rastende",
     "last_observer": "Tonny Papillon",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -123,7 +179,9 @@
     "event_count": 1,
     "last_adf": "Rastende",
     "last_observer": "Jens Kristian Kjærgård",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": "OBS i syddel af Nystrup Klitplantage, vest og NV for Vang.",
+    "fuglnoter": "Set lidt nordvest for Vang."
   },
   {
     "day": "2025-10-19",
@@ -144,7 +202,9 @@
     "event_count": 1,
     "last_adf": "Trækforsøgende",
     "last_observer": "Kent Olsen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": "Mangler halen"
   },
   {
     "day": "2025-10-19",
@@ -165,7 +225,9 @@
     "event_count": 1,
     "last_adf": "Trækkende mod sydvest",
     "last_observer": "Michael Trasborg",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": "Incl. trækobs fra diget.",
+    "fuglnoter": "2 røde. Store og kraftige korsnæb, storhovedet og store næb, dybere kald en Lille Kors."
   },
   {
     "day": "2025-10-19",
@@ -186,7 +248,9 @@
     "event_count": 2,
     "last_adf": "Rastende",
     "last_observer": "Ole Amstrup",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -207,7 +271,9 @@
     "event_count": 1,
     "last_adf": "Trækkende mod sydøst",
     "last_observer": "Søren Brinch Pedersen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": "SØ 3-6m/s, 6°c, 2/8, 42 km",
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -228,7 +294,9 @@
     "event_count": 1,
     "last_adf": "Trækkende mod sydvest",
     "last_observer": "Jakob Dall",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": "Hørt med trækkald 2 gange og set overflyvede Hovedgaden."
   },
   {
     "day": "2025-10-19",
@@ -249,7 +317,9 @@
     "event_count": 1,
     "last_adf": "Fanget og ringmærket",
     "last_observer": "Jens Jørgen Andersen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": "Medobs JKy Ringmærket krattet vest for fyret.",
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -270,28 +340,9 @@
     "event_count": 1,
     "last_adf": "Trækkende mod syd",
     "last_observer": "Jens Jørgen Andersen",
-    "last_obsid": null
-  },
-  {
-    "day": "2025-10-19",
-    "thread_id": "roedhalset-gas-655020",
-    "art": "Rødhalset Gås",
-    "lok": "Værnengene",
-    "loknr": "655020",
-    "region": "DOF Vestjylland",
-    "region_slug": null,
-    "coords": null,
-    "status": "active",
-    "last_kategori": "sub",
-    "first_ts_obs": "2025-10-19T00:00:00+02:00",
-    "last_ts_obs": "2025-10-19T00:00:00+02:00",
-    "last_active_ts_obs": "2025-10-19T00:00:00+02:00",
-    "max_antal_num": 1.0,
-    "last_antal_num": 1.0,
-    "event_count": 1,
-    "last_adf": "Rastende",
-    "last_observer": "Justin Maddox Frandsen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": "Medobs JKy Ringmærket krattet vest for fyret.",
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -312,7 +363,9 @@
     "event_count": 2,
     "last_adf": "Rastende",
     "last_observer": "Aase Jensen",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": null
   },
   {
     "day": "2025-10-19",
@@ -333,6 +386,8 @@
     "event_count": 1,
     "last_adf": "Overflyvende",
     "last_observer": "Martin Svinth Weenink",
-    "last_obsid": null
+    "last_obsid": null,
+    "turnoter": null,
+    "fuglnoter": "Dybt kald uden rumklang på enlig fugl"
   }
 ]

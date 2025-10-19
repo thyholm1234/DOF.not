@@ -1,0 +1,37 @@
+{
+"client": "alm-sydvestjylland",
+"count": 2,
+"generated": "2025-10-19T13:35:40.859849+02:00",
+"items": [
+{
+"obsid": "37870403",
+"art": "Rørhøne",
+"antal": "24",
+"adf": "Fouragerende",
+"lok": "Guldager Mølledam",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Michael S.",
+"efternavn": "Johansen",
+"lon": "8,394344642595723",
+"lat": "55,52821673958877",
+"tid_fra": "13:00",
+"tid_til": "13:20",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870405",
+"art": "Lille Lappedykker",
+"antal": "12",
+"adf": "Rastende",
+"lok": "Guldager Mølledam",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "Michael S.",
+"efternavn": "Johansen",
+"lon": "8,394344642595723",
+"lat": "55,52821673958877",
+"tid_fra": "13:00",
+"tid_til": "13:20",
+"kategori": "bemaerk"
+}
+]
+}

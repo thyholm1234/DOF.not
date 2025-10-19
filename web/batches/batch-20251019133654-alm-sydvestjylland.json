@@ -1,0 +1,22 @@
+{
+"client": "alm-sydvestjylland",
+"count": 1,
+"generated": "2025-10-19T13:36:54.045870+02:00",
+"items": [
+{
+"obsid": "37870411",
+"art": "Fyrremejse",
+"antal": "2",
+"adf": "Rastende",
+"lok": "Tipmose & Heden ved Lysbjerge",
+"dof_afdeling": "DOF Sydvestjylland",
+"fornavn": "John",
+"efternavn": "Steffensen",
+"lon": "8,246516674279196",
+"lat": "55,53440580714792",
+"tid_fra": "09:00",
+"tid_til": "11:15",
+"kategori": "bemaerk"
+}
+]
+}

@@ -1,13 +1,13 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-19T13:29:36.505676+02:00",
+  "received_at": "2025-10-19T13:44:37.221808+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "1 Blå Kærhøg, Ringfenner",
-      "body": "Erik, Thomsen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37870329&summering=tur&obs=obs",
+      "title": "1 Ride, Grenen, Skagen",
+      "body": "Skagen, Fuglestation",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37870491&summering=tur&obs=obs",
       "tag": "bird-digest-alm-nordjylland",
       "renotify": true,
       "regions": [

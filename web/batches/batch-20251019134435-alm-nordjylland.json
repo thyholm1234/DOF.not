@@ -1,0 +1,37 @@
+{
+"client": "alm-nordjylland",
+"count": 2,
+"generated": "2025-10-19T13:44:35.136948+02:00",
+"items": [
+{
+"obsid": "37870491",
+"art": "Ride",
+"antal": "1",
+"adf": "Rastende",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:05",
+"tid_til": "09:05",
+"kategori": "bemaerk"
+},
+{
+"obsid": "37870472",
+"art": "Almindelig Kjove",
+"antal": "1",
+"adf": "Trækkende mod nordvest",
+"lok": "Grenen, Skagen",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Skagen",
+"efternavn": "Fuglestation",
+"lon": "10,635593026549664",
+"lat": "57,74508971556111",
+"tid_fra": "08:53",
+"tid_til": "09:05",
+"kategori": "bemaerk"
+}
+]
+}

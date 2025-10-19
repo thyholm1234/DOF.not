@@ -118,6 +118,14 @@
     return a;
   }
 
+  // Normalisér noter: fjern linjeskift og ekstra mellemrum
+  function normalizeNoteText(txt) {
+    return String(txt || '')
+      .replace(/\r?\n+/g, ' ')   // linjeskift -> mellemrum
+      .replace(/\s{2,}/g, ' ')   // dublerede mellemrum -> enkelt
+      .trim();
+  }
+
   // Klassifikation af arter (fra CSV)
   let klassMap = null; // Map(lowercased navn -> 'alm'|'sub'|'su')
   function normName(s) {
@@ -213,9 +221,9 @@
     const tn = ev.turnoter || (ev.raw && (ev.raw.Turnoter || ev.raw.TurNoter));
     const fn = ev.fuglnoter || (ev.raw && (ev.raw.Fuglnoter || ev.raw.Fuglenoter));
     function pushNotes(txt, typeLabel) {
-      if (!txt) return;
-      String(txt).split(/\r?\n/).map(s => s.trim()).filter(Boolean)
-        .forEach(line => notes.push({ type: typeLabel, text: line }));
+      const one = normalizeNoteText(txt);
+      if (!one) return;
+      notes.push({ type: typeLabel, text: one });
     }
     pushNotes(tn, 'Turnote');
     pushNotes(fn, 'Obsnote');
@@ -295,6 +303,35 @@
     if (s.lok) info.appendChild(el('span','', s.lok));
     if (s.last_observer) info.appendChild(el('span','', s.last_observer));
     article.appendChild(info);
+
+    // Kommentarspor fra index.json (når kun 1 obs → felter findes)
+    const notes = [];
+    function pushNotes(txt, label) {
+      const one = normalizeNoteText(txt);
+      if (!one) return;
+      notes.push({ type: label, text: one });
+    }
+    pushNotes(s.turnoter, 'Turnote');
+    pushNotes(s.fuglnoter, 'Obsnote');
+
+    if (notes.length) {
+      const hr = document.createElement('hr');
+      hr.style.border = '0';
+      hr.style.borderTop = '1px solid var(--line)';
+      hr.style.margin = '8px 0 10px';
+      article.appendChild(hr);
+
+      const thread = document.createElement('div');
+      thread.className = 'comments';
+      notes.forEach(n => {
+        const row = document.createElement('div'); row.className = 'comment'; row.style.display='flex'; row.style.gap='8px';
+        const pill = document.createElement('span'); pill.textContent = n.type; pill.className = 'badge';
+        pill.style.background = '#eef2ff'; pill.style.color = '#1e3a8a'; pill.style.fontSize = '11px';
+        const txt = document.createElement('div'); txt.className = 'comment-text'; txt.textContent = n.text;
+        row.appendChild(pill); row.appendChild(txt); thread.appendChild(row);
+      });
+      article.appendChild(thread);
+    }
 
     const d = s.day || (s.first_ts_obs || s.last_ts_obs || '').slice(0,10) || fallbackDay || todayYMDLocal();
     const fallbackHref = `./thread.html?date=${encodeURIComponent(d)}&id=${encodeURIComponent(s.thread_id)}`;

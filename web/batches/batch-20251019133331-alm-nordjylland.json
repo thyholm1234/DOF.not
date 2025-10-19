@@ -1,0 +1,22 @@
+{
+"client": "alm-nordjylland",
+"count": 1,
+"generated": "2025-10-19T13:33:31.093081+02:00",
+"items": [
+{
+"obsid": "37870378",
+"art": "Trane",
+"antal": "3",
+"adf": "Fouragerende",
+"lok": "Aaby Højmose",
+"dof_afdeling": "DOF Nordjylland",
+"fornavn": "Erik",
+"efternavn": "Thomsen",
+"lon": "9,781372640358807",
+"lat": "57,18526746637025",
+"tid_fra": "09:50",
+"tid_til": "",
+"kategori": "bemaerk"
+}
+]
+}
