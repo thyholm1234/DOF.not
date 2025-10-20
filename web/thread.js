@@ -40,16 +40,24 @@
   function isYMD(s) {
     return /^\d{4}-\d{2}-\d{2}$/.test(String(s || ''));
   }
+  function ymdInTZ(tz, d = new Date()) {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+      timeZone: tz, year: 'numeric', month: '2-digit', day: '2-digit'
+    }).formatToParts(d);
+    const get = (t) => parts.find(p => p.type === t)?.value;
+    return `${get('year')}-${get('month')}-${get('day')}`;
+  }
+  function hourInTZ(tz, d = new Date()) {
+    return parseInt(new Intl.DateTimeFormat('en-GB', {
+      timeZone: tz, hour: '2-digit', hour12: false
+    }).format(d), 10);
+  }
   function todayYMDLocal() {
-    const d = new Date();
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().slice(0, 10);
+    return ymdInTZ('Europe/Copenhagen');
   }
   function yesterdayYMDLocal() {
-    const d = new Date();
-    d.setDate(d.getDate() - 1);
-    d.setMinutes(d.getMinutes() - d.getTimezoneOffset());
-    return d.toISOString().slice(0, 10);
+    const d = new Date(Date.now() - 24*60*60*1000);
+    return ymdInTZ('Europe/Copenhagen', d);
   }
   function fmtAge(iso) {
     if (!iso) return '';
@@ -692,19 +700,59 @@
     allowedCatsByRegion = buildAllowedCatsByRegion(userPrefs);
     speciesOverrides = await loadSpeciesOverrides();
 
-    const candidates = [];
-    if (pickDate) candidates.push(pickDate);
-    const tYMD = todayYMDLocal(), yYMD = yesterdayYMDLocal();
-    if (!pickDate || pickDate === 'today') candidates.push(tYMD, 'today', yYMD);
+    const tYMD = todayYMDLocal();
+    const yYMD = yesterdayYMDLocal();
+    const hour = hourInTZ('Europe/Copenhagen');
+    // Kombinér også når pickDate er dagens YMD
+    const isTodayRequested = (!pickDate || pickDate === 'today' || pickDate === tYMD);
+    const wantCombined = isTodayRequested && hour < 3;
 
     let items = [];
     const seen = new Set();
-    for (const d of candidates) {
-      const arr = await fetchSummary(d);
-      for (const s of arr) { if (seen.has(s.thread_id)) continue; seen.add(s.thread_id); items.push(s); }
-      if (items.length) break;
+
+    if (wantCombined) {
+      // Hent både i dag og i går og kombiner (først i dag, så i går – i dag vinder ved dubletter)
+      const [arrToday, arrYest] = await Promise.all([
+        fetchSummary(tYMD),
+        fetchSummary(yYMD),
+      ]);
+
+      const pushAll = (arr, defDay) => {
+        for (const s of Array.isArray(arr) ? arr : []) {
+          const id = s && s.thread_id;
+          if (!id || seen.has(id)) continue;
+          seen.add(id);
+          const d = s.day || (s.first_ts_obs || s.last_ts_obs || '').slice(0,10) || defDay;
+          items.push({ ...s, day: d, _sourceDay: defDay });
+        }
+      };
+
+      // I dag først (i dag vinder), derefter i går
+      pushAll(arrToday, tYMD);
+      pushAll(arrYest, yYMD);
+
+      console.debug('Combined summaries', {
+        todayCount: Array.isArray(arrToday) ? arrToday.length : 0,
+        yesterdayCount: Array.isArray(arrYest) ? arrYest.length : 0,
+        combinedUnique: items.length
+      });
+    } else {
+      // Normal: kun én dag
+      const target = pickDate || tYMD;
+      const arr = await fetchSummary(target);
+      for (const s of arr) {
+        const id = s.thread_id;
+        if (!id || seen.has(id)) continue;
+        seen.add(id);
+        items.push({ ...s, day: s.day || (s.first_ts_obs || s.last_ts_obs || '').slice(0,10) || target });
+      }
     }
-    if (!items.length) { if ($frontControls) $frontControls.style.display = 'none'; $st.innerHTML = `Ingen tråde for ${pickDate || 'today'}.`; return; }
+
+    if (!items.length) {
+      if ($frontControls) $frontControls.style.display = 'none';
+      $st.innerHTML = `Ingen observationer for ${pickDate || 'today'}.`;
+      return;
+    }
 
     summaryItems = items;
     buildFrontControls();
