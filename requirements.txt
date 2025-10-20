@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+pywebpush
+http-ece
+requests
+pandas
+pyyaml
+tzdata

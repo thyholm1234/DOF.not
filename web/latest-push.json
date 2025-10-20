@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-20T09:49:43.806437+02:00",
+  "received_at": "2025-10-20T10:09:31.531052+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "33 Sule, Fornæs",
-      "body": "Bjarne, Hove-Jensen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37875326&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-ostjylland",
+      "title": "2 Sølvhejre, Nørresø, Tønder (vest for jernbanen)",
+      "body": "Svend Anker, Schwebs",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37875584&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-sonderjylland",
       "renotify": true,
       "regions": [
-        "DOF Østjylland"
+        "DOF Sønderjylland"
       ],
       "categories": [
         "bemaerk"
