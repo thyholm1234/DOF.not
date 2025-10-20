@@ -23,5 +23,3 @@ server/subscriptions.db-journal
 
 # Virtuelt miljø og miljøfiler
 .venv/
-.env
-.env.*
