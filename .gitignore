@@ -1,7 +1,27 @@
+# Genererede data
 web/batches/
-downloads/
-server/_pycache_/
-state/dof_state.json
-obs/
+web/obs/
 web/latest-push-debug.json
 web/latest-push.json
+web/feed.jsonl
+web/meta.json
+downloads/
+state/
+data/raw/
+
+# Server runtime
+server/__pycache__/
+server/subscriptions.db
+server/subscriptions.db-journal
+
+# Python generelt
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+
+# Virtuelt miljø og miljøfiler
+.venv/
+.env
+.env.*

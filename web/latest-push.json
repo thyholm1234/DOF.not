@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-20T10:09:31.531052+02:00",
+  "received_at": "2025-10-20T10:12:47.173012+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "2 Sølvhejre, Nørresø, Tønder (vest for jernbanen)",
-      "body": "Svend Anker, Schwebs",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37875584&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-sonderjylland",
+      "title": "3 Vandrikse, Stubbe Sø (Syddjurs)",
+      "body": "Klaus, Sørensen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37875814&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [
-        "DOF Sønderjylland"
+        "DOF Østjylland"
       ],
       "categories": [
         "bemaerk"
