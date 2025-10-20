@@ -1,12 +1,16 @@
 (function () {
   const $ = (id) => document.getElementById(id);
 
-  const $st = $('thread-status');
-  const $panel = $('thread-panel');
-  const $title = $('thread-title');
-  const $sub = $('thread-sub');
-  const $list = $('thread-events');
-  const $frontControls = $('front-controls');
+  // Lazy DOM refs (så script kan loades før DOM er klar eller på andre sider)
+  let $st, $panel, $title, $sub, $list, $frontControls;
+  function ensureDomRefs() {
+    $st = $st || $('thread-status');
+    $panel = $panel || $('thread-panel');
+    $title = $title || $('thread-title');
+    $sub = $sub || $('thread-sub');
+    $list = $list || $('thread-events');
+    $frontControls = $frontControls || $('front-controls');
+  }
 
   // Forside-kontroller (for trådsammendrag)
   let $btnPrefs, $btnCat, $btnZero, $btnSort;
@@ -437,6 +441,7 @@
 
   // Byg to‑state kontrolkort
   function buildFrontControls() {
+    ensureDomRefs();
     if (!$frontControls) return;
     $frontControls.innerHTML = '';
     $frontControls.classList.add('controls-card');
@@ -524,7 +529,8 @@
 
   // Render summary med filtrering
   function renderThreadSummaries() {
-    if (!$st) return;
+    ensureDomRefs();
+    if (!$list || !$st) return;
 
     // FIX: brug lokal state, ikke window.summaryItems
     let base = summaryItems.slice();
@@ -695,15 +701,15 @@
 
   // Forside
   async function suggestThreads(pickDate) {
+    ensureDomRefs();
     userPrefs = await fetchUserPrefs();
-    await ensureKlassMap();                 // kategoriopslag (SU/SUB/ALM)
+    await ensureKlassMap();
     allowedCatsByRegion = buildAllowedCatsByRegion(userPrefs);
     speciesOverrides = await loadSpeciesOverrides();
 
     const tYMD = todayYMDLocal();
     const yYMD = yesterdayYMDLocal();
     const hour = hourInTZ('Europe/Copenhagen');
-    // Kombinér også når pickDate er dagens YMD
     const isTodayRequested = (!pickDate || pickDate === 'today' || pickDate === tYMD);
     const wantCombined = isTodayRequested && hour < 3;
 
@@ -711,12 +717,7 @@
     const seen = new Set();
 
     if (wantCombined) {
-      // Hent både i dag og i går og kombiner (først i dag, så i går – i dag vinder ved dubletter)
-      const [arrToday, arrYest] = await Promise.all([
-        fetchSummary(tYMD),
-        fetchSummary(yYMD),
-      ]);
-
+      const [arrToday, arrYest] = await Promise.all([ fetchSummary(tYMD), fetchSummary(yYMD) ]);
       const pushAll = (arr, defDay) => {
         for (const s of Array.isArray(arr) ? arr : []) {
           const id = s && s.thread_id;
@@ -726,18 +727,9 @@
           items.push({ ...s, day: d, _sourceDay: defDay });
         }
       };
-
-      // I dag først (i dag vinder), derefter i går
       pushAll(arrToday, tYMD);
       pushAll(arrYest, yYMD);
-
-      console.debug('Combined summaries', {
-        todayCount: Array.isArray(arrToday) ? arrToday.length : 0,
-        yesterdayCount: Array.isArray(arrYest) ? arrYest.length : 0,
-        combinedUnique: items.length
-      });
     } else {
-      // Normal: kun én dag
       const target = pickDate || tYMD;
       const arr = await fetchSummary(target);
       for (const s of arr) {
@@ -750,7 +742,7 @@
 
     if (!items.length) {
       if ($frontControls) $frontControls.style.display = 'none';
-      $st.innerHTML = `Ingen observationer for ${pickDate || 'today'}.`;
+      if ($st) $st.innerHTML = `Ingen observationer for ${pickDate || 'today'}.`;
       return;
     }
 

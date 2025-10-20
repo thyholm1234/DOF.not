@@ -1,22 +1,22 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-20T01:48:55.457901+02:00",
+  "received_at": "2025-10-20T02:28:42.059102+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "53 Sangdrossel, Gellerupparken Toveshøj",
+      "title": "20 Bjergpiber, Gellerupparken Toveshøj",
       "body": "Christian, Vemmelund Helligsø",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37874396&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-ostjylland",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37874726&summering=tur&obs=obs",
+      "tag": "bird-digest-sub-ostjylland",
       "renotify": true,
       "regions": [
         "DOF Østjylland"
       ],
       "categories": [
-        "bemaerk"
+        "sub"
       ],
-      "urgency": "high"
+      "urgency": "normal"
     }
   ]
 }
