@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "day": "2025-10-20",
+    "thread_id": "stor-korsnaeb-563003",
+    "art": "Stor Korsnæb",
+    "lok": "Hønen, Sønderho",
+    "loknr": "563003",
+    "region": "DOF Sydvestjylland",
+    "region_slug": null,
+    "coords": null,
+    "status": "active",
+    "last_kategori": "sub",
+    "first_ts_obs": "2025-10-20T09:02:00+02:00",
+    "last_ts_obs": "2025-10-20T09:02:00+02:00",
+    "last_active_ts_obs": "2025-10-20T09:02:00+02:00",
+    "max_antal_num": 5.0,
+    "last_antal_num": 5.0,
+    "event_count": 1,
+    "last_adf": "Trækkende mod øst",
+    "last_observer": "Søren Brinch Pedersen",
+    "last_obsid": null,
+    "turnoter": "SØ 8-12m/s, 8°c, 4/8, let dis 25 km",
+    "fuglnoter": "I blandet flok med lille - Størrelsesforskellen evident"
+  }
+]

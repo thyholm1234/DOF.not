@@ -1,22 +1,22 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-20T02:28:42.059102+02:00",
+  "received_at": "2025-10-20T09:49:43.806437+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "20 Bjergpiber, Gellerupparken Toveshøj",
-      "body": "Christian, Vemmelund Helligsø",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37874726&summering=tur&obs=obs",
-      "tag": "bird-digest-sub-ostjylland",
+      "title": "33 Sule, Fornæs",
+      "body": "Bjarne, Hove-Jensen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37875326&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [
         "DOF Østjylland"
       ],
       "categories": [
-        "sub"
+        "bemaerk"
       ],
-      "urgency": "normal"
+      "urgency": "high"
     }
   ]
 }
