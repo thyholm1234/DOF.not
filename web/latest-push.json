@@ -1,13 +1,13 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-20T10:24:34.752526+02:00",
+  "received_at": "2025-10-20T10:25:40.036642+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "23 Alk, Gjerrild Nordstrand øst, Knudshoved",
-      "body": "Mogens Stoustrup, Jensen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37875115&summering=tur&obs=obs",
+      "title": "2 Rød Glente, Årslev Engsø",
+      "body": "Finn, A. Jensen",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37875625&summering=tur&obs=obs",
       "tag": "bird-digest-alm-ostjylland",
       "renotify": true,
       "regions": [
