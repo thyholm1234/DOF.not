@@ -72,14 +72,15 @@
 
     <div id="thread-status" class="sub"></div>
 
-    <section class="panel" id="thread-panel" style="display:none">
+    <!-- NYT: Tråd-panel til Art × Lokation -->
+    <section id="thread-panel" style="display:none">
       <h2 id="thread-title"></h2>
-      <p class="sub" id="thread-sub"></p>
+      <div id="thread-sub" class="sub"></div>
       <ul id="thread-events" class="obs-list"></ul>
     </section>
   </main>
 
-  <script src="./app.js"></script>
-  <script src="./thread.js"></script>
+  <script src="./app.js" defer></script>
+  <script src="./thread.js" defer></script>
 </body>
 </html>

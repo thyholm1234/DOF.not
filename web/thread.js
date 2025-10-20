@@ -524,7 +524,7 @@
       $btnSort.textContent = 'Alfabet';
       $btnSort.classList.add('is-off'); $btnSort.classList.remove('is-on');
     }
-    $frontControls.style.display = 'flex';
+    if ($frontControls) $frontControls.style.display = 'flex';
   }
 
   // Render summary med filtrering
@@ -711,7 +711,7 @@
     const yYMD = yesterdayYMDLocal();
     const hour = hourInTZ('Europe/Copenhagen');
     const isTodayRequested = (!pickDate || pickDate === 'today' || pickDate === tYMD);
-    const wantCombined = isTodayRequested && hour < 3;
+    const wantCombined = isTodayRequested && hour < 4;
 
     let items = [];
     const seen = new Set();
@@ -752,9 +752,11 @@
   }
 
   // Trådvisning
-   async function loadThread(date, id) {
+  async function loadThread(date, id) {
+    ensureDomRefs(); // ← vigtig
     if ($frontControls) $frontControls.style.display = 'none';
-    $st.textContent = 'Henter tråd…';
+    if ($st) $st.textContent = 'Henter tråd…';
+
     const tryDates = isYMD(date) ? [date] : [date, todayYMDLocal()];
     let data = null, usedDate = date;
     for (const d of tryDates) {
@@ -762,7 +764,12 @@
       if (!r.ok) { usedDate = d; continue; }
       data = await r.json(); usedDate = d; break;
     }
-    if (!data) { $panel.style.display='none'; await suggestThreads(date); return; }
+    if (!data) {
+      if ($panel) $panel.style.display='none';
+      // Vis forsiden for den valgte dag (fx i går), så brugeren stadig får noget at se
+      await suggestThreads(date);
+      return;
+    }
 
     try { userPrefs = await fetchUserPrefs(); } catch { userPrefs = {}; }
 
@@ -770,45 +777,73 @@
     const events = Array.isArray(data.events) ? data.events : [];
     threadEvents = events.slice();
 
-    try { localStorage.setItem('last-thread-id', t.thread_id || id); localStorage.setItem('last-thread-date', usedDate); } catch {}
+    try {
+      localStorage.setItem('last-thread-id', t.thread_id || id);
+      localStorage.setItem('last-thread-date', usedDate);
+    } catch {}
+
     if (!isYMD(date) && isYMD(usedDate)) {
       const u = new URL(location.href); u.searchParams.set('date', usedDate); history.replaceState(null,'',u.toString());
     }
 
-    $title.textContent = `${t.art || ''} — ${t.lok || ''}`.trim();
+    if ($title) $title.textContent = `${t.art || ''} — ${t.lok || ''}`.trim();
     const last = t.status === 'withdrawn' ? (t.last_active_ts_obs || t.last_ts_obs) : t.last_ts_obs;
     const badge = t.last_kategori ? t.last_kategori.toUpperCase() : '';
-    $sub.textContent = [t.region || '', badge, t.status === 'withdrawn' ? 'Tilbagekaldt' : '', last ? `sidst set ${fmtAge(last)}` : '']
-      .filter(Boolean).join(' • ');
+    if ($sub) {
+      $sub.textContent = [t.region || '', badge, t.status === 'withdrawn' ? 'Tilbagekaldt' : '', last ? `sidst set ${fmtAge(last)}` : '']
+        .filter(Boolean).join(' • ');
+    }
 
     // Sortér events efter prefs-toggle eller manuel tilstand
     const usePrefs = (localStorage.getItem(SORT_PREFS_KEY) ?? '1') === '1';
     const manualMode = localStorage.getItem(SORT_MODE_KEY) || 'date_desc';
     const sorted = sortEvents(threadEvents, usePrefs ? 'prefs' : manualMode);
 
-    $list.innerHTML = '';
-    for (const ev of sorted) {
-      if (ev.event_type === 'correction') continue;
-      $list.appendChild(renderEvent(ev));
+    if ($list) {
+      $list.innerHTML = '';
+      for (const ev of sorted) {
+        if (ev.event_type === 'correction') continue;
+        $list.appendChild(renderEvent(ev));
+      }
     }
 
-      $panel.style.display = '';
-      $st.textContent = '';
-    }
-  
-    // Hent billeder fra serverens scraper-endpoint
-async function fetchObsImages(obsid) {
-  try {
-    const r = await fetch(`/api/obs/images?obsid=${encodeURIComponent(obsid)}`, { cache: 'no-store' });
-    if (!r.ok) return [];
-    const data = await r.json();
-    return Array.isArray(data.images) ? data.images : [];
-  } catch {
-    return [];
+    if ($panel) $panel.style.display = '';
+    if ($st) $st.textContent = '';
   }
-}
 
-// Indsæt billeder som "kommentar-rækker" i note-kolonnen
+ // Hent billed-URLs til en observation
+ async function fetchObsImages(obsid) {
+   if (!obsid) return [];
+   // Prøv global hook først (fx fra SW/app.js)
+  try {
+     if (typeof window.fetchObsImages === 'function') {
+       const res = await window.fetchObsImages(obsid);
+       if (Array.isArray(res)) return res;
+       if (res && Array.isArray(res.urls)) return res.urls;
+     }
+   } catch {}
+   // Fallback: API-endpoint
+   try {
+     const r = await fetch(`./api/obs/images?obsid=${encodeURIComponent(obsid)}`, { cache: 'no-store' });
+     if (!r.ok) return [];
+     const j = await r.json();
+     const urls = Array.isArray(j) ? j
+       : (j && Array.isArray(j.images)) ? j.images
+       : (j && Array.isArray(j.urls)) ? j.urls  
+       : [];  
+     // Dedupliker og filtrér tomme
+     const seen = new Set(), out = [];
+     for (const u of urls) {
+       const s = String(u || '').trim();
+       if (!s || seen.has(s)) continue;
+       seen.add(s); out.push(s);
+     }
+     return out;
+   } catch {
+     return [];
+   }
+ }
+
 async function renderObsImagesSection(cardEl, obsid) {
   if (!obsid || !cardEl) return;
 

@@ -111,7 +111,7 @@ app.add_middleware(
 def _merge_push_headers(payload: dict, default_urgency: str = "high") -> dict:
     headers = {
         "Urgency": "high",
-        "TTL": "2419200"  # Cache i 28 dage
+        "TTL": "3600"  # Cache i 28 dage
     }
     src = payload.get("headers") if isinstance(payload, dict) else None
     if isinstance(src, dict):
