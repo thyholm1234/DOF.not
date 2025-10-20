@@ -86,8 +86,10 @@ Miljøvariabler (kan sættes i .env):
 - VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_CONTACT
 
 Kør:
+- git clone https://github.com/thyholm1234/DOF.not.git
+- cd DOF.not
 - docker compose up -d --build
-- Åbn http://localhost:8000/thread.html
+- Åbn http://host_ip:8000/thread.html
 
 Bemærk:
 - `entrypoint.sh` kører inde i Linux-containeren (Bash). Det skal være eksekverbart (chmod +x), men Dockerfile håndterer det.
