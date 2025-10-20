@@ -121,4 +121,12 @@ DOF.not/
 ```
 
 ## Licens
-Internt brug. Tilpas efter behov.
+MIT-licens
+
+Ophavsret (c) 2025 DOF.not - Christian Vemmelund Helligsø
+
+Hermed gives enhver, der opnår en kopi af denne software og tilhørende dokumentationsfiler (“Softwaren”), tilladelse uden vederlag til uden begrænsning at bruge Softwaren, herunder uden begrænsning rettighederne til at anvende, kopiere, modificere, sammenflette, publicere, distribuere, underlicensere og/eller sælge kopier af Softwaren, og til at tillade personer, som Softwaren leveres til, at gøre det samme, under følgende betingelser:
+
+Ovenstående ophavsretsmeddelelse og denne tilladelsesmeddelelse skal medtages i alle kopier eller væsentlige dele af Softwaren.
+
+SOFTWAREN LEVERES “SOM DEN ER”, UDEN NOGEN FORM FOR GARANTI, HVERKEN UDTRYKKELIG ELLER STILTIENDE, HERUNDER MEN IKKE BEGRÆNSET TIL GARANTIER OM SALGBARHED, EGNETHED TIL ET BESTEMT FORMÅL OG IKKE-KRÆNKELSE. UNDER INGEN OMSTÆNDIGHEDER SKAL FORFATTERNE ELLER OPHAVSRETSEJERNE VÆRE ANSVARLIGE FOR ETHVERT KRAV, SKADE ELLER ANDEN FORPLIGTELSE, HVERKEN I KONTRAKT, ERSTATNINGSRET ELLER PÅ ANDEN MÅDE, SOM OPSTÅR SOM FØLGE AF, UDE AF ELLER I FORBINDELSE MED SOFTWAREN ELLER BRUGEN AF ELLER ANDRE FORHOLD I SOFTWAREN.
