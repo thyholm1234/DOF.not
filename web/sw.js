@@ -13,7 +13,6 @@ const PRECACHE = [
   'manifest.webmanifest',
   'icons/icon-192.png',
   'icons/icon-512.png',
-  'icons/maskable-512.png',
 ].map(toURL);
 
 self.addEventListener('install', (e) => {
