@@ -53,7 +53,8 @@ python birdnotification.py --config clients.yaml --watch -i 60
 - Tråddetalje (eksempel): http://localhost:8000/thread.html?date=YYYY-MM-DD&id=<thread_id>
 
 Note om dansk tid:
-- Web‑UI anvender Europe/Copenhagen. Kl. 00:00–03:00 kombineres web/obs/<i dag>/index.json og web/obs/<i går>/index.json; efter 03:00 bruges kun i dag.
+- Web‑UI anvender Europe/Copenhagen. Kl. 00:00–03:00 kombineres `web/obs/<i dag>/index.json` og `web/obs/<i går>/index.json`; efter 03:00 bruges kun i dag.
+
 
 ## Konfiguration (kort)
 - clients.yaml definerer klientprofiler og filtrering (arter, regioner, kategorier m.m.). Angives med --config.
