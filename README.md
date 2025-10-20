@@ -1,5 +1,7 @@
 # DOF.not
 
+DEMO: https://dofnot.chfotofilm.dk
+
 DOF.not indsamler, filtrerer og viser danske fugleobservationer (fra DOFbasen) som “tråde” (Art × Lokation) i en enkel web‑UI. Systemet kan også sende webpush‑beskeder til klienter.
 
 - birdnotification.py henter DOFbasens CSV pr. dag, finder første observation pr. (Artnavn × Loknr) i dansk tid, filtrerer pr. klientprofil og skriver batches til web/ og/eller sender webpush.
