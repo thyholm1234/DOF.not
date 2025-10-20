@@ -71,6 +71,27 @@ Note om dansk tid:
 3) Åbn thread.html for at se tråde. Brug filtre og sortering i toppen.
 4) Klik på en tråd for at se detaljerne, inkl. noter og evt. billeder.
 
+# Docker (valgfrit)
+
+Denne repo kan køres i Docker via docker-compose. Entrypoint-scriptet `entrypoint.sh` kører begge processer i samme container:
+- Uvicorn (FastAPI-serveren)
+- birdnotification.py (watcher)
+
+Det er kun relevant ved Docker-kørsel. Ved lokal udvikling følg i stedet “Kørsel (to terminaler)”.
+
+Miljøvariabler (kan sættes i .env):
+- TZ, APP_VERSION
+- UVICORN_HOST, UVICORN_PORT, UVICORN_LOG_LEVEL
+- BIRD_CONF, BIRD_INTERVAL, BIRD_EXTRA_ARGS
+- VAPID_PUBLIC_KEY, VAPID_PRIVATE_KEY, VAPID_CONTACT
+
+Kør:
+- docker compose up -d --build
+- Åbn http://localhost:8000/thread.html
+
+Bemærk:
+- `entrypoint.sh` kører inde i Linux-containeren (Bash). Det skal være eksekverbart (chmod +x), men Dockerfile håndterer det.
+
 ## Fejlfinding
 - Port i brug: skift --port i uvicorn.
 - CORS/HTTPS: se server.py for CORS‑opsætning.

@@ -1,17 +1,17 @@
 {
   "kind": "single",
   "count": 1,
-  "received_at": "2025-10-20T10:12:47.173012+02:00",
+  "received_at": "2025-10-20T10:22:28.374782+02:00",
   "items": [
     {
       "type": "digest",
-      "title": "3 Vandrikse, Stubbe Sø (Syddjurs)",
-      "body": "Klaus, Sørensen",
-      "url": "https://dofbasen.dk/popobs.php?obsid=37875814&summering=tur&obs=obs",
-      "tag": "bird-digest-alm-ostjylland",
+      "title": "1 Mosehornugle, Nordhavn (København)",
+      "body": "Jonatan, Hauge Noldegaard",
+      "url": "https://dofbasen.dk/popobs.php?obsid=37875919&summering=tur&obs=obs",
+      "tag": "bird-digest-alm-kobenhavn",
       "renotify": true,
       "regions": [
-        "DOF Østjylland"
+        "DOF København"
       ],
       "categories": [
         "bemaerk"
